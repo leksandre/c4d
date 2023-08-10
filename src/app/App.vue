@@ -94,7 +94,6 @@
             <div class="e-select text-body-1">
               <select name="district" id="view" v-model="view">
                 <option value="tilePlus">Плитка+</option>
-                <option value="mobile">Мобильный</option>
                 <option value="tile">Компактная</option>
               </select>
             </div>
@@ -106,11 +105,12 @@
     <main class="d-flex flex-grow-1 pos-rel" id="main">
       <div
         v-if="!isLoading"
-        class="content flex-grow-1 overflow-x-auto"
+        class="content flex-grow-1 overflow-x-auto "
         :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}"
       >
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
-          <table>
+          <div >
+          <table class="scaling">
             <thead>
             <tr>
               <td></td>
@@ -147,6 +147,7 @@
             </tr>
             </tbody>
           </table>
+          </div>
         </section>
       </div>
 
@@ -895,5 +896,8 @@
   }
   .hidden {
     display: none;
+  }
+  .scaling {
+    transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
 </style>
