@@ -94,6 +94,7 @@
             <div class="e-select text-body-1">
               <select name="district" id="view" v-model="view">
                 <option value="tilePlus">Плитка+</option>
+                <option value="mobile">Мобильный</option>
                 <option value="tile">Компактная</option>
               </select>
             </div>
@@ -131,7 +132,7 @@
             </tr>
             </tfoot>
             <tbody>
-            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`">
+            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': !hasChildWithClass(floor, 'c-building__flat-type') }" >
               <td class="c-building__floor-number text-right px-5">{{ floor + 1 }}</td>
               <td v-for="(section, sectionId) in board" :key="sectionId">
                 <div class="c-building__section">
@@ -354,7 +355,7 @@
 
     data: () => ({
       view: 'tilePlus',
-
+      timerForShowPanel:false,
       properties: [],
       isLoading: true,
       isSending: false,
@@ -503,6 +504,24 @@
        * @param payload
        * @param origin
        */
+      hasChildWithClass(itemId, className) {
+
+        const itemElement = document.getElementById(`floorView-${itemId}`);
+        // console.log(itemElement,itemId, className)
+
+        if (itemElement) {
+          let childElements = itemElement.getElementsByClassName(className);
+          let foundEl = (childElements.length > 0)
+
+          // console.log(itemId,foundEl)
+          return foundEl
+        } else {
+          // console.log('elem not exist')
+          return true;
+        }
+        // console.log('return false;')
+        return false;
+      },
       postMessage(payload, origin = '*') {
         try {
           if (!parent) throw new Error('nu pizdec')
@@ -699,6 +718,8 @@
 
       onChangeFilter() {
         this.$store.commit('chess/changeFilters', this.filters)
+        this.closeInfoPanel(true)
+        setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type'); arrcards[0].click(); /*обработать ситуацию когда фильтры не вернули ничего*/ },500);
       },
 
       priceFormatter(value) {
@@ -871,5 +892,8 @@
     height: 100%;
     left: 0;
     top: 0;
+  }
+  .hidden {
+    display: none;
   }
 </style>

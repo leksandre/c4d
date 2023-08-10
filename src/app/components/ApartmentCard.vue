@@ -5,7 +5,7 @@
     @click.prevent="onViewApartment"
 
   >
-    <div
+    <div  v-if="property.isFiltred"
       class="c-building__flat-type"
     >
       <div v-if="property.isFiltred"
