@@ -1,7 +1,7 @@
 <template>
   <div class="b-page d-flex flex-column full-height overflow-hidden pos-r">
     <header
-      class="flex-grow-0 pr-4 pos-rel"
+      class="flex-grow-0 pr-4 pos-rel disNone"
       :class="{'py-12': mq.mdAndUp, 'py-4': mq.mdAndDown, 'pl-10': mq.mdAndUp, 'pl-6': mq.mdAndDown}"
     >
       <div class="d-flex align-center">
@@ -110,7 +110,7 @@
       >
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div >
-          <table class="scaling">
+          <table class="scaling07 disNone">
             <thead>
             <tr>
               <td></td>
@@ -897,7 +897,10 @@
   .hidden {
     display: none;
   }
-  .scaling {
+  .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+  }
+  .disNone{
+    display: none;
   }
 </style>
