@@ -504,13 +504,13 @@
        * @param payload
        * @param origin
        */
-        isMobile() {
-          if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            return true
-          } else {
-            return false
-          }
-        },
+      isMobile() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          return true
+        } else {
+          return false
+        }
+      },
       hasChildWithClass(itemId, className) {
 
         const itemElement = document.getElementById(`floorView-${itemId}`);
