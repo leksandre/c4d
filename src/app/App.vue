@@ -104,10 +104,9 @@
     </header>
     <main class="d-flex flex-grow-1 pos-rel" id="main">
       <div
-        v-if="!isLoading"
-        class="content flex-grow-1 overflow-x-auto "
-        :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}"
+        v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
       >
+         <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div >
           <table class="scaling07 disNone">
@@ -153,7 +152,7 @@
 
       <apartment-details v-if="mq.mdAndUp" />
     </main>
-    <footer :class="{'pa-2': mq.mdAndDown}">
+    <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
         <div class="l-col py-0 text-body-2 has-text-primary">&copy; CRM4DEV {{ new Date().getFullYear() }}</div>
         <div class="l-col py-0">
@@ -505,6 +504,15 @@
        * @param payload
        * @param origin
        */
+      methods: {
+        isMobile() {
+          if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            return true
+          } else {
+            return false
+          }
+        }
+      },
       hasChildWithClass(itemId, className) {
 
         const itemElement = document.getElementById(`floorView-${itemId}`);
@@ -572,6 +580,13 @@
             body = doc.getElementsByTagName('body')[0],
             x = win.innerWidth || docElem.clientWidth || body.clientWidth,
             y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+
+        // console.log('win.innerHeight',win.innerHeight)
+        // console.log('docElem.clientHeight',docElem.clientHeight)
+        // console.log('body.clientHeight',body.clientHeight)
+        // console.log('document.body.scrollHeight',document.body.scrollHeight)
+        // console.log('page.scrollHeight',page.scrollHeight)
+        // console.log('y',y)
 
 
         const page = document.querySelector('.b-page')
