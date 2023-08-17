@@ -30,20 +30,20 @@ $map-grid-props: (
     }
     @for $i from 1 through $grid-cols {
       .l-col#{$modifier}-#{$i} {
-        flex-basis: (100 / ($grid-cols / $i) ) * 1%;
-        max-width: (100 / ($grid-cols / $i) ) * 1%;
-        padding: $gutters/2 - 5;
+        flex-basis: calc(100 / ($grid-cols / $i) ) * 1%;
+        max-width: calc(100 / ($grid-cols / $i) ) * 1%;
+        padding: calc($gutters/2) - 5;
 
         @include create-mq($grid__bp-sm, 'min') {
-          padding: $gutters/2;
+          padding: calc($gutters/2);
         }
       }
       .l-col#{$modifier}-offset-#{$i} {
-        margin-left: (100 / ($grid-cols / $i) ) * 1%;
-        padding: $gutters/2 - 5;
+        margin-left: calc(100 / calc($grid-cols / $i) ) * 1%;
+        padding: (calc($gutters/2) - 5);
 
         @include create-mq($grid__bp-sm, 'min') {
-          padding: $gutters/2;
+          padding: calc($gutters/2);
         }
       }
     }
@@ -74,19 +74,19 @@ $map-grid-props: (
   max-width: $max-width-container;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 $gutters/2;
+  padding: 0 calc($gutters/2);
 }
 
 .l-row {
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
-  margin-right: -$gutters/2 + 5;
-  margin-left: -$gutters/2 + 5;
+  margin-right: calc( $gutters/-2) + 5;
+  margin-left: calc( $gutters/-2) + 5;
 
   @include create-mq($grid__bp-sm, 'min') {
-    margin-right: -$gutters/2;
-    margin-left: -$gutters/2;
+    margin-right: calc(-1*$gutters/2);
+    margin-left: calc(-1*$gutters/2);
   }
 
 }
@@ -96,20 +96,20 @@ $map-grid-props: (
   flex-grow: 1;
   max-width: 100%;
   width: 100%;
-  padding: $gutters/2 - 5;
+  padding: calc($gutters/2) - 5;
 
   @include create-mq($grid__bp-sm, 'min') {
-    padding: $gutters/2;
+    padding: calc($gutters/2);
   }
 
   &-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: 100%;
-    padding: $gutters/2 - 5;
+    padding: calc($gutters/2) - 5;
 
     @include create-mq($grid__bp-sm, 'min') {
-      padding: $gutters/2;
+      padding: calc($gutters/2);
     }
   }
 }

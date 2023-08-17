@@ -1,6 +1,12 @@
 /* global crm4dev  */
 import App from './App'
 
+// import Vue from 'vue'
+// import VueLazyLoad from 'vue-lazyload'
+
+
+// Vue.use(VueLazyLoad)
+
 ;((w, d) => {
 
   const init = async () => {

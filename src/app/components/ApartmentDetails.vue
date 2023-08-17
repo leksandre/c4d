@@ -1,6 +1,9 @@
 <template>
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
+    <div class="flat__media">
+      <light-box :media="media"></light-box>
+    </div>
     <div class="flat__info">
 <!--      <share />-->
     <div class="d-flex flex-column full-height" v-if="property">
@@ -114,11 +117,18 @@
     </div>
     </div>
     </div>
+
+
+
+
   </aside>
 </template>
 
 <script>
   import { mapState, mapGetters } from 'vuex'
+  import LightBox from 'vue-image-lightbox'
+
+  require('vue-image-lightbox/dist/vue-image-lightbox.min.css')
 
   export default {
     data: () => ({
@@ -126,8 +136,24 @@
       descriptioOpened: false,
       collapseTriggerText: 'Развернуть',
       collapseStyle: {},
+      media:[
+        { // For image
+          thumb: 'https://dummyimage.com/800/ffffff/000000',
+          src: 'https://dummyimage.com/1600/ffffff/000000',
+          caption: 'caption to display. receive  <b>tag</b>', // Optional
+          srcset: '...' // Optional for displaying responsive images
+        },
+        { // For image
+          thumb: 'https://dummyimage.com/1280/000000/ffffff',
+          src: 'https://dummyimage.com/400/000000/ffffff',
+          caption: 'caption to display. receive <b>tag</b>', // Optional
+          srcset: '...' // Optional for displaying responsive images
+        }
+      ]
     }),
-
+    components: {
+      LightBox,
+    },
     computed: {
       ...mapState({
         isOpen: state => state.infoPanel.isOpen,
