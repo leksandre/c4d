@@ -108,8 +108,9 @@
       >
          <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
-          <div >
-          <table class="scaling07 disNone">
+          <div class="tableWithFloor" >
+<!--          <table class="scaling07 disNone">-->
+          <table >
             <thead>
             <tr>
               <td></td>
@@ -131,10 +132,10 @@
             </tr>
             </tfoot>
             <tbody>
-            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': !hasChildWithClass(floor, 'c-building__flat-type') }" >
-              <td class="c-building__floor-number text-right px-5">{{ floor + 1 }}</td>
+            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >
+              <td class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</td>
               <td v-for="(section, sectionId) in board" :key="sectionId">
-                <div class="c-building__section">
+                <div class="c-building__section disNone">
                   <apartment-card
                     v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
                     :key="property.id"
@@ -579,16 +580,21 @@
             x = win.innerWidth || docElem.clientWidth || body.clientWidth,
             y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
+
+        const page = document.querySelector('.b-page')
+
         // console.log('win.innerHeight',win.innerHeight)
         // console.log('docElem.clientHeight',docElem.clientHeight)
         // console.log('body.clientHeight',body.clientHeight)
         // console.log('document.body.scrollHeight',document.body.scrollHeight)
+        // console.log('page.clientHeight',page.clientHeight)
         // console.log('page.scrollHeight',page.scrollHeight)
         // console.log('y',y)
 
 
-        const page = document.querySelector('.b-page')
+
         y = Math.max(y,page.scrollHeight,document.body.scrollHeight)
+        console.log('y result',y)
         this.postMessage({
           method: '_$is_setFrameSize',
           payload: {
@@ -908,12 +914,21 @@
     top: 0;
   }
   .hidden {
-    display: none;
+    background-color: #2D80F0;
+    //display: none;
   }
   .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
   .disNone{
     display: none;
+  }
+  .tableWithFloor{
+    display: block;
+    transform: scale(0.5);
+    position: absolute;
+    z-index: 200;
+    top:10px;
+    left:10px;
   }
 </style>

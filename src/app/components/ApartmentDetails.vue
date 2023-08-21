@@ -1,8 +1,8 @@
 <template>
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
-    <div class="flat__media">
-      <light-box :media="media"></light-box>
+    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">
+      <light-box :media="media" :closable="false"></light-box>
     </div>
     <div class="flat__info">
 <!--      <share />-->
@@ -128,7 +128,8 @@
   import { mapState, mapGetters } from 'vuex'
   import LightBox from 'vue-image-lightbox'
 
-  require('vue-image-lightbox/dist/vue-image-lightbox.min.css')
+  // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
+  
 
   export default {
     data: () => ({
@@ -141,13 +142,13 @@
           thumb: 'https://dummyimage.com/800/ffffff/000000',
           src: 'https://dummyimage.com/1600/ffffff/000000',
           caption: 'caption to display. receive  <b>tag</b>', // Optional
-          srcset: '...' // Optional for displaying responsive images
+          srcset: 'https://dummyimage.com/800/ffffff/000000' // Optional for displaying responsive images
         },
         { // For image
           thumb: 'https://dummyimage.com/1280/000000/ffffff',
           src: 'https://dummyimage.com/400/000000/ffffff',
           caption: 'caption to display. receive <b>tag</b>', // Optional
-          srcset: '...' // Optional for displaying responsive images
+          srcset: 'https://dummyimage.com/1280/000/fff' // Optional for displaying responsive images
         }
       ]
     }),
@@ -189,7 +190,15 @@
           payload: 0
         })
       },
-
+      isMobile() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          // console.log('navigator.userAgent',navigator.userAgent)
+          return true
+        } else {
+          // console.log('!navigator.userAgent',navigator.userAgent)
+          return false
+        }
+      },
       onClose() {
         if (this.mq.mdAndDown)
           this.$modal.hide('info')

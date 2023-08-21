@@ -88,7 +88,7 @@
       const frame = (document.getElementsByName('C4DWidgetInject')||[])[0]
       if (frame){
         if(height>parseInt(frame.clientHeight,10)){
-        frame.style.height = `${height}px`
+        frame.style.height = `${height*1.6}px`
         frame.style.overflowY = 'scroll'
         }}
     },
