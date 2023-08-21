@@ -109,44 +109,79 @@
          <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div class="tableWithFloor" >
-<!--          <table class="scaling07 disNone">-->
-          <table >
-            <thead>
-            <tr>
-              <td></td>
-              <td
-                v-for="(section, sectionId) in board"
-                :key="`head_${sectionId}`"
-                class="has-text-primary font-weight-bold text-h3"
-              >{{ section.name }}</td>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-              <td></td>
-              <td
-                v-for="(section, sectionId) in board"
-                :key="`foot_${sectionId}`"
-                class="has-text-primary font-weight-bold text-h3"
-              >{{ section.name }}</td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >
-              <td class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</td>
-              <td v-for="(section, sectionId) in board" :key="sectionId">
-                <div class="c-building__section disNone">
-                  <apartment-card
-                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
-                    :key="property.id"
-                    :property="property"
-                  />
+
+
+            <div >
+              <div>
+
+                <div
+                    v-for="(section, sectionId) in board"
+                    :key="`head_${sectionId}`"
+                    class="has-text-primary font-weight-bold text-h3"
+                >{{ section.name }}</div>
+              </div>
+
+              <div>
+              <div class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >
+                <div class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</div>
+                <div v-for="(section, sectionId) in board" :key="sectionId">
+                  <div class="c-building__section disNone">
+                    <apartment-card
+                        v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
+                        :key="property.id"
+                        :property="property"
+                    />
+                  </div>
                 </div>
-              </td>
-              <td class="c-building__floor-number pl-0">{{ floor + 1 }}</td>
-            </tr>
-            </tbody>
-          </table>
+
+              </div>
+              </div>
+            </div>
+
+
+
+
+
+
+<!--          <table class="scaling07 disNone">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <td></td>-->
+<!--              <td-->
+<!--                v-for="(section, sectionId) in board"-->
+<!--                :key="`head_${sectionId}`"-->
+<!--                class="has-text-primary font-weight-bold text-h3"-->
+<!--              >{{ section.name }}</td>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tfoot>-->
+<!--            <tr>-->
+<!--              <td></td>-->
+<!--              <td-->
+<!--                v-for="(section, sectionId) in board"-->
+<!--                :key="`foot_${sectionId}`"-->
+<!--                class="has-text-primary font-weight-bold text-h3"-->
+<!--              >{{ section.name }}</td>-->
+<!--            </tr>-->
+<!--            </tfoot>-->
+<!--            <tbody>-->
+<!--            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >-->
+<!--              <td class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</td>-->
+<!--              <td v-for="(section, sectionId) in board" :key="sectionId">-->
+<!--                <div class="c-building__section disNone">-->
+<!--                  <apartment-card-->
+<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
+<!--                    :key="property.id"-->
+<!--                    :property="property"-->
+<!--                  />-->
+<!--                </div>-->
+<!--              </td>-->
+<!--              <td class="c-building__floor-number pl-0">{{ floor + 1 }}</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+
+
           </div>
         </section>
       </div>
