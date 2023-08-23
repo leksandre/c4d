@@ -108,7 +108,7 @@
       >
          <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
-          <div class="tableWithFloor" >
+          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >
 
 
             <div >
@@ -1036,6 +1036,14 @@
     border-image-slice:2 2 15 15; /* same as border-width*/
     border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
   }
+
+  .tableWithFloor_mobile{
+    z-index: 1200;
+    top: 504px;
+    transform: scale(0.6);
+  }
+
+
   .just_building__floor{
     display: flex;
   }
