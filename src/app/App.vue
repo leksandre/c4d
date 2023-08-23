@@ -1001,6 +1001,7 @@
     top: 0;
   }
   .nowInSale .buttonFloor {
+    cursor: pointer;
     background-color: #04AA6D;
     color: white;
   }
@@ -1039,7 +1040,6 @@
 
   .tableWithFloor_mobile{
     z-index: 1200;
-    top: 504px;
     transform: scale(0.6);
   }
 
@@ -1049,7 +1049,7 @@
   }
 
    .buttonFloor {
-     cursor: pointer;
+     cursor: not-allowed;
     background-color: #6c757d;
     border: none;
     color: gray;

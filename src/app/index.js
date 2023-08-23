@@ -11,10 +11,12 @@ import { getUrlParams } from './utils/helpers'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 import './assets/scss/index.scss'
 // import VueLazyLoad from 'vue-lazyload'
+// import VueResizeText from 'vue-resize-text';
 
 Vue.config.productionTip = false
 
 // Vue.use(VueLazyLoad)
+// Vue.use(VueResizeText)
 Vue.use(CoolLightBox)
 Vue.use(VModal)
 Vue.use(VueForceNextTick)
