@@ -112,6 +112,9 @@
 
 
             <div >
+              <div>
+                выберите ваш<br>этаж
+              </div>
 <!--              <div>-->
 <!--                <div-->
 <!--                    v-for="(section, sectionId) in board"-->
@@ -819,7 +822,7 @@
             arrcards[0].click()
           } else {
             console.log('по данному запросу объекты недвижимости недоступны')
-            // alert('по данному запросу объекты недвижимости недоступны')
+            alert('по данному запросу объекты недвижимости недоступны')
           }
           ;
           /*обработать ситуацию когда фильтры не вернули ничего*/
@@ -1014,8 +1017,24 @@
     //transform: scale(0.5);
     position: absolute;
     z-index: 200;
-    top:10px;
-    left:10px;
+    //top:10px;
+    //left:10px;
+    //margin: 10px;
+
+    //right: 0px;
+    //top: 0px;
+    background-color: #fff;
+    right: -10px;
+    top: -57px;
+    transform: scale(0.7);
+
+
+    padding: 5px;
+    display: inline-block;
+    border-style:solid;
+    border-width:2px 2px 15px 15px;
+    border-image-slice:2 2 15 15; /* same as border-width*/
+    border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
   }
   .just_building__floor{
     display: flex;
