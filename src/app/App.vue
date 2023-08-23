@@ -112,30 +112,54 @@
 
 
             <div >
-              <div>
+<!--              <div>-->
+<!--                <div-->
+<!--                    v-for="(section, sectionId) in board"-->
+<!--                    :key="`head_${sectionId}`"-->
+<!--                    class="has-text-primary font-weight-bold text-h3"-->
+<!--                >{{ section.name }}</div>-->
+<!--              </div>-->
+<!--{{floorsCount}}-->
+              <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
-                <div
-                    v-for="(section, sectionId) in board"
-                    :key="`head_${sectionId}`"
-                    class="has-text-primary font-weight-bold text-h3"
-                >{{ section.name }}</div>
-              </div>
-
-              <div>
-              <div class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >
-                <div class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</div>
-                <div v-for="(section, sectionId) in board" :key="sectionId">
-                  <div class="c-building__section disNone">
-                    <apartment-card
-                        v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
-                        :key="property.id"
-                        :property="property"
-                    />
+                <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }"
+                     v-if="((floor+1) % 2 == 0)">
+                  <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">>
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
                   </div>
                 </div>
 
+                <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') }"
+                     v-if="((floor-1) % 2 == 0)">
+                  <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">>
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+<!--                <br v-if="(floor % 2 == 0) && floor != 0" >-->
+<!--                <br v-if="(floor % 2 == 0) && floor != 0" >-->
+
+<!--                <p style="white-space: pre" v-html="testData" v-if="(floor % 2 == 0) && floor != 0" ></p>-->
+
               </div>
-              </div>
+
+
+
             </div>
 
 
@@ -391,6 +415,7 @@
 
     data: () => ({
       view: 'tilePlus',
+      testData: ' <pre> </pre> ',
       timerForShowPanel:false,
       properties: [],
       isLoading: true,
@@ -546,6 +571,21 @@
         } else {
           return false
         }
+      },
+      floorClick(itemId, className){
+        const itemElement = document.getElementById(`floorView-${itemId}`);
+        if (itemElement) {
+          let childElements = itemElement.getElementsByClassName(className);
+          let foundEl = (childElements.length > 0)
+          if(foundEl){
+            childElements[0].click()
+          }
+          return foundEl
+        } else {
+          return true;
+        }
+        return false;
+
       },
       hasChildWithClass(itemId, className) {
 
@@ -774,7 +814,16 @@
       onChangeFilter() {
         this.$store.commit('chess/changeFilters', this.filters)
         this.closeInfoPanel(true)
-        setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type'); arrcards[0].click(); /*обработать ситуацию когда фильтры не вернули ничего*/ },500);
+        setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type');
+          if (arrcards.length > 0) {
+            arrcards[0].click()
+          } else {
+            console.log('по данному запросу объекты недвижимости недоступны')
+            // alert('по данному запросу объекты недвижимости недоступны')
+          }
+          ;
+          /*обработать ситуацию когда фильтры не вернули ничего*/
+        },500);
       },
 
       priceFormatter(value) {
@@ -948,9 +997,9 @@
     left: 0;
     top: 0;
   }
-  .hidden {
-    background-color: #2D80F0;
-    //display: none;
+  .nowInSale .buttonFloor {
+    background-color: #04AA6D;
+    color: white;
   }
   .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
@@ -958,12 +1007,35 @@
   .disNone{
     display: none;
   }
+
+
   .tableWithFloor{
     display: block;
-    transform: scale(0.5);
+    //transform: scale(0.5);
     position: absolute;
     z-index: 200;
     top:10px;
     left:10px;
   }
+  .just_building__floor{
+    display: flex;
+  }
+
+   .buttonFloor {
+     cursor: pointer;
+    background-color: #6c757d;
+    border: none;
+    color: gray;
+    padding-top: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+     border: 2px #02C39E solid;
+  }
+
 </style>
