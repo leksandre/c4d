@@ -31,7 +31,7 @@ Vue.filter('num', value => {
 })
 
 let config = getUrlParams(location.search)
-config.chessSrc = config.chessSrc || '/chess.json'
+config.chessSrc = config.chessSrc || '/estate_object'
 const $http = MakeHttp(config)
 
 store.app = store.app || {}

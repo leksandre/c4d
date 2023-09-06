@@ -561,7 +561,22 @@
       window.removeEventListener('message', this.messageListener)
       window.removeEventListener('resize', this.resizeListener)
     },
+    mounted: function() {
+      //console.log('!!!!!!!!!!!!!!!! mounted')
 
+      if (this.isMobile()) {
+        let interval1 = setInterval(_ => {
+          var panel = document.getElementsByClassName("tableWithFloor")[0];
+          var FlatInfo = document.getElementsByClassName("flat__info")[0];
+          if (typeof panel !== "undefined")
+            if (typeof FlatInfo !== "undefined") {
+              FlatInfo.appendChild(panel);
+              clearInterval(interval1)
+            }
+        }, 50)
+      }
+
+    },
     methods: {
       /**
        * Отправка данных с виджета на сайт (скрипт вставку)
@@ -820,6 +835,9 @@
         setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type');
           if (arrcards.length > 0) {
             arrcards[0].click()
+
+            /// action after load and fix all transformations
+
           } else {
             console.log('по данному запросу объекты недвижимости недоступны')
             alert('по данному запросу объекты недвижимости недоступны')
@@ -1004,6 +1022,7 @@
     cursor: pointer;
     background-color: #04AA6D;
     color: white;
+    border: 2px #02C39E solid;
   }
   .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
@@ -1033,8 +1052,8 @@
     padding: 5px;
     display: inline-block;
     border-style:solid;
-    border-width:2px 2px 15px 15px;
-    border-image-slice:2 2 15 15; /* same as border-width*/
+    border-width: 15px 15px 2px 2px;
+    border-image-slice:15 15 2 2; /* same as border-width*/
     border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
   }
 
@@ -1048,9 +1067,15 @@
     display: flex;
   }
 
-   .buttonFloor {
-     cursor: not-allowed;
-    background-color: #6c757d;
+  .tableWithFloor_mobile .buttonFloor {
+    font-size: 14px;
+    padding-top: 11px;
+  }
+
+
+  .buttonFloor {
+    cursor: not-allowed;
+    background-color: #bab4b4;
     border: none;
     color: gray;
     padding-top: 8px;
@@ -1062,7 +1087,7 @@
     border-radius: 100px;
     width: 40px;
     height: 40px;
-     border: 2px #02C39E solid;
+    border: 2px #bab4b4 solid;
   }
 
 </style>

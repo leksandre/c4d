@@ -29,7 +29,7 @@ export default {
   async selectObject({ dispatch }, id) {
     try {
       const res = await this.app.$http.$get(this.app.$config.chessSrc, {
-        params: { type: 'ОбъектСтроительства', id }
+        params: { filter_type: 'building', id , additional_info:'true', status:'true'}
       })
       dispatch('setDate', res)
     }
