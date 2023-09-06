@@ -31,7 +31,7 @@ export default {
 
     for (const property of state.properties) {
       let result = false
-      const type = property['КоличествоКомнатСтрокой']
+      const type = property['floor_number']
       const area = property['ПлощадьОбщая']
       const layout = property['ТипПланировки']
       const { floor, price, id_entrance: sectionId  } = property

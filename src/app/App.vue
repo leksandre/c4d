@@ -594,6 +594,7 @@
         const itemElement = document.getElementById(`floorView-${itemId}`);
         if (itemElement) {
           let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
           let foundEl = (childElements.length > 0)
           if(foundEl){
             childElements[0].click()
@@ -612,6 +613,7 @@
 
         if (itemElement) {
           let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
           let foundEl = (childElements.length > 0)
 
           // console.log(itemId,foundEl)
@@ -833,6 +835,7 @@
         this.$store.commit('chess/changeFilters', this.filters)
         this.closeInfoPanel(true)
         setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type');
+          // console.log('arrcards',arrcards)
           if (arrcards.length > 0) {
             arrcards[0].click()
 
@@ -840,7 +843,7 @@
 
           } else {
             console.log('по данному запросу объекты недвижимости недоступны')
-            alert('по данному запросу объекты недвижимости недоступны')
+            // alert('по данному запросу объекты недвижимости недоступны')
           }
           ;
           /*обработать ситуацию когда фильтры не вернули ничего*/
@@ -872,7 +875,7 @@
           const url = this.parentLocation.href
           const urlSplit = new URL(url).host.split('.')
           let utms = {}
-
+          // console.log('urlSplit',urlSplit)
           if (urlSplit.length > 2) {
             const developer = urlSplit[0]
             utms['utm_google'] = `google_ads_${developer}`

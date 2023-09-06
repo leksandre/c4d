@@ -26,24 +26,68 @@ export default {
     }
   },
 
+
+
+  // config.object = config.object || '/estate_object'
+  // config.building = config.building || '/building'
+  // config.district = config.district || '/district'
+  // config.section = config.section || '/section'
+
+
   async selectObject({ dispatch }, id) {
     try {
-      const res = await this.app.$http.$get(this.app.$config.chessSrc, {
+      const res = await this.app.$http.$get(this.app.$config.object, {
         params: { filter_type: 'building', id , additional_info:'true', status:'true'}
       })
-      dispatch('setDate', res)
+      dispatch('setDate1', res)
+    }
+    catch(error) {
+      console.warn(error)
+    }
+    try {
+      const res = await this.app.$http.$get(this.app.$config.building, {
+        params: {}
+      })
+      dispatch('setDate2', res)
+    }
+    catch(error) {
+      console.warn(error)
+    }
+    try {
+      const res = await this.app.$http.$get(this.app.$config.district, {
+        params: {}
+      })
+      dispatch('setDate3', res)
+    }
+    catch(error) {
+      console.warn(error)
+    }
+    try {
+      const res = await this.app.$http.$get(this.app.$config.section, {
+        params: {}
+      })
+      dispatch('setDate4', res)
     }
     catch(error) {
       console.warn(error)
     }
   },
 
-  setDate({ commit }, payload) {
-    const districts = payload['Районы'] || []
-    const objects = payload['ОбъектыСтроительства'] || []
-    const sections = payload['Секции'] || []
-    const properties = payload['ОбъектыНедвижимости'] || []
-    commit('set', { districts, objects, sections, properties })
+  setDate1({ commit }, payload) {
+    const properties = payload['data'] || []
+    commit('set', { properties })
+  },
+  setDate2({ commit }, payload) {
+    const objects = payload['data'] || []
+    commit('set', { objects})
+  },
+  setDate3({ commit }, payload) {
+    const districts = payload['data'] || []
+    commit('set', { districts})
+  },
+  setDate4({ commit }, payload) {
+    const sections = payload['data'] || []
+    commit('set', { sections})
   },
 
   selectPropterty({ commit, rootState }, id) {
