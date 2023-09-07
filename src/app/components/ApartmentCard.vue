@@ -21,17 +21,17 @@
           class="c-building__flat-type"
           :style="{'background-color': color}"
         >
-          {{ property['КоличествоКомнатСтрокой'] }}
+          {{ property['rooms'] }}
         </div>
-        <div class="ml-2 has-opacity-65">{{ property['ТипНедвижимости'] }}</div>
+        <div class="ml-2 has-opacity-65">{{ property['type_object'] }}</div>
         <div class="ml-auto has-opacity-65">№{{ property.number }}</div>
       </div>
-      <div class="font-weight-bold text-body-1 mt-2">{{ property.price | num }} ₽</div>
-      <div class="has-opacity-65 mt-1">{{ property['ПлощадьОбщая'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
+      <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>
+      <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
 
       <div class="mb-10">
         <a class="c-image-property image-link"  @click="onOpenImage">
-          <img :src="property.plan" alt="">
+<!--          <img :src="property.plan" alt="">-->
         </a>
       </div>
 
@@ -78,7 +78,7 @@
       },
       KKS: vm => {
         let KKS
-        switch (vm.property.КоличествоКомнатСтрокой) {
+        switch (vm.property.rooms) {
           case '1':
             KKS = '1комнатная'
             break
