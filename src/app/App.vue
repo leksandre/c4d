@@ -109,7 +109,6 @@
          <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >
-<!--!!!!!!!!!!{{floorsCount}}!!!!!!!-->
 
             <div >
               <div>
