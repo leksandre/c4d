@@ -109,7 +109,7 @@
          <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >
-
+<!--!!!!!!!!!!{{floorsCount}}!!!!!!!-->
 
             <div >
               <div>
@@ -128,7 +128,7 @@
                 <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }"
                      v-if="((floor+1) % 2 == 0)">
                   <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
-                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
                           v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
@@ -142,7 +142,7 @@
                 <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') }"
                      v-if="((floor-1) % 2 == 0)">
                   <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>
-                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
                           v-for="property in section.propertiesOnFloor[`floor_${floor}`]"

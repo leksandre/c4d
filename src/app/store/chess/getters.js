@@ -4,7 +4,7 @@ export default {
   currentDistrict: state => state.districts.find(district => district.selected),
   currentObject: state => state.objects.find(object => object.selected),
   sectionById: state => id => state.sections.find(section => section.id === id),
-  floorsCount: state => Math.max(...state.sections.map(section => section.floors)) || 0,
+  floorsCount: state => Math.max(...state.sections.map(section => section.number_of_floors)) || 0,
   propertyById: state => id => state.properties.find(property => property.id === id),
   allTypes: state => uniq(state.properties.map(prop => prop['rooms'])),
   allPrices: state => uniq(state.properties.map(prop => prop.cost)),
