@@ -121,10 +121,9 @@
 <!--                    class="has-text-primary font-weight-bold text-h3"-->
 <!--                >{{ section.name }}</div>-->
 <!--              </div>-->
-
+<!--{{floorsCount}}-->
               <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
-                {{floorsCount}}
-                {{idxfloor}}
+
                 <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }"
                      v-if="((floor+1) % 2 == 0)">
                   <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
@@ -213,8 +212,8 @@
         </section>
       </div>
 
-<!--      v-if="mq.mdAndUp"-->
-      <apartment-details/>
+<!--   !!!!!!!fix1 -->
+      <apartment-details    v-if="mq.mdAndUp" />
     </main>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
@@ -636,6 +635,9 @@
         }
       },
       getName(name){
+        if(name=='0'){
+          return "0"
+        }
         if(name=='1'){
           return "1комнатная"
         }
@@ -1031,7 +1033,7 @@
   .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
-  .disNone{
+  .disNone{//!!!!!!!fix2
     display: none;
   }
 

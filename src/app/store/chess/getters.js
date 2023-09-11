@@ -25,10 +25,10 @@ export default {
     }
 
     for (const prop of properties) {
-      if (!propertiesOfSection[prop.id_entrance])
-        propertiesOfSection[prop.id_entrance] = []
+      if (!propertiesOfSection[prop.section_id])
+        propertiesOfSection[prop.section_id] = []
 
-      propertiesOfSection[prop.id_entrance].push(prop)
+      propertiesOfSection[prop.section_id].push(prop)
     }
 
     for (const idSection in propertiesOfSection) {

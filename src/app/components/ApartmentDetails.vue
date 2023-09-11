@@ -58,13 +58,13 @@
                 <div>Площадь</div>
                 <div>{{ property['area'] }} м²</div>
               </div>
-<!--              <div-->
-<!--                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"-->
-<!--                class="c-list__item d-flex justify-space-between"-->
-<!--              >-->
-<!--                <div>Площадь кухни</div>-->
-<!--                <div>{{ property['area_kitchen'] }} м²</div>-->
-<!--              </div>-->
+              <div
+                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"
+                class="c-list__item d-flex justify-space-between"
+              >
+                <div>Площадь кухни</div>
+                <div>{{ property['area_kitchen'] }} м²</div>
+              </div>
               <div class="c-list__item d-flex justify-space-between">
                 <div>Этаж</div>
                 <div>{{ property.floor }}</div>
@@ -73,12 +73,18 @@
                 <div>{{ b['type'] }}</div>
                 <div>{{ b['square_meters'] }} м²</div>
               </div>
-<!--              <div-->
-<!--                class="c-list__item d-flex justify-space-between"-->
-<!--                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"-->
-<!--              >-->
-<!--                <div>{{ property['СовмещенныйСанУзел'] ? 'Совмещенный' : 'Раздельный' }} cан. узел</div>-->
+
+<!--              <div class="c-list__item d-flex justify-space-between" v-for="(b, i) in property['object_planes']" :key="`p${i}`">-->
+<!--                <div>{{ i }}</div>-->
+<!--                <div>{{ b }} м²</div>-->
 <!--              </div>-->
+
+              <div
+                class="c-list__item d-flex justify-space-between"
+                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"
+              >
+                <div>{{ property['СовмещенныйСанУзел'] ? 'Совмещенный' : 'Раздельный' }} cан. узел</div>
+              </div>
             </div>
           </div>
 

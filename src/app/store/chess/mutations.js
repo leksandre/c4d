@@ -34,7 +34,7 @@ export default {
       const type = property['floor_number']
       const area = property['area']
       const layout = property['type_apartment']
-      const { floor, price, id_entrance: sectionId  } = property
+      const { floor, cost:price, section_id: sectionId  } = property
 
       const toNumber = i => Number(i)
       byArea = byArea.map(toNumber)
