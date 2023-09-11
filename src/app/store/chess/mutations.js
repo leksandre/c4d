@@ -33,7 +33,7 @@ export default {
       let result = false
       const type = property['floor_number']
       const area = property['area']
-      const layout = property['ТипПланировки']
+      const layout = property['type_apartment']
       const { floor, price, id_entrance: sectionId  } = property
 
       const toNumber = i => Number(i)

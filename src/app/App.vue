@@ -121,9 +121,10 @@
 <!--                    class="has-text-primary font-weight-bold text-h3"-->
 <!--                >{{ section.name }}</div>-->
 <!--              </div>-->
-<!--{{floorsCount}}-->
-              <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
+              <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+                {{floorsCount}}
+                {{idxfloor}}
                 <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }"
                      v-if="((floor+1) % 2 == 0)">
                   <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
@@ -212,7 +213,8 @@
         </section>
       </div>
 
-      <apartment-details v-if="mq.mdAndUp" />
+<!--      v-if="mq.mdAndUp"-->
+      <apartment-details/>
     </main>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
