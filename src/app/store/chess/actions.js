@@ -74,6 +74,12 @@ export default {
   },
 
   setDate1({ commit }, payload) {
+
+    payload['data'].map(num => {
+      num.images = (num.object_planes).concat(num.floor_planes)
+      return num ;
+    });
+
     const properties = payload['data'] || []
     commit('set', { properties })
   },

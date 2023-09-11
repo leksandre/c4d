@@ -74,10 +74,10 @@
                 <div>{{ b['square_meters'] }} м²</div>
               </div>
 
-<!--              <div class="c-list__item d-flex justify-space-between" v-for="(b, i) in property['object_planes']" :key="`p${i}`">-->
-<!--                <div>{{ i }}</div>-->
-<!--                <div>{{ b }} м²</div>-->
-<!--              </div>-->
+              <div class="c-list__item d-flex justify-space-between" v-for="(b, i) in property['images']" :key="`p${i}`">
+                <div>{{ i }}</div>
+                <div>{{ b }} м²</div>
+              </div>
 
               <div
                 class="c-list__item d-flex justify-space-between"
