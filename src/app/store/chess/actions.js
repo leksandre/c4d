@@ -76,7 +76,19 @@ export default {
   setDate1({ commit }, payload) {
 
     payload['data'].map(num => {
-      num.images = (num.object_planes).concat(num.floor_planes)
+      let images = (num.object_planes).concat(num.floor_planes)
+
+      var copy = [];
+      for (let i = 0; i < images.length; i++) {
+        copy.push( {
+          thumb: images[i],
+          src: images[i],
+          // caption: 'caption to display. receive  <b>tag</b>', // Optional
+          // srcset: 'https://dummyimage.com/800/ffffff/000000' // Optional for displaying responsive images
+        } );
+      }
+
+      num.images = copy
       return num ;
     });
 
