@@ -83,8 +83,8 @@ export default {
         copy.push( {
           thumb: images[i],
           src: images[i],
-          // caption: 'caption to display. receive  <b>tag</b>', // Optional
-          // srcset: 'https://dummyimage.com/800/ffffff/000000' // Optional for displaying responsive images
+          caption: 'caption to display. receive  <b>tag</b>', // Optional
+          srcset: images[i] // Optional for displaying responsive images
         } );
       }
 

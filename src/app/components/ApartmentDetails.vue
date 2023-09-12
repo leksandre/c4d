@@ -1,8 +1,11 @@
 <template>
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
+<!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
+<!--      <light-box :media="media" :closable="false"></light-box>-->
+<!--    </div>-->
     <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">
-      <light-box :media="media" :closable="false"></light-box>
+      <light-box :media="this.matched" :closable="false"></light-box>
     </div>
     <div class="flat__info">
 <!--      <share />-->
@@ -11,8 +14,8 @@
         <div :class="{'px-5': mq.mdAndDown, 'px-10': mq.mdAndUp}">
 <!--          <div class="text-body-1 font-weight-500 mb-5">{{ title }}</div>-->
 
-          <div class="mb-5">
-            <div class="text-copy1">{{ property.type_apartment }}</div>
+          <div class="mb-5 title-copy1">
+            <div class="text-copy1">{{ getName(property.type_apartment) }} {{ property.area }} м²</div>
           </div>
 
           <div class="mb-10">
@@ -22,7 +25,7 @@
           </div>
           <div class="mb-5">
 <!--            <div class="text-body-2 mb-1">Стоимость</div>-->
-            <div class="text-copy2">{{ property['price'] | num }} ₽</div>
+            <div class="text-copy2">{{ property['cost'] | num }} ₽</div>
           </div>
           <div class="text-copy3">
 <!--            В ипотеку:-->
@@ -74,10 +77,10 @@
                 <div>{{ b['square_meters'] }} м²</div>
               </div>
 
-              <div class="c-list__item d-flex justify-space-between" v-for="(b, i) in property['images']" :key="`p${i}`">
-                <div>{{ i }}</div>
-                <div>{{ b }} м²</div>
-              </div>
+<!--              <div class="c-list__item d-flex justify-space-between" v-for="(b, i) in property['images']" :key="`p${i}`">-->
+<!--                <div>{{ i }}</div>-->
+<!--                <div>{{ b }} м²</div>-->
+<!--              </div>-->
 
               <div
                 class="c-list__item d-flex justify-space-between"
@@ -133,6 +136,7 @@
 <script>
   import { mapState, mapGetters } from 'vuex'
   import LightBox from 'vue-image-lightbox'
+  import {media} from "vue-image-lightbox/src/dummy";
 
   // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
   
@@ -162,6 +166,28 @@
       LightBox,
     },
     computed: {
+
+      matched(){
+
+        if (this.property) {
+          if (this.property.hasOwnProperty("images")) {
+            // console.log(this.property['images'])
+            // console.log(this.property.images)
+            // console.log(this.property)
+            // console.log(this.media)
+            return this.property['images']
+          }
+        }
+
+        if (typeof this.media != "undefined")
+          if (this.hasOwnProperty("media"))
+            if (this.media)
+              return this.media
+
+        return []
+        // return  this.property['images']?this.property['images']:this.media
+
+      },
       ...mapState({
         isOpen: state => state.infoPanel.isOpen,
         property: state => state.infoPanel.property
@@ -190,6 +216,27 @@
     },
 
     methods: {
+      getName(name){
+        if(name=='0'){
+          return "Студия"
+        }
+        if(name=='1'){
+          return "Однокомнатная"
+        }
+        if(name=='2'){
+          return "Двухкомнатная"
+        }
+        if(name=='3'){
+          return "Трехкомнатная"
+        }
+        if(name=='С'){
+          return "Студия"
+        }
+        if(name=='2С'){
+          return "ЕвроДвушка"
+        }
+        return name
+      },
       onOpenImage() {
         this.$store.commit('set', {
           path: 'imageIndex',

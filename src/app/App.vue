@@ -213,7 +213,7 @@
       </div>
 
 <!--   !!!!!!!fix1 -->
-      <apartment-details    v-if="mq.mdAndUp" />
+      <apartment-details/>
     </main>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
@@ -692,7 +692,7 @@
 
 
         y = Math.max(y,page.scrollHeight,document.body.scrollHeight)
-        console.log('y result',y)
+        // console.log('y result',y)
         this.postMessage({
           method: '_$is_setFrameSize',
           payload: {

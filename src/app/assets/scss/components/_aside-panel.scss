@@ -26,6 +26,10 @@
   }
 }
 
+.title-copy1{
+
+}
+
 .text-copy1 {
   box-sizing: border-box;
   color: rgb(32, 37, 30);
@@ -57,6 +61,7 @@
 }
 
 .flat__info {
+  background-color: #fff;
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
@@ -330,7 +335,8 @@
 
 .vue-lb-container {
   align-items: center;
-  background-color: rgb(0 0 0 / 19%);
+  //background-color: rgb(0 0 0 / 19%);
+  //background-color: #f4f5f8;
   box-sizing: border-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -537,6 +543,7 @@ img.vue-lb-modal-image {
 }
 
 .vue-lb-open {
+  background-color: #f4f5f8ed;
   overflow: hidden
 }
 
