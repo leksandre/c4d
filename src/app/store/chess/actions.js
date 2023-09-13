@@ -76,17 +76,29 @@ export default {
   setDate1({ commit }, payload) {
 
     payload['data'].map(num => {
-      let images = (num.object_planes).concat(num.floor_planes)
+      let images1 = (num.floor_planes)
+      let images2 = (num.object_planes)
 
       var copy = [];
-      for (let i = 0; i < images.length; i++) {
+
+      for (let i = 0; i < images2.length; i++) {
         copy.push( {
-          thumb: images[i],
-          src: images[i],
-          caption: 'caption to display. receive  <b>tag</b>', // Optional
-          srcset: images[i] // Optional for displaying responsive images
+          thumb: 'https://dummyimage.com/128/0f0/f0f',
+          src: images2[i],
+          caption: 'план <b>квартиры</b>', // Optional
+          srcset: images2[i] // Optional for displaying responsive images
         } );
       }
+
+      for (let i = 0; i < images1.length; i++) {
+        copy.push( {
+          thumb: images1[i],
+          src: images1[i],
+          caption: 'план <b>этажа</b>', // Optional
+          srcset: images1[i] // Optional for displaying responsive images
+        } );
+      }
+      // let images = (num.object_planes).concat(num.floor_planes)
 
       num.images = copy
       return num ;

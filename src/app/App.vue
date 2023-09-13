@@ -106,25 +106,23 @@
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
       >
-         <!--{{ /* :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}" */ }} -->
+
+
+
+
+
+
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
           <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >
-
+            <div class="tittleForBarFloor">
+              выберите ваш<br>этаж
+            </div>
             <div >
-              <div>
-                выберите ваш<br>этаж
-              </div>
-<!--              <div>-->
-<!--                <div-->
-<!--                    v-for="(section, sectionId) in board"-->
-<!--                    :key="`head_${sectionId}`"-->
-<!--                    class="has-text-primary font-weight-bold text-h3"-->
-<!--                >{{ section.name }}</div>-->
-<!--              </div>-->
-<!--{{floorsCount}}-->
+
+
               <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
-                <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }"
+                <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
                   <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
@@ -138,7 +136,7 @@
                   </div>
                 </div>
 
-                <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') }"
+                <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') } " class="floorViewSection2"
                      v-if="((floor-1) % 2 == 0)">
                   <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
@@ -153,10 +151,6 @@
                 </div>
 
 
-<!--                <br v-if="(floor % 2 == 0) && floor != 0" >-->
-<!--                <br v-if="(floor % 2 == 0) && floor != 0" >-->
-
-<!--                <p style="white-space: pre" v-html="testData" v-if="(floor % 2 == 0) && floor != 0" ></p>-->
 
               </div>
 
@@ -169,51 +163,25 @@
 
 
 
-<!--          <table class="scaling07 disNone">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--              <td></td>-->
-<!--              <td-->
-<!--                v-for="(section, sectionId) in board"-->
-<!--                :key="`head_${sectionId}`"-->
-<!--                class="has-text-primary font-weight-bold text-h3"-->
-<!--              >{{ section.name }}</td>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tfoot>-->
-<!--            <tr>-->
-<!--              <td></td>-->
-<!--              <td-->
-<!--                v-for="(section, sectionId) in board"-->
-<!--                :key="`foot_${sectionId}`"-->
-<!--                class="has-text-primary font-weight-bold text-h3"-->
-<!--              >{{ section.name }}</td>-->
-<!--            </tr>-->
-<!--            </tfoot>-->
-<!--            <tbody>-->
-<!--            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': hasChildWithClass(floor, 'c-building__flat-type') }" >-->
-<!--              <td class="c-building__floor-number text-right px-5 text-body">{{ floor + 1 }}</td>-->
-<!--              <td v-for="(section, sectionId) in board" :key="sectionId">-->
-<!--                <div class="c-building__section disNone">-->
-<!--                  <apartment-card-->
-<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
-<!--                    :key="property.id"-->
-<!--                    :property="property"-->
-<!--                  />-->
-<!--                </div>-->
-<!--              </td>-->
-<!--              <td class="c-building__floor-number pl-0">{{ floor + 1 }}</td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
         </section>
       </div>
 
-<!--   !!!!!!!fix1 -->
-      <apartment-details/>
+<!--   !!!!!!!fix1  v-if="mq.mdAndUp" -->
+      <apartment-details  v-if="mq.mdAndUp"/>
     </main>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
@@ -1026,19 +994,25 @@
   }
   .nowInSale .buttonFloor {
     cursor: pointer;
-    background-color: #04AA6D;
+    background-color: #219794;
     color: white;
-    border: 2px #02C39E solid;
+    border: 2px #219794 solid;
   }
   .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
+
   .disNone{//!!!!!!!fix2
-    display: none;
+    display:none;
   }
 
 
+  .tableWithFloor::-webkit-scrollbar {
+    display: none;
+  }
+
   .tableWithFloor{
+    padding-top: 27px;
     display: block;
     //transform: scale(0.5);
     position: absolute;
@@ -1047,20 +1021,34 @@
     //left:10px;
     //margin: 10px;
 
+    //overflow:auto;
+    //overflow-x:auto;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    //overflow: hidden;
+
+    max-height: 920px;
+    max-width: 110px;
     //right: 0px;
     //top: 0px;
-    background-color: #fff;
-    right: -10px;
-    top: -57px;
-    transform: scale(0.7);
+
+    //background-color: #fff;
+    //border-radius: 30px;
+
+    background-color: #f5f6f9;
+    left: 0px;
+    top: 0px;
+    //transform: scale(0.7);
 
 
-    padding: 5px;
-    display: inline-block;
-    border-style:solid;
-    border-width: 15px 15px 2px 2px;
-    border-image-slice:15 15 2 2; /* same as border-width*/
-    border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
+    //padding: 5px;
+    //display: inline-block;
+    //border-style:solid;
+    //border-width: 15px 15px 2px 2px;
+    //border-image-slice:15 15 2 2; /* same as border-width*/
+    ////border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
+    //border-image-source: linear-gradient(-45deg, #0000000d 9px, #66525229 0 calc(100% - 9px), #0000000d 0)
   }
 
   .tableWithFloor_mobile{
@@ -1081,19 +1069,19 @@
 
   .buttonFloor {
     cursor: not-allowed;
-    background-color: #bab4b4;
+    background-color: #fff;
     border: none;
-    color: gray;
-    padding-top: 8px;
+    color: #CCCDCF;
+    padding-top: 14px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 2px 2px;
+    margin: 8px 8px;
     border-radius: 100px;
-    width: 40px;
-    height: 40px;
-    border: 2px #bab4b4 solid;
+    width: 50px;
+    height: 50px;
+    border: 2px #D7E6E2 solid;
   }
 
 </style>

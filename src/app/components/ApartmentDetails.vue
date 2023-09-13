@@ -5,7 +5,7 @@
 <!--      <light-box :media="media" :closable="false"></light-box>-->
 <!--    </div>-->
     <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">
-      <light-box :media="this.matched" :closable="false"></light-box>
+      <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
     </div>
     <div class="flat__info">
 <!--      <share />-->
@@ -14,8 +14,8 @@
         <div :class="{'px-5': mq.mdAndDown, 'px-10': mq.mdAndUp}">
 <!--          <div class="text-body-1 font-weight-500 mb-5">{{ title }}</div>-->
 
-          <div class="mb-5 title-copy1">
-            <div class="text-copy1">{{ getName(property.type_apartment) }} {{ property.area }} м²</div>
+          <div class="mb-5 ">
+            <div class="title-copy1">{{ getName(property.type_apartment) }} {{ property.area }} м²</div>
           </div>
 
           <div class="mb-10">
@@ -25,7 +25,7 @@
           </div>
           <div class="mb-5">
 <!--            <div class="text-body-2 mb-1">Стоимость</div>-->
-            <div class="text-copy2">{{ property['cost'] | num }} ₽</div>
+            <div class="title-copy2">{{ property['cost'] | num }} ₽</div>
           </div>
           <div class="text-copy3">
 <!--            В ипотеку:-->
@@ -151,24 +151,25 @@
         { // For image
           thumb: 'https://dummyimage.com/800/ffffff/000000',
           src: 'https://dummyimage.com/1600/ffffff/000000',
-          caption: 'caption to display. receive  <b>tag</b>', // Optional
+          caption: '1caption111', // Optional
           srcset: 'https://dummyimage.com/800/ffffff/000000' // Optional for displaying responsive images
         },
         { // For image
           thumb: 'https://dummyimage.com/1280/000000/ffffff',
           src: 'https://dummyimage.com/400/000000/ffffff',
-          caption: 'caption to display. receive <b>tag</b>', // Optional
+          caption: '<tag>2caption111</tag>', // Optional
           srcset: 'https://dummyimage.com/1280/000/fff' // Optional for displaying responsive images
         }
       ]
     }),
+
     components: {
       LightBox,
     },
     computed: {
 
       matched(){
-
+        // return this.media
         if (this.property) {
           if (this.property.hasOwnProperty("images")) {
             // console.log(this.property['images'])
