@@ -49,6 +49,18 @@
           </div>
           <div class="mb-10">
             <div class="c-list text-body-2">
+
+
+              <div class="c-list__item d-flex justify-space-between">
+                <div>type_apartment</div>
+                <div>{{ property.type_apartment }}</div>
+              </div>
+
+              <div class="c-list__item d-flex justify-space-between">
+                <div>rooms</div>
+                <div>{{ property.rooms }}</div>
+              </div>
+
               <div class="c-list__item d-flex justify-space-between">
                 <div>Статус</div>
                 <div>{{ property.status }}</div>

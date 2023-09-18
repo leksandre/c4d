@@ -31,10 +31,17 @@ export default {
 
     for (const property of state.properties) {
       let result = false
-      const type = property['floor_number']
+      const type = property['type_apartment'].toString()
+      const rooms = property['rooms']
+      const HomepEtaja = property['floor_number']
       const area = property['area']
       const layout = property['type_apartment']
       const { floor, cost:price, section_id: sectionId  } = property
+
+      // console.log('---start----type',type,'-',byType)
+      // console.log('---start----property',property)
+      // console.log('---start----type_apartment',property['type_apartment'])
+      // console.log('---start----floor_number',property['floor_number'])
 
       const toNumber = i => Number(i)
       byArea = byArea.map(toNumber)
@@ -54,6 +61,8 @@ export default {
       const filtredByArea = maxByArea > minByArea ? (area >= byArea[0] && area <= byArea[1]) : true
       const filtredByFloor = maxByFloor > minByFloor ? (floor >= byFloor[0] && floor <= byFloor[1]) : true
       const filtredByPrice = maxByPrice > minByPrice ? (price >= byPrice[0] && price <= byPrice[1]) : true
+
+      // console.log('---start----filtredByType',filtredByType)
 
       if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout)
         result = true

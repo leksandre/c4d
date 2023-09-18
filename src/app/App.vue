@@ -754,12 +754,17 @@
         var urlparent = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
+
+        console.log('---start----urlparent',urlparent)
         var typedefault = getParameterByName('typedefault',urlparent);
+        console.log('---start----typedefault',typedefault)
           if (typedefault) {
-            defaultTypes.push(typedefault)
+            // let typedefault = parseInt(typedefault, 10)
+            // defaultTypes.push(typedefault)
+            defaultTypes.push(typedefault.toString())
         }
 
-
+        console.log('---start----defaultTypes',defaultTypes)
         const filters = {
           bySection: sectionId || null,
           byLayout: byLayout || [],
