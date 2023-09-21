@@ -102,7 +102,7 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
-    <main class="d-flex flex-grow-1 pos-rel" id="main">
+    <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
       >
@@ -369,7 +369,6 @@
 
     <div class="loader" v-if="isLoading" :class="loadingClasses">
       <div>
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 137.7 46.56" xml:space="preserve"><path class="st0" d="M126.49 3.07l-11.54 28.37-11.48-28.37h-8.95l16.55 39.63h7.66l16.54-39.63zM103.27 35.33H78.85V25.2h20.19l-2.99-7.15h-17.2v-7.6h14.03l-3.03-7.26H66.69v.57c1.14.72 2.22 1.53 3.23 2.45 4.72 4.33 7.12 9.94 7.12 16.68 0 6.78-2.4 12.41-7.12 16.73-1.01.92-2.09 1.72-3.23 2.45v.52h39.61l-3.03-7.26z"/><path d="M22.68 34.96H3.72L2.34 28.8 23.63 3.66h7.21V27.9h12.91v7.06H30.83v8.53h-8.15v-8.53zm0-7.06V15.58L12.37 27.9h10.31z" fill="#32addf"/><path class="st0" d="M65.79 8.7c-4-3.66-9.23-5.52-15.59-5.52H35.46v21.54h8.11V10.45h5.97c8.78 0 13.96 4.62 13.96 12.44 0 7.82-5.18 12.44-13.96 12.44H47.7v7.26h2.52c6.36 0 11.6-1.8 15.59-5.46 4-3.66 6.02-8.44 6.02-14.24-.01-5.8-2.04-10.53-6.04-14.19z"/></svg>
       </div>
     </div>
   </div>
@@ -892,6 +891,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+.maincontent{
+  max-width: 1605px;
+}
   .st0 {
     fill: #18214b;
   }
