@@ -102,6 +102,7 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
+    <div class="maincontent_parent">
     <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
@@ -183,6 +184,7 @@
 <!--   !!!!!!!fix1  v-if="mq.mdAndUp" -->
       <apartment-details  v-if="mq.mdAndUp"/>
     </main>
+    </div>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
         <div class="l-col py-0 text-body-2 has-text-primary">&copy; CRM4DEV {{ new Date().getFullYear() }}</div>
@@ -892,8 +894,16 @@
 
 <style lang="scss" scoped>
 
+.maincontent_parent {
+  width: 100%;
+  min-height: 1000px;
+  //border: 2px dashed;
+}
 .maincontent{
   max-width: 1605px;
+  height: 1000px;
+  //border: 5px solid;
+  margin: 0px auto 0px auto;
 }
   .st0 {
     fill: #18214b;
