@@ -30,6 +30,8 @@
 .floorViewSection2{
   //margin-top: 70px;
   position: relative;
+  padding: 2px;
+  margin: 2px;
   right: 20px;
 }
 
@@ -37,6 +39,8 @@
 .floorViewSection1{
   //margin-top: 0px;
   position: relative;
+  padding: 2px;
+  margin: 2px;
   right: 5px;
 }
 
@@ -138,7 +142,13 @@
 }
 
 .flat__info {
-  background-color: #fff;
+  background-color: #ffffff61;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 3px dashed #fff;
+
+
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
@@ -491,16 +501,20 @@ img.vue-lb-modal-image {
 }
 
 .vue-lb-info {
+  background-color: #ffffff61;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 3px dashed #fff;
+
   visibility: initial;
-  position: absolute;
   bottom: 25px;
-  color: #fff;
-  background-color: #219794;
-  //background-color: rgba(0, 0, 0, .7);
+  color: #000;
   height: 40px;
-  width: 100%;
+  max-width: 30%;
+  margin: 0px auto;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  text-align: center
+  text-align: center;
 }
 
 .vue-lb-footer {

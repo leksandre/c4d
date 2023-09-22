@@ -134,6 +134,9 @@
         }
 
         @media screen and (min-width: 1264px) {
+          tableWithFloor{
+            display: none;
+          }
           &:hover {
             z-index: 1;
 

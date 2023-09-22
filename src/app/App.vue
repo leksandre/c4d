@@ -896,12 +896,12 @@
 
 .maincontent_parent {
   width: 100%;
-  min-height: 1000px;
+  min-height: 1200px;
   //border: 2px dashed;
 }
 .maincontent{
-  max-width: 1605px;
-  height: 1000px;
+  max-width: 1600px;
+  height: 1200px;
   //border: 5px solid;
   margin: 0px auto 0px auto;
 }
@@ -1047,12 +1047,15 @@
     //overflow: hidden;
 
     max-height: 920px;
-    max-width: 110px;
+    //max-width: 110px;
     //right: 0px;
     //top: 0px;
 
-    //background-color: #fff;
-    //border-radius: 30px;
+    max-width: 125px;
+    border-color: #fff;
+    border-radius: 20px;
+    border-style: dashed;
+    border-width: 1px;
 
     background-color: #f5f6f9;
     left: 0px;
@@ -1081,7 +1084,7 @@
 
   .tableWithFloor_mobile .buttonFloor {
     font-size: 14px;
-    padding-top: 11px;
+    padding-top: 12px;
   }
 
 

@@ -78,6 +78,7 @@ export default {
     payload['data'].map(num => {
       let images1 = (num.floor_planes)
       let images2 = (num.object_planes)
+      // let images3 (num.tour3d)
 
       var copy = [];
 
@@ -85,16 +86,16 @@ export default {
         copy.push( {
           thumb: 'https://dummyimage.com/128/0f0/f0f',
           src: images2[i],
-          caption: 'план <b>квартиры</b>', // Optional
+          caption: 'план квартиры', // Optional
           srcset: images2[i] // Optional for displaying responsive images
         } );
       }
 
       for (let i = 0; i < images1.length; i++) {
         copy.push( {
-          thumb: images1[i],
+          thumb: 'https://dummyimage.com/800/ffffff/000000',
           src: images1[i],
-          caption: 'план <b>этажа</b>', // Optional
+          caption: 'план этажа', // Optional
           srcset: images1[i] // Optional for displaying responsive images
         } );
       }
