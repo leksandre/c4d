@@ -242,6 +242,9 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.panelRight{
+  overflow: hidden;
+}
 .flat__callback {
 
   align-items: flex-start;
@@ -288,7 +291,7 @@
   border-top-style: solid;
   border-top-width: 1px;
   box-sizing: border-box;
-  color: #5A7F98;
+  color: #219794;
   cursor: pointer;
   display: flex;
   font-family: MultiKelnik, ptRootUi, sans-serif;
@@ -341,7 +344,7 @@
   width: 220px;
   align-items: flex-start;
   appearance: none;
-  background-color: #5A7F98;
+  background-color: #219794;
   border-bottom-color: rgba(0, 0, 0, 0);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -517,6 +520,26 @@ img.vue-lb-modal-image {
   text-align: center;
 }
 
+.vue-lb-info_gal, .vue-lb-info_gal-active {
+  background-color: #ffffff;
+  padding: 11px;
+  margin: 10px;
+  border-radius: 20px;
+  //border: 3px dashed #fff;
+
+  visibility: initial;
+  bottom: 25px;
+  color: #000;
+  height: 40px;
+  margin: 0px auto;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.vue-lb-info_gal-active {
+  background-color: #e47554;
+}
+
 .vue-lb-footer {
   box-sizing: border-box;
   color: #fff;
@@ -544,9 +567,10 @@ img.vue-lb-modal-image {
 }
 
 .vue-lb-footer-count {
-  color: hsla(0, 0%, 100%, .75);
+  //color: hsla(0, 0%, 100%, .75);
   font-size: .85em;
-  padding-left: 1em
+  padding-left: 1em;
+  color:#000;
 }
 
 .vue-lb-thumbnail {
@@ -563,8 +587,10 @@ img.vue-lb-modal-image {
   height: 50px;
   text-align: center;
   white-space: nowrap;
-  display: inline-block;
+  //display: inline-block;
+  display: -webkit-inline-box;
   padding: 0 50px;
+
 
 
 }

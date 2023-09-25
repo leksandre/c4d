@@ -10,7 +10,8 @@
     <div class="flat__info">
 <!--      <share />-->
     <div class="d-flex flex-column full-height" v-if="property">
-      <div class="full-height overflow-x-auto pb-10" :class="{'pt-5': mq.mdAndDown, 'pt-10': mq.mdAndUp}">
+      <div class="panelRight full-height  pb-10" :class="{'pt-5': mq.mdAndDown, 'pt-10': mq.mdAndUp}">
+<!--        overflow-x-auto-->
         <div :class="{'px-5': mq.mdAndDown, 'px-10': mq.mdAndUp}">
 <!--          <div class="text-body-1 font-weight-500 mb-5">{{ title }}</div>-->
 
@@ -122,13 +123,13 @@
         >
           <a
             href="#" @click="onBook"
-            class="e-btn full-width full-height is-primary"
+            class="e-btn e-btn1 full-width full-height is-primary"
           >Забронировать</a>
         </div>
         <div class="l-col py-0">
           <a
             href="#" @click="onPopQuestion"
-            class="e-btn full-width full-height is-primary"
+            class="e-btn e-btn2 full-width full-height is-primary"
           >Задать вопрос</a>
         </div>
       </div>
@@ -147,8 +148,10 @@
 
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import LightBox from 'vue-image-lightbox'
-  import {media} from "vue-image-lightbox/src/dummy";
+  // import LightBox from './vue-image-lightbox/src/App.vue'
+  import LightBox from './vue-image-lightbox/components/LightBox.vue'
+
+  // import {media} from "vue-image-lightbox/src/dummy";
 
   // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
   

@@ -78,26 +78,41 @@ export default {
     payload['data'].map(num => {
       let images1 = (num.floor_planes)
       let images2 = (num.object_planes)
+      let images3 = (num.tour_3d)
       // let images3 (num.tour3d)
 
       var copy = [];
 
+      var add_capt = "";
       for (let i = 0; i < images2.length; i++) {
         copy.push( {
-          thumb: 'https://dummyimage.com/128/0f0/f0f',
+          thumb: images2[i],
           src: images2[i],
-          caption: 'план квартиры', // Optional
+          caption: 'план квартиры'+add_capt, // Optional
           srcset: images2[i] // Optional for displaying responsive images
         } );
+        add_capt = " v"+(i+1);
       }
-
+      add_capt = "";
       for (let i = 0; i < images1.length; i++) {
         copy.push( {
-          thumb: 'https://dummyimage.com/800/ffffff/000000',
+          thumb: images1[i],
           src: images1[i],
-          caption: 'план этажа', // Optional
+          caption: 'на этаже'+add_capt, // Optional
           srcset: images1[i] // Optional for displaying responsive images
         } );
+        add_capt = " v"+(i+1);
+      }
+      add_capt = "";
+      for (let i = 0; i < images3.length; i++) {
+        copy.push( {
+          thumb: images3[i],
+          src: images3[i],
+          type:'3d',
+          caption: '3D тур'+add_capt, // Optional
+          srcset: images3[i] // Optional for displaying responsive images
+        } );
+        add_capt = " v"+(i+1);
       }
       // let images = (num.object_planes).concat(num.floor_planes)
 
