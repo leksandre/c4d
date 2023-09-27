@@ -35,19 +35,17 @@
               :name="modalImageTransitionName"
             >
               <img
-                v-if="media[select].type !== 'video'"
+                v-if="!media[select].type"
                 :key="media[select].src"
-                v-lazy="{
-                  src: media[select].src,
-                  loading: media[select].src,
-                  error: media[select].src,
-                }"
+                :src = "media[select].src"
+
                 :srcset="media[select].srcset || ''"
                 class="vue-lb-modal-image"
                 :alt="media[select].caption"
               >
+
               <video
-                v-else
+                v-if="media[select].type == 'video'"
                 ref="video"
                 :key="media[select].sources[0].src"
                 :width="media[select].width"
@@ -62,6 +60,58 @@
                   :type="source.type"
                 >
               </video>
+
+<!--              <span-->
+<!--                v-if="media[select].type == '3d'"-->
+<!--                ref="video"-->
+<!--                :key="media[select].src"-->
+<!--                :width="media[select].width"-->
+<!--                :height="media[select].height"-->
+<!--                :autoplay="media[select].autoplay"-->
+<!--                controls-->
+<!--              >-->
+<!--                <source-->
+<!--                  v-for="source in media[select].sources"-->
+<!--                  :key="source.src"-->
+<!--                  :src="source.src"-->
+<!--                  :type="source.type"-->
+<!--                >-->
+<!--              </span>-->
+
+              <div
+                  v-if="media[select].type == '3d'"
+              >
+                <div  v-on:click="modal_1=!modal_1" class="i3dTourModalButton">открыть во весь экран</div>
+                <br/>
+              <iframe
+
+                  :src="media[select].src"
+                  width="612px"
+                  height="612px"
+
+              >
+              </iframe>
+
+
+                <div>
+                  <div class="c-modal" v-show="modal_1">
+                    <span>modal_1</span>
+                  </div>
+                  <div class="bg" v-show="modal_1" v-on:click="modal_1=!modal_1">
+                    <iframe
+                        class = "ifarameFullScreen"
+                        :src="media[select].src"
+                        width="90%%"
+                        height="900%"
+
+                    >
+                    </iframe>
+                  </div>
+                </div>
+              </div>
+
+
+
             </transition>
 
 <!--            <slot name="customCaption">-->
@@ -330,6 +380,7 @@ export default {
 
   data() {
     return {
+      modal_1: false,
       select: this.startAt,
       lightBoxOn: this.showLightBox,
       timer: null,

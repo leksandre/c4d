@@ -902,6 +902,10 @@
 .maincontent{
   max-width: 1600px;
   height: 1200px;
+
+  //height: 100%;
+  //max-height: 2160px;
+
   //border: 5px solid;
   margin: 0px auto 0px auto;
 }

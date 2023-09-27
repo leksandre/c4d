@@ -91,7 +91,7 @@ export default {
           caption: 'план квартиры'+add_capt, // Optional
           srcset: images2[i] // Optional for displaying responsive images
         } );
-        add_capt = " v"+(i+1);
+        add_capt = " v"+(i+2);
       }
       add_capt = "";
       for (let i = 0; i < images1.length; i++) {
@@ -101,7 +101,7 @@ export default {
           caption: 'на этаже'+add_capt, // Optional
           srcset: images1[i] // Optional for displaying responsive images
         } );
-        add_capt = " v"+(i+1);
+        add_capt = " v"+(i+2);
       }
       add_capt = "";
       for (let i = 0; i < images3.length; i++) {
@@ -112,7 +112,7 @@ export default {
           caption: '3D тур'+add_capt, // Optional
           srcset: images3[i] // Optional for displaying responsive images
         } );
-        add_capt = " v"+(i+1);
+        add_capt = " v"+(i+2);
       }
       // let images = (num.object_planes).concat(num.floor_planes)
 

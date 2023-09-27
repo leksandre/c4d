@@ -415,8 +415,60 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.i3dTourModalButton{
+  background-color: rgb(228, 117, 84);
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  line-height: 16px;
+  padding: 10px;
+  text-align: center;
+  text-decoration-color: rgb(255, 255, 255);
+  text-decoration-line: none;
+  text-decoration-style: solid;
+  text-decoration-thickness: auto;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+  width: 100%;
+  -webkit-box-direction: normal;
+  -webkit-font-smoothing: antialiased;
+}
 
+.c-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  padding: 12px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: rgba(#fff, .4);
+  z-index: 10001;
+  opacity: 1;
+  transition: .6s;
+}
 
+.bg {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,.6);
+  z-index: 10000;
+  opacity: 1;
+  transition: .3s;
+}
 
 
 .vue-lb-box {
@@ -425,6 +477,7 @@
 
 
 .vue-lb-container {
+  //width: inherit;
   align-items: center;
   //background-color: rgb(0 0 0 / 19%);
   //background-color: #f4f5f8;
@@ -667,7 +720,12 @@ img.vue-lb-modal-image {
 .vue-lb-left {
   left: 10px
 }
-
+.ifarameFullScreen{
+  width: 95%;
+  height: 95%;
+  padding: 2%;
+  margin: 3%;
+}
 .vue-lb-right {
   right: 10px
 }

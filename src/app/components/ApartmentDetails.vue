@@ -140,8 +140,16 @@
     </div>
     </div>
 
-
-
+<!--    <vue-iframe-->
+<!--        src="https://google.com"-->
+<!--        allow="camera *; geolocation *; microphone *; autoplay *"-->
+<!--        frame-id="my-ifram"-->
+<!--        name="my-frame"-->
+<!--        width="150px"-->
+<!--        height="200px"-->
+<!--    />-->
+<!--    import VueIframe from 'vue-iframes'-->
+<!--    Vue.use(VueIframe)-->
 
   </aside>
 </template>
@@ -152,9 +160,8 @@
   import LightBox from './vue-image-lightbox/components/LightBox.vue'
 
   // import {media} from "vue-image-lightbox/src/dummy";
-
   // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
-  
+
 
   export default {
     data: () => ({
