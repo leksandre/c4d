@@ -1,0 +1,32 @@
+{
+"districts": [
+{
+"id": "bd46e3ad-424a-11ee-a5c6-ac1f6b476fd3",
+"name": "Домотель Первый",
+"archived": false,
+"selected": true
+}
+],
+"bildings": [
+{
+"id": "f463c2f0-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "ГП-1",
+"archived": false,
+"selected": true
+}
+],
+"sections": [
+{
+"id": "f463c303-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "1",
+"archived": false,
+"selected": true
+},
+{
+"id": "f463c6c1-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "2",
+"archived": false,
+"selected": false
+}
+]
+}

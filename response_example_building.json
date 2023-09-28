@@ -1,0 +1,15 @@
+{
+"data": [
+{
+"id": "f463c2f0-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "ГП-1",
+"district_id": "bd46e3ad-424a-11ee-a5c6-ac1f6b476fd3",
+"district": "Домотель Первый",
+"adress": "",
+"photo": "",
+"available": true
+}
+],
+"success": true,
+"err_msg": ""
+}

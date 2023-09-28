@@ -1,0 +1,28 @@
+{
+"data": [
+{
+"id": "f463c303-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "1",
+"district_id": "bd46e3ad-424a-11ee-a5c6-ac1f6b476fd3",
+"district": "Домотель Первый",
+"building_id": "f463c2f0-426a-11ee-a5c6-ac1f6b476fd3",
+"building": "ГП-1",
+"number_of_floors": 25,
+"number_per_floor": 10,
+"available": true
+},
+{
+"id": "f463c6c1-426a-11ee-a5c6-ac1f6b476fd3",
+"name": "2",
+"district_id": "bd46e3ad-424a-11ee-a5c6-ac1f6b476fd3",
+"district": "Домотель Первый",
+"building_id": "f463c2f0-426a-11ee-a5c6-ac1f6b476fd3",
+"building": "ГП-1",
+"number_of_floors": 25,
+"number_per_floor": 10,
+"available": true
+}
+],
+"success": true,
+"err_msg": ""
+}

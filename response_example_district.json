@@ -1,0 +1,18 @@
+{
+"data": [
+{
+"id": "c2265f0f-2490-11ee-a5c6-ac1f6b476fd3",
+"name": "Вторичный",
+"description": "",
+"available": true
+},
+{
+"id": "bd46e3ad-424a-11ee-a5c6-ac1f6b476fd3",
+"name": "Домотель Первый",
+"description": "",
+"available": true
+}
+],
+"success": true,
+"err_msg": ""
+}
