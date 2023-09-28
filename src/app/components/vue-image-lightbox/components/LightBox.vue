@@ -78,7 +78,7 @@
 <!--                >-->
 <!--              </span>-->
 
-              <div
+              <div class="iframe-loading"
                   v-if="media[select].type == '3d'"
               >
                 <div  v-on:click="setModal" class="i3dTourModalButton">открыть во весь экран</div>
@@ -90,6 +90,7 @@
                   height="612px"
 
               >
+                Пожалуйста подождите, 3д модель загружается на ваше устройство
               </iframe>
 
 
@@ -98,6 +99,20 @@
                     <span>modal_1</span>
                   </div>
                   <div class="bg" id="bg_3d_tout" v-show="modal_1" v-on:click="setModal">
+                    <div class="close" v-on:click="setModal">
+                      <span v-on:click="setModal"></span>
+                      <span v-on:click="setModal"></span>
+                      <span v-on:click="setModal"></span>
+                      <span v-on:click="setModal"></span>
+                      <svg viewBox="0 0 36 36" class="circle" v-on:click="setModal">
+                        <path v-on:click="setModal"
+                            stroke-dasharray="100, 100"
+                            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                      </svg>
+                    </div>
                     <iframe
                         class = "ifarameFullScreen"
                         :src="media[select].src"
@@ -105,6 +120,7 @@
                         height="90%"
 
                     >
+                      Пожалуйста подождите, 3д модель загружается на ваше устройство
                     </iframe>
                   </div>
                 </div>
@@ -503,8 +519,8 @@ export default {
       let testParent  = document.getElementById('maincontent_parent1')
 
       if(elBg && testParent){
-        console.log(elBg)
-        console.log(testParent)
+        // console.log(elBg)
+        // console.log(testParent)
         testParent.appendChild(elBg)
       }
 
