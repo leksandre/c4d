@@ -81,7 +81,7 @@
               <div
                   v-if="media[select].type == '3d'"
               >
-                <div  v-on:click="modal_1=!modal_1" class="i3dTourModalButton">открыть во весь экран</div>
+                <div  v-on:click="setModal" class="i3dTourModalButton">открыть во весь экран</div>
                 <br/>
               <iframe
 
@@ -97,12 +97,12 @@
                   <div class="c-modal" v-show="modal_1">
                     <span>modal_1</span>
                   </div>
-                  <div class="bg" v-show="modal_1" v-on:click="modal_1=!modal_1">
+                  <div class="bg" id="bg_3d_tout" v-show="modal_1" v-on:click="setModal">
                     <iframe
                         class = "ifarameFullScreen"
                         :src="media[select].src"
                         width="90%%"
-                        height="900%"
+                        height="90%"
 
                     >
                     </iframe>
@@ -497,7 +497,18 @@ export default {
         this.$refs.video.play()
       }
     },
+    setModal() {
+     this.modal_1 = !this.modal_1
+      let elBg  = document.getElementById('bg_3d_tout')
+      let testParent  = document.getElementById('maincontent_parent1')
 
+      if(elBg && testParent){
+        console.log(elBg)
+        console.log(testParent)
+        testParent.appendChild(elBg)
+      }
+
+    },
     onLightBoxClose() {
       this.$emit('onClosed')
 

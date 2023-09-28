@@ -102,7 +102,7 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
-    <div class="maincontent_parent">
+    <div class="maincontent_parent" id="maincontent_parent1">
     <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
@@ -1038,7 +1038,7 @@
     display: block;
     //transform: scale(0.5);
     position: absolute;
-    z-index: 200;
+    z-index: 0;
     //top:10px;
     //left:10px;
     //margin: 10px;
