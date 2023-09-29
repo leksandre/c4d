@@ -244,19 +244,19 @@
           return "Студия"
         }
         if(name=='1'){
-          return "Однокомнатная"
+          return "1"
         }
         if(name=='2'){
-          return "Двухкомнатная"
+          return "2"
         }
         if(name=='3'){
-          return "Трехкомнатная"
+          return "3"
         }
         if(name=='С'){
           return "Студия"
         }
         if(name=='2С'){
-          return "ЕвроДвушка"
+          return "2С"
         }
         return name
       },

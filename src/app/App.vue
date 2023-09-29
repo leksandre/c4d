@@ -1078,7 +1078,6 @@
 
   .tableWithFloor_mobile{
     z-index: 1200;
-    transform: scale(0.6);
   }
 
 

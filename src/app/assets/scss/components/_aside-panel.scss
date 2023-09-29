@@ -851,6 +851,36 @@ img.vue-lb-modal-image {
   }
 }
 
+@media (max-width: 520px) {
+  .flat__info {
+    width:100%;
+    z-index:100;
+  }
+  .vue-lb-thumbnail{
+    transform: scale(0.5);
+  }
+
+  .buttonFloor{
+    transform: rotate(-90deg);
+  }
+
+  .tableWithFloor_mobile{
+    transform: scale(0.6) rotate(90deg);
+
+    position: fixed;//??????
+    top: 0px;//??
+    left: 44%;//??
+
+  }
+
+  //.tableWithFloor{
+  //  transform: rotate(90);
+  //
+  //  transform: scale(0.5);
+  //}
+
+}
+
 @media (min-width: 768px) {
   .vue-lb-arrow {
     width: 70px
