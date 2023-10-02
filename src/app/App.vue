@@ -114,7 +114,8 @@
 
 
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
-          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >
+<!--          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >-->
+            <div class="tableWithFloor" >
             <div class="tittleForBarFloor">
               выберите ваш<br>этаж
             </div>
@@ -1029,65 +1030,9 @@
   }
 
 
-  .tableWithFloor::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tableWithFloor{
-    padding-top: 27px;
-    display: block;
-    //transform: scale(0.5);
-    position: absolute;
-    z-index: 0;
-    //top:10px;
-    //left:10px;
-    //margin: 10px;
-
-    //overflow:auto;
-    //overflow-x:auto;
-    overflow-y: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    //overflow: hidden;
-
-    max-height: 920px;
-    //max-width: 110px;
-    //right: 0px;
-    //top: 0px;
-
-    max-width: 125px;
-    border-color: #fff;
-    border-radius: 20px;
-    border-style: dashed;
-    border-width: 1px;
-
-    background-color: #f5f6f9;
-    left: 0px;
-    top: 0px;
-    //transform: scale(0.7);
-
-
-    //padding: 5px;
-    //display: inline-block;
-    //border-style:solid;
-    //border-width: 15px 15px 2px 2px;
-    //border-image-slice:15 15 2 2; /* same as border-width*/
-    ////border-image-source:linear-gradient(-45deg,transparent 9px,#bab4b4 0 calc(100% - 9px),transparent 0);
-    //border-image-source: linear-gradient(-45deg, #0000000d 9px, #66525229 0 calc(100% - 9px), #0000000d 0)
-  }
-
-  .tableWithFloor_mobile{
-    z-index: 1200;
-  }
-
 
   .just_building__floor{
     display: flex;
-  }
-
-  .tableWithFloor_mobile .buttonFloor {
-    font-size: 14px;
-    padding-top: 12px;
   }
 
 
