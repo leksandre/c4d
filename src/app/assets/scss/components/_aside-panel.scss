@@ -854,7 +854,7 @@ img.vue-lb-modal-image {
 
 
 @media (min-width: 520px) {
-  .tableWithFloor{
+  .tableWithFloor{//variant1hidepanel
     position: absolute;
     z-index: 0;
     left: 0px;
@@ -882,12 +882,12 @@ img.vue-lb-modal-image {
     display: none;
   }
 
-  .buttonFloor{
+  .buttonFloor{//variant2
     //transform: rotate(-90deg);
   }
 
   .tableWithFloor{
-    //variant 1
+    //variant1hidepanel
     z-index: 1200;
     position: fixed;
     top: 0px;
@@ -895,14 +895,13 @@ img.vue-lb-modal-image {
 
     //variant 2
     //transform: scale(0.6) rotate(90deg);
-    //
     //position: fixed;//??????
     //top: 0px;//??
     //left: 44%;//??
 
   }
 
-  .tableWithFloor:hover {
+  .tableWithFloor:hover {//variant1hidepanel
     left: 0px;
     transition-duration: .2s;
   }
