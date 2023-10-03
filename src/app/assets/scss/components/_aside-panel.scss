@@ -55,11 +55,11 @@
   box-sizing: border-box;
   color: rgb(1, 35, 69);
   display: block;
-  font-family: Mazzard, Arial, sans-serif;
+  font-family: PT_Serif_Regular;
   font-feature-settings: "liga", "clig";
-  font-size: 15.0375px;
+  font-size: 16;
   font-variant-ligatures: common-ligatures;
-  font-weight: 400;
+  font-weight: 700;
   height: 21px;
   letter-spacing: -0.150375px;
   line-height: 21.8044px;
@@ -84,7 +84,7 @@
   box-sizing: border-box;
   color: rgb(1, 35, 69);
   display: block;
-  font-family: Mazzard, Arial, sans-serif;
+  font-family: PT_Serif_Regular;
   font-feature-settings: "liga", "clig";
   font-size: 33.4167px;
   font-variant-ligatures: common-ligatures;
@@ -115,7 +115,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-size: 32px;
   font-weight: 700;
   height: 38.3906px;
@@ -131,7 +131,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-size: 24px;
   font-weight: 700;
   height: 28.7969px;
@@ -146,13 +146,13 @@
   padding: 10px;
   margin: 10px;
   border-radius: 20px;
-  border: 3px dashed #fff;
-  z-index: -1;
+  border: 3px dashed #21979430;
+  z-index: 99;
 
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   //font-size: 2vw;
   //height: 640px;
   width: 423px;
@@ -167,7 +167,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   //height: 640px;
   width: calc(100% - 523px);
   -webkit-box-direction: normal;
@@ -182,7 +182,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   //height: 640px;
   width:100%;
   -webkit-box-direction: normal;
@@ -195,7 +195,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   height: 640px;
   width: 100%;
   -webkit-box-direction: normal;
@@ -211,7 +211,7 @@
   color: rgb(32, 37, 30);
   display: flex;
   flex-wrap: wrap;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   height: 66px;
   margin-top: 16px;
   opacity: 1;
@@ -231,7 +231,7 @@
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-size: 16px;
   font-weight: 700;
   height: 24px;
@@ -253,8 +253,8 @@
   column-gap: 8px;
   display: flex;
   flex-direction: column;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
-  height: 90px;
+  font-family: PT_Serif_Regular;
+  //height: 90px;
   margin-bottom: 32px;
   row-gap: 8px;
   width: 399.984px;
@@ -268,7 +268,7 @@
   width: 220px;
   align-items: center;
   appearance: none;
-  background-color: rgb(255, 255, 255);
+  background-color: #219794;
   border-bottom-color: rgb(219, 222, 218);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -291,10 +291,10 @@
   border-top-style: solid;
   border-top-width: 1px;
   box-sizing: border-box;
-  color: #219794;
+  color: #fff;
   cursor: pointer;
   display: flex;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-feature-settings: normal;
   font-kerning: auto;
   font-optical-sizing: auto;
@@ -338,13 +338,17 @@
   -webkit-box-pack: center;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
 }
 
 .buttonCopy {
   width: 220px;
   align-items: flex-start;
   appearance: none;
-  background-color: #219794;
+  //background-color: #ffa500;
+  //background-color: #219794;
+  background-color: #e47554;
   border-bottom-color: rgba(0, 0, 0, 0);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -370,7 +374,7 @@
   color: rgb(255, 255, 255);
   cursor: pointer;
   display: block;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-feature-settings: normal;
   font-kerning: auto;
   font-optical-sizing: auto;
@@ -423,7 +427,7 @@
   box-sizing: border-box;
   color: rgb(255, 255, 255);
   cursor: pointer;
-  font-family: MultiKelnik, ptRootUi, sans-serif;
+  font-family: PT_Serif_Regular;
   font-size: 16px;
   font-weight: 400;
   height: 100%;
@@ -650,28 +654,35 @@ img.vue-lb-modal-image {
   height: 40px;
   max-width: 30%;
   margin: 0px auto;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: PT_Serif_Regular;
   text-align: center;
 }
 
 .vue-lb-info_gal, .vue-lb-info_gal-active {
   background-color: #ffffff;
   padding: 11px;
-  margin: 10px;
+  margin-right: 10px;
   border-radius: 20px;
   //border: 3px dashed #fff;
+
+
+  font-weight: 400;
+  font-size: 12px;
+  font-stretch: 100%;
+  font-family: PT_Serif_Regular;
+  text-align: center;
 
   visibility: initial;
   bottom: 25px;
   color: #000;
   height: 40px;
-  margin: 0px auto;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  text-align: center;
+  //margin: 0px auto;
 }
+
 
 .vue-lb-info_gal-active {
   background-color: #e47554;
+  color: #fff;
 }
 
 .vue-lb-footer {
@@ -838,7 +849,7 @@ img.vue-lb-modal-image {
   bottom: 10px;
   height: 50px;
   left: 0;
-  margin: 0 auto;
+  margin: 20px auto;
   position: absolute;
   right: 0;
   text-align: center;
@@ -856,9 +867,10 @@ img.vue-lb-modal-image {
 @media (min-width: 520px) {
   .tableWithFloor{//variant1hidepanel
     position: absolute;
-    z-index: 0;
+    z-index: 99;
     left: 0px;
     top: 0px;
+    border-radius: 20px;
   }
 }
 
@@ -869,7 +881,10 @@ img.vue-lb-modal-image {
     width:100%;
     z-index:100;
   }
-  .vue-lb-thumbnail{
+  //.vue-lb-thumbnail{
+  //  transform: scale(0.5);
+  //}
+  .vue-lb-thumbnail-wrapper{
     transform: scale(0.5);
   }
 
@@ -892,6 +907,7 @@ img.vue-lb-modal-image {
     position: fixed;
     top: 0px;
     left: -115px;
+    border-radius: 0px 20px 20px 0px;
 
     //variant 2
     //transform: scale(0.6) rotate(90deg);

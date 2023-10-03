@@ -1,6 +1,9 @@
 <template>
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
+
+
+
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
 <!--      <light-box :media="media" :closable="false"></light-box>-->
 <!--    </div>-->
@@ -32,16 +35,11 @@
 <!--            В ипотеку:-->
           </div>
 
+
+
           <div class="flat__callback">
-            <button type="button" class="buttonCopy" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Забронировать" data-init="true"><span>Забронировать</span></button>
-            <a href="/kvartiry/flat-291/pdf" class="buttonCopy2">
-              <svg width="24" height="25" viewBox="0 0 24 25"  xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 7.19165C3.86193 7.19165 3.75 7.30358 3.75 7.44165V15.4417C3.75 15.5797 3.86197 15.6917 4 15.6917H6.5V17.1917H4C3.03347 17.1917 2.25 16.4081 2.25 15.4417V7.44165C2.25 6.47516 3.03351 5.69165 4 5.69165H20C20.9665 5.69165 21.75 6.47517 21.75 7.44165V15.4417C21.75 16.4081 20.9666 17.1917 20 17.1917H17.5V15.6917H20C20.138 15.6917 20.25 15.5797 20.25 15.4417V7.44165C20.25 7.30357 20.1381 7.19165 20 7.19165H4Z"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M9 3.19165C8.30964 3.19165 7.75 3.75129 7.75 4.44165V5.69165H16.25V4.44165C16.25 3.75129 15.6904 3.19165 15 3.19165H9ZM6.25 4.44165C6.25 2.92287 7.48122 1.69165 9 1.69165H15C16.5188 1.69165 17.75 2.92287 17.75 4.44165V7.19165H6.25V4.44165Z"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.75 13.1917V21.6916L16.25 21.6917V13.1917H7.75ZM6.25 12.9417C6.25 12.2512 6.80971 11.6917 7.5 11.6917H16.5C17.1902 11.6917 17.75 12.2512 17.75 12.9417V21.9417C17.75 22.632 17.1903 23.1917 16.5 23.1917L7.5 23.1916C6.80971 23.1916 6.25 22.6321 6.25 21.9416V12.9417Z"></path>
-                <path d="M16 10.4417C15.4477 10.4417 15 9.99394 15 9.44165C15 8.88937 15.4477 8.44165 16 8.44165C16.5523 8.44165 17 8.88937 17 9.44165C17 9.99394 16.5523 10.4417 16 10.4417Z"></path>
-              </svg>
-              &nbsp&nbsp Распечатать PDF
+            <a href="/kvartiry/flat-291/pdf" class="buttonCopy2" style="  background-color: #e47554;">
+             &nbsp&nbspЗабронировать
             </a>
           </div>
 
@@ -116,27 +114,46 @@
           </div>
         </div>
       </div>
-      <div class="pa-5 l-row">
-        <div
-          class="l-col l-col-6 py-0"
-          v-if="!['Бронь', 'Договор', 'Выданы ключи', 'Не для продажи', 'На расторжении'].includes(property.status)"
-        >
-          <a
-            href="#" @click="onBook"
-            class="e-btn e-btn1 full-width full-height is-primary"
-          >Забронировать</a>
-        </div>
-        <div class="l-col py-0">
-          <a
-            href="#" @click="onPopQuestion"
-            class="e-btn e-btn2 full-width full-height is-primary"
-          >Задать вопрос</a>
-        </div>
-      </div>
+
 <!--      <a href="#" @click="onClose" class="close d-flex align-center justify-center px-10 py-5">-->
 <!--        <span class="text-body-1">Закрыть</span><i class="e-icon is-close ml-5"></i>-->
 <!--      </a>-->
     </div>
+
+
+
+
+      <div class="flat__callback">
+
+        <a href="/kvartiry/flat-291/pdf" class="buttonCopy2" style="  position: relative; left: 20px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  style="
+    position: absolute;
+    left: 20px;
+" ><path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#fff"/></svg>
+          &nbsp&nbsp Поделиться
+        </a>
+
+<!--        <div class="pa-5 l-row">-->
+<!--          <div class="l-col py-0">-->
+<!--            <a-->
+<!--                href="#" @click="onPopQuestion"-->
+<!--                class="e-btn e-btn2 full-width full-height is-primary"-->
+<!--            >Задать вопрос</a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+        <button type="button" class="buttonCopy2" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 20px;">
+          <span style="position: absolute; left:20px;">?</span>
+          <span>Задать вопрос</span>
+        </button>
+
+      </div>
+
+
+
+
+
     </div>
     </div>
 

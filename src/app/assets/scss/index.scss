@@ -8,6 +8,16 @@
 $themeColor: $color-primary;
 @import '~vue-slider-component/lib/theme/default.scss';
 
+@font-face {
+  font-family: "PT_Serif_Italic";
+  src: url('./../fonts/PTSerifCaption-Italic.ttf');
+}
+
+@font-face {
+  font-family: "PT_Serif_Regular";
+  src: url('./../fonts/PTSerifCaption-Regular.ttf');
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
