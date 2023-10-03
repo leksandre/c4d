@@ -133,19 +133,26 @@
           &nbsp&nbsp Поделиться
         </a>
 
-<!--        <div class="pa-5 l-row">-->
-<!--          <div class="l-col py-0">-->
-<!--            <a-->
-<!--                href="#" @click="onPopQuestion"-->
-<!--                class="e-btn e-btn2 full-width full-height is-primary"-->
-<!--            >Задать вопрос</a>-->
-<!--          </div>-->
-<!--        </div>-->
-
-
         <button type="button" class="buttonCopy2" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 20px;">
-          <span style="position: absolute; left:20px;">?</span>
+          <span style="position: absolute;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: ultra-condensed;">?</span>
           <span>Задать вопрос</span>
+        </button>
+
+        <button type="button" class="buttonCopy2"  :value="property.id" @click="saveToFav(property.id)" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 20px;">
+
+          <span style="position: absolute;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: ultra-condensed;"></span>
+
+          <span>Добавить в избранное</span>
         </button>
 
       </div>
@@ -307,6 +314,11 @@
           path: 'property',
           payload: {}
         })
+      },
+
+      saveToFav(uuid){
+        this.$cookie.set("favItems", uuid)
+        $cookies.set('cookie_name', 'cookie_value');
       },
 
       onToggleCollapse() {
