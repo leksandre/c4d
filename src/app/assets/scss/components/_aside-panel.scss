@@ -104,7 +104,7 @@
   text-rendering: optimizelegibility;
   transition-duration: 0.15s;
   transition-property: filter, opacity, -webkit-filter;
-  width: 199.438px;
+  width: 355px;
   word-break: normal;
   -webkit-box-direction: normal;
   -webkit-font-smoothing: antialiased;
@@ -244,8 +244,12 @@
 
 .panelRight{
   overflow: hidden;
+  position: relative;
 }
 .flat__callback {
+
+  position: relative;
+  max-width: 355px;
 
   align-items: flex-start;
   box-sizing: border-box;
@@ -264,8 +268,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.buttonCopy2span{
+  position: absolute;
+  left: 55px;
+}
+
 .buttonCopy2 {
   width: 220px;
+  position: relative;
   align-items: center;
   appearance: none;
   background-color: #219794;
@@ -322,8 +332,8 @@
   overflow-x: visible;
   overflow-y: visible;
   padding-bottom: 0px;
-  padding-left: 24px;
-  padding-right: 16px;
+  //padding-left: 24px;
+  //padding-right: 16px;
   padding-top: 0px;
   text-align: center;
   text-decoration-color: rgb(98, 114, 91);

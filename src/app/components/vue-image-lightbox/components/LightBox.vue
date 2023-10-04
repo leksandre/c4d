@@ -142,7 +142,7 @@
               <div class="vue-lb-footer-info" />
               <div
                 class="vue-lb-footer-count"
-                v-show="showFooterCount"
+                v-show="showFooterCount && false"
               >
                 <slot
                   name="footer"

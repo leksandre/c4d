@@ -183,7 +183,7 @@
       </div>
 
 <!--   !!!!!!!fix1  v-if="mq.mdAndUp" -->
-      <apartment-details  v-if="mq.mdAndUp"/>
+      <apartment-details  v-if="mq.mdAndUp" @changemode="modal_3 = $event" />
     </main>
     </div>
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
@@ -374,7 +374,71 @@
       <div>
       </div>
     </div>
+
+
+    <div>
+      <div class="c-modal" v-show="modal_3">
+        <span>modal_3</span>
+      </div>
+      <div class="bg" id="bg_fav_window" v-show="modal_3" v-on:click="setModal">
+        <div class="close" v-on:click="setModal">
+          <span v-on:click="setModal"></span>
+          <span v-on:click="setModal"></span>
+          <span v-on:click="setModal"></span>
+          <span v-on:click="setModal"></span>
+          <svg viewBox="0 0 36 36" class="circle" v-on:click="setModal">
+            <path v-on:click="setModal"
+                  stroke-dasharray="100, 100"
+                  d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+        </div>
+
+
+
+<!--        <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >-->
+
+<!--          <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"-->
+<!--               v-if="((floor+1) % 2 == 0)">-->
+<!--            <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>-->
+<!--            <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">-->
+<!--              <div class="c-building__section">-->
+<!--                <apartment-card-->
+<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
+<!--                    :key="property.id"-->
+<!--                    :property="property"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') } " class="floorViewSection2"-->
+<!--               v-if="((floor-1) % 2 == 0)">-->
+<!--            <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>-->
+<!--            <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">-->
+<!--              <div class="c-building__section">-->
+<!--                <apartment-card-->
+<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor}`]"-->
+<!--                    :key="property.id"-->
+<!--                    :property="property"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+
+
+      </div>
+    </div>
+
+
+
   </div>
+
 </template>
 
 <script>
@@ -387,6 +451,7 @@
     components: { ApartmentCard, ApartmentDetails },
 
     data: () => ({
+      modal_3: false,
       view: 'tilePlus',
       testData: ' <pre> </pre> ',
       timerForShowPanel:false,
@@ -560,6 +625,19 @@
           return false
         }
       },
+      setModal() {
+        this.modal_3 = !this.modal_3
+        let elBg  = document.getElementById('bg_fav_window')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+      },
+
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
         if (itemElement) {
