@@ -26,13 +26,15 @@
   }
 }
 
-
 .floorViewSection2{
   //margin-top: 70px;
   position: relative;
   padding: 2px;
   margin: 2px;
   right: 20px;
+
+  //border: 1px dashed #ffffff29;
+  //border-radius: 21px;
 }
 
 
@@ -42,6 +44,9 @@
   padding: 2px;
   margin: 2px;
   right: 5px;
+
+  //border: 1px dashed #ffffff29;
+  //border-radius: 21px;
 }
 
 .tittleForBarFloor{
@@ -551,6 +556,19 @@
   }
 }
 
+.favwindowFlat {
+  display: inline-grid;
+  flex-direction: column;
+  //height: 100%;
+  margin: 4px;
+  color: #2C343A;
+}
+
+.favwindowFlatParent{
+
+}
+
+
 .bg {
   display: block;
   position: fixed;
@@ -1021,4 +1039,54 @@ img.vue-lb-modal-image {
 
 .vue-lb-content-transition-enter, .vue-lb-content-transition-leave-to {
   opacity: 0
+}
+
+
+
+.tooltip-container {
+  position: relative;
+  display: flex;
+  place-content: center;
+}
+
+/* styling of the tooltip display */
+p#tooltip-text {
+
+  display: none;
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  z-index: 9;
+  background: #e47654;
+  width: 128px;
+  height: 19px;
+  /* padding: 8px; */
+  font-size: 10px;
+  text-align: center;
+  /* vertical-align: bottom; */
+  color: #fff;
+  border-radius: 3px;
+  /* opacity: unset; */
+  animation: fadeIn 0.6s;
+
+}
+
+/* optional styling to add a "wedge" to the tooltip */
+p#tooltip-text:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top: 8px solid #00732c;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

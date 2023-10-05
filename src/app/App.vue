@@ -122,6 +122,117 @@
             <div >
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+              <div>
+                <div class="c-modal" v-show="modal_3">
+                  <span>modal_3</span>
+                </div>
+
+<!--                v-on:click="setModal"-->
+
+                <div class="bg" id="bg_fav_window" v-show="modal_3"     >
+                  <div class="close" v-on:click="setModal" >
+                    <span ></span>
+                    <span ></span>
+                    <span ></span>
+                    <span ></span>
+                    <svg viewBox="0 0 36 36" class="circle" >
+                      <path
+                            stroke-dasharray="100, 100"
+                            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                    </svg>
+                  </div>
+
+                  <div class="favwindowFlatParent">
+                    <div class="favwindowFlat" v-for=" (idhash, idxf) in favCoocies()" >
+  <!--                                           {{idhash}}-->
+  <!--                                           {{idxf}}-->
+  <!--                                           {{propertyGet(idhash)}}-->
+                      <apartment-card-fav
+                          :key="idhash"
+                          :property="propertyGet(idhash)"
+                      />
+                    </div>
+                  </div>
+
+
+
+<!--                  вариант с разбивокй по этажам-->
+<!--                          <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >-->
+<!--&lt;!&ndash;                            :class="{ 'nowInSale': hasChildWithClassFav(floor, 'c-building__flat-type') }"&ndash;&gt;-->
+<!--                            <div :key="`floor-${floor}`" :id="`floorViewFav-${floor}`" class="floorViewSection1"-->
+<!--                                 v-if="((floor+1) % 2 == 0) && hasChildWithClassFav(floor-1, 'c-building__flat-type') ">-->
+<!--                              <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>-->
+<!--                              <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone1">-->
+<!--                                <div class="c-building__section">-->
+<!--                                  <apartment-card-fav-->
+<!--                                      v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
+<!--                                      :key="property.id"-->
+<!--
+<!--                                  />-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                            :class="{ 'nowInSale': hasChildWithClassFav(floor-1, 'c-building__flat-type') } "&ndash;&gt;-->
+<!--                            <div :key="`floor-${floor-1}`" :id="`floorViewFav-${floor-1}`"  class="floorViewSection2"-->
+<!--                                 v-if="((floor-1) % 2 == 0) && hasChildWithClassFav(floor-1, 'c-building__flat-type') ">-->
+<!--                              <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>-->
+<!--                              <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone1">-->
+<!--                                <div class="c-building__section">-->
+<!--                                  <apartment-card-fav-->
+<!--                                      v-for="property in section.propertiesOnFloor[`floor_${floor}`]"-->
+<!--                                      :key="property.id"-->
+<!--                                      :property="property"-->
+<!--                                  />-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                  -->
+
+
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
                 <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"
@@ -375,80 +486,49 @@
       </div>
     </div>
 
-
-    <div>
-      <div class="c-modal" v-show="modal_3">
-        <span>modal_3</span>
-      </div>
-      <div class="bg" id="bg_fav_window" v-show="modal_3" v-on:click="setModal">
-        <div class="close" v-on:click="setModal">
-          <span v-on:click="setModal"></span>
-          <span v-on:click="setModal"></span>
-          <span v-on:click="setModal"></span>
-          <span v-on:click="setModal"></span>
-          <svg viewBox="0 0 36 36" class="circle" v-on:click="setModal">
-            <path v-on:click="setModal"
-                  stroke-dasharray="100, 100"
-                  d="M18 2.0845
-        a 15.9155 15.9155 0 0 1 0 31.831
-        a 15.9155 15.9155 0 0 1 0 -31.831"
-            />
-          </svg>
-        </div>
-
-
-
-<!--        <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >-->
-
-<!--          <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"-->
-<!--               v-if="((floor+1) % 2 == 0)">-->
-<!--            <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>-->
-<!--            <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">-->
-<!--              <div class="c-building__section">-->
-<!--                <apartment-card-->
-<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
-<!--                    :key="property.id"-->
-<!--                    :property="property"-->
-<!--                />-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') } " class="floorViewSection2"-->
-<!--               v-if="((floor-1) % 2 == 0)">-->
-<!--            <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>-->
-<!--            <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">-->
-<!--              <div class="c-building__section">-->
-<!--                <apartment-card-->
-<!--                    v-for="property in section.propertiesOnFloor[`floor_${floor}`]"-->
-<!--                    :key="property.id"-->
-<!--                    :property="property"-->
-<!--                />-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-
-
-
-      </div>
-    </div>
-
-
+    <!--   was here hided element -->
 
   </div>
 
 </template>
 
 <script>
+
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function checkCookie(cname) {
+  let user = getCookie(cname);
+  if (user != "") {
+    return true
+  } else {
+    return false
+  }
+}
+
+
+
   import ApartmentCard from './components/ApartmentCard'
+  import ApartmentCardFav from './components/ApartmentCardFav'
   import ApartmentDetails from './components/ApartmentDetails'
   import { mapState, mapGetters } from 'vuex'
   import debounce from 'lodash/debounce'
 
   export default {
-    components: { ApartmentCard, ApartmentDetails },
+    components: { ApartmentCard, ApartmentDetails, ApartmentCardFav },
 
     data: () => ({
       modal_3: false,
@@ -627,6 +707,7 @@
       },
       setModal() {
         this.modal_3 = !this.modal_3
+        console.log(this.modal_3 , 'this.modal_3 ')
         let elBg  = document.getElementById('bg_fav_window')
         let testParent  = document.getElementById('maincontent_parent1')
 
@@ -657,6 +738,25 @@
       hasChildWithClass(itemId, className) {
 
         const itemElement = document.getElementById(`floorView-${itemId}`);
+        // console.log(itemElement,itemId, className)
+
+        if (itemElement) {
+          let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
+          let foundEl = (childElements.length > 0)
+
+          // console.log(itemId,foundEl)
+          return foundEl
+        } else {
+          // console.log('elem not exist')
+          return true;
+        }
+        // console.log('return false;')
+        return false;
+      },
+      hasChildWithClassFav(itemId, className) {
+
+        const itemElement = document.getElementById(`floorViewFav-${itemId}`);
         // console.log(itemElement,itemId, className)
 
         if (itemElement) {
@@ -866,6 +966,24 @@
       },
 
       reverseKeys: n => [...Array(n).keys()].slice().reverse(),
+
+      favCoocies() {
+        let cookieName = "favItemsAppartament"
+        if (checkCookie(cookieName)) {
+          let json1 = getCookie(cookieName);
+          let fav = JSON.parse(json1);
+          return fav
+        }
+      },
+
+      propertyGet(hash){
+        // console.log('this.$store.state.chess',this.$store.state.chess)
+        // console.log('this.$store.state.chess.properties[0]',this.$store.state.chess.properties[0])
+        let filterCriteria = [hash];
+        let filteredData = this.$store.state.chess.properties.filter(item => filterCriteria.includes(item.id));
+        // console.log('filteredData',filteredData);
+        return filteredData[0]
+      },
 
       closeInfoPanel() {
         this.$store.commit('infoPanel/set', {

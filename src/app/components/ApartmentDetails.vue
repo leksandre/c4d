@@ -2,7 +2,7 @@
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
 
-
+      <p id="tooltip-text">Добавить в избранное</p>
 
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
 <!--      <light-box :media="media" :closable="false"></light-box>-->
@@ -17,16 +17,33 @@
 
 
 
+        <div class="tooltip-container"
+             onmouseleave=" document.getElementById('tooltip-text').style.display = 'none'; "
+             onmouseout=" document.getElementById('tooltip-text').style.display = 'none'; "
 
-
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="36" height="42"
-             viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"
-             title="Добавить в избранное"
+             onmouseover=" document.getElementById('tooltip-text').style.display = 'block'; "
+             onmousemove=" document.getElementById('tooltip-text').style.display = 'block'; "
              style="
     position: absolute;
     right: 23px;
     cursor: pointer;
     top: 12px;
+
+    width: 40px;
+    height: 40px;
+                       "
+        >
+
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="36" height="42"
+             viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"
+             title="Добавить в избранное"
+             id="tooltip-button"
+             style="
+    position: absolute;
+    /*right: 23px;*/
+    cursor: pointer;
+    /*top: 12px;*/
                        "
              @click="saveToFav(property?property.id:null)"
         >
@@ -38,7 +55,7 @@
           </g>
         </svg>
 
-
+        </div>
 
 
 <!--        overflow-x-auto-->
