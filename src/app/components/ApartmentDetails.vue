@@ -185,21 +185,21 @@
     position: absolute;
     left: 20px;
 " ><path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#fff"/></svg>
-          <span class="buttonCopy2span">Поделиться</span>
+          <span class="buttonCopy2span" >Поделиться</span>
         </a>
 
 
 
 
 
-        <button type="button" class="buttonCopy2" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 21px;">
+        <button type="button" v-on:click="setModalDialog" class="buttonCopy2" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 21px;">
           <span style="position: absolute;
     left: 26px;
     font-size: 20px;
     font-weight: 900;
     font-style: normal;
     font-stretch: ultra-condensed;">?</span>
-          <span class="buttonCopy2span">Задать вопрос</span>
+          <span class="buttonCopy2span" >Задать вопрос</span>
         </button>
 
 
@@ -234,27 +234,128 @@
 
 
 
-<!--      <div>-->
-<!--        <div class="c-modal" v-show="modal_2">-->
-<!--          <span>modal_2</span>-->
-<!--        </div>-->
-<!--        <div class="bg" id="bg_fav_window" v-show="modal_2" v-on:click="setModal">-->
-<!--          <div class="close" v-on:click="setModal">-->
-<!--            <span v-on:click="setModal"></span>-->
-<!--            <span v-on:click="setModal"></span>-->
-<!--            <span v-on:click="setModal"></span>-->
-<!--            <span v-on:click="setModal"></span>-->
-<!--            <svg viewBox="0 0 36 36" class="circle" v-on:click="setModal">-->
-<!--              <path v-on:click="setModal"-->
-<!--                    stroke-dasharray="100, 100"-->
-<!--                    d="M18 2.0845-->
-<!--        a 15.9155 15.9155 0 0 1 0 31.831-->
-<!--        a 15.9155 15.9155 0 0 1 0 -31.831"-->
-<!--              />-->
-<!--            </svg>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div>
+        <div class="c-modal" v-show="modal_2">
+          <span>modal_2</span>
+        </div>
+        <div class="bg" id="bg_fav_window_dialog" v-show="modal_2" v-on:click="setModalDialog">
+          <div class="close" v-on:click="setModalDialog">
+            <span v-on:click="setModalDialog"></span>
+            <span v-on:click="setModalDialog"></span>
+            <span v-on:click="setModalDialog"></span>
+            <span v-on:click="setModalDialog"></span>
+            <svg viewBox="0 0 36 36" class="circle" v-on:click="setModalDialog">
+              <path v-on:click="setModalDialog"
+                    stroke-dasharray="100, 100"
+                    d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+            </svg>
+          </div>
+
+          <div class="favwindowFlatParent">
+            <div class="favwindowFlat" style="    width: 500px;    height: 550px;" >
+<!--              {{property.id}}-->
+
+
+
+              <div class="dialogAsc-mask" onclick="event.stopPropagation();">
+                <div class="dialogAsc-wrapper">
+                  <div class="dialogAsc-container">
+                    <div class="dialogAsc-header">
+<!--                      <h6 name="header">Укажите пожалуйста ваши данные и номер телефона </h6>-->
+<!--                      <h6 name="header">Укажите пожалуйста ваши данные </h6>-->
+                      <h6 name="header">Заполните</h6>
+                    </div>
+
+                    <div class="dialogAsc-body">
+
+<!--                      <input-->
+<!--                          :value="text"-->
+<!--                          @input="event => text = event.target.value">-->
+
+
+
+                      <form
+                          :action="FORM_ENDPOINT"
+                          @submit="handleSubmit"
+                          method="POST"
+                      >
+                        <div>
+                          <input type="text" placeholder="Имя" name="name" required />
+                        </div>
+
+<!--                        <div>-->
+<!--                          <input type="email" placeholder="Email" name="email" required />-->
+<!--                        </div>-->
+
+                        <div>
+                          <input type="phone" placeholder="Номер телефона" name="phone" required />
+                        </div>
+
+                        <h6 name="body">Ваш вопрос</h6>
+                        <div>
+                          <textarea placeholder="Ваше сообщение" name="message" required />
+                        </div>
+<br>
+                        <div>
+                          <a class="buttonCopy2">Отправить сообщение</a>
+                        </div>
+                      </form>
+
+                      <div v-if="submitted">
+                        <h2>Спасибо!</h2>
+                        <div>Мы ответим, как только рассмотрим ваше обращение.</div>
+                      </div>
+
+
+
+                    </div>
+
+                    <div class="dialogAsc-footer">
+                      <slot name="footer">
+<!--                        default footer    -->
+                        <a
+                            class="dialogAsc-default-button"
+                            @click="setModalDialog"
+                        >Закрыть</a>
+
+
+
+
+                      </slot>
+                    </div>
+
+
+
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
 
@@ -336,6 +437,10 @@ function checkCookie(cname) {
 
   export default {
     data: () => ({
+
+      submitted: false,
+      FORM_ENDPOINT: "endpointUrl",
+
       modal_2: false,
       inFavCustom:false,
       asideClasses: ['c-aside'],
@@ -449,6 +554,13 @@ function checkCookie(cname) {
     },
 
     methods: {
+
+      handleSubmit() {
+        setTimeout(() => {
+          this.submitted = true;
+        }, 100);
+      },
+
       getName(name){
         if(name=='0'){
           return "Студия"
@@ -477,19 +589,25 @@ function checkCookie(cname) {
         })
       },
 
-      setModal() {
+      setModalDialog() {
+
+        let elBg  = document.getElementById('bg_fav_window_dialog')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
         this.modal_2 = !this.modal_2
-        // let elBg  = document.getElementById('bg_fav_window')
-        // let testParent  = document.getElementById('maincontent_parent1')
-        //
-        // if(elBg && testParent){
-        //   // console.log(elBg)
-        //   // console.log(testParent)
-        //   testParent.appendChild(elBg)
-        // }
+
+      },
+
+      setModal() {
         this.$emit("changemode", "True");
       },
-      
+
       isMobile() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
           // console.log('navigator.userAgent',navigator.userAgent)
@@ -611,4 +729,110 @@ function checkCookie(cname) {
     color: white;
     background-color: rgba(#e73232, .5);
   }
+
+
+
+  .dialogAsc-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    //background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+  }
+
+  .dialogAsc-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .dialogAsc-container {
+
+    width: 500px;
+    height: 550px;
+
+    //width: 300px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    border-radius: 20px;
+  }
+
+  .dialogAsc-header h6 {
+    margin-top: 0;
+    //color: #42b983;
+  }
+
+  .dialogAsc-body {
+    margin: 20px 0;
+  }
+
+  .dialogAsc-default-button {
+    float: right;
+    cursor: pointer;
+  }
+  .dialogAsc-default-button:hover {
+  text-decoration: underline;
+  }
+
+  .dialogAsc-enter-from {
+    opacity: 0;
+  }
+
+  .dialogAsc-leave-to {
+    opacity: 0;
+  }
+
+  .dialogAsc-enter-from .dialogAsc-container,
+  .dialogAsc-leave-to .dialogAsc-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+
+
+
+ textarea{
+   width: 300px;
+   height: 150px;
+ }
+  h6 {
+    font-size: 1.1rem;
+    line-height: initial;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .form-fields {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  input[type="text"], input[type="email"], input[type="phone"], textarea {
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin: 10px;
+  }
+  body { display: block }
+  button[type="submit"] {
+    background-color: rgb(67 56 202);
+    color: white;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-weight: 500;
+  }
+  
 </style>
