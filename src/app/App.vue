@@ -707,7 +707,7 @@ function checkCookie(cname) {
       },
       setModal() {
         this.modal_3 = !this.modal_3
-        console.log(this.modal_3 , 'this.modal_3 ')
+        // console.log(this.modal_3 , 'this.modal_3 ')
         let elBg  = document.getElementById('bg_fav_window')
         let testParent  = document.getElementById('maincontent_parent1')
 

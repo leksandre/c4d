@@ -48,7 +48,7 @@
              @click="saveToFav(property?property.id:null)"
         >
           <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-             :fill="(this.inFav||this.inFavCustom)?'#e47554':'#ffffff'" stroke="orange" stroke-width="240"
+             :fill="getColor" stroke="orange" stroke-width="240"
              stroke-dasharray="5,5" stroke-linecap="round">
             <path
                 d="M2496 4968 c-28 -29 -61 -126 -311 -895 l-279 -863 -919 0 c-611 0 -925 -3 -938 -10 -23 -13 -49 -61 -49 -93 0 -13 9 -36 20 -50 11 -14 346 -262 745 -552 398 -289 727 -530 730 -535 3 -4 -121 -396 -275 -870 -154 -474 -280 -873 -280 -887 0 -36 60 -93 98 -93 37 0 -26 -43 812 565 l710 516 710 -516 c838 -608 775 -565 812 -565 37 0 98 57 98 92 0 12 -126 414 -281 891 -155 477 -280 869 -278 871 2 1 331 240 731 530 400 290 737 539 748 553 11 14 20 37 20 50 0 32 -26 80 -49 93 -13 7 -327 10 -938 10 l-919 0 -279 863 c-249 767 -283 866 -311 895 -23 23 -41 32 -64 32 -23 0 -41 -9 -64 -32z"/>
@@ -362,9 +362,19 @@ function checkCookie(cname) {
       LightBox,
     },
     computed: {
+      getColor() {
+        // this.inFavCustom = this.inFav
 
-      inFav(){
+        let v1 = this.inFav
 
+        // console.log('-0')
+        // console.log('this.inFav',this.inFav)
+        // console.log('this.inFavCustom',this.inFavCustom)
+        // console.log('-1')
+
+        return (this.inFavCustom) ? '#e47554' : '#ffffff';
+      },
+        inFav(){
         if (this.property) {
           if (this.property.hasOwnProperty("id")) {
             // console.log(this.property['images'])
@@ -530,7 +540,14 @@ function checkCookie(cname) {
 
         // console.log('uuid--',uuid)
         // console.log('fav--',fav)
+        console.log('--')
+        console.log('--')
         setCookie(cookieName, fav, 365)
+// setTimeout(    this.$nextTick(), 500)
+// setTimeout(    this.$forceNextTick(), 500)
+
+        this.$nextTick()
+        this.$forceNextTick()
 
       },
 
