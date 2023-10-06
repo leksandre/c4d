@@ -150,8 +150,8 @@
   background-color: #ffffff61;
   padding: 10px;
   margin: 10px;
-  border-radius: 20px;
-  border: 3px dashed #21979430;
+  //border-radius: 20px;
+  //border: 3px dashed #21979430;
   z-index: 99;
 
   box-sizing: border-box;
@@ -166,6 +166,13 @@
   position: fixed;
   right: 0px;
   max-width: 100%;
+
+
+  border-color: #fff;
+  border-radius: 20px;
+  border-style: dashed;
+  border-width: 1px;
+
 }
 
 .flat__media {
@@ -556,6 +563,9 @@
   }
 }
 
+.trash_building_flat{
+  position: relative;
+}
 .favwindowFlat {
   display: -webkit-inline-box;
   flex-direction: column;
@@ -566,7 +576,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .favwindowFlatParent{
   //margin-left: auto;
   //margin-right: auto;
@@ -580,8 +589,6 @@
   align-content: center;
 
 }
-
-
 .bg {
   display: block;
   position: fixed;
@@ -948,8 +955,8 @@ img.vue-lb-modal-image {
     position: fixed;
     top: 0px;
     left: -115px;
-    border-radius: 0px 20px 20px 0px;
 
+    border-radius: 0px 20px 20px 0px;
     //variant 2
     //transform: scale(0.6) rotate(90deg);
     //position: fixed;//??????
@@ -961,6 +968,7 @@ img.vue-lb-modal-image {
   .tableWithFloor:hover {//variant1hidepanel
     left: 0px;
     transition-duration: .2s;
+
   }
 
 
@@ -1005,7 +1013,7 @@ img.vue-lb-modal-image {
 
   max-width: 125px;
   border-color: #fff;
-  border-radius: 20px;
+  //border-radius: 20px;
   border-style: dashed;
   border-width: 1px;
 
