@@ -26,6 +26,7 @@
   const frameIn = document.createElement('iframe')
   frameIn.src = `${url}?${queryForInjected}`
   frameIn.name = 'C4DWidgetInject'
+  frameIn.id= 'idC4DWidgetInject'
   frameIn.width = '100%'
   frameIn.frameBorder = 'none'
   if (htmlInjectedEl && htmlInjectedEl.innerHTML === '') {

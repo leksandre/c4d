@@ -207,7 +207,7 @@
 
 
 
-        <button type="button" class="buttonCopy2" v-on:click="setModal" :value="property?property.id:null" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="Задать вопрос" data-init="true"  style="  position: relative; left: 21px;">
+        <button type="button" class="buttonCopy2" v-on:click="setModal" :value="property?property.id:null" data-callback="true" data-href="zabronirovat-kvartiru" aria-label="В избранное" data-init="true"  style="  position: relative; left: 21px;">
 
 <!--          <span style="position: absolute;-->
 <!--    left: 20px;-->
@@ -382,7 +382,9 @@
 
 <script>
 
-
+function scrollTop(){
+  window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+}
 function onlyUnique(value, index, array) {
   return array.indexOf(value) === index;
 }
@@ -590,7 +592,7 @@ function checkCookie(cname) {
       },
 
       setModalDialog() {
-
+        scrollTop();
         let elBg  = document.getElementById('bg_fav_window_dialog')
         let testParent  = document.getElementById('maincontent_parent1')
 
@@ -601,6 +603,8 @@ function checkCookie(cname) {
         }
 
         this.modal_2 = !this.modal_2
+
+
 
       },
 

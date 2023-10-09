@@ -117,7 +117,8 @@
 <!--          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >-->
             <div class="tableWithFloor" >
             <div class="tittleForBarFloor">
-              выберите ваш<br>этаж
+<!--              выберите ваш<br>этаж-->
+              >>>>>
             </div>
             <div >
 
