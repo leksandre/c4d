@@ -608,8 +608,19 @@ function checkCookie(cname) {
 
       },
 
-      setModal() {
+      setModal() {//almost same function from App.vue
+        // console.log('set modal appattamentDetail')
         this.$emit("changemode", "True");
+        // console.log(this.modal_3 , 'this.modal_3 ')
+        let elBg  = document.getElementById('bg_fav_window')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
       },
 
       isMobile() {

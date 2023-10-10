@@ -706,7 +706,7 @@ function checkCookie(cname) {
           return false
         }
       },
-      setModal() {
+      setModal() {//almost same function from ApartmentDetails
         this.modal_3 = !this.modal_3
         // console.log(this.modal_3 , 'this.modal_3 ')
         let elBg  = document.getElementById('bg_fav_window')
