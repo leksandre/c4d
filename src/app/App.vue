@@ -706,8 +706,7 @@ function checkCookie(cname) {
           return false
         }
       },
-      setModal() {//almost same function from ApartmentDetails
-        // console.log('set modal App.vue')
+      setModal() {
         this.modal_3 = !this.modal_3
         // console.log(this.modal_3 , 'this.modal_3 ')
         let elBg  = document.getElementById('bg_fav_window')
