@@ -168,10 +168,18 @@ import { mapGetters } from 'vuex'
         let KKS
         switch (vm.property.type_apartment) {
           case '1'|1:
-            KKS = '1 комнатная'
+            if (vm.property.kitchen_living == 'true'){
+              KKS = 'Евро 2-комнатная'
+            } else {
+              KKS = '1-комнатная'
+            }
             break
           case '2'|2:
-            KKS = '2 конатная'
+            if (vm.property.kitchen_living == 'true'){
+              KKS = 'Евро 3-комнатная'
+            } else {
+              KKS = '2-комнатнаяs'
+            }
             break
           case '3'|3:
             KKS = '3 комнатная'

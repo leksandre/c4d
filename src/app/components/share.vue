@@ -27,7 +27,7 @@
               <ul class="social">
                 <li class="social__list">
                   <a class="social__link"
-                     href="https://vk.com/share.php?url=https://berezka.multi.ksdev.ru/kvartiry/flat-291&amp;title=Студия № 545"
+                     href="https://vk.com/share.php?url="
                      title="vk" target="_blank">
                           <span class="social__icon">
                               <svg width="32" height="33" viewBox="0 0 32 33" fill="none"
@@ -58,7 +58,7 @@
                 </li>
                 <li class="social__list">
                   <a class="social__link"
-                     href="https://t.me/share/url?url=https://berezka.multi.ksdev.ru/kvartiry/flat-291&amp;text=Студия № 545"
+                     href="https://t.me/share/url?url="
                      title="telegram" target="_blank">
                           <span class="social__icon">
                               <svg width="32" height="33" viewBox="0 0 32 33" fill="none"
@@ -99,7 +99,7 @@
                 </li>
                 <li class="social__list">
                   <a class="social__link"
-                     href="viber://forward?text=https://berezka.multi.ksdev.ru/kvartiry/flat-291" title="viber"
+                     href="viber://forward?text=" title="viber"
                      target="_blank">
                           <span class="social__icon">
                               <svg width="32" height="33" viewBox="0 0 32 33" fill="none"
@@ -126,7 +126,7 @@
                 </li>
                 <li class="social__list">
                   <a class="social__link"
-                     href="https://api.whatsapp.com/send?text=https://berezka.multi.ksdev.ru/kvartiry/flat-291"
+                     href="https://api.whatsapp.com/send?text="
                      title="whatsapp" target="_blank">
                           <span class="social__icon">
                               <svg width="32" height="33" viewBox="0 0 32 33" fill="none"

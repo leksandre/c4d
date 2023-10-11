@@ -932,6 +932,9 @@ img.vue-lb-modal-image {
     top: 0px;
     border-radius: 20px;
   }
+  .tittleForBarFloor{
+    display: none;
+  }
 }
 
 
@@ -947,7 +950,9 @@ img.vue-lb-modal-image {
   .vue-lb-thumbnail-wrapper{
     transform: scale(0.5);
   }
-
+  .tittleForBarFloor{
+    display: block;
+  }
   .tableWithFloor .buttonFloor {
     font-size: 14px;
     padding-top: 12px;

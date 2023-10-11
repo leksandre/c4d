@@ -63,7 +63,7 @@
 <!--          <div class="text-body-1 font-weight-500 mb-5">{{ title }}</div>-->
 
           <div class="mb-5 ">
-            <div class="title-copy1">{{ getName(property.type_apartment) }} {{ property.area }} м²</div>
+            <div class="title-copy1">{{ getName(property.type_apartment,property.kitchen_living) }} {{ property.area }} м²</div>
           </div>
 
           <div class="mb-10">
@@ -89,10 +89,10 @@
 
 
           <div class="flat__callback">
-            <a href="/kvartiry/flat-291/pdf" class="buttonCopy2" style="  background-color: #e47554;">
+            <button class="buttonCopy2" style="  background-color: #e47554;">
               Забронировать
 <!--              <span class="buttonCopy2span">Забронировать</span>-->
-            </a>
+            </button>
           </div>
 
           <div class="text-copy4">
@@ -102,15 +102,15 @@
             <div class="c-list text-body-2">
 
 
-              <div class="c-list__item d-flex justify-space-between">
-                <div>type_apartment</div>
-                <div>{{ property.type_apartment }}</div>
-              </div>
+<!--              <div class="c-list__item d-flex justify-space-between">-->
+<!--                <div>type_apartment</div>-->
+<!--                <div>{{ property.type_apartment }}</div>-->
+<!--              </div>-->
 
-              <div class="c-list__item d-flex justify-space-between">
-                <div>rooms</div>
-                <div>{{ property.rooms }}</div>
-              </div>
+<!--              <div class="c-list__item d-flex justify-space-between">-->
+<!--                <div>rooms</div>-->
+<!--                <div>{{ property.rooms }}</div>-->
+<!--              </div>-->
 
               <div class="c-list__item d-flex justify-space-between">
                 <div>Статус</div>
@@ -145,12 +145,13 @@
 <!--                <div>{{ b }} м²</div>-->
 <!--              </div>-->
 
-              <div
-                class="c-list__item d-flex justify-space-between"
-                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"
-              >
-                <div>{{ property['СовмещенныйСанУзел'] ? 'Совмещенный' : 'Раздельный' }} cан. узел</div>
-              </div>
+<!--              <div-->
+<!--                class="c-list__item d-flex justify-space-between featuresSmall"-->
+<!--                v-if="!['Прочее', 'Гараж/Паркоместо'].includes(property['type_object'])"-->
+<!--              >-->
+<!--                <div>{{ property['СовмещенныйСанУзел'] ? 'Совмещенный' : 'Раздельный' }} cан. узел</div>-->
+<!--              </div>-->
+
             </div>
           </div>
 
@@ -180,13 +181,13 @@
 
 
 
-        <a href="/kvartiry/flat-291/pdf" class="buttonCopy2" style="  position: relative; left: 20px;">
+        <button class="buttonCopy2" style="  position: relative; left: 20px;" v-if="webShareApiSupported"   v-on:click="shareViaWebShare" >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  style="
     position: absolute;
     left: 20px;
 " ><path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#fff"/></svg>
           <span class="buttonCopy2span" >Поделиться</span>
-        </a>
+        </button>
 
 
 
@@ -283,7 +284,7 @@
                           method="POST"
                       >
                         <div>
-                          <input type="text" placeholder="Имя" name="name" required />
+                          <input v-model="name1"  type="text" placeholder="Имя" name="name" required />
                         </div>
 
 <!--                        <div>-->
@@ -291,22 +292,27 @@
 <!--                        </div>-->
 
                         <div>
-                          <input type="phone" placeholder="Номер телефона" name="phone" required />
+                          <input v-model="phone1"  type="phone" placeholder="Номер телефона" name="phone" required />
                         </div>
 
                         <h6 name="body">Ваш вопрос</h6>
                         <div>
-                          <textarea placeholder="Ваше сообщение" name="message" required />
+                          <textarea v-model="message1" placeholder="Ваше сообщение" name="message" required />
                         </div>
 <br>
                         <div>
-                          <a class="buttonCopy2">Отправить сообщение</a>
+                          <a class="buttonCopy2"  v-on:click="sendMessage1">Отправить сообщение</a>
                         </div>
                       </form>
+
+<!--                      <div>-->
+<!--                        {{ name1 }} {{ phone1 }}  {{ message1 }}-->
+<!--                      </div>-->
 
                       <div v-if="submitted">
                         <h2>Спасибо!</h2>
                         <div>Мы ответим, как только рассмотрим ваше обращение.</div>
+
                       </div>
 
 
@@ -440,6 +446,10 @@ function checkCookie(cname) {
   export default {
     data: () => ({
 
+      message1:"",
+      phone1:"",
+      name1:"",
+
       submitted: false,
       FORM_ENDPOINT: "endpointUrl",
 
@@ -469,6 +479,14 @@ function checkCookie(cname) {
       LightBox,
     },
     computed: {
+      webShareApiSupported() {
+        try {
+          return navigator.canShare()
+        } catch (e) {
+          // console.error(e)
+        }
+        return navigator.share
+      },
       getColor() {
         // this.inFavCustom = this.inFav
 
@@ -563,15 +581,24 @@ function checkCookie(cname) {
         }, 100);
       },
 
-      getName(name){
+      getName(name,kitchen){
         if(name=='0'){
           return "Студия"
         }
-        if(name=='1'){
-          return "1"
-        }
-        if(name=='2'){
-          return "2"
+        if (kitchen == 'true') {
+          if (name == '1') {
+            return "Евро 2-комнатная"
+          }
+          if (name == '1') {
+            return "Евро 3-комнатная"
+          }
+        } else {
+          if (name == '1') {
+            return "1-комнатная"
+          }
+          if (name == '2') {
+            return "2-комнатная"
+          }
         }
         if(name=='3'){
           return "3"
@@ -589,6 +616,56 @@ function checkCookie(cname) {
           path: 'imageIndex',
           payload: 0
         })
+      },
+
+      shareViaWebShare() {
+        var urlparent = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href
+        navigator.share({
+          title: 'Жизнь как в отпуске',
+          text: 'Квартиры в жилом комплексе',
+          url: urlparent
+        })
+      },
+
+      sendMessage1() {
+        console.log(this.message1)
+        console.log(this.phone1)
+        console.log(this.name1)
+        var urlparent = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href
+        let res1 = fetch("https://do72.4dev.app/do72api/hs/extint/send", {
+          method: "POST",
+          body: JSON.stringify({
+            requestType: "call",
+            typeform: "01",
+            dateTime: "112345678",
+            contacts: {
+              phone: this.phone1,
+              name: this.name1
+              // ,email: ""
+            },
+            data: {
+              flatId: this.property.id,
+              flatIdC: this.property.id,
+              comment: this.message1,
+              source: urlparent
+              // ,roistatid: ""
+            }
+            // ,referrer: {
+            //   url: urlparent,
+            //   urlsite: urlparent
+            // }
+          }),
+          headers: {
+            "Content-type": "text/plain; charset=UTF-8"
+          }
+        });
+
+        console.log(res1)
+        this.setModalDialog()
       },
 
       setModalDialog() {
@@ -610,6 +687,19 @@ function checkCookie(cname) {
 
       setModal() {
         this.$emit("changemode", "True");
+
+        // console.log('set modal appartamentDetail')
+        // console.log(this.modal_3 , 'this.modal_3 ')
+        // let elBg  = document.getElementById('bg_fav_window')
+        // let testParent  = document.getElementById('maincontent_parent1')
+        // console.log('elBg',elBg)
+        // console.log('testParent',testParent)
+        // if(elBg && testParent){
+        //   console.log('elBg',elBg)
+        //   console.log('testParent',testParent)
+        //   testParent.appendChild(elBg)
+        // }
+
       },
 
       isMobile() {
