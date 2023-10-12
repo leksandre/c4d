@@ -88,8 +88,8 @@
 
 
 
-          <div class="flat__callback">
-            <button class="buttonCopy2" style="  background-color: #e47554;">
+          <div class="flat__callback" v-on:click="setModalDialog"  >
+            <button class="buttonCopy2" style="  background-color: #e47554;"  >
               Забронировать
 <!--              <span class="buttonCopy2span">Забронировать</span>-->
             </button>
@@ -189,7 +189,18 @@
           <span class="buttonCopy2span" >Поделиться</span>
         </button>
 
-
+        <button class="buttonCopy2" style="  position: relative; left: 20px;" v-else   v-on:click="saveToClipboard" >
+<!--          <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="52" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"  style="-->
+<!--    position: absolute;-->
+<!--    left: 20px;-->
+<!--" ><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none"><path d="M2315 5109 c-800 -83 -1501 -518 -1927 -1196 -604 -961 -490 -2237 274 -3068 425 -462 951 -737 1583 -827 119 -17 512 -16 635 1 562 77 1067 321 1454 699 432 424 681 920 768 1527 17 118 17 512 0 630 -71 496 -262 943 -557 1300 -418 506 -982 825 -1630 921 -123 18 -478 26 -600 13z m1100 -1250 c103 -19 148 -50 316 -218 195 -195 214 -229 214 -371 0 -158 2 -155 -409 -566 -376 -378 -397 -394 -512 -413 -107 -17 -216 14 -293 84 l-42 38 -34 -33 -34 -33 35 -40 c115 -127 123 -317 18 -455 -23 -31 -188 -202 -366 -379 -295 -294 -330 -325 -393 -355 -60 -28 -80 -32 -150 -32 -70 0 -90 4 -150 32 -59 28 -91 55 -225 190 -196 196 -215 229 -215 372 0 153 -6 145 422 571 341 340 372 368 426 388 123 45 269 21 362 -61 l46 -41 35 34 34 33 -34 36 c-105 107 -124 301 -41 429 13 20 182 194 377 388 369 368 386 382 491 402 59 12 57 12 122 0z" /><path d="M2978 3262 c-334 -333 -338 -338 -338 -378 0 -27 7 -51 21 -69 l22 -27 93 93 94 94 95 -95 95 -95 -91 -91 c-53 -53 -89 -97 -85 -103 4 -6 21 -18 38 -27 63 -33 69 -28 420 323 180 181 332 341 337 356 18 46 -7 82 -151 225 -126 124 -137 132 -174 132 -38 0 -48 -10 -376 -338z" /><path d="M2115 2390 c-33 -14 -663 -652 -674 -683 -18 -46 7 -82 151 -224 126 -125 137 -133 174 -133 38 0 48 10 376 338 334 333 338 338 338 378 0 27 -7 51 -21 68 l-22 28 -61 -61 -61 -61 -95 95 -94 95 57 58 c31 32 57 61 57 65 0 12 -64 47 -85 46 -11 0 -29 -4 -40 -9z" /></g></svg>-->
+<!--          <span class="buttonCopy2span" >Скопировать url</span>-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  style="
+    position: absolute;
+    left: 20px;
+" ><path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#fff"/></svg>
+          <span class="buttonCopy2span" >Поделиться</span>
+        </button>
 
 
 
@@ -387,6 +398,18 @@
 </template>
 
 <script>
+!function(t){function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var e={};n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:i})},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},n.p="",n(n.s=0)}([function(t,n,e){e(1),t.exports=e(4)},function(t,n,e){"use strict";var i=Object.assign||function(t){for(var n=1;n<arguments.length;n++){var e=arguments[n];for(var i in e)Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i])}return t};e(2);var o=e(3);!function(t){function n(t){return t=i({},c,t),function(t){return["nfc-top-left","nfc-top-right","nfc-bottom-left","nfc-bottom-right"].indexOf(t)>-1}(t.positionClass)||(console.warn("An invalid notification position class has been specified."),t.positionClass=c.positionClass),t.onclick&&"function"!=typeof t.onclick&&(console.warn("Notification on click must be a function."),t.onclick=c.onclick),"number"!=typeof t.showDuration&&(t.showDuration=c.showDuration),(0,o.isString)(t.theme)&&0!==t.theme.length||(console.warn("Notification theme must be a string with length"),t.theme=c.theme),t}function e(t){return t=n(t),function(){var n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=n.title,i=n.message,c=r(t.positionClass);if(!e&&!i)return console.warn("Notification must contain a title or a message!");var a=(0,o.createElement)("div","ncf",t.theme);if(!0===t.closeOnClick&&a.addEventListener("click",function(){return c.removeChild(a)}),t.onclick&&a.addEventListener("click",function(n){return t.onclick(n)}),t.displayCloseButton){var s=(0,o.createElement)("button");s.innerText="X",!1===t.closeOnClick&&s.addEventListener("click",function(){return c.removeChild(a)}),(0,o.append)(a,s)}if((0,o.isString)(e)&&e.length&&(0,o.append)(a,(0,o.createParagraph)("ncf-title")(e)),(0,o.isString)(i)&&i.length&&(0,o.append)(a,(0,o.createParagraph)("nfc-message")(i)),(0,o.append)(c,a),t.showDuration&&t.showDuration>0){var l=setTimeout(function(){c.removeChild(a),0===c.querySelectorAll(".ncf").length&&document.body.removeChild(c)},t.showDuration);(t.closeOnClick||t.displayCloseButton)&&a.addEventListener("click",function(){return clearTimeout(l)})}}}function r(t){var n=document.querySelector("."+t);return n||(n=(0,o.createElement)("div","ncf-container",t),(0,o.append)(document.body,n)),n}var c={closeOnClick:!0,displayCloseButton:!1,positionClass:"nfc-top-right",onclick:!1,showDuration:3500,theme:"success"};t.createNotification?console.warn("Window already contains a create notification function. Have you included the script twice?"):t.createNotification=e}(window)},function(t,n,e){"use strict";!function(){function t(t){this.el=t;for(var n=t.className.replace(/^\s+|\s+$/g,"").split(/\s+/),i=0;i<n.length;i++)e.call(this,n[i])}if(!(void 0===window.Element||"classList"in document.documentElement)){var n=Array.prototype,e=n.push,i=n.splice,o=n.join;t.prototype={add:function(t){this.contains(t)||(e.call(this,t),this.el.className=this.toString())},contains:function(t){return-1!=this.el.className.indexOf(t)},item:function(t){return this[t]||null},remove:function(t){if(this.contains(t)){for(var n=0;n<this.length&&this[n]!=t;n++);i.call(this,n,1),this.el.className=this.toString()}},toString:function(){return o.call(this," ")},toggle:function(t){return this.contains(t)?this.remove(t):this.add(t),this.contains(t)}},window.DOMTokenList=t,function(t,n,e){Object.defineProperty?Object.defineProperty(t,n,{get:e}):t.__defineGetter__(n,e)}(Element.prototype,"classList",function(){return new t(this)})}}()},function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var i=n.partial=function(t){for(var n=arguments.length,e=Array(n>1?n-1:0),i=1;i<n;i++)e[i-1]=arguments[i];return function(){for(var n=arguments.length,i=Array(n),o=0;o<n;o++)i[o]=arguments[o];return t.apply(void 0,e.concat(i))}},o=(n.append=function(t){for(var n=arguments.length,e=Array(n>1?n-1:0),i=1;i<n;i++)e[i-1]=arguments[i];return e.forEach(function(n){return t.appendChild(n)})},n.isString=function(t){return"string"==typeof t},n.createElement=function(t){for(var n=arguments.length,e=Array(n>1?n-1:0),i=1;i<n;i++)e[i-1]=arguments[i];var o=document.createElement(t);return e.length&&e.forEach(function(t){return o.classList.add(t)}),o}),r=function(t,n){return t.innerText=n,t},c=function(t){for(var n=arguments.length,e=Array(n>1?n-1:0),c=1;c<n;c++)e[c-1]=arguments[c];return i(r,o.apply(void 0,[t].concat(e)))};n.createParagraph=function(){for(var t=arguments.length,n=Array(t),e=0;e<t;e++)n[e]=arguments[e];return c.apply(void 0,["p"].concat(n))}},function(t,n){}]);
+
+const myNotification = window.createNotification({
+  // options here
+});
+
+function getUrl(){
+ let ulr0 =  (window.location != window.parent.location)
+      ? document.referrer
+      : document.location.href
+  return ulr0
+}
 
 function scrollTop(){
   window.parent.scrollTo({ top: 0, behavior: 'smooth' });
@@ -619,9 +642,7 @@ function checkCookie(cname) {
       },
 
       shareViaWebShare() {
-        var urlparent = (window.location != window.parent.location)
-            ? document.referrer
-            : document.location.href
+        var urlparent = getUrl()
         navigator.share({
           title: 'Жизнь как в отпуске',
           text: 'Квартиры в жилом комплексе',
@@ -629,13 +650,38 @@ function checkCookie(cname) {
         })
       },
 
+      saveToClipboard() {
+        var urlparent = getUrl()
+        console.log('urlparent',urlparent)
+        navigator.clipboard.writeText(urlparent);
+
+
+        window.createNotification({
+          closeOnClick: true,
+          // displays close button
+          displayCloseButton: false,
+          // nfc-top-left
+          // nfc-bottom-right
+          // nfc-bottom-left
+          positionClass: 'nfc-top-right',
+          // callback
+          onclick: false,
+          // timeout in milliseconds
+          showDuration: 3500,
+          // success, info, warning, error, and none
+          theme: 'success'
+        })({
+          title: 'Скопировано!',
+          message: 'Адрес текущей страницы был скопирован в ваш буффер обмена'
+        });
+
+      },
+
       sendMessage1() {
         console.log(this.message1)
         console.log(this.phone1)
         console.log(this.name1)
-        var urlparent = (window.location != window.parent.location)
-            ? document.referrer
-            : document.location.href
+        var urlparent = getUrl()
         let res1 = fetch("https://do72.4dev.app/do72api/hs/extint/send", {
           method: "POST",
           body: JSON.stringify({
@@ -664,11 +710,31 @@ function checkCookie(cname) {
           }
         });
 
-        console.log(res1)
+        console.log(res1) // в случе успеха придет - success
+
         this.setModalDialog()
+
+        window.createNotification({
+          closeOnClick: true,
+          // displays close button
+          displayCloseButton: false,
+          // nfc-top-left
+          // nfc-bottom-right
+          // nfc-bottom-left
+          positionClass: 'nfc-top-right',
+          // callback
+          onclick: false,
+          // timeout in milliseconds
+          showDuration: 3500,
+          // success, info, warning, error, and none
+          theme: 'success'
+        })({
+          title: 'Отпарвлено!',
+          message: 'Наш менеджер свяжется с вами в ближайшее время'
+        });
       },
 
-      setModalDialog() {
+      setModalDialog(isBron = false) {
         scrollTop();
         let elBg  = document.getElementById('bg_fav_window_dialog')
         let testParent  = document.getElementById('maincontent_parent1')
@@ -688,7 +754,7 @@ function checkCookie(cname) {
       setModal() {
         this.$emit("changemode", "True");
 
-        // console.log('set modal appartamentDetail')
+        console.log('set modal appartamentDetail Fav')
         // console.log(this.modal_3 , 'this.modal_3 ')
         // let elBg  = document.getElementById('bg_fav_window')
         // let testParent  = document.getElementById('maincontent_parent1')
@@ -928,5 +994,5 @@ function checkCookie(cname) {
     padding: 8px 12px;
     font-weight: 500;
   }
-  
+
 </style>
