@@ -49,30 +49,42 @@
   //border-radius: 21px;
 }
 
+.tableWithFloor:hover .tittleForBarFloor {//variant1hidepanel
+  right: -118px;//variant3 rigth panel // left
+  opacity: 0;
+  //bottom: -290px;
+  transition-duration: .4s;
+
+}
+
 .tittleForBarFloor{
   //position: absolute;
   //top:-10px;
   //z-index: 250;
   //display: none;
 
+  opacity: 1;
+
   text-align: right;
   padding-top: 20px;
   padding-right: 14px;
   font-size: 19px;
-  height: 40px;
+  height: 134px;
+
   //position: fixed;
   //top: -19px;
   //z-index: 200;
 
   position: absolute;
   right: 0px;
-  bottom: 0px;
+  bottom: 328px;
   z-index: -1;
 
-
-  border-radius: 30px;
-  width: 200px;
+  border-radius: 19px;
+  width: 172px;
   background-color: #f5f6f9;
+
+  transition-duration: .4s;
 }
 
 .title-copy1 {
@@ -931,11 +943,11 @@ img.vue-lb-modal-image {
 
 
 
-@media (min-width: 520px) {
+@media (min-width: 640px) {
   .tableWithFloor{//variant1hidepanel
     position: absolute;
     z-index: 99;
-    right: 0px; //variant3 rigth panel // left
+    left: 0px; //variant3 rigth panel // left
     top: 0px;
     border-radius: 20px;
   }
@@ -946,7 +958,7 @@ img.vue-lb-modal-image {
 
 
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .flat__info {
     width:100%;
     z-index:100;
@@ -991,13 +1003,15 @@ img.vue-lb-modal-image {
     z-index: 1200;
     position: fixed;
     top: 0px;
-    right: -118px;
+    right: -118px; ;//variant3 rigth panel // left
     border-radius: 20px 0px  0px 20px;
+
+    transition-duration: .4s;
   }
 
   .tableWithFloor:hover {//variant1hidepanel
     right: 0px;//variant3 rigth panel // left
-    transition-duration: .2s;
+    transition-duration: .4s;
 
   }
 

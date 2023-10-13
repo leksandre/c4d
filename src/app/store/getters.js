@@ -3,7 +3,8 @@ export default {
     const breakpoints = {
       xs: 600,
       sm: 960,
-      md: 1264,
+      // md: 1264,
+      md: 340,
       lg: 1904
     }
     const { windowWidth } = state
