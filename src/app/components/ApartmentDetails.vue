@@ -112,6 +112,11 @@
 <!--                <div>{{ property.rooms }}</div>-->
 <!--              </div>-->
 
+<!--              <div class="c-list__item d-flex justify-space-between">-->
+<!--                <div>kitchen_living</div>-->
+<!--                <div>{{ property.kitchen_living }}</div>-->
+<!--              </div>-->
+
               <div class="c-list__item d-flex justify-space-between">
                 <div>Статус</div>
                 <div>{{ property.status }}</div>
@@ -608,21 +613,23 @@ function checkCookie(cname) {
         if(name=='0'){
           return "Студия"
         }
-        if (kitchen == 'true') {
-          if (name == '1') {
+        if (kitchen == 'true' | kitchen === true) {
+          if (name === '1'| name === 1) {
             return "Евро 2-комнатная"
           }
-          if (name == '1') {
+          if (name === '2'| name === 2) {
             return "Евро 3-комнатная"
           }
         } else {
-          if (name == '1') {
+          if (name === '1'| name === 1) {
             return "1-комнатная"
           }
-          if (name == '2') {
+          if (name === '2'| name === 2) {
             return "2-комнатная"
           }
         }
+
+
         if(name=='3'){
           return "3"
         }

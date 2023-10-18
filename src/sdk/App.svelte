@@ -2,7 +2,7 @@
   const IS_DEV = process.env.NODE_ENV === 'development'
   const url = IS_DEV ?
     'http://localhost:8080/app/' :
-    'https://chess.4dev.app/app/' //'https://crm4dev-widget.netlify.app/app/'
+    'https://xn--d1acscjb2a6f.xn--p1ai/app/'
   
   // Omit defaultFilters from config
   const { defaultFilters, ...config } = crm4dev.config
