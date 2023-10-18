@@ -963,8 +963,9 @@ function checkCookie(cname) {
 
         console.log('---start----urlparent',urlparent)
         var typedefault = getParameterByName('typedefault',urlparent);
-        console.log('---start----typedefault',typedefault)
+
           if (typedefault) {
+            console.log('---start----typedefault',typedefault)
             // let typedefault = parseInt(typedefault, 10)
             // defaultTypes.push(typedefault)
             defaultTypes.push(typedefault.toString())
