@@ -944,6 +944,9 @@ img.vue-lb-modal-image {
 
 
 @media (min-width: 640px) {
+  .mobile__flat__callback{
+    right: 15px; top: 15px;
+  }
   .tableWithFloor{//variant1hidepanel
     position: absolute;
     z-index: 99;
@@ -959,6 +962,10 @@ img.vue-lb-modal-image {
 
 
 @media (max-width: 640px) {
+  .mobile__flat__callback{
+    transform: scale(.5);
+    right: -33px; top: -9px;
+  }
   .flat__info {
     width:100%;
     z-index:100;
@@ -1028,6 +1035,10 @@ img.vue-lb-modal-image {
   }
 }
 
+
+.mobile__flat__callback{
+  position: absolute;cursor: pointer;
+}
 
 
 .tableWithFloor::-webkit-scrollbar {
