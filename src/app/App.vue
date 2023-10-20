@@ -961,25 +961,49 @@ function checkCookie(cname) {
             ? document.referrer
             : document.location.href;
 
-        console.log('---start----urlparent',urlparent)
+        //console.log('---start----urlparent',urlparent)
         var typedefault = getParameterByName('typedefault',urlparent);
-
+        //console.log('---start----typedefault',typedefault)
           if (typedefault) {
-            console.log('---start----typedefault',typedefault)
-            // let typedefault = parseInt(typedefault, 10)
-            // defaultTypes.push(typedefault)
+                  // let typedefault = parseInt(typedefault, 10)
+                  // defaultTypes.push(typedefault)
+
+            //console.log('---start----defaultTypes',defaultTypes)
             defaultTypes.push(typedefault.toString())
         }
 
-        console.log('---start----defaultTypes',defaultTypes)
+
+
+
+        var wordsSqr = []
+        var sqr = getParameterByName('sqr',urlparent);
+        if (sqr) {
+          // console.log('---start----sqr',sqr)
+          let wordsSqr1 = sqr.split('_');
+          wordsSqr[0] = parseFloat(wordsSqr1[0])
+          wordsSqr[1] = parseFloat(wordsSqr1[1])
+          // console.log('---start----wordsSqr',wordsSqr)
+        }
+        if(wordsSqr.length==0){
+          wordsSqr = ([(byArea||[])[0] || this.minArea, (byArea||[])[1] || this.maxArea])
+        }
+
+
+
+
         const filters = {
           bySection: sectionId || null,
           byLayout: byLayout || [],
           byType: byType || defaultTypes,
-          byArea: [(byArea||[])[0] || this.minArea, (byArea||[])[1] || this.maxArea],
+          byArea:  wordsSqr ,
           byFloor: [(byFloor||[])[0] || 1 , (byFloor||[])[1] || this.floorsCount],
           byPrice: [(byPrice||[])[0] || this.minPrice, (byPrice||[])[1] || this.maxPrice]
         }
+
+        // if(byArea){
+        //   console.log('---start----byArea',byArea)
+        // }
+        // console.log('---start----setFilter',filters)
 
         // if(byType){
         //   console.log('---start----byType',byType)
@@ -1037,18 +1061,18 @@ function checkCookie(cname) {
         this.closeInfoPanel(true)
         setTimeout(_ => {
 
-          let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
+          // let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
+          let arrcards = document.getElementsByClassName('nowInSale');// берем первый из этажей с квартирой доступной к продаже
+          // if (arrcards.length > 0) {
+          //   arrcards[0].click()
+          // }
 
           // console.log('arrcards',arrcards)
           if (arrcards.length > 0) {
             arrcards[0].click()
+            arrcards[0].querySelectorAll('.buttonFloor')[0].click();
 
 
-            arrcards = document.getElementsByClassName('nowInSale');// берем первый из этажей с квартирой доступной к продаже
-
-            if (arrcards.length > 0) {
-              arrcards[0].click()
-            }
 
             // let itemElement = document.getElementById("floorView-"+0);
             // if (typeof itemElement !== "undefined")
