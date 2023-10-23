@@ -513,7 +513,9 @@
 
     <!--   was here hided element -->
 
-
+    <main>
+      <Export album="Zurich" organization="gallery-demo" />
+    </main>
 
   </div>
 
@@ -550,6 +552,9 @@ function checkCookie(cname) {
 
   // import rokka from './rokka_gallery/components/Gallery.vue'
   // import rokka from './rokka_gallery/Export.vue'
+
+  // import Export from './rokka_gallery/Export.vue';
+
   import ApartmentCard from './components/ApartmentCard'
   import ApartmentCardFav from './components/ApartmentCardFav'
   import ApartmentDetails from './components/ApartmentDetails'
