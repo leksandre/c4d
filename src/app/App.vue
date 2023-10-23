@@ -513,9 +513,9 @@
 
     <!--   was here hided element -->
 
-    <main>
-      <Export album="Zurich" organization="gallery-demo" />
-    </main>
+<!--    <main>-->
+<!--      <Export album="Zurich" organization="gallery-demo" />-->
+<!--    </main>-->
 
   </div>
 
