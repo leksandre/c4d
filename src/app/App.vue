@@ -512,6 +512,53 @@
     </div>
 
     <!--   was here hided element -->
+    <div class="maincontent_parentBottom">
+      <main class="d-flex flex-grow-1 pos-rel maincontentBottom" >
+
+        <div class="exampleGal">
+          <div class="galTitle">Светлая сторона</div>
+          <photo-collage-wrapper
+              gapSize="6px"
+              @itemClick="itemClickHandlerW"
+              v-bind="collageW"></photo-collage-wrapper>
+        </div>
+
+        <div class="exampleGal">
+          <div class="galTitle">Темная сторона</div>
+          <photo-collage-wrapper
+              gapSize="6px"
+              @itemClick="itemClickHandlerD"
+              v-bind="collageD"></photo-collage-wrapper>
+        </div>
+      </main>
+    </div>
+
+
+    <!--   show modal window with galary -->
+    <div>
+      <div class="c-modal" v-show="modal_5">
+        <span>modal_5</span>
+      </div>
+      <div class="bg" id="bg_fav_window5" v-show="modal_5" >
+        <div class="close" v-on:click="setModal5" >
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <svg viewBox="0 0 36 36" class="circle" >
+            <path
+                stroke-dasharray="100, 100"
+                d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+
+
 
 
 
@@ -550,6 +597,9 @@ function checkCookie(cname) {
 
   // import rokka from './rokka_gallery/components/Gallery.vue'
   // import rokka from './rokka_gallery/Export.vue'
+  import { PhotoCollageWrapper } from 'vue-photo-collage'
+
+
   import ApartmentCard from './components/ApartmentCard'
   import ApartmentCardFav from './components/ApartmentCardFav'
   import ApartmentDetails from './components/ApartmentDetails'
@@ -557,10 +607,11 @@ function checkCookie(cname) {
   import debounce from 'lodash/debounce'
 
   export default {
-    components: { ApartmentCard, ApartmentDetails, ApartmentCardFav },
+    components: { PhotoCollageWrapper, ApartmentCard, ApartmentDetails, ApartmentCardFav },
 
     data: () => ({
       modal_3: false,
+      modal_5: false,
       view: 'tilePlus',
       testData: ' <pre> </pre> ',
       timerForShowPanel:false,
@@ -583,7 +634,102 @@ function checkCookie(cname) {
         name: '',
         phone: '',
         email: ''
+      },
+
+      collageW: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/10.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/11.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
+      },
+
+      collageD: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/10.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
       }
+
     }),
 
     computed: {
@@ -734,6 +880,20 @@ function checkCookie(cname) {
           return false
         }
       },
+
+      itemClickHandlerW(data, i) {
+        // click event
+        // console.log('i',i)
+        this.modal_5 = true
+      },
+
+      itemClickHandlerD(data, i) {
+        // click event
+        // console.log('i',i)
+        this.modal_5 = true
+      },
+
+
       setModal() {
         this.modal_3 = !this.modal_3
         // console.log(this.modal_3 , 'this.modal_3 ')
@@ -747,6 +907,22 @@ function checkCookie(cname) {
         }
 
       },
+
+
+      setModal5() {
+        this.modal_5 = !this.modal_5
+        // console.log(this.modal_3 , 'this.modal_3 ')
+        let elBg  = document.getElementById('bg_fav_window5')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+      },
+
       gotoHome() {
         window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
       },
@@ -1177,21 +1353,38 @@ function checkCookie(cname) {
 
 <style lang="scss" scoped>
 
+
+
 .maincontent_parent {
   width: 100%;
-  min-height: 1200px;
+  min-height: 900px;
+  //min-height: 1200px;
   //border: 2px dashed;
 }
+.maincontent_parentBottom {
+  width: 100%;
+  min-height: 400px;
+}
+
+
+
 .maincontent{
   max-width: 1600px;
-  height: 1400px;
-
+  height: 900px;
+  //height: 1400px;
   //height: 100%;
   //max-height: 2160px;
-
   //border: 5px solid;
   margin: 0px auto 0px auto;
 }
+.maincontentBottom{
+  max-width: 1600px;
+  height: 400px;
+  margin: 0px auto 0px auto;
+}
+
+
+
   .st0 {
     fill: #18214b;
   }
