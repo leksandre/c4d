@@ -554,6 +554,9 @@
             />
           </svg>
         </div>
+
+        <light-box :media="this.matched1" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
+
       </div>
     </div>
 
@@ -598,7 +601,7 @@ function checkCookie(cname) {
   // import rokka from './rokka_gallery/components/Gallery.vue'
   // import rokka from './rokka_gallery/Export.vue'
   import { PhotoCollageWrapper } from 'vue-photo-collage'
-
+  import LightBox from './components/vue-image-lightbox/components/LightBox.vue'
 
   import ApartmentCard from './components/ApartmentCard'
   import ApartmentCardFav from './components/ApartmentCardFav'
@@ -607,7 +610,7 @@ function checkCookie(cname) {
   import debounce from 'lodash/debounce'
 
   export default {
-    components: { PhotoCollageWrapper, ApartmentCard, ApartmentDetails, ApartmentCardFav },
+    components: { PhotoCollageWrapper, LightBox, ApartmentCard, ApartmentDetails, ApartmentCardFav },
 
     data: () => ({
       modal_3: false,
