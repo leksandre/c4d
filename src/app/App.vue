@@ -513,10 +513,25 @@
 
     <!--   was here hided element -->
     <div class="maincontent_parentBottom">
-      <main class="d-flex flex-grow-1 pos-rel maincontentBottom" >
+              <div class="galTitle text-copy4">
+
+              </div>
+              <div class="galTitle text-copy4">
+
+              </div>
+
+      <div class="galTitle text-copy4">
+        <br/>
+        <br/>
+        <br/>
+        Не хотите заниматься отделкой? <br/> Вы можете приобрести квартиру с готовой отдклой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+      </div>
+      <main class="dflexContent flex-grow-1 pos-rel maincontentBottom" >
+
+
 
         <div class="exampleGal">
-          <div class="galTitle title-copy1">Светлая сторона</div>
+          <div class="galTitle title-copy1">Светлый «осовременненый» минимализм</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerW"
@@ -524,7 +539,7 @@
         </div>
 
         <div class="exampleGal">
-          <div class="galTitle title-copy1">Темная сторона</div>
+          <div class="galTitle title-copy1">Темный «оклассиченный» лофт</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerD"
