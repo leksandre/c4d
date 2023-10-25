@@ -517,6 +517,7 @@
 }
 
 .close{
+  z-index: 900;
   $size: 60px;
   $borderSize: 2px;
   $borderColor: rgba(white,1);
@@ -631,7 +632,7 @@
   z-index: 10000;
   opacity: 1;
   //transition: .3s;
-  max-height: 1200px;
+  max-height: 1700px;
 }
 
 
@@ -919,10 +920,12 @@ img.vue-lb-modal-image {
   right: 10px
 }
 
-.exampleGal{
-  //transform: scale(0.4);
-  margin: 40px;
+.galTitle{
+  margin: 20px;
+  width: 95%;
+  text-align: center;
 }
+
 .vue-lb-open {
   background-color: #f4f5f8ed;
   overflow: hidden
@@ -961,6 +964,11 @@ img.vue-lb-modal-image {
   .tittleForBarFloor{
     display: none;
   }
+
+  .exampleGal{
+    margin: 40px;
+  }
+
 }
 
 
@@ -1026,7 +1034,9 @@ img.vue-lb-modal-image {
 
   }
 
-
+  .exampleGal{
+    margin: 5px;
+  }
 
 
 

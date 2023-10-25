@@ -516,19 +516,19 @@
       <main class="d-flex flex-grow-1 pos-rel maincontentBottom" >
 
         <div class="exampleGal">
-          <div class="galTitle">Светлая сторона</div>
+          <div class="galTitle title-copy1">Светлая сторона</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerW"
-              v-bind="collageW"></photo-collage-wrapper>
+              v-bind="collageWtmb"></photo-collage-wrapper>
         </div>
 
         <div class="exampleGal">
-          <div class="galTitle">Темная сторона</div>
+          <div class="galTitle title-copy1">Темная сторона</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerD"
-              v-bind="collageD"></photo-collage-wrapper>
+              v-bind="collageDtmb"></photo-collage-wrapper>
         </div>
       </main>
     </div>
@@ -555,7 +555,7 @@
           </svg>
         </div>
 
-        <light-box :media="this.matched1" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
+        <light-box :media="this.matched_all" :closable="false" :showCaption="false" :showThumbs="false"></light-box>
 
       </div>
     </div>
@@ -615,6 +615,9 @@ function checkCookie(cname) {
     data: () => ({
       modal_3: false,
       modal_5: false,
+
+      collageChoise: 'W',
+
       view: 'tilePlus',
       testData: ' <pre> </pre> ',
       timerForShowPanel:false,
@@ -731,11 +734,130 @@ function checkCookie(cname) {
           },
         ],
         showNumOfRemainingPhotos: true,
+      },
+
+
+
+
+
+
+
+      collageWtmb: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/10.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/11.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
+      },
+
+      collageDtmb: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/10.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
       }
+
+
+
+
 
     }),
 
     computed: {
+      matched_all(){
+        if (this.collageChoise == 'D')
+          return this.collageD.photos.map(({source}) => ({
+            src: source,
+            caption: '',
+            thumb: source,
+          }))
+        // else
+        // if (this.collageChoise == 'W')
+          return this.collageW.photos.map(({source}) => ({
+            src: source,
+            caption: '',
+            thumb: source,
+          }))
+      },
       ...mapState({
         isOpen: state => state.infoPanel.isOpen,
         defaultFilters: state => state.chess.defaultFilters,
@@ -887,13 +1009,17 @@ function checkCookie(cname) {
       itemClickHandlerW(data, i) {
         // click event
         // console.log('i',i)
+        this.collageChoise = 'W'
         this.modal_5 = true
+        window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
       itemClickHandlerD(data, i) {
         // click event
         // console.log('i',i)
+        this.collageChoise = 'D'
         this.modal_5 = true
+        window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
 
