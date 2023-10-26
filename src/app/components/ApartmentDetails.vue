@@ -7,7 +7,9 @@
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
 <!--      <light-box :media="media" :closable="false"></light-box>-->
 <!--    </div>-->
-    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">
+
+<!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
+    <div class = "flat__media">
       <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
     </div>
     <div class="flat__info">
@@ -508,6 +510,7 @@ function checkCookie(cname) {
     },
     computed: {
       webShareApiSupported() {
+        return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
         try {
           return navigator.canShare()
         } catch (e) {
@@ -649,12 +652,24 @@ function checkCookie(cname) {
       },
 
       shareViaWebShare() {
-        var urlparent = getUrl()
-        navigator.share({
-          title: 'Жизнь как в отпуске',
-          text: 'Квартиры в жилом комплексе',
-          url: urlparent
-        })
+        var urlparent = String(getUrl())
+
+        // let arStr = urlparent.split('/');
+        // if(arStr.length>1){
+        //   urlparent='https://домотель.рф/index.html?sqr='+arStr[1];
+        // }
+
+        try {
+          navigator.share({
+            title: 'Жизнь как в отпуске',
+            text: 'Квартира в ДомОтель.РФ',
+            url: urlparent
+          })
+        } catch (e) {
+          // console.log('urlparent',urlparent)
+          return this.saveToClipboard()
+        }
+
       },
 
       saveToClipboard() {
@@ -674,7 +689,7 @@ function checkCookie(cname) {
           // callback
           onclick: false,
           // timeout in milliseconds
-          showDuration: 3500,
+          showDuration: 7500,
           // success, info, warning, error, and none
           theme: 'success'
         })({

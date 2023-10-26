@@ -76,7 +76,7 @@
   //z-index: 200;
 
   position: absolute;
-  right: 0px;
+  right: 23px;
   bottom: 328px;
   z-index: -1;
 
@@ -204,34 +204,6 @@
   border-style: dashed;
   border-width: 1px;
 
-}
-
-.flat__media {
-  box-sizing: border-box;
-  color: rgb(32, 37, 30);
-  display: block;
-  font-family: PT_Serif_Regular;
-  //height: 640px;
-  width: calc(100% - 523px);
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  position: fixed;
-  left: 100px;
-  top:5px;
-}
-
-
-.flat__media_mobile {
-  box-sizing: border-box;
-  color: rgb(32, 37, 30);
-  display: block;
-  font-family: PT_Serif_Regular;
-  //height: 640px;
-  width:100%;
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  //position: fixed;
-  //left: 0px;
 }
 
 .flat {
@@ -620,6 +592,7 @@
   transform: translate(-50%, -50%);
   align-content: center;
 
+  max-width: 100%;
 }
 .bg {
   display: block;
@@ -709,7 +682,8 @@
 }
 
 img.vue-lb-modal-image {
-  max-height: calc(100vh - 140px);
+  max-height: calc(80vh - 140px);
+  //max-height: calc(100vh - 140px);
   cursor: pointer;
   display: block;
   height: auto;
@@ -744,7 +718,7 @@ img.vue-lb-modal-image {
   margin-right: 10px;
   border-radius: 20px;
   //border: 3px dashed #fff;
-
+  width: fit-content;
 
   font-weight: 400;
   font-size: 12px;
@@ -763,6 +737,7 @@ img.vue-lb-modal-image {
 .vue-lb-info_gal-active {
   background-color: #e47554;
   color: #fff;
+
 }
 
 .vue-lb-footer {
@@ -798,27 +773,7 @@ img.vue-lb-modal-image {
   color:#000;
 }
 
-.vue-lb-thumbnail {
-  //top: 10px;
-  //height: 150px;
-  //padding: 0 50px;
-  //text-align: center;
-  //white-space: nowrap;
-  //display: inline-block;
-  //position: relative
 
-  position: relative;
-  top: 0px;
-  height: 50px;
-  text-align: center;
-  white-space: nowrap;
-  //display: inline-block;
-  display: -webkit-inline-box;
-  padding: 0 50px;
-
-
-
-}
 
 .vue-lb-modal-thumbnail {
   box-shadow: inset 0 0 0 2px #219794
@@ -942,19 +897,65 @@ img.vue-lb-modal-image {
   right: 0;
   text-align: center;
   top: 0px;
+  //overflow: scroll;
+
+  max-width: 100%;
 }
 
-@media (min-width: 500px) {
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width:640px) {
+
+  .vue-lb-thumbnail {
+    position: relative;
+    top: 0px;
+    height: 50px;
+    text-align: center;
+    white-space: nowrap;
+    //display: inline-block;
+    display: -webkit-inline-box;
+    padding: 0 50px;
+    max-width: 100%;
+  }
+
+  .flat__media {
+    box-sizing: border-box;
+    color: rgb(32, 37, 30);
+    display: block;
+    font-family: PT_Serif_Regular;
+    //height: 640px;
+    width: calc(100% - 523px);
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    position: fixed;
+    left: 100px;
+    top:5px;
+  }
+
+
+
+
+  .mobile__flat__callback{
+    //right: 15px; top: 15px;
+    right: 0px;
+    top: 0px;
+    transform: scale(0.7);
+  }
+  .tittleForBarFloor{
+    display: none;
+  }
   .vue-lb-thumbnail-arrow {
     width: 40px
-  }
-}
-
-
-
-@media (min-width: 640px) {
-  .mobile__flat__callback{
-    right: 15px; top: 15px;
   }
   .tableWithFloor{//variant1hidepanel
     position: absolute;
@@ -963,40 +964,121 @@ img.vue-lb-modal-image {
     top: 0px;
     border-radius: 20px;
   }
-  .tittleForBarFloor{
-    display: none;
-  }
 
   .dflexContent {
     display: flex;
   }
-
   .exampleGal{
     margin: 40px;
   }
-
+  .vue-lb-arrow {
+    width: 70px
+  }
 }
 
 
 
-@media (max-width: 640px) {
+//@media (max-width: 1240px) and (min-width:440px) {
+//}
+
+@media (max-width: 640px) and (min-width:440px) {
+
+  .flat__media {
+    box-sizing: border-box;
+    color: rgb(32, 37, 30);
+    display: block;
+    font-family: PT_Serif_Regular;
+    //height: 640px;
+    width:100%;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    //position: fixed;
+    //left: 0px;
+  }
+
+    .flat__info {
+      width:100%;
+      z-index:100;
+    }
+
   .mobile__flat__callback{
     transform: scale(.5);
     right: -33px; top: -9px;
+  }
+  .tittleForBarFloor{
+    display: block;
+  }
+  .vue-lb-thumbnail-wrapper{
+    transform: scale(0.9);
+  }
+  .vue-lb-arrow {
+    transform: scale(0.9);
+  }
+  .vue-lb-arrow {
+    transform: scale(0.9);
+  }
+}
+
+
+@media (max-width: 440px) {
+
+  .flat__media {
+    box-sizing: border-box;
+    color: rgb(32, 37, 30);
+    display: block;
+    font-family: PT_Serif_Regular;
+    width:100%;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mobile__flat__callback {
+    display: none;
+  }
+  .tittleForBarFloor{
+    display: block;
+    position: fixed;
+    right: -108px;
+    top: 8vh;
   }
   .flat__info {
     width:100%;
     z-index:100;
   }
+  .vue-lb-thumbnail-wrapper{
+    //display: none;
+  }
+  .vue-lb-arrow {
+    display: none;
+  }
+  .vue-lb-arrow {
+    display: none;
+  }
+}
+
+
+
+
+@media (max-width: 640px) {
+
+  .vue-lb-thumbnail-arrow{
+    display: none;
+  }
+
+  .vue-lb-thumbnail {
+    transform: scale(0.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    text-align: center;
+    display: inline-flex;
+  }
+
   //.vue-lb-thumbnail{
   //  transform: scale(0.5);
   //}
-  .vue-lb-thumbnail-wrapper{
-    transform: scale(0.9);
-  }
-  .tittleForBarFloor{
-    display: block;
-  }
+
   .tableWithFloor .buttonFloor {
     font-size: 14px;
     padding-top: 15px;
@@ -1028,7 +1110,8 @@ img.vue-lb-modal-image {
     z-index: 1200;
     position: fixed;
     top: 0px;
-    right: -118px; ;//variant3 rigth panel // left
+    //right: -118px; ;//variant3 rigth panel // left
+    right: -136px; ;//variant3 rigth panel // left
     border-radius: 20px 0px  0px 20px;
 
     transition-duration: .4s;
@@ -1053,11 +1136,6 @@ img.vue-lb-modal-image {
 
 }
 
-@media (min-width: 768px) {
-  .vue-lb-arrow {
-    width: 70px
-  }
-}
 
 
 .mobile__flat__callback{

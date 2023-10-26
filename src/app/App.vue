@@ -994,6 +994,7 @@ function checkCookie(cname) {
     mounted: function() {
       //console.log('!!!!!!!!!!!!!!!! mounted')
 
+      if(false)
       if (this.isMobile()) {
         let interval1 = setInterval(_ => {
           var panel = document.getElementsByClassName("tableWithFloor")[0];
@@ -1501,7 +1502,7 @@ function checkCookie(cname) {
 
 .maincontent_parent {
   width: 100%;
-  min-height: 900px;
+  min-height: 1400px;
   //min-height: 1200px;
   //border: 2px dashed;
 }
@@ -1514,7 +1515,7 @@ function checkCookie(cname) {
 
 .maincontent{
   max-width: 1600px;
-  height: 900px;
+  height: 1400px;
   //height: 1400px;
   //height: 100%;
   //max-height: 2160px;
