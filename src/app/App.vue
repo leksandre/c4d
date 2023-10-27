@@ -286,7 +286,7 @@
 
 
 
-              <div class="tittleForBarFloor">
+              <div class="tittleForBarFloor" style="display: none">
                 <!--              выберите ваш<br>этаж-->
 <!--                >>>>>-->
 
@@ -296,7 +296,7 @@
     font-size: 9px;
     left: 10px;
     top: 14px;
-">Ваш этаж</div>
+">На этаже</div>
 
 
                 <svg data-v-7e7f006c="" xmlns="http://www.w3.org/2000/svg" version="1.0" width="40" height="140" viewBox="0 0 283.000000 569.000000" preserveAspectRatio="xMidYMid meet" style="
@@ -1069,7 +1069,8 @@ function checkCookie(cname) {
       },
 
       gotoHome() {
-        window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
+        // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
+        window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.,-Студия';
       },
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
@@ -1502,7 +1503,8 @@ function checkCookie(cname) {
 
 .maincontent_parent {
   width: 100%;
-  min-height: 1400px;
+  height: fit-content;
+  //min-height: 1000px;
   //min-height: 1200px;
   //border: 2px dashed;
 }
@@ -1515,7 +1517,8 @@ function checkCookie(cname) {
 
 .maincontent{
   max-width: 1600px;
-  height: 1400px;
+  height: fit-content;
+  //height: 1000px;
   //height: 1400px;
   //height: 100%;
   //max-height: 2160px;

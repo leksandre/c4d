@@ -190,11 +190,11 @@
   display: block;
   font-family: PT_Serif_Regular;
   //font-size: 2vw;
-  //height: 640px;
+  //height: 1240px;
   width: 423px;
   -webkit-box-direction: normal;
   -webkit-font-smoothing: antialiased;
-  position: fixed;
+  //position: fixed;
   right: 0px;
   max-width: 100%;
 
@@ -211,7 +211,7 @@
   color: rgb(32, 37, 30);
   display: block;
   font-family: PT_Serif_Regular;
-  height: 640px;
+  height: fit-content;
   width: 100%;
   -webkit-box-direction: normal;
   -webkit-font-smoothing: antialiased;
@@ -615,6 +615,9 @@
 
 
 .vue-lb-container {
+
+  height: fit-content;
+
   //width: inherit;
   align-items: center;
   //background-color: rgb(0 0 0 / 19%);
@@ -645,7 +648,8 @@
 .vue-lb-content {
   margin-bottom: 60px;
   max-width: 1024px;
-  position: relative
+  position: relative;
+  height: fit-content;
 }
 
 .vue-lb-header {
@@ -678,7 +682,8 @@
 .vue-lb-figure {
   margin: 0;
   display: block;
-  position: relative
+  position: relative;
+  //min-height: 750px;
 }
 
 img.vue-lb-modal-image {
@@ -713,12 +718,15 @@ img.vue-lb-modal-image {
 }
 
 .vue-lb-info_gal, .vue-lb-info_gal-active {
+
+  white-space: nowrap;
+
   background-color: #ffffff;
   padding: 11px;
   margin-right: 10px;
   border-radius: 20px;
   //border: 3px dashed #fff;
-  width: fit-content;
+  //width: fit-content;
 
   font-weight: 400;
   font-size: 12px;
@@ -878,7 +886,7 @@ img.vue-lb-modal-image {
 .galTitle{
   margin: 20px;
   width: 95%;
-  text-align: center;
+  text-align: left;
   height: auto;
 
 }
@@ -897,9 +905,10 @@ img.vue-lb-modal-image {
   right: 0;
   text-align: center;
   top: 0px;
-  //overflow: scroll;
 
-  max-width: 100%;
+  //overflow: scroll;
+  //max-width: 100%;
+
 }
 
 
@@ -914,7 +923,15 @@ img.vue-lb-modal-image {
 
 
 
-@media (min-width:640px) {
+@media (min-width:1240px) {
+
+  .flat__info {
+    position: fixed;
+  }
+
+  #main{
+    min-height: 1540px;
+  }
 
   .vue-lb-thumbnail {
     position: relative;
@@ -933,7 +950,7 @@ img.vue-lb-modal-image {
     color: rgb(32, 37, 30);
     display: block;
     font-family: PT_Serif_Regular;
-    //height: 640px;
+    //height: 1240px;
     width: calc(100% - 523px);
     -webkit-box-direction: normal;
     -webkit-font-smoothing: antialiased;
@@ -981,19 +998,20 @@ img.vue-lb-modal-image {
 //@media (max-width: 1240px) and (min-width:440px) {
 //}
 
-@media (max-width: 640px) and (min-width:440px) {
+@media (max-width: 1240px) and (min-width:440px) {
 
   .flat__media {
     box-sizing: border-box;
     color: rgb(32, 37, 30);
     display: block;
     font-family: PT_Serif_Regular;
-    //height: 640px;
+    //height: 1240px;
     width:100%;
     -webkit-box-direction: normal;
     -webkit-font-smoothing: antialiased;
     //position: fixed;
     //left: 0px;
+    height: fit-content;
   }
 
     .flat__info {
@@ -1059,7 +1077,7 @@ img.vue-lb-modal-image {
 
 
 
-@media (max-width: 640px) {
+@media (max-width: 1240px) {
 
   .vue-lb-thumbnail-arrow{
     display: none;
@@ -1233,7 +1251,7 @@ img.vue-lb-modal-image {
 p#tooltip-text {
 
   display: none;
-  position: absolute;
+  position:relative;
   top: -1px;
   right: 3px;
   z-index: 9;

@@ -83,15 +83,13 @@
               >
                 <div  v-on:click="setModal" class="i3dTourModalButton">открыть во весь экран</div>
                 <br/>
-              <iframe
-
-                  :src="media[select].src"
-                  width="612px"
-                  height="612px"
-
-              >
-                Пожалуйста подождите, 3д модель загружается на ваше устройство
-              </iframe>
+<!--              <iframe-->
+<!--                  :src="media[select].src"-->
+<!--                  width="612px"-->
+<!--                  height="612px"-->
+<!--              >-->
+<!--                Пожалуйста подождите, 3д модель загружается на ваше устройство-->
+<!--              </iframe>-->
 
 
                 <div>

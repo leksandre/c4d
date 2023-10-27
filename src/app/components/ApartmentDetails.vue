@@ -2,7 +2,7 @@
   <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
     <div class="flat">
 
-      <p id="tooltip-text">Добавить в избранное</p>
+
 
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
 <!--      <light-box :media="media" :closable="false"></light-box>-->
@@ -17,14 +17,12 @@
     <div class="d-flex flex-column full-height" v-if="property">
       <div class="panelRight full-height  pb-10" :class="{'pt-5': mq.mdAndDown, 'pt-10': mq.mdAndUp}">
 
-
+        <p id="tooltip-text">Добавлено в избранное</p>
 
         <div class="tooltip-container"
-             onmouseleave=" document.getElementById('tooltip-text').style.display = 'none'; "
-             onmouseout=" document.getElementById('tooltip-text').style.display = 'none'; "
 
-             onmouseover=" document.getElementById('tooltip-text').style.display = 'block'; "
-             onmousemove=" document.getElementById('tooltip-text').style.display = 'block'; "
+
+
              style="
     position: absolute;
     right: 23px;
@@ -667,6 +665,7 @@ function checkCookie(cname) {
           })
         } catch (e) {
           // console.log('urlparent',urlparent)
+          // alert(e)
           return this.saveToClipboard()
         }
 
@@ -819,6 +818,10 @@ function checkCookie(cname) {
       saveToFav(uuid){
         let cookieName = "favItemsAppartament"
 
+        // onmouseover=" document.getElementById('tooltip-text').style.display = 'block'; "
+        document.getElementById('tooltip-text').style.display = 'block';
+
+        setTimeout(   ()=>{document.getElementById('tooltip-text').style.display = 'none';} , 3500)
 
         let fav = []
         if (checkCookie(cookieName)) {
