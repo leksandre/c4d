@@ -156,6 +156,8 @@
                     </svg>
                   </div>
 
+<!--                  в избранном пусто-->
+
                   <div class="favwindowFlatParent">
                     <div class="favwindowFlat" v-for=" (idhash, idxf) in favCoocies()" >
   <!--                                           {{idhash}}-->
@@ -516,22 +518,26 @@
               <div class="galTitle text-copy4">
 
               </div>
-              <div class="galTitle text-copy4">
 
-              </div>
 
       <div class="galTitle text-copy4">
-        <br/>
-        <br/>
-        <br/>
-        Не хотите заниматься отделкой? <br/> Вы можете приобрести квартиру с готовой отдклой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+        Не хотите заниматься отделкой?
       </div>
+
+<!--        <br/>-->
+<!--        <br/>-->
+<!--        <br/>-->
+
+      <div class="galTitle text-body-21">
+          Вы можете приобрести квартиру с готовой отделкой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+      </div>
+
       <main class="dflexContent flex-grow-1 pos-rel maincontentBottom" >
 
 
 
         <div class="exampleGal">
-          <div class="galTitle title-copy1">Светлый «осовременненый» минимализм</div>
+          <div class="galTitle text-body-21" style="margin-left: 15px;">Светлый «осовременненый» минимализм</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerW"
@@ -539,7 +545,7 @@
         </div>
 
         <div class="exampleGal">
-          <div class="galTitle title-copy1">Темный «оклассиченный» лофт</div>
+          <div class="galTitle text-body-21" style="margin-left: 15px;">Темный «оклассиченный» лофт</div>
           <photo-collage-wrapper
               gapSize="6px"
               @itemClick="itemClickHandlerD"
@@ -1070,7 +1076,7 @@ function checkCookie(cname) {
 
       gotoHome() {
         // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
-        window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.,-Студия';
+        window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.,-Студия';
       },
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
@@ -1178,7 +1184,7 @@ function checkCookie(cname) {
           const tiles = document.getElementById('tiles')
           const main = document.getElementById('main')
           if (tiles && main)
-            main.style.minHeight = `${tiles.scrollHeight}px`
+            main.style.minHeight = `${tiles.scrollHeight+1000}px`
         }
         var win = window,
             doc = document,
@@ -1503,21 +1509,22 @@ function checkCookie(cname) {
 
 .maincontent_parent {
   width: 100%;
-  height: fit-content;
   //min-height: 1000px;
   //min-height: 1200px;
   //border: 2px dashed;
 }
 .maincontent_parentBottom {
-  width: 100%;
+  max-width: 100%;
   min-height: 400px;
+  //max-width: 1600px;
+  margin: 0px auto 0px auto;
 }
 
 
 
 .maincontent{
   max-width: 1600px;
-  height: fit-content;
+
   //height: 1000px;
   //height: 1400px;
   //height: 100%;

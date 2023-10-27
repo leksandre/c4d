@@ -787,6 +787,7 @@ function checkCookie(cname) {
         //   testParent.appendChild(elBg)
         // }
 
+        scrollTop();
       },
 
       isMobile() {
@@ -819,10 +820,9 @@ function checkCookie(cname) {
         let cookieName = "favItemsAppartament"
 
         // onmouseover=" document.getElementById('tooltip-text').style.display = 'block'; "
-        document.getElementById('tooltip-text').style.display = 'block';
+        var elem1 =  document.getElementById('tooltip-text');
 
-        setTimeout(   ()=>{document.getElementById('tooltip-text').style.display = 'none';} , 3500)
-
+        let sttTooltip = 'Добавлено в избранное';
         let fav = []
         if (checkCookie(cookieName)) {
           let json1 = getCookie(cookieName);
@@ -832,6 +832,7 @@ function checkCookie(cname) {
           {
             fav.splice(index, 1);
             this.inFavCustom = false
+            sttTooltip = 'Удалено из избранного'
           }else{
             fav.push(uuid);
             this.inFavCustom = true
@@ -841,6 +842,9 @@ function checkCookie(cname) {
           this.inFavCustom = true
         }
 
+        elem1.innerHTML = sttTooltip;
+        elem1.style.display = 'block';
+        setTimeout(   ()=>{elem1.style.display = 'none';} , 2000)
         // console.log('uuid--',uuid)
         // console.log('fav--',fav)
         console.log('--')
@@ -848,6 +852,8 @@ function checkCookie(cname) {
         setCookie(cookieName, fav, 365)
 // setTimeout(    this.$nextTick(), 500)
 // setTimeout(    this.$forceNextTick(), 500)
+
+        scrollTop();
 
         this.$nextTick()
         this.$forceNextTick()

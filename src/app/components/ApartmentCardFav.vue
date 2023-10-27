@@ -167,6 +167,43 @@ import { mapGetters } from 'vuex'
       KKS: vm => {
         let KKS
         switch (vm.property.type_apartment) {
+
+
+
+
+          // getName(name,kitchen){
+          //   if(name=='0'){
+          //     return "Студия"
+          //   }
+          //   if (kitchen == 'true' | kitchen === true) {
+          //     if (name === '1'| name === 1) {
+          //       return "Евро 2-комнатная"
+          //     }
+          //     if (name === '2'| name === 2) {
+          //       return "Евро 3-комнатная"
+          //     }
+          //   } else {
+          //     if (name === '1'| name === 1) {
+          //       return "1-комнатная"
+          //     }
+          //     if (name === '2'| name === 2) {
+          //       return "2-комнатная"
+          //     }
+          //   }
+          //
+          //
+          //   if(name=='3'){
+          //     return "3"
+          //   }
+          //   if(name=='С'){
+          //     return "Студия"
+          //   }
+          //   if(name=='2С'){
+          //     return "2С"
+          //   }
+          //   return name
+          // },
+
           case '1'|1:
             if (vm.property.kitchen_living == 'true'){
               KKS = 'Евро 2-комнатная'

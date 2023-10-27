@@ -89,7 +89,8 @@
 
 .title-copy1 {
   box-sizing: border-box;
-  color: rgb(1, 35, 69);
+  //color: rgb(1, 35, 69);
+  color: rgb(32, 37, 30);
   display: block;
   font-family: PT_Serif_Regular;
   font-feature-settings: "liga", "clig";
@@ -118,7 +119,8 @@
 
 .title-copy2{
   box-sizing: border-box;
-  color: rgb(1, 35, 69);
+  //color: rgb(1, 35, 69);
+  color: rgb(32, 37, 30);
   display: block;
   font-family: PT_Serif_Regular;
   font-feature-settings: "liga", "clig";
@@ -586,7 +588,7 @@
   //width: 50%;
 
   position: absolute;
-  top: 50%;
+
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -834,6 +836,9 @@ img.vue-lb-modal-image {
 }
 
 .vue-lb-arrow {
+
+  display: none;
+
   background: none;
   border: none;
   border-radius: 4px;
@@ -885,12 +890,18 @@ img.vue-lb-modal-image {
 
 .galTitle{
   margin: 20px;
-  width: 95%;
+
+  width: calc(100% - 40px);
+
   text-align: left;
   height: auto;
 
 }
-
+.text-body-21 {
+  color: rgb(32, 37, 30);
+  font-size: $font-size-text-body-2;
+  line-height: normal;
+}
 .vue-lb-open {
   background-color: #f4f5f8ed;
   overflow: hidden
@@ -924,13 +935,20 @@ img.vue-lb-modal-image {
 
 
 @media (min-width:1240px) {
+  .favwindowFlatParent{
+    top: 50%;
+  }
+  .maincontent{
+    //height: fit-content;
+    height: 1000px;
+  }
+  .maincontent_parent{
+    //height: fit-content;
+    height: 1000px;
+  }
 
   .flat__info {
     position: fixed;
-  }
-
-  #main{
-    min-height: 1540px;
   }
 
   .vue-lb-thumbnail {
@@ -1067,7 +1085,7 @@ img.vue-lb-modal-image {
     //display: none;
   }
   .vue-lb-arrow {
-    display: none;
+
   }
   .vue-lb-arrow {
     display: none;
@@ -1078,6 +1096,17 @@ img.vue-lb-modal-image {
 
 
 @media (max-width: 1240px) {
+  .favwindowFlatParent{
+    top: 25%;
+  }
+  .maincontent{
+    height: fit-content;
+    //height: 1400px;
+  }
+  .maincontent_parent{
+    height: fit-content;
+    //height: 1400px;
+  }
 
   .vue-lb-thumbnail-arrow{
     display: none;
