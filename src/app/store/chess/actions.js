@@ -83,6 +83,17 @@ export default {
 
       var copy = [];
 
+
+      if (typeof num.prices != "undefined")
+        if (num.prices.length > 0) {
+          if (num.cost === 0 || true) {//task from 27.10.2023
+            num.cost = num.prices[0].cost
+          }
+          if (num.priceM2 === 0 || true) {//task from 27.10.2023
+            num.priceM2 = num.prices[0].price
+          }
+        }
+
       var add_capt = "";
       for (let i = 0; i < images2.length; i++) {
         copy.push( {

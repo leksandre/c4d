@@ -508,9 +508,28 @@
 
 
     <div class="mobile__flat__callback" v-on:click="gotoHome"  >
-      <button class="buttonCopy2" style="  background-color: #e47554; "  >
-        Вернуться к выбору планировки
-      </button>
+<!--      <button class="buttonCopy2" style="  background-color: #e47554; "  >-->
+<!--        Вернуться к выбору планировки-->
+<!--      </button>-->
+
+
+      <div class="bg" id="bg_fav_window"  >
+        <div class="close" v-on:click="gotoHome" >
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <svg viewBox="0 0 36 36" class="circle" >
+            <path
+                stroke-dasharray="100, 100"
+                d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+        </div>
+        </div>
+
     </div>
 
     <!--   was here hided element -->
