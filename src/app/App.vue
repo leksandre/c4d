@@ -141,7 +141,7 @@
 <!--                v-on:click="setModal"-->
 
                 <div class="bg" id="bg_fav_window" v-show="modal_3"     >
-                  <div class="close" v-on:click="setModal" >
+                  <div class="close" id="closeFavWindow" v-on:click="setModal" >
                     <span ></span>
                     <span ></span>
                     <span ></span>
@@ -157,6 +157,8 @@
                   </div>
 
 <!--                  в избранном пусто-->
+                  <div v-if="!favCoociesNotEmpty()" style="width: 100%; text-align: center; padding-top: 200px;"> <h1 style="color: #fff;">вы ничего не добавили в избранное</h1> </div>
+
 
                   <div class="favwindowFlatParent">
                     <div class="favwindowFlat" v-for=" (idhash, idxf) in favCoocies()" >
@@ -1387,6 +1389,27 @@ function checkCookie(cname) {
         }
       },
 
+      favCoociesNotEmpty() {
+        let cookieName = "favItemsAppartament"
+        if (checkCookie(cookieName)) {
+
+          let json1 = getCookie(cookieName);
+          let fav = JSON.parse(json1);
+
+          // if (fav.length>0){
+          //   console.log('fav - ',fav)
+          //   return true
+          // }
+
+          // console.log('fav - ',fav)
+          // console.log('fav.length - ',fav.length)
+
+          return fav.length>0
+        }
+        // console.log('fav0 - ',0)
+        return false
+      },
+
       propertyGet(hash){
         // console.log('this.$store.state.chess',this.$store.state.chess)
         // console.log('this.$store.state.chess.properties[0]',this.$store.state.chess.properties[0])
@@ -1528,6 +1551,7 @@ function checkCookie(cname) {
 
 .maincontent_parent {
   width: 100%;
+  padding-top: 39px;
   //min-height: 1000px;
   //min-height: 1200px;
   //border: 2px dashed;

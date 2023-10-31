@@ -88,7 +88,7 @@
 
 
 
-          <div class="flat__callback" v-on:click="setModalDialog"  >
+          <div class="flat__callback" v-on:click="setModalDialog(true,property)"  >
             <button class="buttonCopy2" style="  background-color: #e47554;"  >
               Забронировать
 <!--              <span class="buttonCopy2span">Забронировать</span>-->
@@ -313,7 +313,7 @@
 
                         <h6 name="body">Ваш вопрос</h6>
                         <div>
-                          <textarea v-model="message1" placeholder="Ваше сообщение" name="message" required />
+                          <textarea id="yourMessage" v-model="message1" placeholder="Ваше сообщение" name="message" required />
                         </div>
 <br>
                         <div>
@@ -755,7 +755,7 @@ function checkCookie(cname) {
         });
       },
 
-      setModalDialog(isBron = false) {
+      setModalDialog(isBron = false, propertyL = []) {
         scrollTop();
         let elBg  = document.getElementById('bg_fav_window_dialog')
         let testParent  = document.getElementById('maincontent_parent1')
@@ -766,7 +766,31 @@ function checkCookie(cname) {
           testParent.appendChild(elBg)
         }
 
-        this.modal_2 = !this.modal_2
+        this.modal_2 = !this.modal_2;
+
+
+
+          (function myLoop(i) {
+            setTimeout(function () {
+              //  your code here
+
+              var messageChooosed = document.getElementById("yourMessage");
+              if (typeof messageChooosed !== "undefined")
+              {//getName(property.type_apartment,property.kitchen_living)
+                messageChooosed.innerHTML=''
+                if (isBron) {
+                  messageChooosed.innerHTML='Прошу забронировать '+propertyL['rooms']+' комнатную квартиру, площадю '+propertyL['area']+' квадартных метра, на '+propertyL['floor']+' этаже'
+                }
+              }
+
+              if (--i) myLoop(i);   //  decrement i and call myLoop again if i > 0
+            }, 500)
+          })(10);
+
+
+
+
+
 
 
 
@@ -918,7 +942,7 @@ function checkCookie(cname) {
 <style lang="scss" scoped>
   .close {
     color: white;
-    background-color: rgba(#e73232, .5);
+    //background-color: rgba(#e73232, .5);// красный шедоу на кнопке
   }
 
 
@@ -938,6 +962,15 @@ function checkCookie(cname) {
   .dialogAsc-wrapper {
     display: table-cell;
     vertical-align: middle;
+  }
+
+  @media (max-width: 500px) {
+    .dialogAsc-container{
+      max-width: 300px;
+    }
+    #yourMessage{
+      max-width: 250px;
+    }
   }
 
   .dialogAsc-container {

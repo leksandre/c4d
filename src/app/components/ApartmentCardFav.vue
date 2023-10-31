@@ -190,29 +190,17 @@ import { mapGetters } from 'vuex'
           //       return "2-комнатная"
           //     }
           //   }
-          //
-          //
-          //   if(name=='3'){
-          //     return "3"
-          //   }
-          //   if(name=='С'){
-          //     return "Студия"
-          //   }
-          //   if(name=='2С'){
-          //     return "2С"
-          //   }
-          //   return name
-          // },
+
 
           case '1'|1:
-            if (vm.property.kitchen_living == 'true'){
+            if (vm.property.kitchen_living == 'true' | vm.property.kitchen_living == true){
               KKS = 'Евро 2-комнатная'
             } else {
               KKS = '1-комнатная'
             }
             break
           case '2'|2:
-            if (vm.property.kitchen_living == 'true'){
+            if (vm.property.kitchen_living == 'true' | vm.property.kitchen_living == true){
               KKS = 'Евро 3-комнатная'
             } else {
               KKS = '2-комнатнаяs'
@@ -244,32 +232,61 @@ import { mapGetters } from 'vuex'
       removeFromFav(uuid){
         let cookieName = "favItemsAppartament"
 
-
+        // console.log('-- try removeFromFav',uuid)
         let fav = []
         if (checkCookie(cookieName)) {
           let json1 = getCookie(cookieName);
           fav = JSON.parse(json1);
           let index = fav.indexOf(uuid)
+          // console.log('-- try removeFromFav index',index)
+          // console.log('-- try removeFromFav fav',fav)
           if( index != -1)
           {
             fav.splice(index, 1);
+            if (fav.length === 0) {
+              fav = []
+
+              setTimeout(
+                  ()=>{
+                    var FlatChooosed = document.getElementById("closeFavWindow");
+                    if (typeof FlatChooosed !== "undefined")
+                      FlatChooosed.click()
+                  }
+                  , 500)
+
+            }
             this.inFavCustom = false
           }else{
+            // console.log('-- try fav.push1 fav',fav)
             fav.push(uuid);
             this.inFavCustom = true
           }
         } else {
+          // console.log('-- try fav.push2 fav',fav)
           fav.push(uuid);
           this.inFavCustom = true
-        }
+        };
 
-        // console.log('uuid--',uuid)
-        // console.log('fav--',fav)
-        console.log('--')
-        console.log('--')
-        setCookie(cookieName, fav, 365)
-// setTimeout(    this.$nextTick(), 500)
-// setTimeout(    this.$forceNextTick(), 500)
+
+
+
+
+
+        (function myLoop(i) {
+          setTimeout(function() {
+            // console.log('uuid--',uuid)
+            if (--i) myLoop(i);   //  decrement i and call myLoop again if i > 0
+          }, 500)
+        })(10);
+
+        setCookie(cookieName, fav, 365);//fu*g async part
+
+        (function myLoop(i) {
+          setTimeout(function() {
+            // console.log('fav--',fav)
+            if (--i) myLoop(i);   //  decrement i and call myLoop again if i > 0
+          }, 500)
+        })(10);
 
         this.$nextTick()
         this.$forceNextTick()
