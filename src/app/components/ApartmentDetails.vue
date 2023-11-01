@@ -11,6 +11,11 @@
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
     <div class = "flat__media">
       <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
+
+      <div class="vue-lb-info_bottom">
+      <div class="vue-lb-info_Etag" v-on:click="showHide"><div>Наличие по этажам</div></div>
+      </div>
+
     </div>
     <div class="flat__info">
 <!--      <share />-->
@@ -386,6 +391,9 @@
 
 
     </div>
+
+
+
     </div>
 
 <!--    <vue-iframe-->
@@ -408,6 +416,7 @@
 const myNotification = window.createNotification({
   // options here
 });
+
 
 function getUrl(){
  let ulr0 =  (window.location != window.parent.location)
@@ -603,6 +612,21 @@ function checkCookie(cname) {
     },
 
     methods: {
+
+      showHide() {
+        var panel1 = document.getElementById('idTableWithFloor')
+        if (panel1) {
+          // console.log('panel1.style.right');
+          // console.log(panel1.style.right);
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-118px";
+          } else {
+            panel1.style.right = "0px";
+          }
+          // console.log('panel1.style.right');
+          // console.log(panel1.style.right);
+        }
+      },
 
       handleSubmit() {
         setTimeout(() => {

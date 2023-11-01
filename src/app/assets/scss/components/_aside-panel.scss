@@ -57,6 +57,13 @@
 
 }
 
+//.tableWithFloor:hover .vue-lb-info_Etag {//variant1hidepanel
+//  right: -118px;//variant3 rigth panel // left
+//  opacity: 0;
+//  //bottom: -290px;
+//  transition-duration: .4s;
+//}
+
 .tittleForBarFloor{
   //position: absolute;
   //top:-10px;
@@ -719,7 +726,7 @@ img.vue-lb-modal-image {
   text-align: center;
 }
 
-.vue-lb-info_gal, .vue-lb-info_gal-active {
+.vue-lb-info_gal, .vue-lb-info_Etag, .vue-lb-info_gal-active {
 
   white-space: nowrap;
 
@@ -741,6 +748,8 @@ img.vue-lb-modal-image {
   color: #000;
   height: 40px;
   //margin: 0px auto;
+
+  max-width: fit-content;
 }
 
 
@@ -935,6 +944,11 @@ img.vue-lb-modal-image {
 
 
 @media (min-width:1240px) {
+
+  .vue-lb-info_bottom {
+    display: none;
+  }
+
   .favwindowFlatParent{
     top: 50%;
   }
@@ -1096,6 +1110,14 @@ img.vue-lb-modal-image {
 
 
 @media (max-width: 1240px) {
+
+  .vue-lb-info_bottom{
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .favwindowFlatParent{
     top: 25%;
   }
@@ -1119,7 +1141,14 @@ img.vue-lb-modal-image {
     left: 0px;
     height: 50px;
     text-align: center;
-    display: inline-flex;
+    //display: inline-flex;
+
+    width: 100%;
+    //background-color:#fff;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
   }
 
   //.vue-lb-thumbnail{

@@ -115,7 +115,7 @@
 
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
 <!--          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >-->
-            <div class="tableWithFloor" >
+            <div class="tableWithFloor" id="idTableWithFloor">
 
             <div >
 
@@ -240,7 +240,7 @@
 
                 <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
-                  <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>
+                  <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 2 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
@@ -254,7 +254,7 @@
 
                 <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') } " class="floorViewSection2"
                      v-if="((floor-1) % 2 == 0)">
-                  <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>
+                  <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor+1 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
@@ -290,7 +290,7 @@
 
 
 
-              <div class="tittleForBarFloor" style="display: none">
+              <div class="tittleForBarFloor" id="idTittleForBarFloor" style="display: none">
                 <!--              выберите ваш<br>этаж-->
 <!--                >>>>>-->
 
@@ -1101,6 +1101,19 @@ function checkCookie(cname) {
       },
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
+
+
+
+        var panel1 = document.getElementById('idTableWithFloor')
+        // console.log('panel1.style.right');
+        // console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-118px";
+          }
+
+        }
+
         if (itemElement) {
           let childElements = itemElement.getElementsByClassName(className);
           // console.log('childElements1',childElements)
