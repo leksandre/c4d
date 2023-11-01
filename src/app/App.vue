@@ -238,13 +238,13 @@
 
               <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
-                <div :key="`floor-${floor}`" :id="`floorView-${floor}`" :class="{ 'nowInSale': hasChildWithClass(floor, 'c-building__flat-type') }" class="floorViewSection1"
+                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
-                  <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 2 }}</div>
+                  <div class="buttonFloor" @click="floorClick((floor+2), 'c-building__flat-type')">{{ floor + 2 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
-                          v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
+                          v-for="property in section.propertiesOnFloor[`floor_${floor + 2}`]"
                           :key="property.id"
                           :property="property"
                       />
@@ -252,13 +252,13 @@
                   </div>
                 </div>
 
-                <div :key="`floor-${floor-1}`" :id="`floorView-${floor-1}`" :class="{ 'nowInSale': hasChildWithClass(floor-1, 'c-building__flat-type') } " class="floorViewSection2"
+                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
                      v-if="((floor-1) % 2 == 0)">
-                  <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor+1 }}</div>
+                  <div class="buttonFloor"  @click="floorClick((floor+1), 'c-building__flat-type')">{{ floor+1 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
                     <div class="c-building__section">
                       <apartment-card
-                          v-for="property in section.propertiesOnFloor[`floor_${floor}`]"
+                          v-for="property in section.propertiesOnFloor[`floor_${floor+1}`]"
                           :key="property.id"
                           :property="property"
                       />
