@@ -32,7 +32,7 @@
     position: absolute;
     right: 23px;
     cursor: pointer;
-    top: 12px;
+    top: 45px;
 
     width: 40px;
     height: 40px;
@@ -619,7 +619,7 @@ function checkCookie(cname) {
           // console.log('panel1.style.right');
           // console.log(panel1.style.right);
           if(panel1.style.right=='0px'){
-            panel1.style.right = "-118px";
+            panel1.style.right = "-137px";
           } else {
             panel1.style.right = "0px";
           }

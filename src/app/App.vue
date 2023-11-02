@@ -504,18 +504,51 @@
     </modal>
 
     <div class="loader" v-if="isLoading" :class="loadingClasses">
-      <div>
+      <div v-if="false">
+
+        <div class="galTitle text-copy4">
+          Не хотите заниматься отделкой?
+        </div>
+
+        <!--        <br/>-->
+        <!--        <br/>-->
+        <!--        <br/>-->
+
+        <div class="galTitle text-body-21">
+          Вы можете приобрести квартиру с готовой отделкой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+        </div>
+
+        <main class="dflexContent flex-grow-1 pos-rel maincontentBottom" >
+
+
+
+          <div class="exampleGal">
+            <div class="galTitle text-body-21" style="margin-left: 15px;">Светлый «осовременненый» минимализм</div>
+            <photo-collage-wrapper
+                gapSize="6px"
+                @itemClick="itemClickHandlerW"
+                v-bind="collageWtmb"></photo-collage-wrapper>
+          </div>
+
+          <div class="exampleGal">
+            <div class="galTitle text-body-21" style="margin-left: 15px;">Темный «оклассиченный» лофт</div>
+            <photo-collage-wrapper
+                gapSize="6px"
+                @itemClick="itemClickHandlerD"
+                v-bind="collageDtmb"></photo-collage-wrapper>
+          </div>
+        </main>
+
       </div>
     </div>
 
 
-    <div class="mobile__flat__callback" v-on:click="gotoHome"  >
+    <div class="mobile__flat__callback" v-on:click="gotoHome" v-if="!isLoading">
 <!--      <button class="buttonCopy2" style="  background-color: #e47554; "  >-->
 <!--        Вернуться к выбору планировки-->
 <!--      </button>-->
 
 
-      <div class="bg" id="bg_fav_window"  >
         <div class="close" v-on:click="gotoHome" >
           <span ></span>
           <span ></span>
@@ -530,7 +563,7 @@
             />
           </svg>
         </div>
-        </div>
+
 
     </div>
 
@@ -1097,7 +1130,8 @@ function checkCookie(cname) {
 
       gotoHome() {
         // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
-        window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.,-Студия';
+        // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
+        window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
       },
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
@@ -1109,7 +1143,7 @@ function checkCookie(cname) {
         // console.log(panel1.style.right);
         if (panel1) {
           if(panel1.style.right=='0px'){
-            panel1.style.right = "-118px";
+            panel1.style.right = "-137px";
           }
 
         }
@@ -1574,6 +1608,7 @@ function checkCookie(cname) {
   min-height: 400px;
   //max-width: 1600px;
   margin: 0px auto 0px auto;
+  z-index: 1009;
 }
 
 
@@ -1601,14 +1636,14 @@ function checkCookie(cname) {
   }
   .loader {
     position: absolute;
-    display: flex;
+    //display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(white, .85);
+    //background-color: rgba(white, .85);
 
     svg {
       width: 100px;

@@ -50,7 +50,7 @@
 }
 
 .tableWithFloor:hover .tittleForBarFloor {//variant1hidepanel
-  right: -118px;//variant3 rigth panel // left
+  right: -137px;//variant3 rigth panel // left
   opacity: 0;
   //bottom: -290px;
   transition-duration: .4s;
@@ -498,7 +498,7 @@
 }
 
 .close{
-  z-index: 900;
+  z-index: 1001;
   $size: 60px;
   $borderSize: 2px;
   $borderColor: rgba(white,1);
@@ -640,7 +640,7 @@
   /*height: 100%;*/
   justify-content: center;
   left: 0;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   /*position: fixed;*/
   top: 0;
   /*width: 100%;*/
@@ -655,7 +655,7 @@
 }
 
 .vue-lb-content {
-  margin-bottom: 60px;
+  //margin-bottom: 60px;
   max-width: 1024px;
   position: relative;
   height: fit-content;
@@ -724,6 +724,10 @@ img.vue-lb-modal-image {
   margin: 0px auto;
   font-family: PT_Serif_Regular;
   text-align: center;
+}
+
+.vue-lb-info_Etag{
+  transform: scale(0.8); //for ever
 }
 
 .vue-lb-info_gal, .vue-lb-info_Etag, .vue-lb-info_gal-active {
@@ -998,7 +1002,7 @@ img.vue-lb-modal-image {
     //right: 15px; top: 15px;
     right: 0px;
     top: 0px;
-    transform: scale(0.7);
+    //transform: scale(0.7);
   }
   .tittleForBarFloor{
     display: none;
@@ -1052,7 +1056,7 @@ img.vue-lb-modal-image {
     }
 
   .mobile__flat__callback{
-    transform: scale(.5);
+    //transform: scale(.5);
     right: -33px; top: -9px;
   }
   .tittleForBarFloor{
@@ -1072,6 +1076,10 @@ img.vue-lb-modal-image {
 
 @media (max-width: 440px) {
 
+  .flat__callback{
+    left:-10px
+  }
+
   .flat__media {
     box-sizing: border-box;
     color: rgb(32, 37, 30);
@@ -1082,8 +1090,16 @@ img.vue-lb-modal-image {
     -webkit-font-smoothing: antialiased;
   }
 
+  .close{
+    transform: scale(0.5);
+    position: fixed;
+    top: -14px;
+    right: -14px;
+  }
+
   .mobile__flat__callback {
-    display: none;
+    //display: none;
+
   }
   .tittleForBarFloor{
     display: block;
@@ -1110,6 +1126,11 @@ img.vue-lb-modal-image {
 
 
 @media (max-width: 1240px) {
+
+  .vue-lb-info_gal, .vue-lb-info_gal-active{
+    margin: 3px;
+  }
+
 
   .vue-lb-info_bottom{
     width: 100%;
@@ -1187,7 +1208,7 @@ img.vue-lb-modal-image {
     position: fixed;
     top: 0px;
     //right: -118px; ;//variant3 rigth panel // left
-    right: -136px; ;//variant3 rigth panel // left
+    right: -137px; ;//variant3 rigth panel // left
     border-radius: 20px 0px  0px 20px;
 
     transition-duration: .4s;
