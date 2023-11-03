@@ -102,6 +102,8 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
+<!--    <Transition name="slide-fade">-->
+    <transition name="fadeHeight" mode="out-in">
     <div class="maincontent_parent" id="maincontent_parent1" v-if="!isLoading">
     <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
       <div id="closeArea" v-on:click="checkHidePanel" style="width:0px; height:0xp; max-height:920px; position:absolute; z-index:2147483647; ">
@@ -321,6 +323,8 @@
       <apartment-details  v-if="mq.mdAndUp" @changemode="modal_3 = $event" />
     </main>
     </div>
+    </transition>
+<!--    </Transition>-->
     <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
         <div class="l-col py-0 text-body-2 has-text-primary">&copy; CRM4DEV {{ new Date().getFullYear() }}</div>
@@ -1075,8 +1079,8 @@ function checkCookie(cname) {
       checkHidePanel(){
 
         var panel1 = document.getElementById('idTableWithFloor')
-        console.log('panel1.style.right checkHidePanel');
-        console.log(panel1.style.right);
+        // console.log('panel1.style.right checkHidePanel');
+        // console.log(panel1.style.right);
         if (panel1) {
           if(panel1.style.right=='0px'){
             panel1.style.right = "-137px";
@@ -1623,6 +1627,47 @@ function checkCookie(cname) {
 
 <style lang="scss" scoped>
 
+
+//.slide-fade-enter-active {
+//  transition: all 0.3s ease-out;
+//}
+//
+//.slide-fade-leave-active {
+//  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+//}
+//
+//.slide-fade-enter-from,
+//.slide-fade-leave-to {
+//  transform: translateY(20px);
+//  opacity: 0;
+//}
+
+
+
+//.slide-fade-leave-active,
+//.slide-fade-enter-active {
+//  transition: 2s;
+//}
+//.slide-fade-enter {
+//  transform: translateY(-100%);
+//}
+//.slide-fade-leave-to {
+//  transform: translateY(100%);
+//}
+
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: all 2.4s;
+  height: 1000px;
+  opacity: 1;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+  opacity: 0;
+  height: 0px;
+}
 
 
 .maincontent_parent {

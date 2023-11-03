@@ -6,15 +6,17 @@
   //bottom: 0;
   //right: 80px;
   //box-shadow: -2px 0 11px -6px rgb(74 123 172 / 50%);
-  transform: translateX(100%);
-  transition: .225s all ease-in-out;
-  will-change: opacity, transform;
-  opacity: 0;
+
+  //transform: translateX(100%);
+  //transition: .225s all ease-in-out;
+  //will-change: opacity, transform;
+  //opacity: 0;
+
   flex-shrink: 0;
 
   &.is-open {
-    transform: translateX(0);
-    opacity: 1;
+    //transform: translateX(0);
+    //opacity: 1;
   }
 
   &.is-opened {
