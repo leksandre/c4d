@@ -196,6 +196,8 @@
   //border: 3px dashed #21979430;
   z-index: 99;
 
+  position: absolute;
+
   box-sizing: border-box;
   color: rgb(32, 37, 30);
   display: block;
@@ -967,9 +969,7 @@ img.vue-lb-modal-image {
     height: 1000px;
   }
 
-  .flat__info {
-    position: fixed;
-  }
+
 
   .vue-lb-thumbnail {
     position: relative;
@@ -1027,7 +1027,8 @@ img.vue-lb-modal-image {
     margin: 40px;
   }
   .vue-lb-arrow {
-    width: 70px
+    //width: 70px;
+    display: none;
   }
 }
 
@@ -1133,6 +1134,10 @@ img.vue-lb-modal-image {
     margin: 3px;
   }
 
+  .flat__info {
+    //position: fixed;
+    position: relative;
+  }
 
   .vue-lb-info_bottom{
     width: 100%;
