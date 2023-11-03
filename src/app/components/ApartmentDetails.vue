@@ -9,7 +9,7 @@
 <!--    </div>-->
 
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
-    <div class = "flat__media">
+    <div class = "flat__media" >
       <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
 
       <div class="vue-lb-info_bottom">
@@ -613,6 +613,8 @@ function checkCookie(cname) {
 
     methods: {
 
+
+
       showHide() {
         var panel1 = document.getElementById('idTableWithFloor')
         if (panel1) {
@@ -626,6 +628,13 @@ function checkCookie(cname) {
           // console.log('panel1.style.right');
           // console.log(panel1.style.right);
         }
+
+        var panel1 = document.getElementById('closeArea')
+        if (panel1) {
+          panel1.style.width='100%';
+          panel1.style.height = "100%";
+        }
+
       },
 
       handleSubmit() {

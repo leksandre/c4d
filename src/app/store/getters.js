@@ -4,7 +4,7 @@ export default {
       xs: 600,
       sm: 960,
       // md: 1264,
-      md: 340,
+      md: 140,//exclude it rules from algoritm
       lg: 1904
     }
     const { windowWidth } = state

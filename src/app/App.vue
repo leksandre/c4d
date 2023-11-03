@@ -102,8 +102,10 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
-    <div class="maincontent_parent" id="maincontent_parent1">
+    <div class="maincontent_parent" id="maincontent_parent1" v-if="!isLoading">
     <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
+      <div id="closeArea" v-on:click="checkHidePanel" style="width:0px; height:0xp; max-height:920px; position:absolute; z-index:2147483647; ">
+      </div>
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
       >
@@ -1069,11 +1071,26 @@ function checkCookie(cname) {
 
     },
     methods: {
-      /**
-       * Отправка данных с виджета на сайт (скрипт вставку)
-       * @param payload
-       * @param origin
-       */
+
+      checkHidePanel(){
+
+        var panel1 = document.getElementById('idTableWithFloor')
+        console.log('panel1.style.right checkHidePanel');
+        console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-137px";
+          }
+        }
+
+        var panel1 = document.getElementById('closeArea')
+        if (panel1) {
+          panel1.style.width='0px';
+          panel1.style.height = "0px";
+        }
+
+      },
+
       isMobile() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
           return true
@@ -1133,6 +1150,18 @@ function checkCookie(cname) {
         // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
         window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
       },
+
+      maincontent_parent1_Click(){
+        var panel1 = document.getElementById('idTableWithFloor')
+        console.log('panel1.style.right maincontent_parent1_Click');
+        console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-137px";
+          }
+        }
+      },
+
       floorClick(itemId, className){
         const itemElement = document.getElementById(`floorView-${itemId}`);
 
