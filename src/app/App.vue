@@ -1108,6 +1108,8 @@ function checkCookie(cname) {
         // console.log('i',i)
         this.collageChoise = 'W'
         this.modal_5 = true
+        window.indexGAlaryImg = i
+        // this.$refs.lightbox.showImage(i)
         window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
@@ -1116,6 +1118,8 @@ function checkCookie(cname) {
         // console.log('i',i)
         this.collageChoise = 'D'
         this.modal_5 = true
+        window.indexGAlaryImg = i
+        // this.$refs.lightbox.showImage(i)
         window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
