@@ -910,7 +910,7 @@ img.vue-lb-modal-image {
 
   width: calc(100% - 40px);
 
-  text-align: left;
+
   height: auto;
 
 }
@@ -952,7 +952,9 @@ img.vue-lb-modal-image {
 
 
 @media (min-width:1240px) {
-
+  .galTitle{
+    text-align: left;
+  }
   .vue-lb-info_bottom {
     display: none;
   }
@@ -1030,6 +1032,11 @@ img.vue-lb-modal-image {
     //width: 70px;
     display: none;
   }
+
+  .maincontent_parentBottom {
+    min-height: 620px;
+  }
+
 }
 
 
@@ -1038,6 +1045,10 @@ img.vue-lb-modal-image {
 //}
 
 @media (max-width: 1240px) and (min-width:440px) {
+
+  .galTitle{
+    text-align: left;
+  }
 
   .flat__media {
     box-sizing: border-box;
@@ -1078,6 +1089,10 @@ img.vue-lb-modal-image {
 
 
 @media (max-width: 440px) {
+
+  .galTitle{
+    text-align: center;
+  }
 
   .flat__callback{
     left:-10px
@@ -1247,7 +1262,9 @@ img.vue-lb-modal-image {
   }
 
 
-
+  .maincontent_parentBottom {
+    min-height: 1240px;
+  }
 
 }
 
