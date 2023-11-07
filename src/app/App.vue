@@ -643,7 +643,14 @@
 
 
 
+    <iframe
+        src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
+        width="100%"
+        height="900px"
 
+    >
+      Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
+    </iframe>
 
 
   </div>
@@ -1105,7 +1112,7 @@ function checkCookie(cname) {
 
       itemClickHandlerW(data, i) {
         // click event
-        console.log('i',i)
+        // console.log('i',i)
         this.collageChoise = 'W'
         this.modal_5 = true
         if(i>0)i+=1
@@ -1116,7 +1123,7 @@ function checkCookie(cname) {
 
       itemClickHandlerD(data, i) {
         // click event
-        console.log('i',i)
+        // console.log('i',i)
         this.collageChoise = 'D'
         this.modal_5 = true
         if(i>0)i+=1
@@ -1321,7 +1328,7 @@ function checkCookie(cname) {
 
 
         y = Math.max(y,page.scrollHeight,document.body.scrollHeight)
-        console.log('y r',y)
+        // console.log('y r',y)
         this.postMessage({
           method: '_$is_setFrameSize',
           payload: {
