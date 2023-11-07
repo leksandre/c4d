@@ -1717,6 +1717,7 @@ function checkCookie(cname) {
   margin: 0px auto 0px auto;
   //z-index: 1009;
   overflow: hidden;
+  height: 1600px;
 }
 
 
