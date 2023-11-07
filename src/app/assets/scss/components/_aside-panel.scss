@@ -1228,7 +1228,18 @@ img.vue-lb-modal-image {
   }
 
   .dflexContent {
-    display: block;
+    //display: block;
+
+    //max-width: 1600px;
+    //height: auto;
+    ///* margin: 0px auto 0px auto; */
+    ///* width: 100%; */
+
+    min-height: 900px;
+    height: content-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .exampleGal{

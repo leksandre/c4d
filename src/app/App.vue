@@ -636,7 +636,7 @@
           </svg>
         </div>
 
-        <light-box :media="this.matched_all" :closable="false" :showCaption="false" :showThumbs="false"></light-box>
+        <light-box ref="lightbox5" :media="this.matched_all" :closable="false" :showCaption="false" :showThumbs="false"></light-box>
 
       </div>
     </div>
@@ -1105,21 +1105,23 @@ function checkCookie(cname) {
 
       itemClickHandlerW(data, i) {
         // click event
-        // console.log('i',i)
+        console.log('i',i)
         this.collageChoise = 'W'
         this.modal_5 = true
+        if(i>0)i+=1
         window.indexGAlaryImg = i
-        // this.$refs.lightbox.showImage(i)
+        this.$refs.lightbox5.showImage(i)
         window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
       itemClickHandlerD(data, i) {
         // click event
-        // console.log('i',i)
+        console.log('i',i)
         this.collageChoise = 'D'
         this.modal_5 = true
+        if(i>0)i+=1
         window.indexGAlaryImg = i
-        // this.$refs.lightbox.showImage(i)
+        this.$refs.lightbox5.showImage(i)
         window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
@@ -1281,6 +1283,13 @@ function checkCookie(cname) {
           payload: window.innerWidth
         })
         await this.setInjectFrameSizes()
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 1500)
+
       },
 
       async setInjectFrameSizes() {
@@ -1312,7 +1321,7 @@ function checkCookie(cname) {
 
 
         y = Math.max(y,page.scrollHeight,document.body.scrollHeight)
-        // console.log('y result',y)
+        console.log('y r',y)
         this.postMessage({
           method: '_$is_setFrameSize',
           payload: {
@@ -1350,6 +1359,13 @@ function checkCookie(cname) {
         finally {
           this.isLoading = false
           await this.setInjectFrameSizes()
+
+          setTimeout(
+              ()=>{
+                this.setInjectFrameSizes()
+              }
+              , 1500)
+
         }
       },
 
