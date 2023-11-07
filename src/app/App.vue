@@ -643,15 +643,16 @@
 
 
 
+    <div   class="maincontent_claculator" >
     <iframe
-        class="maincontent_claculator"
         src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
         width="100%"
-        height="1500px"
+        height="1300px"
+        style=" overflow: hidden; height: 1300px; width: 100%; max-width: 1600px;"
     >
       Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
     </iframe>
-
+    </div>
 
   </div>
 
@@ -1716,8 +1717,8 @@ function checkCookie(cname) {
   max-width: 1600px;
   margin: 0px auto 0px auto;
   //z-index: 1009;
-  overflow: hidden;
-  height: 1600px;
+  height: 1300px;
+  width: 100%;
 }
 
 
