@@ -642,8 +642,11 @@
     </div>
 
 
-
-    <div   class="maincontent_claculator" >
+    <div  v-on:click="setModal9" class="buttonCopy2" style="
+    max-width: 1600px;
+    margin: 0px auto 0px auto;
+" v-show="!modal_9" >показать калькулятор иппотеки Сбербанка</div>
+    <div   class="maincontent_claculator" v-show="modal_9" >
     <iframe
         src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
         width="100%"
@@ -704,6 +707,7 @@ function checkCookie(cname) {
     data: () => ({
       modal_3: false,
       modal_5: false,
+      modal_9: false,
 
       collageChoise: 'W',
 
@@ -1133,6 +1137,16 @@ function checkCookie(cname) {
         window.parent.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
+
+      setModal9() {
+        this.modal_9 = !this.modal_9;
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
 
       setModal() {
         this.modal_3 = !this.modal_3
