@@ -657,6 +657,21 @@
     </iframe>
     </div>
 
+    <div  v-on:click="setModal10" class="buttonCopy2" style="
+    max-width: 1600px;
+    margin: 0px auto 0px auto;
+" v-show="!modal_10" >показать калькулятор иппотеки ВТБ</div>
+    <div   class="maincontent_claculator" v-show="modal_10"  style="max-width: 1000px; height: 8000px;">
+    <iframe
+        src="https://www.kreditnyi-calculator.ru/ipoteka/vtb_24/"
+        width="100%"
+        height="8000px"
+        style=" overflow: hidden; height: 8000px; width: 100%; max-width: 1600px;"
+    >
+      Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
+    </iframe>
+    </div>
+
   </div>
 
 </template>
@@ -708,6 +723,7 @@ function checkCookie(cname) {
       modal_3: false,
       modal_5: false,
       modal_9: false,
+      modal_10: false,
 
       collageChoise: 'W',
 
@@ -1140,6 +1156,16 @@ function checkCookie(cname) {
 
       setModal9() {
         this.modal_9 = !this.modal_9;
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
+
+      setModal10() {
+        this.modal_10 = !this.modal_10;
 
         setTimeout(
             ()=>{
