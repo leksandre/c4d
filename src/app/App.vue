@@ -1320,7 +1320,7 @@ function checkCookie(cname) {
           const tiles = document.getElementById('tiles')
           const main = document.getElementById('main')
           if (tiles && main)
-            main.style.minHeight = `${tiles.scrollHeight+1000}px`
+            main.style.minHeight = `${tiles.scrollHeight+100}px`
         }
         var win = window,
             doc = document,
