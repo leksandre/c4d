@@ -1206,7 +1206,7 @@ function checkCookie(cname) {
       gotoHome() {
         // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
         // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
-        window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
+        window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
       },
 
       maincontent_parent1_Click(){
