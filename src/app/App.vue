@@ -642,11 +642,37 @@
     </div>
 
 
-    <div  v-on:click="setModal9" class="buttonCopy2" style="
-    max-width: 1600px;
-    margin: 0px auto 0px auto;
-" v-show="!modal_9" >показать калькулятор иппотеки Сбербанка</div>
-    <div   class="maincontent_claculator" v-show="modal_9" >
+
+    <div class="maincontent_selector">
+
+      <div class="galTitle text-copy4">
+        Хотите посмотреть график платежей по вашей иппотеке?
+      </div>
+
+      <div class="selector1" v-on:click="bank='sber';  " >
+        <label>Сбербанк</label>
+        <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/sber.png" alt=""/>
+      </div>
+
+      <div class="selector1"  v-on:click="bank='vtb';  " >
+        <label>Втб</label>
+        <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/vtb.png" alt=""/>
+      </div>
+
+      <br>
+
+<!--      <span>Выбрано: {{ bank }}</span>-->
+    </div>
+
+
+<!--    <div  v-on:click="setModal9" class="buttonCopy2" style="-->
+<!--    max-width: 1600px;-->
+<!--    margin: 0px auto 0px auto;-->
+<!--" v-show="!modal_9" >показать калькулятор иппотеки Сбербанка</div>-->
+<!--    modal_9-->
+
+    <div   class="maincontent_claculator" v-show="bank=='sber'" >
+
     <iframe
         src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
         width="100%"
@@ -657,11 +683,13 @@
     </iframe>
     </div>
 
-    <div  v-on:click="setModal10" class="buttonCopy2" style="
-    max-width: 1600px;
-    margin: 0px auto 0px auto;
-" v-show="!modal_10" >показать калькулятор иппотеки ВТБ</div>
-    <div   class="maincontent_claculator" v-show="modal_10"  style="max-width: 1000px; height: 8000px;">
+<!--    <div  v-on:click="setModal10" class="buttonCopy2" style="-->
+<!--    max-width: 1600px;-->
+<!--    margin: 0px auto 0px auto;-->
+<!--" v-show="!modal_10" >показать калькулятор иппотеки ВТБ</div>-->
+<!--    modal_10-->
+
+    <div   class="maincontent_claculator" v-show="bank=='vtb'"  style="max-width: 1000px; height: 8000px;">
     <iframe
         src="https://www.kreditnyi-calculator.ru/ipoteka/vtb_24/"
         width="100%"
@@ -724,6 +752,8 @@ function checkCookie(cname) {
       modal_5: false,
       modal_9: false,
       modal_10: false,
+
+      bank:'',
 
       collageChoise: 'W',
 
