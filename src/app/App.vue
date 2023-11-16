@@ -681,7 +681,8 @@
         src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
         width="100%"
         height="1300px"
-        style=" overflow: hidden; height: 1300px; width: 100%; max-width: 1600px;"
+        frameBorder="0"
+        style=" overflow: hidden; height: 1300px; width: 100%; max-width: 1600px; border:0;"
     >
       Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
     </iframe>
@@ -698,7 +699,8 @@
         src="https://www.kreditnyi-calculator.ru/ipoteka/vtb_24/"
         width="100%"
         height="8000px"
-        style=" overflow: hidden; height: 8000px; width: 100%; max-width: 1600px;"
+        frameBorder="0"
+        style=" overflow: hidden; height: 8000px; width: 100%; max-width: 1600px; border:0;"
     >
       Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
     </iframe>
