@@ -1285,6 +1285,7 @@ img.vue-lb-modal-image {
   border-radius: 14px;
   width: 49%;
   cursor: pointer;
+  position: relative;
 }
 
 .selector1 input[type=radio] {
@@ -1293,6 +1294,24 @@ img.vue-lb-modal-image {
 .selector1 label {
   cursor: pointer;
 }
+.selector1 .shadow1 {
+  width: 100%;
+  height: 100%;
+  background-color: #6c757d29;
+  z-index: 2999;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 14px;
+}
+.selector1 img {
+  //width: 50%;
+  //height: 142px;
+  height: 52px;
+  margin: 0px auto 0px auto;
+  //max-resolution: 10px;
+}
+
 
 .mobile__flat__callback{
   position: absolute;cursor: pointer;

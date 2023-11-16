@@ -649,14 +649,18 @@
         Хотите посмотреть график платежей по вашей иппотеке?
       </div>
 
-      <div class="selector1" v-on:click="bank='sber';  " >
-        <label>Сбербанк</label>
+      <div class="selector1" v-on:click=" setbank('sber') " >
+        <div class="shadow1" v-show="bank!=='sber'"></div>
         <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/sber.png" alt=""/>
+<!--        <br>-->
+<!--        <label>Сбербанк</label>-->
       </div>
 
-      <div class="selector1"  v-on:click="bank='vtb';  " >
-        <label>Втб</label>
+      <div class="selector1"  v-on:click=" setbank('vtb') " >
+        <div class="shadow1" v-show="bank!=='vtb'"></div>
         <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/vtb.png" alt=""/>
+<!--        <br>-->
+<!--        <label>Втб</label>-->
       </div>
 
       <br>
@@ -1133,6 +1137,15 @@ function checkCookie(cname) {
 
     },
     methods: {
+
+      setbank(b){
+        this.bank=b;
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
 
       checkHidePanel(){
 
