@@ -42,6 +42,7 @@
                 :srcset="media[select].srcset || ''"
                 class="vue-lb-modal-image"
                 :alt="media[select].caption"
+                @click.stop="nextImage()"
               >
 
               <video

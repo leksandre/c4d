@@ -710,7 +710,9 @@ img.vue-lb-modal-image {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none
+  -ms-user-select: none;
+
+  max-height: 900px;
 }
 
 .vue-lb-info {
