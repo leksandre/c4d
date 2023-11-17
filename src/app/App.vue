@@ -106,7 +106,7 @@
     <transition name="fadeHeight" mode="out-in">
     <div class="maincontent_parent" id="maincontent_parent1" v-if="!isLoading">
     <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
-      <div id="closeArea" v-on:click="checkHidePanel" style="width:0px; height:0xp; max-height:920px; position:absolute; z-index:2147483647; ">
+      <div id="closeArea" v-on:click="checkHidePanel" style="width:0px; height:0xp; max-height:920px; position:absolute; z-index:214; ">
       </div>
       <div
         v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
