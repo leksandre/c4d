@@ -811,8 +811,11 @@ function checkCookie(cname) {
               if (typeof messageChooosed !== "undefined")
               {//getName(property.type_apartment,property.kitchen_living)
                 messageChooosed.innerHTML=''
-                if (isBron && propertyL!=[]) {
+                if (isBron===true) {
                   messageChooosed.innerHTML='Прошу забронировать '+propertyL['rooms']+' комнатную квартиру, площадю '+propertyL['area']+' квадартных метра, на '+propertyL['floor']+' этаже'
+                }
+                else{
+                  messageChooosed.innerHTML='';
                 }
               }
 

@@ -555,7 +555,7 @@
 <!--      </button>-->
 
 
-        <div class="close" v-on:click="gotoHome" style="z-index: 1001">
+        <div class="close" v-on:click="gotoHome" style="z-index: 71">
           <span ></span>
           <span ></span>
           <span ></span>
