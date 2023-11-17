@@ -642,30 +642,30 @@
     </div>
 
 
-
     <div class="maincontent_selector">
 
-      <div class="galTitle text-copy4">
-        Хотите посмотреть график платежей по вашей иппотеке?
+      <div class="galTitle text-copy4" style="font-size:14px">
+        <!--        Хотите посмотреть график платежей по вашей иппотеке?-->
+        Хотите посчитать возможную ипотеку? Выберите банк:
       </div>
 
-      <div class="selector1" v-on:click=" setbank('sber') " >
+      <div class="selector1" v-on:click=" setbank('sber') "  :class="{ 'opc3': bank!=='sber' }" >
         <div class="shadow1" v-show="bank!=='sber'"></div>
         <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/sber.png" alt=""/>
-<!--        <br>-->
-<!--        <label>Сбербанк</label>-->
+        <!--        <br>-->
+        <!--        <label>Сбербанк</label>-->
       </div>
 
-      <div class="selector1"  v-on:click=" setbank('vtb') " >
+      <div class="selector1" v-on:click=" setbank('vtb') "  :class="{ 'opc3': bank!=='vtb' }" >
         <div class="shadow1" v-show="bank!=='vtb'"></div>
         <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/vtb.png" alt=""/>
-<!--        <br>-->
-<!--        <label>Втб</label>-->
+        <!--        <br>-->
+        <!--        <label>Втб</label>-->
       </div>
 
       <br>
 
-<!--      <span>Выбрано: {{ bank }}</span>-->
+      <!--      <span>Выбрано: {{ bank }}</span>-->
     </div>
 
 

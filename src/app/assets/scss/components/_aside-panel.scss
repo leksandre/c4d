@@ -1111,8 +1111,8 @@ img.vue-lb-modal-image {
   .close{
     transform: scale(0.5);
     position: fixed;
-    top: -14px;
-    right: -14px;
+    top: -11px;
+    right: -11px;
   }
 
   .mobile__flat__callback {
@@ -1268,11 +1268,15 @@ img.vue-lb-modal-image {
 
 }
 
+.opc3{
+  opacity: 0.3;
+}
+
 
 .maincontent_selector {
   max-width: 100%;
   margin: 0px auto 0px auto;
-  min-width: 320px;
+  min-width: 290px;
   width: fit-content;
   height: 180px;
   margin-top: 10px;
@@ -1303,11 +1307,12 @@ img.vue-lb-modal-image {
   left: 0px;
   top: 0px;
   border-radius: 14px;
+  border: 1px dashed #e47554;
 }
 .selector1 img {
   //width: 50%;
   //height: 142px;
-  height: 52px;
+  max-height: 42px;
   margin: 0px auto 0px auto;
   //max-resolution: 10px;
 }
