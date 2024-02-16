@@ -78,18 +78,52 @@ if (element.innerHTML) {
 
 
 
-                parentDiv4.querySelectorAll('.flat-block-card__gallery').forEach((element) => {
-                  element.onclick = function() {
-                    let rect = square1[0].getBoundingClientRect(),
-                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    document.cookie = "YposClick=" + (scrollTop) +  "; path=/";
-                    window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
-                };
+  parentDiv4.querySelectorAll('.slider__slides').forEach((element) => {
 
-                });
+  let touchstartX = 0
+  let touchendX = 0
+  let swiped = false
 
-        		// parentDiv.onclick = '';
+  element.ontouchmove = function(e) {
+  console.log('move')
+}
+
+  element.onmousedown = function(e) {
+  //console.log('start')
+  touchstartX = e.clientX
+  swiped = false
+}
+
+  element.onmouseup = function(e) {
+  //console.log('end')
+  touchendX = e.clientX
+  if (touchendX < touchstartX) {console.log('swiped left!', touchendX , touchstartX)
+  swiped = true
+  }
+  if (touchendX > touchstartX) {console.log('swiped right!', touchendX , touchstartX)
+  swiped = true
+  }
+}
+
+  element.onclick = function() {
+  // console.log('onclick')
+    if (swiped) return
+    let rect = square1[0].getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    document.cookie = "YposClick=" + (scrollTop) +  "; path=/";
+    window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
+};
+
+});
+
+
+
+
+
+
+
+  // parentDiv.onclick = '';
 				// parentDiv.onclick = function() {
 				// 	window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
 				// };
