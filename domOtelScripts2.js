@@ -1,5 +1,19 @@
 <!-- Fix actions -->
 <script>
+
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+
   window.onload = function () {
 
 
@@ -12,6 +26,7 @@ if (element.innerHTML) {
 } else {
 }
 });
+
 
 
 var buttons = document.getElementsByClassName("button j-popup-callback");
@@ -33,12 +48,18 @@ if (element.innerHTML) {
 				let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
 				//console.log('addstr1', addstr1);
 
-				//var1
-				let element3 = parentDiv.parentNode.parentNode;//.querySelector('div.flat-block-card, div.j-animation__row-item, div.flat-block-card_theme_two-cards');
+		
+				let unIdButton = makeid(15)
+				//var2
+				element.parentNode.innerHTML = '<button type="button" class="button j-popup-callback" data-callback="true" data-href="zakazat-zvonok" aria-label="Открыть планировку" data-init="true" id="'+unIdButton+'">Открыть планировку</button>';
+				//element.remove();
 
-        			element3.onclick = '';
+				//var1
+				//let element3 = parentDiv.parentNode.parentNode;//.querySelector('div.flat-block-card, div.j-animation__row-item, div.flat-block-card_theme_two-cards');
+				let element3 = document.getElementById(unIdButton);
+        		element3.onclick = '';
 				element3.onclick = function() {
-                    var rect = square1[0].getBoundingClientRect(),
+                    let rect = square1[0].getBoundingClientRect(),
                     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
                     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                        document.cookie = "YposClick=" + (scrollTop) +  "; path=/"; 
@@ -47,11 +68,11 @@ if (element.innerHTML) {
                 };
 
 
-				//var2
-				element.parentNode.innerHTML = '<button type="button" class="button j-popup-callback" data-callback="true" data-href="zakazat-zvonok" aria-label="Открыть планировку" data-init="true">Открыть планировку</button>';
-				//element.remove();
-        			parentDiv.onclick = '';
-				parentDiv.onclick = function() {window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1; };
+
+        		// parentDiv.onclick = '';
+				// parentDiv.onclick = function() {
+				// 	window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1; 
+				// };
 
 			}	
 	}
