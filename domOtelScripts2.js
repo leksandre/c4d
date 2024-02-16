@@ -28,12 +28,20 @@ if (element.innerHTML) {
 });
 
 
+  //delete crab
+  document.querySelectorAll('.flat__controls').forEach((element) => {
+  if (element.innerHTML) {
+  element.remove();
+} else {
+}
+});
 
 var buttons = document.getElementsByClassName("button j-popup-callback");
 Array.from(buttons).forEach((element) => {
 if (element.innerHTML) {
  if(element.innerHTML = "Заказать звонок"){
-			parentDiv = element.parentNode.parentNode;
+  parentDiv = element.parentNode.parentNode;
+  parentDiv4 = element.parentNode.parentNode.parentNode.parentNode;
 			//console.log('parentDiv', parentDiv);
 			let square1 = parentDiv.querySelectorAll('.flat-block-card__info-value');
 			//console.log('square1',square1);
@@ -48,7 +56,7 @@ if (element.innerHTML) {
 				let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
 				//console.log('addstr1', addstr1);
 
-		
+
 				let unIdButton = makeid(15)
 				//var2
 				element.parentNode.innerHTML = '<button type="button" class="button j-popup-callback" data-callback="true" data-href="zakazat-zvonok" aria-label="Открыть планировку" data-init="true" id="'+unIdButton+'">Открыть планировку</button>';
@@ -57,24 +65,36 @@ if (element.innerHTML) {
 				//var1
 				//let element3 = parentDiv.parentNode.parentNode;//.querySelector('div.flat-block-card, div.j-animation__row-item, div.flat-block-card_theme_two-cards');
 				let element3 = document.getElementById(unIdButton);
+
         		element3.onclick = '';
 				element3.onclick = function() {
                     let rect = square1[0].getBoundingClientRect(),
                     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
                     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                       document.cookie = "YposClick=" + (scrollTop) +  "; path=/"; 
+                       document.cookie = "YposClick=" + (scrollTop) +  "; path=/";
 
-                    window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1; 
+                    window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
                 };
 
 
 
+                parentDiv4.querySelectorAll('.flat-block-card__gallery').forEach((element) => {
+                  element.onclick = function() {
+                    let rect = square1[0].getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    document.cookie = "YposClick=" + (scrollTop) +  "; path=/";
+                    window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
+                };
+
+                });
+
         		// parentDiv.onclick = '';
 				// parentDiv.onclick = function() {
-				// 	window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1; 
+				// 	window.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
 				// };
 
-			}	
+			}
 	}
 } else {
 }
