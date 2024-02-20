@@ -114,17 +114,18 @@ export default {
         } );
         add_capt = " v"+(i+2);
       }
-      add_capt = "";
-      for (let i = 0; i < images3.length; i++) {
-        copy.push( {
-          thumb: images3[i],
-          src: images3[i],
-          type:'3d',
-          caption: '3D тур'+add_capt, // Optional
-          srcset: images3[i] // Optional for displaying responsive images
-        } );
-        add_capt = " v"+(i+2);
-      }
+      //exclude 3d tours
+      // add_capt = "";
+      // for (let i = 0; i < images3.length; i++) {
+      //   copy.push( {
+      //     thumb: images3[i],
+      //     src: images3[i],
+      //     type:'3d',
+      //     caption: '3D тур'+add_capt, // Optional
+      //     srcset: images3[i] // Optional for displaying responsive images
+      //   } );
+      //   add_capt = " v"+(i+2);
+      // }
       // let images = (num.object_planes).concat(num.floor_planes)
 
       num.images = copy

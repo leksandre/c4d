@@ -254,6 +254,45 @@
   -webkit-font-smoothing: antialiased;
 }
 
+
+.text-copy3dTour {
+
+  box-sizing: border-box;
+  //color: rgb(32, 37, 30);
+  color: #2c486a;
+  //display: block;
+  text-decoration: underline;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  font-weight: 700;
+  //height: 24px;
+  line-height: 24px;
+  margin-bottom: 16px;
+  width: 53px;
+  //width: 399.984px;
+  -webkit-box-direction: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.text-title3dTour {
+
+  box-sizing: border-box;
+  color: rgb(32, 37, 30);
+  //color: #2c486a;
+  //display: block;
+  //text-decoration: underline;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  font-weight: 700;
+  height: 24px;
+  line-height: 24px;
+  margin-bottom: 16px;
+  //width: 399.984px;
+  -webkit-box-direction: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+
 .text-copy4 {
 
   box-sizing: border-box;
@@ -1026,6 +1065,7 @@ img.vue-lb-modal-image {
 
   .dflexContent {
     display: flex;
+    min-height: 585px;
   }
   .exampleGal{
     margin: 40px;
