@@ -38,6 +38,9 @@ export default {
       const layout = property['type_apartment']
       const { floor, cost:price, section_id: sectionId  } = property
 
+
+      const status = property['status']
+
       // console.log('---start----type',type,'-',byType)
       // console.log('---start----property',property)
       // console.log('---start----type_apartment',property['type_apartment'])
@@ -64,7 +67,7 @@ export default {
 
       // console.log('---start----filtredByType',filtredByType)
 
-      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout)
+      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout && status =="Свободна" )
         result = true
 
       // if(filtredByType){
