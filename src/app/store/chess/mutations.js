@@ -59,15 +59,15 @@ export default {
       const maxByPrice = byPrice[1]
 
       const filtredBySection = bySection ? bySection === sectionId : true
-      const filtredByType = byType.length > 0 ? byType.includes(type) : true
+      const filtredByType = byType.length > 0 ? byType.includes(rooms) : true
       const filtredByLayout = byLayout.length > 0 ? byLayout.includes(layout) : true
       const filtredByArea = maxByArea > minByArea ? (area >= byArea[0] && area <= byArea[1]) : true
       const filtredByFloor = maxByFloor > minByFloor ? (floor >= byFloor[0] && floor <= byFloor[1]) : true
       const filtredByPrice = maxByPrice > minByPrice ? (price >= byPrice[0] && price <= byPrice[1]) : true
 
       // console.log('---start----filtredByType',filtredByType)
-
-      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout && status =="Свободна" )
+//changing view mode // фильтр убрать когда нужно отображение для менеджера
+      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout )
         result = true
 
       // if(filtredByType){

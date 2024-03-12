@@ -1,6 +1,6 @@
 <template>
-  <aside class="overflow-hidden contentFlat" :class="mq.mdAndUp ? asideClasses : ['full-height']">
-    <div class="flat">
+  <aside class="overflow-hidden contentFlat disNoneManager" :class="mq.mdAndUp ? asideClasses : ['full-height']">
+    <div class="flat disNoneManager">
 
 
 
@@ -9,7 +9,7 @@
 <!--    </div>-->
 
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
-    <div class = "flat__media" >
+    <div class = "flat__media disNoneManager" >
       <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
 
       <div class="vue-lb-info_bottom">
@@ -17,7 +17,7 @@
       </div>
 
     </div>
-    <div class="flat__info">
+    <div class="flat__info disNoneManager">
 <!--      <share />-->
     <div class="d-flex flex-column full-height" v-if="property">
       <div class="panelRight full-height  pb-10" :class="{'pt-5': mq.mdAndDown, 'pt-10': mq.mdAndUp}">
@@ -249,6 +249,29 @@
 " ><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none"><path d="M2496 4968 c-28 -29 -61 -126 -311 -895 l-279 -863 -919 0 c-611 0 -925 -3 -938 -10 -23 -13 -49 -61 -49 -93 0 -13 9 -36 20 -50 11 -14 346 -262 745 -552 398 -289 727 -530 730 -535 3 -4 -121 -396 -275 -870 -154 -474 -280 -873 -280 -887 0 -36 60 -93 98 -93 37 0 -26 -43 812 565 l710 516 710 -516 c838 -608 775 -565 812 -565 37 0 98 57 98 92 0 12 -126 414 -281 891 -155 477 -280 869 -278 871 2 1 331 240 731 530 400 290 737 539 748 553 11 14 20 37 20 50 0 32 -26 80 -49 93 -13 7 -327 10 -938 10 l-919 0 -279 863 c-249 767 -283 866 -311 895 -23 23 -41 32 -64 32 -23 0 -41 -9 -64 -32z"/></g></svg>
           <span class="buttonCopy2span">В избранное</span>
         </button>
+
+
+
+
+
+        <button type="button" class="buttonCopy2" v-on:click="goToChess" aria-label="Выбор с помощью фильтров" style="position: relative; left: 21px;">
+
+          <svg fill="#fff" style="
+    position: absolute;
+    left: 20px;
+" width="19" height="24" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 297" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 297 297">
+            <g>
+              <path d="M148.51,117.216c32.317,0,58.608-26.291,58.608-58.608S180.827,0,148.51,0c-32.317,0-58.608,26.291-58.608,58.608   S116.193,117.216,148.51,117.216z"/>
+              <path d="m227.154,145.618c-0.025-0.008-0.073-0.026-0.098-0.032-7.631-1.864-30.999-5.133-30.999-5.133-2.638-0.812-5.457,0.585-6.406,3.188l-35.174,96.509c-2.029,5.567-9.903,5.567-11.932,0l-35.174-96.509c-0.766-2.102-2.75-3.42-4.876-3.42-0.504,0-24.531,3.369-32.53,5.358-21.858,5.435-35.645,26.929-35.645,49.329v80.302c0,12.034 9.756,21.79 21.79,21.79h184.782c12.034,0 21.79-9.756 21.79-21.79v-80.569c-0.001-22.303-14.328-42.096-35.528-49.023z"/>
+              <path d="m161.775,138.613c-1.404-1.53-3.456-2.299-5.532-2.299h-15.485c-2.076,0-4.129,0.77-5.532,2.299-2.173,2.368-2.489,5.789-0.946,8.462l8.278,12.479-3.875,32.69 7.631,20.3c0.744,2.042 3.631,2.042 4.375,0l7.631-20.3-3.875-32.69 8.278-12.479c1.541-2.673 1.225-6.094-0.948-8.462z"/>
+            </g>
+          </svg>
+
+  <span class="buttonCopy2span">К фильтрам</span>
+        </button>
+
+
+
 
       </div>
 
@@ -830,6 +853,13 @@ function checkCookie(cname) {
 
 
 
+      },
+
+      goToChess() {
+        window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
+        window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
+        window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
+        window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
       },
 
       setModal() {

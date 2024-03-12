@@ -12,28 +12,31 @@
           <div v-if="mq.mdAndDown && modelDistrict" class="ml-6 text-subtitle-2 font-weight-500">{{ modelDistrict.name }}</div>
 
           <div style="justify-content: center; width: 100%; padding: 22px;" class="d-flex align-center flex-wrap align-center-inner" v-if="mq.mdAndUp" >
-            <div class="select" >
-              <div class="e-select text-body-1">
-                <select name="district" id="district" v-model="modelDistrict">
-                  <option
-                    v-for="district in districts"
-                    :key="district.id"
-                    :value="district"
-                  >{{ district.name }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="select ml-5">
-              <div class="e-select text-body-1">
-                <select name="object" id="object" v-model="modelObject">
-                  <option
-                    v-for="object in objects"
-                    :key="object.id"
-                    :value="object"
-                  >{{ object.name }}</option>
-                </select>
-              </div>
-            </div>
+
+<!--            <div class="select" >-->
+<!--              <div class="e-select text-body-1">-->
+<!--                <select name="district" id="district" v-model="modelDistrict">-->
+<!--                  <option-->
+<!--                    v-for="district in districts"-->
+<!--                    :key="district.id"-->
+<!--                    :value="district"-->
+<!--                  >{{ district.name }}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="select ml-5">-->
+<!--              <div class="e-select text-body-1">-->
+<!--                <select name="object" id="object" v-model="modelObject">-->
+<!--                  <option-->
+<!--                    v-for="object in objects"-->
+<!--                    :key="object.id"-->
+<!--                    :value="object"-->
+<!--                  >{{ object.name }}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+<!--            </div>-->
+
             <div class="ml-10">
               <div class="text-body-2 has-opacity-65 mb-2">Кол-во комнат</div>
               <div class="e-checkboxes-group py-2">
@@ -225,22 +228,47 @@
 
 
 
+              <!--              //changing view mode   -->
+              <!--здесь отображение для менеджера  (отображение первого в очереди)-->
+              <div class="c-building__floor  disNone" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+
+                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
+                     v-if="((floor+1) % 2 == 0)">
+                  <div class="buttonFloor" >{{ floor + 2 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor + 2}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
+                     v-if="((floor-1) % 2 == 0)">
+                  <div class="buttonFloor"  >{{ floor+1 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor+1}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-              <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+              <!--              //changing view mode-->
+              <!--здесь отображение для клиента (отображение первого в очереди)-->
+              <div class="c-building__floor just_building__floor disNoneManager" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
                 <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
@@ -269,28 +297,57 @@
                     </div>
                   </div>
                 </div>
-
-
-
               </div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -454,7 +511,8 @@
     </modal>
 
     <modal
-      name="modal"
+        class="disNoneManager"
+        name="modal"
       @before-open="onOpenModal" @closed="onCloseModal"
       adaptive width="100%" :max-width="340" height="auto"
     >
@@ -509,7 +567,7 @@
       </form>
     </modal>
 
-    <div class="loader" v-if="isLoading" :class="loadingClasses">
+    <div class="loader disNoneManager" v-if="isLoading" :class="loadingClasses">
       <div v-if="false">
 
         <div class="galTitle text-copy4">
@@ -553,7 +611,7 @@
     </div>
 
 
-    <div class="mobile__flat__callback" v-on:click="gotoHome" v-if="!isLoading">
+    <div class="mobile__flat__callback disNoneManager" v-on:click="gotoHome" v-if="!isLoading">
 <!--      <button class="buttonCopy2" style="  background-color: #e47554; "  >-->
 <!--        Вернуться к выбору планировки-->
 <!--      </button>-->
@@ -578,7 +636,7 @@
     </div>
 
     <!--   was here hided element -->
-    <div class="maincontent_parentBottom">
+    <div class="maincontent_parentBottom disNoneManager">
               <div class="galTitle text-copy4">
 
               </div>
@@ -650,9 +708,9 @@
     </div>
 
 
-    <div class="maincontent_selector">
+    <div class="maincontent_selector disNoneManager">
 
-      <div class="galTitle text-copy4" style="font-size:14px">
+      <div class="galTitle text-copy4 disNoneManager" style="font-size:14px">
         <!--        Хотите посмотреть график платежей по вашей иппотеке?-->
         Хотите посчитать возможную ипотеку? Выберите банк:
       </div>
@@ -1955,10 +2013,13 @@ function checkCookie(cname) {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
 
-  .disNone{//!!!!!!!fix2
-    display:none;
-  }
+.disNone { //!!!!!!!//changing view mode
+  //display:none; // раскоменить когда нужно представление для клиента и закоменить disNoneManager
+}
 
+.disNoneManager { //!!!!!!!//changing view mode
+  display: none; // раскоменить когда нужно представление для менеджера и закоментить disNone
+}
 
 
   .just_building__floor{
