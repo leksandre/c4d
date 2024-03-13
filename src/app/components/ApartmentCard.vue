@@ -1,9 +1,8 @@
 <template>
-<!--  @click.prevent="onViewApartmentGoTo" //changing view mode goto когда нужно отображение для менеджера-->
   <a
     href="#" class="c-building__flat"
     :class="{'is-active': property.isSelected, 'is-not-filtred': !property.isFiltred }"
-    @click.prevent="onViewApartmentGoTo"
+    @click.prevent="onViewApartment"
 
   >
     <div  v-if="property.isFiltred"
@@ -25,9 +24,12 @@
           {{ property['rooms'] }}
         </div>
         <div class="ml-2 has-opacity-65">{{ property['type_object'] }}</div>
-        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>
+        <!--        <div class="ml-auto has-opacity-65">№{{ property.name }}</div>-->
       </div>
-      <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>
+
+        <div class="ml-auto has-opacity-65">{{ property.name }}</div>
+
+        <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>
       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
       <div class="mt-1 has-opacity-65">Статус квартиры - {{ property.status }}</div>
       <div class="mb-10">
@@ -106,23 +108,35 @@
 
     methods: {
 
+      checkViewMode() {
+        var field = 'manager_mode';
+        var url = window.parent.location.href;
+        if (url.indexOf('?' + field + '=') != -1)
+          return true;
+        else if (url.indexOf('&' + field + '=') != -1)
+          return true;
+        return false
+      },
+
       onViewApartmentGoTo() {
-// console.log('this.property',this.property)
         //https://xn--d1acscjb2a6f.xn--p1ai/index.html?sqr=26.41_26.43
         let value1 = parseFloat((""+this.property.area).replace(",", "."));
         //console.log('value1', value1);
         let value2 = value1-0.01
         let value3 = value1+0.01
         let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
-        window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+
         window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
-        window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
-        window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
+        window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+        // window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
+        // window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
       },
 
 
-      // TODO: copypaste to App.vue method setFilter()
       onViewApartment() {
+
+       if(this.checkViewMode()) this.onViewApartmentGoTo()
+
         if (this.$config.mode === 'api') {
           this.$parent.postMessage({
             method: '_$is_dispatchEvent',

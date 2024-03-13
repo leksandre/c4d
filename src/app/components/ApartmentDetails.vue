@@ -1,6 +1,6 @@
 <template>
-  <aside class="overflow-hidden contentFlat disNoneManager" :class="mq.mdAndUp ? asideClasses : ['full-height']">
-    <div class="flat disNoneManager">
+  <aside class="overflow-hidden contentFlat" v-if="!checkViewMode()"  :class="mq.mdAndUp ? asideClasses : ['full-height']">
+    <div class="flat">
 
 
 
@@ -9,7 +9,7 @@
 <!--    </div>-->
 
 <!--    <div v-bind:class = "(isMobile())?'flat__media_mobile':'flat__media'">-->
-    <div class = "flat__media disNoneManager" >
+    <div class = "flat__media" >
       <light-box :media="this.matched" :closable="false" :showCaption="true" :showThumbs="true"></light-box>
 
       <div class="vue-lb-info_bottom">
@@ -17,7 +17,7 @@
       </div>
 
     </div>
-    <div class="flat__info disNoneManager">
+    <div class="flat__info">
 <!--      <share />-->
     <div class="d-flex flex-column full-height" v-if="property">
       <div class="panelRight full-height  pb-10" :class="{'pt-5': mq.mdAndDown, 'pt-10': mq.mdAndUp}">
@@ -254,7 +254,7 @@
 
 
 
-        <button type="button" class="buttonCopy2" v-on:click="goToChess" aria-label="Выбор с помощью фильтров" style="position: relative; left: 21px;">
+        <button v-if="false && !isMobile()" type="button" class="buttonCopy2" v-on:click="goToChess" aria-label="Выбор с помощью фильтров" style="position: relative; left: 21px;">
 
           <svg fill="#fff" style="
     position: absolute;
@@ -272,6 +272,13 @@
 
 
 
+        <div v-if="!isMobile()" type="button" v-on:click="goToChess" aria-label="Выбор с помощью фильтров" style="position: relative;
+    left: 53px;
+    cursor: pointer;
+    width: 200px;
+    font-size: 9px;">
+          <span class="buttonCopy2span" style="text-decoration: underline">К фильтрам</span>
+        </div>
 
       </div>
 
@@ -637,6 +644,15 @@ function checkCookie(cname) {
     methods: {
 
 
+      checkViewMode() {
+        var field = 'manager_mode';
+        var url = window.parent.location.href;
+        if (url.indexOf('?' + field + '=') != -1)
+          return true;
+        else if (url.indexOf('&' + field + '=') != -1)
+          return true;
+        return false
+      },
 
       showHide() {
         var panel1 = document.getElementById('idTableWithFloor')
@@ -856,10 +872,19 @@ function checkCookie(cname) {
       },
 
       goToChess() {
-        window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
-        window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
-        window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
-        window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
+        var url = window.parent.location.href.split('?')[0]+'?manager_mode=1';
+
+
+        window.parent.location.href = url
+        window.parent.location.replace(url);
+
+        // var url = window.location.origin + window.location.pathname
+        // var url = window.parent.location.protocol + '//' + window.parent.location.host + window.parent.location.pathname
+
+        // window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
+        // window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
+        // window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
+        // window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';
       },
 
       setModal() {

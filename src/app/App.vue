@@ -1,7 +1,8 @@
 <template>
   <div class="b-page d-flex flex-column full-height overflow-hidden pos-r">
     <header
-      class="flex-grow-0 pr-4 pos-rel disNone"
+        v-if="isManagerMode"
+      class="flex-grow-0 pr-4 pos-rel"
       :class="{'py-12': mq.mdAndUp, 'py-4': mq.mdAndDown, 'pl-10': mq.mdAndUp, 'pl-6': mq.mdAndDown}"
     >
       <div class="d-flex align-center">
@@ -230,12 +231,12 @@
 
               <!--              //changing view mode   -->
               <!--здесь отображение для менеджера  (отображение первого в очереди)-->
-              <div class="c-building__floor  disNone" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+              <div  v-if="isManagerMode" class="c-building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
                 <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
                   <div class="buttonFloor" >{{ floor + 2 }}</div>
-                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                  <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
                       <apartment-card
                           v-for="property in section.propertiesOnFloor[`floor_${floor + 2}`]"
@@ -249,7 +250,7 @@
                 <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
                      v-if="((floor-1) % 2 == 0)">
                   <div class="buttonFloor"  >{{ floor+1 }}</div>
-                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                  <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
                       <apartment-card
                           v-for="property in section.propertiesOnFloor[`floor_${floor+1}`]"
@@ -268,7 +269,7 @@
 
               <!--              //changing view mode-->
               <!--здесь отображение для клиента (отображение первого в очереди)-->
-              <div class="c-building__floor just_building__floor disNoneManager" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+              <div v-if="!isManagerMode" class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
                 <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
                      v-if="((floor+1) % 2 == 0)">
@@ -511,7 +512,7 @@
     </modal>
 
     <modal
-        class="disNoneManager"
+        v-if="!isManagerMode"
         name="modal"
       @before-open="onOpenModal" @closed="onCloseModal"
       adaptive width="100%" :max-width="340" height="auto"
@@ -567,7 +568,7 @@
       </form>
     </modal>
 
-    <div class="loader disNoneManager" v-if="isLoading" :class="loadingClasses">
+    <div class="loader" v-if="isLoading && !isManagerMode" :class="loadingClasses">
       <div v-if="false">
 
         <div class="galTitle text-copy4">
@@ -611,7 +612,7 @@
     </div>
 
 
-    <div class="mobile__flat__callback disNoneManager" v-on:click="gotoHome" v-if="!isLoading">
+    <div class="mobile__flat__callback" v-on:click="gotoHome" v-if="!isLoading && !isManagerMode">
 <!--      <button class="buttonCopy2" style="  background-color: #e47554; "  >-->
 <!--        Вернуться к выбору планировки-->
 <!--      </button>-->
@@ -636,7 +637,7 @@
     </div>
 
     <!--   was here hided element -->
-    <div class="maincontent_parentBottom disNoneManager">
+    <div class="maincontent_parentBottom" v-if="!isManagerMode" >
               <div class="galTitle text-copy4">
 
               </div>
@@ -708,9 +709,9 @@
     </div>
 
 
-    <div class="maincontent_selector disNoneManager">
+    <div class="maincontent_selector" v-if="!isManagerMode" >
 
-      <div class="galTitle text-copy4 disNoneManager" style="font-size:14px">
+      <div class="galTitle text-copy4" style="font-size:14px">
         <!--        Хотите посмотреть график платежей по вашей иппотеке?-->
         Хотите посчитать возможную ипотеку? Выберите банк:
       </div>
@@ -835,6 +836,7 @@ function checkCookie(cname) {
       properties: [],
       isLoading: true,
       isSending: false,
+      isManagerMode: false,
       sentResult: null,
       loadingClasses: [],
       sliderWidth: '260px',
@@ -1512,6 +1514,7 @@ function checkCookie(cname) {
           this.isLoading = true
           await this.$store.dispatch('chess/selectObject', this.$config.objectId)
           await this.setFilter(true)
+          this.isManagerMode = this.checkViewMode()
         }
         catch(e) {
           console.error(e)
@@ -1647,6 +1650,17 @@ function checkCookie(cname) {
           let fav = JSON.parse(json1);
           return fav
         }
+      },
+
+
+      checkViewMode() {
+        var field = 'manager_mode';
+        var url = window.parent.location.href;
+        if (url.indexOf('?' + field + '=') != -1)
+          return true;
+        else if (url.indexOf('&' + field + '=') != -1)
+          return true;
+        return false
       },
 
       favCoociesNotEmpty() {
@@ -2013,13 +2027,11 @@ function checkCookie(cname) {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
 
-.disNone { //!!!!!!!//changing view mode
-  //display:none; // раскоменить когда нужно представление для клиента и закоменить disNoneManager
+.disNone {
+  display:none;
 }
 
-.disNoneManager { //!!!!!!!//changing view mode
-  display: none; // раскоменить когда нужно представление для менеджера и закоментить disNone
-}
+
 
 
   .just_building__floor{

@@ -46,6 +46,14 @@ export default {
       // console.log('---start----type_apartment',property['type_apartment'])
       // console.log('---start----floor_number',property['floor_number'])
 
+      var manager_mode = false
+      var field = 'manager_mode';
+      var url = window.parent.location.href;
+      if (url.indexOf('?' + field + '=') != -1)
+        manager_mode = true;
+      else if (url.indexOf('&' + field + '=') != -1)
+        manager_mode = true;
+
       const toNumber = i => Number(i)
       byArea = byArea.map(toNumber)
       byFloor = byFloor.map(toNumber)
@@ -66,9 +74,11 @@ export default {
       const filtredByPrice = maxByPrice > minByPrice ? (price >= byPrice[0] && price <= byPrice[1]) : true
 
       // console.log('---start----filtredByType',filtredByType)
-//changing view mode // фильтр убрать когда нужно отображение для менеджера
       if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout )
-        result = true
+        if(manager_mode)
+        {result = true}
+        else{result = (status=='Свободна')}
+
 
       // if(filtredByType){
       //   console.log('type!',type)
