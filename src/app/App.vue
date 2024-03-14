@@ -1653,6 +1653,17 @@ function checkCookie(cname) {
       },
 
 
+      floorCoocies() {
+        let cookieName = "floorAppartament"
+        if (checkCookie(cookieName)) {
+          let val1 = getCookie(cookieName);
+          let fav = parseInt(val1,10);
+          return fav
+        }
+        return 0
+      },
+
+
       checkViewMode() {
         var field = 'manager_mode';
         var url = window.parent.location.href;
@@ -1713,10 +1724,28 @@ function checkCookie(cname) {
         this.closeInfoPanel(true)
       },
 
+      hasClass(element, className) {
+        return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+      },
+
       onChangeFilter() {
         this.$store.commit('chess/changeFilters', this.filters)
         this.closeInfoPanel(true)
         setTimeout(_ => {
+
+          let floor = this.floorCoocies()
+          if( floor > 0 ){
+            let floorcards = document.getElementById('floorView-' + floor);
+            if(floorcards) {
+              // let floorSaleCards = floorcards.getElementsByClassName('nowInSale');
+              if(this.hasClass(floorcards,'nowInSale'))
+              {
+                floorcards.click()
+                floorcards.querySelectorAll('.buttonFloor')[0].click();
+                return true
+              }
+            }
+          }
 
           // let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
           let arrcards = document.getElementsByClassName('nowInSale');// берем первый из этажей с квартирой доступной к продаже

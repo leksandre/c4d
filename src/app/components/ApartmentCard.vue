@@ -46,6 +46,14 @@
 </template>
 
 <script>
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
   import { mapGetters } from 'vuex'
   export default {
     props: {
@@ -126,8 +134,14 @@
         let value3 = value1+0.01
         let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
 
-        window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
-        window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+        setCookie('floorAppartament', this.property.floor, 1)
+
+        window.parent.location.href = '/index.html'+ addstr1;
+        window.parent.location.replace('/index.html'+ addstr1);
+
+        // window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
+        // window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+
         // window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
         // window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
       },
