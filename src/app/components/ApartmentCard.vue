@@ -136,12 +136,16 @@ function setCookie(cname, cvalue, exdays) {
 
         setCookie('floorAppartament', this.property.floor, 1)
 
-        window.parent.location.href = '/index.html'+ addstr1;
-        window.parent.location.replace('/index.html'+ addstr1);
+        if ((window.parent.location.href.indexOf("localhost") != -1) | (window.parent.location.toString().indexOf("localhost") != -1)) {
+          window.parent.location.href = '/index.html' + addstr1;
+          window.parent.location.replace('/index.html' + addstr1);
+        }
+
+        window.open(
+            '/index.html' + addstr1, "_blank");
 
         // window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
         // window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
-
         // window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
         // window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
       },

@@ -874,12 +874,13 @@ function checkCookie(cname) {
       goToChess() {
         var url = window.parent.location.href.split('?')[0]+'?manager_mode=1';
 
+        if ((window.parent.location.href.indexOf("localhost") != -1) | (window.parent.location.toString().indexOf("localhost") != -1)) {
+          window.parent.location.href = url
+          window.parent.location.replace(url);
+        }
 
-        window.parent.location.href = url
-        window.parent.location.replace(url);
-
-        // var url = window.location.origin + window.location.pathname
-        // var url = window.parent.location.protocol + '//' + window.parent.location.host + window.parent.location.pathname
+        window.open(
+            url, "_blank");
 
         // window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html');
         // window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/manager/index.html';

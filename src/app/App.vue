@@ -234,7 +234,7 @@
               <div  v-if="isManagerMode" class="c-building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
                 <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
-                     v-if="((floor+1) % 2 == 0)">
+                     v-if="((floor+1) % 2 == 0)" v-show="hasChildWithClass((floor+2), 'c-building__flat-type')">
                   <div class="buttonFloor" >{{ floor + 2 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
@@ -248,7 +248,7 @@
                 </div>
 
                 <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
-                     v-if="((floor-1) % 2 == 0)">
+                     v-if="((floor-1) % 2 == 0)" v-show="hasChildWithClass((floor+1), 'c-building__flat-type')">
                   <div class="buttonFloor"  >{{ floor+1 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
@@ -830,6 +830,7 @@ function checkCookie(cname) {
 
       collageChoise: 'W',
 
+      cookieName_floorAppartament: "floorAppartament",
       view: 'tilePlus',
       testData: ' <pre> </pre> ',
       timerForShowPanel:false,
@@ -1382,12 +1383,25 @@ function checkCookie(cname) {
           let foundEl = (childElements.length > 0)
 
           // console.log(itemId,foundEl)
+          if (this.isManagerMode){
+            this.$nextTick()
+            this.$forceNextTick()
+          }
           return foundEl
         } else {
           // console.log('elem not exist')
+          if (this.isManagerMode){
+            this.$nextTick()
+            this.$forceNextTick()
+          }
           return true;
         }
         // console.log('return false;')
+
+        if (this.isManagerMode){
+          this.$nextTick()
+          this.$forceNextTick()
+        }
         return false;
       },
       hasChildWithClassFav(itemId, className) {
@@ -1511,10 +1525,12 @@ function checkCookie(cname) {
 
       async init() {
         try {
+          this.isManagerMode = this.checkViewMode()
+
           this.isLoading = true
           await this.$store.dispatch('chess/selectObject', this.$config.objectId)
           await this.setFilter(true)
-          this.isManagerMode = this.checkViewMode()
+
         }
         catch(e) {
           console.error(e)
@@ -1654,9 +1670,8 @@ function checkCookie(cname) {
 
 
       floorCoocies() {
-        let cookieName = "floorAppartament"
-        if (checkCookie(cookieName)) {
-          let val1 = getCookie(cookieName);
+        if (checkCookie(this.cookieName_floorAppartament)) {
+          let val1 = getCookie(this.cookieName_floorAppartament);
           let fav = parseInt(val1,10);
           return fav
         }
@@ -1742,6 +1757,7 @@ function checkCookie(cname) {
               {
                 floorcards.click()
                 floorcards.querySelectorAll('.buttonFloor')[0].click();
+                document.cookie = this.cookieName_floorAppartament +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                 return true
               }
             }
