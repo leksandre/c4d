@@ -233,8 +233,9 @@
               <!--здесь отображение для менеджера  (отображение первого в очереди)-->
               <div  v-if="isManagerMode" class="c-building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
 
-                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
-                     v-if="((floor+1) % 2 == 0)" v-show="hasChildWithClass((floor+2), 'c-building__flat-type')">
+                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" class="nowInSale floorViewSection1"
+                     v-if="((floor+1) % 2 == 0)" >
+<!--                  v-show="hasChildWithClass((floor+2), 'c-building__flat-type')"-->
                   <div class="buttonFloor" >{{ floor + 2 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
@@ -247,8 +248,9 @@
                   </div>
                 </div>
 
-                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
-                     v-if="((floor-1) % 2 == 0)" v-show="hasChildWithClass((floor+1), 'c-building__flat-type')">
+                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" class=" nowInSale floorViewSection2"
+                     v-if="((floor-1) % 2 == 0)" >
+<!--                  v-show="hasChildWithClass((floor+1), 'c-building__flat-type')"-->
                   <div class="buttonFloor"  >{{ floor+1 }}</div>
                   <div v-for="(section, sectionId) in board" :key="sectionId">
                     <div class="c-building__section">
@@ -1383,25 +1385,12 @@ function checkCookie(cname) {
           let foundEl = (childElements.length > 0)
 
           // console.log(itemId,foundEl)
-          if (this.isManagerMode){
-            this.$nextTick()
-            this.$forceNextTick()
-          }
           return foundEl
         } else {
           // console.log('elem not exist')
-          if (this.isManagerMode){
-            this.$nextTick()
-            this.$forceNextTick()
-          }
           return true;
         }
         // console.log('return false;')
-
-        if (this.isManagerMode){
-          this.$nextTick()
-          this.$forceNextTick()
-        }
         return false;
       },
       hasChildWithClassFav(itemId, className) {
@@ -1789,6 +1778,27 @@ function checkCookie(cname) {
 
 
             /// action after load and fix all transformations
+            // прячем все пустые строки на шахматке для менеджера
+            if(this.isManagerMode){
+              for(let floor_i = 0; floor_i <= 25; floor_i++){
+                let floorcards = document.getElementById('floorView-' + floor_i);
+                if(floorcards) {
+                  let floorSaleCards = floorcards.getElementsByClassName('c-building__flat-inner');
+                  let    stringLine = (floorcards.textContent===undefined) ? floorcards.innerText : floorcards.textContent;
+                  // let    stringLine =  floorcards.textContent;
+                  if(stringLine.length>40)
+                  {
+                    // console.log('floorView-' + floor_i)
+                    // console.log(stringLine)
+                    // console.log(stringLine.length)
+                    floorcards.style.removeProperty('display')
+                  }
+                  else{
+                    floorcards.style.display = 'none'
+                  }
+                }
+              }
+            }
 
           } else {
             console.log('по данному запросу объекты недвижимости недоступны')
@@ -1797,6 +1807,13 @@ function checkCookie(cname) {
           ;
           /*обработать ситуацию когда фильтры не вернули ничего*/
         },500);
+
+
+
+        setTimeout(_ => {
+
+        });
+
       },
 
       priceFormatter(value) {
