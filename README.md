@@ -164,7 +164,7 @@ while (element.firstChild) {
 	  let linkText = document.createTextNode("Ссылка Яндекс Карты");
     	  a.appendChild(linkText);
     	  a.title = "Ссылка Яндекс Карты";
-    	  a.href = "https://yandex.ru/maps/-/CDe0RF98";
+    	  a.href = "https://yandex.ru/maps/-/CDRCr06d";
 a.setAttribute("target", "_blank"); 
     	  element.appendChild(a);		
 		
