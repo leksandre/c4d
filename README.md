@@ -172,7 +172,7 @@ a.setAttribute("target", "_blank");
 //only 1 time
 element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.paddingBottom="0px";
 element.parentElement.parentElement.style.marginBottom="0px";
-
+element.style.textDecoration="underline";
 		}
 
 
@@ -190,7 +190,7 @@ while (element.firstChild) {
     	  a.href = "https://go.2gis.com/g37pa";
 a.setAttribute("target", "_blank"); 
     	  element.appendChild(a);		
-
+	  element.style.textDecoration="underline";
 		}
 
 
