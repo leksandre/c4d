@@ -87,11 +87,18 @@
 
 
           </div>
-          <div class="text-copy3">
-<!--            В ипотеку:-->
+
+<!--          <div class="text-copy3">-->
+<!--&lt;!&ndash;            В ипотеку:&ndash;&gt;-->
+<!--          </div>-->
+
+          <div class="mb-10">
+            <div class="c-list text-body-2">
+              <div class="c-list__item d-flex justify-space-between">
+                <div>Скидки за наличный расчет</div>
+              </div>
+            </div>
           </div>
-
-
 
           <div class="flat__callback" v-on:click="setModalDialog(true,property)"  >
             <button class="buttonCopy2" style="  background-color: #e47554;"  >

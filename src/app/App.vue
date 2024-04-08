@@ -591,7 +591,7 @@
 
           <div class="exampleGal">
             <div class="galTitle text-body-21" style="margin-left: 15px;"> <div class="text-title3dTour"> Светлый «осовременненый» минимализм  </div>
-              <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px">3D ТУР</a> </div>
+              <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a> </div>
             </div>
             <photo-collage-wrapper
                 gapSize="6px"
@@ -601,7 +601,7 @@
 
           <div class="exampleGal">
             <div class="galTitle text-body-21" style="margin-left: 15px;"> <div class="text-title3dTour"> Темный «оклассиченный» лофт  </div>
-               <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px">3D ТУР</a> </div>
+               <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a> </div>
             </div>
             <photo-collage-wrapper
                 gapSize="6px"
@@ -663,7 +663,7 @@
 
         <div class="exampleGal">
           <div class="galTitle text-body-21" style="margin-left: 15px;"><div class="text-title3dTour"> Светлый «осовременненый» минимализм </div>
-            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px">3D ТУР</a></div>
+            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a></div>
           </div>
           <photo-collage-wrapper
               gapSize="6px"
@@ -673,7 +673,7 @@
 
         <div class="exampleGal">
           <div class="galTitle text-body-21" style="margin-left: 15px;"><div class="text-title3dTour"> Темный «оклассиченный» лофт </div>
-            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px">3D ТУР</a></div>
+            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a></div>
           </div>
           <photo-collage-wrapper
               gapSize="6px"
