@@ -1737,31 +1737,51 @@ function checkCookie(cname) {
         this.closeInfoPanel(true)
         setTimeout(_ => {
 
+          let arrcards = document.getElementsByClassName('nowInSale');
+
           let floor = this.floorCoocies()
-          if( floor > 0 ){
+          if (floor > 0) {
             let floorcards = document.getElementById('floorView-' + floor);
-            if(floorcards) {
+            if (floorcards) {
               // let floorSaleCards = floorcards.getElementsByClassName('nowInSale');
-              if(this.hasClass(floorcards,'nowInSale'))
-              {
+              if (this.hasClass(floorcards, 'nowInSale')) {
                 floorcards.click()
                 floorcards.querySelectorAll('.buttonFloor')[0].click();
-                document.cookie = this.cookieName_floorAppartament +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                document.cookie = this.cookieName_floorAppartament + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                 return true
+              }
+            }
+          } else {
+            for (let floor_i = 0; floor_i <= (arrcards.length - 1); floor_i++) {
+              let floorcards = arrcards[floor_i] //.getElementById('floorView-' + floor_i);
+              if (floorcards) {
+                let floorSaleCards = floorcards.getElementsByClassName('c-building__flat-inner');
+                // let disNone = floorcards.getElementsByClassName('disNone');
+                if (floorSaleCards.length > 0) {
+                  console.log(floorSaleCards.textContent)
+                  floorcards.click()
+                  floorcards.querySelectorAll('.buttonFloor')[0].click();
+                }
               }
             }
           }
 
-          // let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
-          let arrcards = document.getElementsByClassName('nowInSale');// берем первый из этажей с квартирой доступной к продаже
-          // if (arrcards.length > 0) {
-          //   arrcards[0].click()
-          // }
 
-          // console.log('arrcards',arrcards)
+
+
+
+
+          // // let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
+         // берем первый из этажей с квартирой доступной к продаже
+          arrcards = document.getElementsByClassName('nowInSale');
           if (arrcards.length > 0) {
-            arrcards[0].click()
-            arrcards[0].querySelectorAll('.buttonFloor')[0].click();
+            // arrcards[0].click()
+            // arrcards[0].querySelectorAll('.buttonFloor')[0].click();
+          } else {
+            console.log('по данному запросу объекты недвижимости недоступны')
+            // alert('по данному запросу объекты недвижимости недоступны')
+          }
+
 
 
 
@@ -1800,10 +1820,7 @@ function checkCookie(cname) {
               }
             }
 
-          } else {
-            console.log('по данному запросу объекты недвижимости недоступны')
-            // alert('по данному запросу объекты недвижимости недоступны')
-          }
+
           ;
           /*обработать ситуацию когда фильтры не вернули ничего*/
         },500);
