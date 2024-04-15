@@ -1740,7 +1740,7 @@ function checkCookie(cname) {
           let arrcards = document.getElementsByClassName('nowInSale');
 
           let floor = this.floorCoocies()
-          if (floor > 0) {
+          if (floor > 0) {// если куки установлены
             let floorcards = document.getElementById('floorView-' + floor);
             if (floorcards) {
               // let floorSaleCards = floorcards.getElementsByClassName('nowInSale');
@@ -1751,7 +1751,9 @@ function checkCookie(cname) {
                 return true
               }
             }
-          } else {
+          }
+
+          if (1){ // клик по первой квартире на этаже из фильтра
             for (let floor_i = 0; floor_i <= (arrcards.length - 1); floor_i++) {
               let floorcards = arrcards[floor_i] //.getElementById('floorView-' + floor_i);
               if (floorcards) {

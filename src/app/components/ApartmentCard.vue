@@ -3,7 +3,7 @@
     href="#" class="c-building__flat"
     :class="{'is-active': property.isSelected, 'is-not-filtred': !property.isFiltred }"
     @click.prevent="onViewApartment"
-
+    :style="[ property.status == 'Свободна' ? {'cursor': 'pointer'} : {'cursor': 'not-allowed'} ]"
   >
     <div  v-if="property.isFiltred"
       class="c-building__flat-type"
@@ -31,9 +31,12 @@
 
         <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>
       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
-      <div class="mt-1 has-opacity-65">Статус квартиры - {{ property.status }}</div>
+
+      <div v-if="property.status=='Свободна'" class="mt-1 has-opacity-65"  :style="{'background-color': color}" >Статус квартиры - {{ property.status }}</div>
+      <div v-else class="mt-1 has-opacity-65" >Статус квартиры - {{ property.status }}</div>
+
       <div class="mb-10">
-        <a class="c-image-property image-link"  @click="onOpenImage">
+        <a class="c-image-property image-link"  @click="onOpenImage" >
 <!--          <img :src="property.plan" alt="">-->
           <img :src="property.images[0].src" alt="">
         </a>
@@ -128,6 +131,9 @@ function setCookie(cname, cvalue, exdays) {
 
       onViewApartmentGoTo() {
         //https://xn--d1acscjb2a6f.xn--p1ai/index.html?sqr=26.41_26.43
+        if (this.property.status!='Свободна'){
+          return
+        }
         let value1 = parseFloat((""+this.property.area).replace(",", "."));
         //console.log('value1', value1);
         let value2 = value1-0.01
