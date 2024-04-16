@@ -38,7 +38,7 @@
       <div class="mb-10">
         <a class="c-image-property image-link"  @click="onOpenImage" >
 <!--          <img :src="property.plan" alt="">-->
-          <img :src="property.images[0].src" alt="">
+          <img  v-if="typeof property.images !== 'undefined' && typeof property.images[0] !== 'undefined' && typeof property.images[0].src !== 'undefined'"  :src="property.images[0].src" alt="">
         </a>
       </div>
 

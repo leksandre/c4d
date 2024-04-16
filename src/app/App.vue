@@ -12,7 +12,8 @@
           </a>
           <div v-if="mq.mdAndDown && modelDistrict" class="ml-6 text-subtitle-2 font-weight-500">{{ modelDistrict.name }}</div>
 
-          <div style="justify-content: center; width: 100%; padding: 22px;" class="d-flex align-center flex-wrap align-center-inner" v-if="mq.mdAndUp" >
+          <div style="justify-content: center; width: 100%; padding: 22px;  " class="d-flex align-center flex-wrap align-center-inner" v-if="mq.mdAndUp" >
+<!--            color:#E47554;-->
 
 <!--            <div class="select" >-->
 <!--              <div class="e-select text-body-1">-->
@@ -711,12 +712,21 @@
     </div>
 
 
+
+
     <div class="maincontent_selector" v-if="!isManagerMode" >
 
       <div class="galTitle text-copy4" style="font-size:14px">
         <!--        Хотите посмотреть график платежей по вашей иппотеке?-->
         Хотите посчитать возможную ипотеку? Выберите банк:
       </div>
+
+      <br>
+      <div class="selector1domrf" v-on:click="goToDomRf()"   >
+        <!--      width: 100px;-->
+        <img src="https://xn--h1alcedd.xn--d1aqf.xn--p1ai/dist/img/logo-2-dom-rf.svg" alt="" style=" height: 42px;"/>
+      </div>
+      <br>
 
       <div class="selector1" v-on:click=" setbank('sber') "  :class="{ 'opc3': bank!=='sber' }" >
         <div class="shadow1" v-show="bank!=='sber'"></div>
@@ -731,6 +741,8 @@
         <!--        <br>-->
         <!--        <label>Втб</label>-->
       </div>
+
+
 
       <br>
 
@@ -1210,6 +1222,17 @@ function checkCookie(cname) {
 
     },
     methods: {
+
+      goToDomRf(){
+        let url = 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/calculators/kalkulyator-ipoteki/'
+
+        // window.parent.location.href = url
+        // window.parent.location.replace(url);
+
+        // window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+
+        window.open(url, '_blank')
+      },
 
       setbank(b){
         this.bank=b;

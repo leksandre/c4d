@@ -78,7 +78,7 @@ width: 120px;
     justify-content: center;
     background-color: white;
     border-radius: 50%;
-    color: $color-input-fields;
+    color: $color-input-fields-Do;
     width: 102px;
     height: 22px;
     font-size: $font-size-text-body-2;
@@ -100,7 +100,7 @@ width: 120px;
     visibility: hidden;
 
     &:checked + label {
-      background-color: $color-input-fields;
+      background-color: $color-input-fields-Do;
       color: white;
     }
   }

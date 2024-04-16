@@ -1321,7 +1321,8 @@ img.vue-lb-modal-image {
   margin: 0px auto 0px auto;
   min-width: 290px;
   width: fit-content;
-  height: 180px;
+  //height: 180px;
+  height: 276px;
   margin-top: 10px;
   margin-bottom: 31px;
 }
@@ -1333,6 +1334,20 @@ img.vue-lb-modal-image {
   width: 49%;
   cursor: pointer;
   position: relative;
+}
+
+.selector1domrf{
+  position: relative;
+  left: 100px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  padding: 30px;
+  background-color: azure;
+  border-radius: 14px;
+  width: 199px;
+  height: 102px;
+  cursor: pointer;
+
 }
 
 .selector1 input[type=radio] {
