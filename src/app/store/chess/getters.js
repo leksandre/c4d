@@ -6,7 +6,7 @@ export default {
   sectionById: state => id => state.sections.find(section => section.id === id),
   floorsCount: state => Math.max(...state.sections.map(section => section.number_of_floors)) || 0,
   propertyById: state => id => state.properties.find(property => property.id === id),
-  allTypes: state => uniq(state.properties.map(prop => prop['rooms'])),
+  allTypes: state => uniq(state.properties.map(prop => prop['rooms'])).sort(),
   allPrices: state => uniq(state.properties.map(prop => prop.cost)),
   minPrice: (state, getters) => Math.min(...getters.allPrices),
   maxPrice: (state, getters) => Math.max(...getters.allPrices),
