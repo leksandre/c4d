@@ -12,7 +12,8 @@ $dotBgColor: #fff !default;
 $dotBgColorDisable: #ccc !default;
 $dotBorderRadius: 50% !default;
 
-$tooltipBgColor: $themeColor !default;
+//$tooltipBgColor: $themeColor !default;
+$tooltipBgColor: $color-primary-DomOtel !default;
 $tooltipColor: #fff !default;
 $tooltipBorderRadius: 5px !default;
 $tooltipPadding: 2px 5px !default;
@@ -39,7 +40,8 @@ $labelFontSize: 14px !default;
 
 /* process style */
 .vue-slider-process {
-  background-color: $themeColor;
+  //background-color: $themeColor;
+  background-color: $color-primary-DomOtel;
   border-radius: $railBorderRadius;
 }
 

@@ -40,7 +40,7 @@
 <!--            </div>-->
 
             <div class="ml-10">
-              <div class="text-body-2 has-opacity-65 mb-2">Кол-во комнат</div>
+              <div class="text-body-2 has-opacity-65 mb-2 red-color-domOtel ">Кол-во комнат</div>
               <div class="e-checkboxes-group py-2">
                 <div class="e-checkbox-btn" v-for="(type, ind) in allTypes" :key="`type${ind}`">
                   <input
@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="ml-15 mr-20 pr-10 pb-8" v-if="!isLoading && floorsCount > 1">
-              <div class="text-body-2 has-opacity-65">Этаж</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Этаж</div>
               <vue-slider
                 v-model="filters.byFloor"
                 :width="sliderWidth"
@@ -66,7 +66,7 @@
               />
             </div>
             <div class="mr-20 pr-10 pb-8" v-if="!isLoading && maxPrice > minPrice">
-              <div class="text-body-2 has-opacity-65">Стоимость, ₽</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Стоимость, ₽</div>
               <vue-slider
                 v-model="filters.byPrice"
                 :width="sliderWidth"
@@ -80,7 +80,7 @@
               />
             </div>
             <div class="pb-8 mr-10" v-if="!isLoading && maxArea > minArea">
-              <div class="text-body-2 has-opacity-65">Площадь, м²</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Площадь, м²</div>
               <vue-slider
                 v-model="filters.byArea"
                 :width="sliderWidth"
@@ -92,12 +92,12 @@
                 @change="onChangeFilter"
               />
             </div>
-            <a href="#" @click.prevent="setFilter(true)" class="text-body-2">очистить</a>
+            <a href="#" @click.prevent="setFilter(true)" class="text-body-2 red-color-domOtel ">очистить</a>
           </div>
 
-          <div class="select ml-auto flex-shrink-0" style="width: 100px" v-if="mq.mdAndUp">
-            <div class="e-select text-body-1">
-              <select name="district" id="view" v-model="view">
+          <div class="select ml-auto flex-shrink-0 red-color-domOtel " style="width: 100px" v-if="mq.mdAndUp">
+            <div class="e-select text-body-1 red-color-domOtel ">
+              <select name="district" id="view" v-model="view" class="e-select text-body-1 red-color-domOtel ">
                 <option value="tilePlus">Плитка+</option>
                 <option value="tile">Компактная</option>
               </select>
