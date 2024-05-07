@@ -5,7 +5,7 @@
       class="flex-grow-0 pr-4 pos-rel"
       :class="{'py-12': mq.mdAndUp, 'py-4': mq.mdAndDown, 'pl-10': mq.mdAndUp, 'pl-6': mq.mdAndDown}"
     >
-      <img src="https://xn--d1acscjb2a6f.xn--p1ai/storage/6748/0031/674822eb0aa21287fee535ac328e1d906bc02c09.svg" alt="" style=" position: absolute; left:20px; top: 10px;"/>
+      <img src="https://xn--d1acscjb2a6f.xn--p1ai/storage/6748/0031/674822eb0aa21287fee535ac328e1d906bc02c09.svg"  v-on:click="gotoHome"  alt="" style=" cursor:pointer; position: absolute; left:20px; top: 10px;"/>
       <div class="d-flex align-center">
         <div class="d-flex align-center flex-grow-1 pr-5" >
           <a v-if="mq.mdAndDown && modelDistrict" href="#" @click.prevent="$modal.show('filters')">
