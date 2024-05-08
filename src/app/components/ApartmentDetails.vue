@@ -264,8 +264,8 @@
     font-size: 20px;
     font-weight: 900;
     font-style: normal;
-    font-stretch: ultra-condensed;">&</span>
-          <span class="buttonCopy2span" >Выбрать планировку</span>
+    font-stretch: ultra-condensed;">||</span>
+          <span class="buttonCopy2span" >Вce планировки</span>
         </button>
 
 <!--            <div  v-on:click="setModal9" class="buttonCopy2" style="-->
