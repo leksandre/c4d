@@ -258,7 +258,21 @@
         </button>
 
 
+        <button type="button" v-on:click="setModalDialogBySelectFalt" class="buttonCopy2" data-callback="true" data-href="chosePlan" aria-label="Выбрать планировку" data-init="true"  style="  position: relative; left: 21px;">
+          <span style="position: absolute;
+    left: 26px;
+    font-size: 20px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: ultra-condensed;">&</span>
+          <span class="buttonCopy2span" >Выбрать планировку</span>
+        </button>
 
+<!--            <div  v-on:click="setModal9" class="buttonCopy2" style="-->
+<!--            max-width: 1600px;-->
+<!--            margin: 0px auto 0px auto;-->
+<!--        " v-show="!modal_9" >показать калькулятор иппотеки Сбербанка</div>-->
+<!--            modal_9-->
 
 
         <button v-if="false && !isMobile()" type="button" class="buttonCopy2" v-on:click="goToChess" aria-label="Выбор с помощью фильтров" style="position: relative; left: 21px;">
@@ -291,6 +305,53 @@
 
 
 
+
+
+      <div>
+        <div class="c-modal" v-show="modal_12">
+          <span>modal_12</span>
+        </div>
+        <div class="bg" id="switcher_window_dialog" v-show="modal_12" v-on:click="setModalDialogBySelectFalt">
+          <div class="close" v-on:click="setModalDialogBySelectFalt">
+            <span v-on:click="setModalDialogBySelectFalt"></span>
+            <span v-on:click="setModalDialogBySelectFalt"></span>
+            <span v-on:click="setModalDialogBySelectFalt"></span>
+            <span v-on:click="setModalDialogBySelectFalt"></span>
+            <svg viewBox="0 0 36 36" class="circle" v-on:click="setModalDialogBySelectFalt">
+              <path v-on:click="setModalDialogBySelectFalt"
+                    stroke-dasharray="100, 100"
+                    d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+            </svg>
+          </div>
+
+          <div class="favwindowFlatParent">
+            <div class="favwindowFlat" style="    width: 166px;   " v-for=" (idhash, idxf) in boardUniq" >
+<!--              {{property.id}}-->
+
+
+              <chose-card
+                  :key="idhash"
+                  :property="propertyGet(idhash)"
+              />
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
       <div>
@@ -512,7 +573,7 @@ function checkCookie(cname) {
   import { mapState, mapGetters } from 'vuex'
   // import LightBox from './vue-image-lightbox/src/App.vue'
   import LightBox from './vue-image-lightbox/components/LightBox.vue'
-
+  import ChoseCard from './ChoseCard'
   // import {media} from "vue-image-lightbox/src/dummy";
   // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
 
@@ -528,6 +589,7 @@ function checkCookie(cname) {
       FORM_ENDPOINT: "endpointUrl",
 
       modal_2: false,
+      modal_12: false,
       inFavCustom:false,
       asideClasses: ['c-aside'],
       descriptioOpened: false,
@@ -550,7 +612,7 @@ function checkCookie(cname) {
     }),
 
     components: {
-      LightBox,
+      LightBox, ChoseCard,
     },
     computed: {
       webShareApiSupported() {
@@ -575,28 +637,28 @@ function checkCookie(cname) {
         return (this.inFavCustom) ? '#e47554' : '#ffffff';
       },
         inFav(){
-        if (this.property) {
-          if (this.property.hasOwnProperty("id")) {
-            // console.log(this.property['images'])
-            // console.log(this.property.images)
-            // console.log(this.property)
-            // console.log(this.media)
-            let uuid = this.property['id']
-
-            // if (uuid===null)return false
-            let cookieName = "favItemsAppartament"
-            if (checkCookie(cookieName)) {
-              let json1 = getCookie(cookieName);
-              let fav = JSON.parse(json1);
-              if(fav.indexOf(uuid) != -1)
-              {
-                return this.inFavCustom = true
-              }
-            }
-            return this.inFavCustom = false
-
-          }
-        }
+        // if (this.property) {
+        //   if (this.property.hasOwnProperty("id")) {
+        //     // console.log(this.property['images'])
+        //     // console.log(this.property.images)
+        //     // console.log(this.property)
+        //     // console.log(this.media)
+        //     let uuid = this.property['id']
+        //
+        //     // if (uuid===null)return false
+        //     let cookieName = "favItemsAppartament"
+        //     if (checkCookie(cookieName)) {
+        //       let json1 = getCookie(cookieName);
+        //       let fav = JSON.parse(json1);
+        //       if(fav.indexOf(uuid) != -1)
+        //       {
+        //         return this.inFavCustom = true
+        //       }
+        //     }
+        //     return this.inFavCustom = false
+        //
+        //   }
+        // }
 
 
       },
@@ -629,6 +691,9 @@ function checkCookie(cname) {
         'title',
       ]),
       ...mapGetters(['mq']),
+      ...mapGetters('chess', [
+        'boardUniq',
+      ]),
       descriptionLenght: vm => vm.property.description.length,
     },
 
@@ -650,6 +715,14 @@ function checkCookie(cname) {
 
     methods: {
 
+      propertyGet(hash){
+        // console.log('this.$store.state.chess',this.$store.state.chess)
+        // console.log('this.$store.state.chess.properties[0]',this.$store.state.chess.properties[0])
+        let filterCriteria = [hash];
+        let filteredData = this.$store.state.chess.properties.filter(item => filterCriteria.includes(item.id));
+        // console.log('filteredData',filteredData);
+        return filteredData[0]
+      },
 
       checkViewMode() {
         var field = 'manager_mode';
@@ -832,6 +905,21 @@ function checkCookie(cname) {
           title: 'Отпарвлено!',
           message: 'Наш менеджер свяжется с вами в ближайшее время'
         });
+      },
+
+
+      setModalDialogBySelectFalt(isBron = false, propertyL = []) {
+        scrollTop();
+        let elBg = document.getElementById('switcher_window_dialog')
+        let testParent = document.getElementById('maincontent_parent1')
+
+        if (elBg && testParent) {
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+        this.modal_12 = !this.modal_12;
       },
 
       setModalDialog(isBron = false, propertyL = []) {

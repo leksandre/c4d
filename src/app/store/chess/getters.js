@@ -13,6 +13,24 @@ export default {
   allAreas: state => uniq(state.properties.map(prop => prop['area'])),
   minArea: (state, getters) => Math.floor(Math.min(...getters.allAreas)),
   maxArea: (state, getters) => Math.ceil(Math.max(...getters.allAreas)),
+
+  boardUniq: state => {
+    let propertiesOfArea = {}
+
+    const properties = state.properties.slice().sort((a, b) => a.numberonfloor - b.numberonfloor)
+
+    for (const prop of properties) {
+      let area = prop.area
+      if (prop.status=="Свободна" && !(area in propertiesOfArea)){
+        propertiesOfArea[area] = prop.id
+      }
+
+    }
+
+
+    return propertiesOfArea
+  },
+
   board: state => {
     let chess = {}
     let propertiesOfSection = {}

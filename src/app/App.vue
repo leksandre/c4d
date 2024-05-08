@@ -765,6 +765,7 @@
         height="1300px"
         frameBorder="0"
         style=" overflow: hidden; height: 1300px; width: 100%; max-width: 1600px; border:0;"
+        loading="lazy"
     >
       Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
     </iframe>
@@ -783,6 +784,7 @@
         height="8000px"
         frameBorder="0"
         style=" overflow: hidden; height: 8000px; width: 100%; max-width: 1600px; border:0;"
+        loading="lazy"
     >
       Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
     </iframe>
