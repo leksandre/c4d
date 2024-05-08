@@ -328,7 +328,7 @@
           </div>
 
           <div class="favwindowFlatParent">
-            <div class="favwindowFlat" style="    width: 166px;   " v-for=" (idhash, idxf) in boardUniq" >
+            <div class="favwindowFlat" style="    width: 166px;    height: 160px;" v-for=" (idhash, idxf) in boardUniq" >
 <!--              {{property.id}}-->
 
 
@@ -637,28 +637,28 @@ function checkCookie(cname) {
         return (this.inFavCustom) ? '#e47554' : '#ffffff';
       },
         inFav(){
-        // if (this.property) {
-        //   if (this.property.hasOwnProperty("id")) {
-        //     // console.log(this.property['images'])
-        //     // console.log(this.property.images)
-        //     // console.log(this.property)
-        //     // console.log(this.media)
-        //     let uuid = this.property['id']
-        //
-        //     // if (uuid===null)return false
-        //     let cookieName = "favItemsAppartament"
-        //     if (checkCookie(cookieName)) {
-        //       let json1 = getCookie(cookieName);
-        //       let fav = JSON.parse(json1);
-        //       if(fav.indexOf(uuid) != -1)
-        //       {
-        //         return this.inFavCustom = true
-        //       }
-        //     }
-        //     return this.inFavCustom = false
-        //
-        //   }
-        // }
+        if (this.property) {
+          if (this.property.hasOwnProperty("id")) {
+            // console.log(this.property['images'])
+            // console.log(this.property.images)
+            // console.log(this.property)
+            // console.log(this.media)
+            let uuid = this.property['id']
+
+            // if (uuid===null)return false
+            let cookieName = "favItemsAppartament"
+            if (checkCookie(cookieName)) {
+              let json1 = getCookie(cookieName);
+              let fav = JSON.parse(json1);
+              if(fav.indexOf(uuid) != -1)
+              {
+                return this.inFavCustom = true
+              }
+            }
+            return this.inFavCustom = false
+
+          }
+        }
 
 
       },

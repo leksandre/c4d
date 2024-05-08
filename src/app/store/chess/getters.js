@@ -28,6 +28,20 @@ export default {
     }
 
 
+        // function getSortedKeys(obj) {
+        //   var keys = Object.keys(obj);
+        //   return keys.sort(function(a,b){return obj[b]-obj[a]});
+        // }
+        //
+        // function getSortedKeysO(obj) {
+        //   var keys = []; for(var key in obj) keys.push(key);
+        //   return keys.sort(function(a,b){return obj[b]-obj[a]});
+        // }
+
+    // return propertiesOfArea.sort(function(a,b) {
+    //   return a - b;
+    // })
+
     return propertiesOfArea
   },
 

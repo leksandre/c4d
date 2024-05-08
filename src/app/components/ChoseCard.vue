@@ -20,8 +20,10 @@
       {{KKS}}
     </div>
     </div>
-    <div class="c-building__flat-inner pa-2" :style="{'min-height':'240px'}" >
+    <div class="c-building__flat-inner pa-2" >
 
+<!--      :style="{'min-height':'250px', 'max-height':'250px', 'min-height':'250px'}"-->
+      
 <!--      v-if="property.isFiltred"-->
 <!--      v-if="this.inFav"-->
       <div      >
@@ -296,32 +298,59 @@ import { mapGetters } from 'vuex'
 
       // TODO: copypaste to App.vue method setFilter()
       onViewApartment() {
-        if (this.$config.mode === 'api') {
-          this.$parent.postMessage({
-            method: '_$is_dispatchEvent',
-            payload: {
-              type: 'selectedProperty',
-              detail: {
-                property: this.property
-              }
-            }
-          })
-          return
+
+        if (this.property) {
+          if (this.property.hasOwnProperty("area")) {
+            let text1 = this.property['area'];
+            // console.log('--text1',text1)
+            // text1 = this.property.area;
+            // console.log('--',text1)
+            // let value1 = parseFloat(text1.replace(",", "."));
+            let value1 = text1
+            let value2 = value1-0.01
+            let value3 = value1+0.01
+            let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
+
+            // let url = 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/calculators/kalkulyator-ipoteki/'
+
+            // window.parent.location.href = url
+            // window.parent.location.replace(url);
+
+            // window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+
+            // window.open(url, '_blank')
+
+            window.parent.location.replace('/index.html'+ addstr1); window.location.href = '/index.html'+ addstr1;
+
+          }
         }
 
-        this.$store.dispatch('chess/selectPropterty', this.property.id)
-        this.$store.commit('infoPanel/set', {
-          path: 'property',
-          payload: this.property
-        })
-
-        if (this.mq.mdAndDown)
-          this.$modal.show('info')
-
-        this.$store.commit('infoPanel/set', {
-          path: 'isOpen',
-          payload: true
-        })
+        // if (this.$config.mode === 'api') {
+        //   this.$parent.postMessage({
+        //     method: '_$is_dispatchEvent',
+        //     payload: {
+        //       type: 'selectedProperty',
+        //       detail: {
+        //         property: this.property
+        //       }
+        //     }
+        //   })
+        //   return
+        // }
+        //
+        // this.$store.dispatch('chess/selectPropterty', this.property.id)
+        // this.$store.commit('infoPanel/set', {
+        //   path: 'property',
+        //   payload: this.property
+        // })
+        //
+        // if (this.mq.mdAndDown)
+        //   this.$modal.show('info')
+        //
+        // this.$store.commit('infoPanel/set', {
+        //   path: 'isOpen',
+        //   payload: true
+        // })
       },
 
       onOpenImage() {
