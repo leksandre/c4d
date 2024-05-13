@@ -27,18 +27,18 @@
 <!--      v-if="property.isFiltred"-->
 <!--      v-if="this.inFav"-->
       <div      >
-      <div class="d-flex align-center">
-        <div
-          class="c-building__flat-type"
-          :style="{'background-color': color}"
-        >
-          {{ property['rooms'] }}
-        </div>
-        <div class="ml-2 has-opacity-65">{{ KKS }}</div>
-        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>
+      <div class="d-flex ">
+<!--        <div-->
+<!--          class="c-building__flat-type"-->
+<!--          :style="{'background-color': color}"-->
+<!--        >-->
+<!--          {{ property['rooms'] }}-->
+<!--        </div>-->
+        <div class="ml-2 has-opacity-65" style="font-size: small">{{ KKS }}</div>
+<!--        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>-->
       </div>
 <!--      <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>-->
-      <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
+      <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - <br> {{ property.priceM2 | num }} ₽/м²</div>
 
       <div class="mb-10">
         <a class="c-image-property image-link"  @click="onOpenImage">

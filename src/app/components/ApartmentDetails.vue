@@ -327,8 +327,8 @@
             </svg>
           </div>
 
-          <div class="favwindowFlatParent">
-            <div class="favwindowFlat" style="    width: 166px;    height: 160px;" v-for=" (idhash, idxf) in boardUniq" >
+          <div class="favwindowFlatParent2selCards" >
+            <div class="favwindowFlat" style="    width: 166px;    " v-for=" (idhash, idxf) in boardUniq" >
 <!--              {{property.id}}-->
 
 
