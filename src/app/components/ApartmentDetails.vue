@@ -851,10 +851,61 @@ function checkCookie(cname) {
       },
 
       sendMessage1() {
-        console.log(this.message1)
-        console.log(this.phone1)
-        console.log(this.name1)
+        // console.log(this.message1)
+        // console.log(this.phone1)
+        // console.log(this.name1)
+
         var urlparent = getUrl()
+
+        var dataforsend = {
+          flatId: this.property.id,
+          flatIdC: this.property.id,
+          comment: this.message1,
+          url: urlparent
+          // ,roistatid: ""
+        }
+
+
+        let utmsMarks = document.cookie.split(';').filter(function (c) {
+          return c.trim().indexOf('get_utm_mark_') === 0;
+        }).map(function (c) {
+          return c.trim();
+        });
+
+        var hasSource = false;
+        var source_my = '';
+        // console.log('utmsMarks', utmsMarks)
+
+        for (let utmMark of utmsMarks) {
+          let arrUtm = utmMark.split('=')
+          // console.log('arrUtm',arrUtm)
+          if (arrUtm.length == 2) {
+
+            if (arrUtm[0].indexOf('get_utm_mark_') == -1)
+              continue
+
+            let nameUtm = arrUtm[0].replace('get_utm_mark_', '')
+            // console.log('nameUtm',nameUtm)
+            if (nameUtm.toLowerCase() == 'source_my') {
+              source_my = arrUtm[1]
+              continue
+            }
+
+            if ((nameUtm.toLowerCase() == 'source') && (arrUtm[1].length > 0)) {
+              hasSource = true
+            }
+
+            dataforsend[nameUtm] = arrUtm[1]
+          }
+        }
+
+        if(hasSource){}else{
+          dataforsend['source']=source_my
+        }
+
+        // console.log('dataforsend',dataforsend)
+
+
         let res1 = fetch("https://do72.4dev.app/do72api/hs/extint/send", {
           method: "POST",
           body: JSON.stringify({
@@ -866,13 +917,7 @@ function checkCookie(cname) {
               name: this.name1
               // ,email: ""
             },
-            data: {
-              flatId: this.property.id,
-              flatIdC: this.property.id,
-              comment: this.message1,
-              source: urlparent
-              // ,roistatid: ""
-            }
+            data: dataforsend
             // ,referrer: {
             //   url: urlparent,
             //   urlsite: urlparent
