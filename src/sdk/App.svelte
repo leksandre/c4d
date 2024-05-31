@@ -2,7 +2,7 @@
   const IS_DEV = process.env.NODE_ENV === 'development'
   const url = IS_DEV ?
     'http://localhost:8080/app/' :
-    'https://chess.4dev.app/app/' //'https://crm4dev-widget.netlify.app/app/'
+    'https://xn--d1acscjb2a6f.xn--p1ai/app/'
   
   // Omit defaultFilters from config
   const { defaultFilters, ...config } = crm4dev.config
@@ -26,6 +26,7 @@
   const frameIn = document.createElement('iframe')
   frameIn.src = `${url}?${queryForInjected}`
   frameIn.name = 'C4DWidgetInject'
+  frameIn.id= 'idC4DWidgetInject'
   frameIn.width = '100%'
   frameIn.frameBorder = 'none'
   if (htmlInjectedEl && htmlInjectedEl.innerHTML === '') {
@@ -88,7 +89,7 @@
       const frame = (document.getElementsByName('C4DWidgetInject')||[])[0]
       if (frame){
         if(height>parseInt(frame.clientHeight,10)){
-        frame.style.height = `${height}px`
+        frame.style.height = `${height*1.6}px`
         frame.style.overflowY = 'scroll'
         }}
     },
@@ -134,10 +135,6 @@
 </script>
 {#if isWidget}
 <div id="crm4dev-app">
-  <a href="/" style="width: {btnSize}; height: {btnSize}; background: {btnBg}; color: {btnColor}; font-size: {`${fontSize}px`}" class="crm4dev-btn" on:click|preventDefault={() => isShow = true} >
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 480'><path fill='#fff' d='M472 440h-48V144a8 8 0 00-8-8H280V32a8 8 0 00-8-8H64a8 8 0 00-8 8v408H8a8 8 0 000 16h464a8 8 0 000-16zm-208 0H72V40h192v400zm144 0H280V152h128v288z'/><path fill='#fff' d='M320 232h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM320 312h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM320 392h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM184 232h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM184 152h48a8 8 0 008-8V96a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM184 312h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM184 392h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM104 232h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM104 152h48a8 8 0 008-8V96a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM104 312h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32zM104 392h48a8 8 0 008-8v-48a8 8 0 00-8-8h-48a8 8 0 00-8 8v48a8 8 0 008 8zm8-48h32v32h-32v-32z'/></svg>
-    <span>{@html btnCaption }</span>
-  </a>
   <div class="crm4dev-modal {isShow && 'is-opened'}">
     <div class="crm4dev__content" bind:clientHeight={iframeHeight}>
       <iframe
@@ -188,39 +185,6 @@
     width: 100%;
     flex-grow: 1;
     border-radius: 10px;
-  }
-  #crm4dev-app .crm4dev-btn svg {
-    display: inline-block;
-    vertical-align: middle;
-    width: 50%;
-    height: 50%;
-    opacity: .75;
-  }
-  #crm4dev-app .crm4dev-btn span {
-    font-size: 1em;
-    text-transform: uppercase;
-    margin-top: 3%;
-    letter-spacing: .05em;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  }
-  #crm4dev-app .crm4dev-btn {
-    text-align: center;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 990;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    background: rgba(255, 82, 82, 1);
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
-    animation: pulse 2s infinite;
   }
 
   @keyframes pulse {

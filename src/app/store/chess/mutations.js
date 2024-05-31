@@ -31,10 +31,28 @@ export default {
 
     for (const property of state.properties) {
       let result = false
-      const type = property['КоличествоКомнатСтрокой']
-      const area = property['ПлощадьОбщая']
-      const layout = property['ТипПланировки']
-      const { floor, price, id_entrance: sectionId  } = property
+      const type = property['type_apartment'].toString()
+      const rooms = property['rooms']
+      const HomepEtaja = property['floor_number']
+      const area = property['area']
+      const layout = property['type_apartment']
+      const { floor, cost:price, section_id: sectionId  } = property
+
+
+      const status = property['status']
+
+      // console.log('---start----type',type,'-',byType)
+      // console.log('---start----property',property)
+      // console.log('---start----type_apartment',property['type_apartment'])
+      // console.log('---start----floor_number',property['floor_number'])
+
+      var manager_mode = false
+      var field = 'manager_mode';
+      var url = window.parent.location.href;
+      if (url.indexOf('?' + field + '=') != -1)
+        manager_mode = true;
+      else if (url.indexOf('&' + field + '=') != -1)
+        manager_mode = true;
 
       const toNumber = i => Number(i)
       byArea = byArea.map(toNumber)
@@ -49,14 +67,18 @@ export default {
       const maxByPrice = byPrice[1]
 
       const filtredBySection = bySection ? bySection === sectionId : true
-      const filtredByType = byType.length > 0 ? byType.includes(type) : true
+      const filtredByType = byType.length > 0 ? byType.includes(rooms) : true
       const filtredByLayout = byLayout.length > 0 ? byLayout.includes(layout) : true
       const filtredByArea = maxByArea > minByArea ? (area >= byArea[0] && area <= byArea[1]) : true
       const filtredByFloor = maxByFloor > minByFloor ? (floor >= byFloor[0] && floor <= byFloor[1]) : true
       const filtredByPrice = maxByPrice > minByPrice ? (price >= byPrice[0] && price <= byPrice[1]) : true
 
-      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout)
-        result = true
+      // console.log('---start----filtredByType',filtredByType)
+      if (filtredBySection && filtredByType && filtredByArea && filtredByFloor && filtredByPrice && filtredByLayout )
+        if(manager_mode)
+        {result = true}
+        else{result = (status=='Свободна')}
+
 
       // if(filtredByType){
       //   console.log('type!',type)

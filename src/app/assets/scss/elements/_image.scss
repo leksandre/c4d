@@ -37,24 +37,24 @@
   }
 
   &.is-1by1 {
-    padding-bottom: (1 / 1) * 100%;
+    padding-bottom: calc(1 / 1) * 100%;
   }
   &.is-3by2 {
-    padding-bottom: (2 / 3) * 100%;
+    padding-bottom: calc(2 / 3) * 100%;
   }
   &.is-4by1 {
-    padding-bottom: (1 / 4) * 100%;
+    padding-bottom: calc(1 / 4) * 100%;
   }
   &.is-16by9 {
-    padding-bottom: (9 / 16) * 100%;
+    padding-bottom: calc(9 / 16) * 100%;
   }
   &.is-25by14 {
-    padding-bottom: (14 / 25) * 100%;
+    padding-bottom: calc(14 / 25) * 100%;
   }
   &.is-76by43 {
-    padding-bottom: (43 / 76) * 100%;
+    padding-bottom: calc(43 / 76) * 100%;
   }
   &.is-126x85 {
-    padding-bottom: (85 / 126) * 100%;
+    padding-bottom: calc(85 / 126) * 100%;
   }
 }

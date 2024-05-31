@@ -3,14 +3,14 @@
 
 $font-size-base: 16 !default;
 $font-size-root: $font-size-base * 1px !default;
-$font-size-btn: 14 / $font-size-base * 1rem !default;
-$font-size-text-body-1: 14 / $font-size-base * 1rem !default;
-$font-size-text-body-2: 12 / $font-size-base * 1rem !default;
+$font-size-btn: calc(14 / $font-size-base * 1rem) !default;
+$font-size-text-body-1: calc(14 / $font-size-base * 1rem) !default;
+$font-size-text-body-2: calc(12 / $font-size-base * 1rem) !default;
 
 $font-size-controls: $font-size-text-body-2 !default;
 $font-size-tabs: $font-size-text-body-1 !default;
 
-$font-family-root: 'Roboto', sans-serif !default;
+$font-family-root: Roboto-Regular !default;
 $font-color-root: $color-black !default;
 
 $sm-border-radius: 3px;
@@ -32,6 +32,7 @@ $border-radius-btn: $sm-border-radius !default;
 
 $font-size-input-fields: $font-size-root !default;
 $color-input-fields: $color-primary !default;
+$color-input-fields-Do: $color-primary-DomOtel !default;
 $border-color-input-fields: $color-primary !default;
 
 $bg-color-btn:        $color-primary !default;
@@ -60,7 +61,7 @@ $grid-breakpoints: map-deep-merge(
     'sm': 600px,
     'md': 960px,
     'lg': 1280px - 16px,
-    'xl': 1920px - 16px
+    'xl': 2220px - 16px
   ),
   $grid-breakpoints
 );

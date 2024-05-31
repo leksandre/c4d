@@ -1,0 +1,16 @@
+{
+    "isRebasing": false,
+    "patches": [
+        {
+            "didApply": true,
+            "patchContentHash": "a1e877b64c5c5c17709bd00fe164c3b1cdd28fabad76abe784c413f8a54c99f9",
+            "patchFilename": "vue-image-lightbox+7.2.0.patch"
+        },
+        {
+            "didApply": true,
+            "patchContentHash": "a1e877b64c5c5c17709bd00fe164c3b1cdd28fabad76abe784c413f8a54c99f9",
+            "patchFilename": "vue-image-lightbox+7.2.0.patch"
+        }
+    ],
+    "version": 1
+}

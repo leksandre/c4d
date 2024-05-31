@@ -3,8 +3,8 @@ export default {
     if (!state.property.id) return ''
     const { name: districtName } = rootGetters['chess/currentDistrict']
     const { name: objectName } = rootGetters['chess/currentObject']
-    const { name: sectionName } = rootGetters['chess/sectionById'](state.property.id_entrance)
-    return `${districtName}, ${objectName}, ${sectionName}, Этаж ${state.property.floor}, ${state.property['ТипНедвижимости']} №${state.property.number}`
+    const { name: sectionName } = rootGetters['chess/sectionById'](state.property.section_id)
+    return `${districtName}, ${objectName}, ${sectionName}, Этаж ${state.property.floor}, ${state.property['type_object']} №${state.property.number}`
   }
 }
 

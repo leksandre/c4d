@@ -1,9 +1,11 @@
 <template>
   <div class="b-page d-flex flex-column full-height overflow-hidden pos-r">
     <header
+        v-if="isManagerMode"
       class="flex-grow-0 pr-4 pos-rel"
       :class="{'py-12': mq.mdAndUp, 'py-4': mq.mdAndDown, 'pl-10': mq.mdAndUp, 'pl-6': mq.mdAndDown}"
     >
+      <img src="https://xn--d1acscjb2a6f.xn--p1ai/storage/6748/0031/674822eb0aa21287fee535ac328e1d906bc02c09.svg"  v-on:click="gotoHome"  alt="" style=" cursor:pointer; position: absolute; left:20px; top: 10px;"/>
       <div class="d-flex align-center">
         <div class="d-flex align-center flex-grow-1 pr-5" >
           <a v-if="mq.mdAndDown && modelDistrict" href="#" @click.prevent="$modal.show('filters')">
@@ -11,31 +13,35 @@
           </a>
           <div v-if="mq.mdAndDown && modelDistrict" class="ml-6 text-subtitle-2 font-weight-500">{{ modelDistrict.name }}</div>
 
-          <div style="justify-content: center; width: 100%; padding: 22px;" class="d-flex align-center flex-wrap align-center-inner" v-if="mq.mdAndUp" >
-            <div class="select" >
-              <div class="e-select text-body-1">
-                <select name="district" id="district" v-model="modelDistrict">
-                  <option
-                    v-for="district in districts"
-                    :key="district.id"
-                    :value="district"
-                  >{{ district.name }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="select ml-5">
-              <div class="e-select text-body-1">
-                <select name="object" id="object" v-model="modelObject">
-                  <option
-                    v-for="object in objects"
-                    :key="object.id"
-                    :value="object"
-                  >{{ object.name }}</option>
-                </select>
-              </div>
-            </div>
+          <div style="justify-content: center; width: 100%; padding: 22px;  " class="d-flex align-center flex-wrap align-center-inner" v-if="mq.mdAndUp" >
+<!--            color:#E47554;-->
+
+<!--            <div class="select" >-->
+<!--              <div class="e-select text-body-1">-->
+<!--                <select name="district" id="district" v-model="modelDistrict">-->
+<!--                  <option-->
+<!--                    v-for="district in districts"-->
+<!--                    :key="district.id"-->
+<!--                    :value="district"-->
+<!--                  >{{ district.name }}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="select ml-5">-->
+<!--              <div class="e-select text-body-1">-->
+<!--                <select name="object" id="object" v-model="modelObject">-->
+<!--                  <option-->
+<!--                    v-for="object in objects"-->
+<!--                    :key="object.id"-->
+<!--                    :value="object"-->
+<!--                  >{{ object.name }}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+<!--            </div>-->
+
             <div class="ml-10">
-              <div class="text-body-2 has-opacity-65 mb-2">Кол-во комнат</div>
+              <div class="text-body-2 has-opacity-65 mb-2 red-color-domOtel ">Кол-во комнат</div>
               <div class="e-checkboxes-group py-2">
                 <div class="e-checkbox-btn" v-for="(type, ind) in allTypes" :key="`type${ind}`">
                   <input
@@ -48,7 +54,7 @@
               </div>
             </div>
             <div class="ml-15 mr-20 pr-10 pb-8" v-if="!isLoading && floorsCount > 1">
-              <div class="text-body-2 has-opacity-65">Этаж</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Этаж</div>
               <vue-slider
                 v-model="filters.byFloor"
                 :width="sliderWidth"
@@ -61,7 +67,7 @@
               />
             </div>
             <div class="mr-20 pr-10 pb-8" v-if="!isLoading && maxPrice > minPrice">
-              <div class="text-body-2 has-opacity-65">Стоимость, ₽</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Стоимость, ₽</div>
               <vue-slider
                 v-model="filters.byPrice"
                 :width="sliderWidth"
@@ -75,7 +81,7 @@
               />
             </div>
             <div class="pb-8 mr-10" v-if="!isLoading && maxArea > minArea">
-              <div class="text-body-2 has-opacity-65">Площадь, м²</div>
+              <div class="text-body-2 has-opacity-65 red-color-domOtel ">Площадь, м²</div>
               <vue-slider
                 v-model="filters.byArea"
                 :width="sliderWidth"
@@ -87,12 +93,12 @@
                 @change="onChangeFilter"
               />
             </div>
-            <a href="#" @click.prevent="setFilter(true)" class="text-body-2">очистить</a>
+            <a href="#" @click.prevent="setFilter(true)" class="text-body-2 red-color-domOtel ">очистить</a>
           </div>
 
-          <div class="select ml-auto flex-shrink-0" style="width: 100px" v-if="mq.mdAndUp">
-            <div class="e-select text-body-1">
-              <select name="district" id="view" v-model="view">
+          <div class="select ml-auto flex-shrink-0 red-color-domOtel " style="width: 100px" v-if="mq.mdAndUp">
+            <div class="e-select text-body-1 red-color-domOtel ">
+              <select name="district" id="view" v-model="view" class="e-select text-body-1 red-color-domOtel ">
                 <option value="tilePlus">Плитка+</option>
                 <option value="tile">Компактная</option>
               </select>
@@ -102,58 +108,286 @@
         <a v-if="isWidget" href="#" class="crm4dev-close" @click.prevent="onCloseWidget"><i></i></a>
       </div>
     </header>
-    <main class="d-flex flex-grow-1 pos-rel" id="main">
+<!--    <Transition name="slide-fade">-->
+    <transition name="fadeHeight" mode="out-in">
+    <div class="maincontent_parent" id="maincontent_parent1" v-if="!isLoading">
+    <main class="d-flex flex-grow-1 pos-rel maincontent" id="main">
+      <div id="closeArea" v-on:click="checkHidePanel" style="width:0px; height:0xp; max-height:920px; position:absolute; z-index:214; ">
+      </div>
       <div
-        v-if="!isLoading"
-        class="content flex-grow-1 overflow-x-auto "
-        :class="{'px-8': mq.mdAndUp, 'px-4': mq.mdAndDown}"
+        v-if="!isLoading" class="content flex-grow-1 overflow-x-auto "
       >
+
+
+
+
+
+
         <section id="tiles" :class="{ 'is-simple': view === 'tile' }" class="py-10 c-building text-body-2">
-          <div >
-          <table class="scaling">
-            <thead>
-            <tr>
-              <td></td>
-              <td
-                v-for="(section, sectionId) in board"
-                :key="`head_${sectionId}`"
-                class="has-text-primary font-weight-bold text-h3"
-              >{{ section.name }}</td>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-              <td></td>
-              <td
-                v-for="(section, sectionId) in board"
-                :key="`foot_${sectionId}`"
-                class="has-text-primary font-weight-bold text-h3"
-              >{{ section.name }}</td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr class="c-building__floor" v-for="floor in reverseKeys(floorsCount)" :key="`floor-${floor}`" :id="`floorView-${floor}`"  :class="{ 'hidden': !hasChildWithClass(floor, 'c-building__flat-type') }" >
-              <td class="c-building__floor-number text-right px-5">{{ floor + 1 }}</td>
-              <td v-for="(section, sectionId) in board" :key="sectionId">
-                <div class="c-building__section">
-                  <apartment-card
-                    v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"
-                    :key="property.id"
-                    :property="property"
-                  />
+<!--          <div class="tableWithFloor"    v-bind:class = "(isMobile())?'tableWithFloor_mobile':'tableWithFloor'"  >-->
+            <div class="tableWithFloor" id="idTableWithFloor">
+
+            <div >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div>
+                <div class="c-modal" v-show="modal_3">
+                  <span>modal_3</span>
                 </div>
-              </td>
-              <td class="c-building__floor-number pl-0">{{ floor + 1 }}</td>
-            </tr>
-            </tbody>
-          </table>
+
+<!--                v-on:click="setModal"-->
+
+                <div class="bg" id="bg_fav_window" v-show="modal_3"     >
+                  <div class="close" id="closeFavWindow" v-on:click="setModal" >
+                    <span ></span>
+                    <span ></span>
+                    <span ></span>
+                    <span ></span>
+                    <svg viewBox="0 0 36 36" class="circle" >
+                      <path
+                            stroke-dasharray="100, 100"
+                            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                    </svg>
+                  </div>
+
+<!--                  в избранном пусто-->
+                  <div v-if="!favCoociesNotEmpty()" style="width: 100%; text-align: center; padding-top: 200px;"> <h1 style="color: #fff;">вы ничего не добавили в избранное</h1> </div>
+
+
+                  <div class="favwindowFlatParent">
+                    <div class="favwindowFlat" v-for=" (idhash, idxf) in favCoocies()" >
+  <!--                                           {{idhash}}-->
+  <!--                                           {{idxf}}-->
+  <!--                                           {{propertyGet(idhash)}}-->
+                      <apartment-card-fav
+                          :key="idhash"
+                          :property="propertyGet(idhash)"
+                      />
+                    </div>
+                  </div>
+
+
+
+<!--                  вариант с разбивокй по этажам-->
+<!--                          <div class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >-->
+<!--&lt;!&ndash;                            :class="{ 'nowInSale': hasChildWithClassFav(floor, 'c-building__flat-type') }"&ndash;&gt;-->
+<!--                            <div :key="`floor-${floor}`" :id="`floorViewFav-${floor}`" class="floorViewSection1"-->
+<!--                                 v-if="((floor+1) % 2 == 0) && hasChildWithClassFav(floor-1, 'c-building__flat-type') ">-->
+<!--                              <div class="buttonFloor" @click="floorClick(floor, 'c-building__flat-type')">{{ floor + 1 }}</div>-->
+<!--                              <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone1">-->
+<!--                                <div class="c-building__section">-->
+<!--                                  <apartment-card-fav-->
+<!--                                      v-for="property in section.propertiesOnFloor[`floor_${floor + 1}`]"-->
+<!--                                      :key="property.id"-->
+<!--
+<!--                                  />-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                            :class="{ 'nowInSale': hasChildWithClassFav(floor-1, 'c-building__flat-type') } "&ndash;&gt;-->
+<!--                            <div :key="`floor-${floor-1}`" :id="`floorViewFav-${floor-1}`"  class="floorViewSection2"-->
+<!--                                 v-if="((floor-1) % 2 == 0) && hasChildWithClassFav(floor-1, 'c-building__flat-type') ">-->
+<!--                              <div class="buttonFloor"  @click="floorClick(floor-1, 'c-building__flat-type')">{{ floor }}</div>-->
+<!--                              <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone1">-->
+<!--                                <div class="c-building__section">-->
+<!--                                  <apartment-card-fav-->
+<!--                                      v-for="property in section.propertiesOnFloor[`floor_${floor}`]"-->
+<!--                                      :key="property.id"-->
+<!--                                      :property="property"-->
+<!--                                  />-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                  -->
+
+
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+              <!--              //changing view mode   -->
+              <!--здесь отображение для менеджера  (отображение первого в очереди)-->
+              <div  v-if="isManagerMode" class="c-building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+
+                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" class="nowInSale floorViewSection1"
+                     v-if="((floor+1) % 2 == 0)" >
+<!--                  v-show="hasChildWithClass((floor+2), 'c-building__flat-type')"-->
+                  <div class="buttonFloor" >{{ floor + 2 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor + 2}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" class=" nowInSale floorViewSection2"
+                     v-if="((floor-1) % 2 == 0)" >
+<!--                  v-show="hasChildWithClass((floor+1), 'c-building__flat-type')"-->
+                  <div class="buttonFloor"  >{{ floor+1 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor+1}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <!--              //changing view mode-->
+              <!--здесь отображение для клиента (отображение первого в очереди)-->
+              <div v-if="!isManagerMode" class="c-building__floor just_building__floor" v-for=" (floor, idxfloor) in reverseKeys(floorsCount)"    >
+
+                <div :key="`floor-${floor+2}`" :id="`floorView-${floor+2}`" :class="{ 'nowInSale': hasChildWithClass((floor+2), 'c-building__flat-type') }" class="floorViewSection1"
+                     v-if="((floor+1) % 2 == 0)">
+                  <div class="buttonFloor" @click="floorClick((floor+2), 'c-building__flat-type')">{{ floor + 2 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor + 2}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div :key="`floor-${floor+1}`" :id="`floorView-${floor+1}`" :class="{ 'nowInSale': hasChildWithClass((floor+1), 'c-building__flat-type') } " class="floorViewSection2"
+                     v-if="((floor-1) % 2 == 0)">
+                  <div class="buttonFloor"  @click="floorClick((floor+1), 'c-building__flat-type')">{{ floor+1 }}</div>
+                  <div v-for="(section, sectionId) in board" :key="sectionId" class="disNone">
+                    <div class="c-building__section">
+                      <apartment-card
+                          v-for="property in section.propertiesOnFloor[`floor_${floor+1}`]"
+                          :key="property.id"
+                          :property="property"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+              <div class="tittleForBarFloor" id="idTittleForBarFloor" style="display: none">
+                <!--              выберите ваш<br>этаж-->
+<!--                >>>>>-->
+
+<div style="
+    color: #000;
+    position: absolute;
+    font-size: 9px;
+    left: 10px;
+    top: 14px;
+">На этаже</div>
+
+
+                <svg data-v-7e7f006c="" xmlns="http://www.w3.org/2000/svg" version="1.0" width="40" height="140" viewBox="0 0 283.000000 569.000000" preserveAspectRatio="xMidYMid meet" style="
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    /*pointer-events: auto;*/
+"><g data-v-7e7f006c="" transform="translate(0.000000,569.000000) scale(0.100000,-0.100000)" fill="#727272" stroke="none"><path data-v-7e7f006c="" d="M79 5673 l-66 -4 -7 -52 c-8 -68 -8 -5476 0 -5544 l7 -52 71 -5 c39 -3 673 -8 1409 -11 l1337 -6 -2 2830 c-2 1556 -7 2833 -11 2838 -8 8 -2601 13 -2738 6z m2621 -2828 l0 -2705 -395 0 -395 0 0 323 c-1 386 -8 483 -44 560 -53 112 -160 214 -282 269 -42 19 -67 22 -170 23 l-121 0 -87 -44 c-115 -58 -184 -127 -241 -240 l-43 -86 -7 -402 -7 -403 -389 0 -389 0 0 2705 0 2705 1285 0 1285 0 0 -2705z m-1159 -1684 c74 -28 149 -99 194 -183 l37 -68 5 -385 6 -385 -366 0 -367 0 0 318 c0 342 9 472 35 523 10 18 38 54 63 81 112 120 248 154 393 99z"></path><path data-v-7e7f006c="" d="M500 5191 c-35 -10 -39 -42 -39 -342 -1 -284 4 -345 27 -354 9 -3 159 -9 333 -12 l317 -6 18 34 c17 31 19 60 19 314 0 316 -4 351 -41 365 -29 11 -595 12 -634 1z m530 -346 l0 -225 -220 0 -220 0 0 225 0 225 220 0 220 0 0 -225z"></path><path data-v-7e7f006c="" d="M1697 5193 c-42 -11 -47 -47 -47 -340 0 -308 6 -349 48 -360 33 -10 587 -9 624 0 15 4 30 17 34 30 4 12 8 160 8 330 0 278 -2 309 -17 325 -16 15 -49 17 -325 19 -169 0 -315 -1 -325 -4z m533 -348 l0 -225 -225 0 -225 0 0 183 c0 220 5 254 34 260 11 2 110 5 219 6 l197 1 0 -225z"></path><path data-v-7e7f006c="" d="M505 4262 c-23 -6 -31 -14 -36 -37 -12 -53 -10 -600 2 -633 10 -29 13 -31 84 -37 41 -4 187 -6 325 -4 252 4 252 4 271 28 19 23 20 40 17 342 -2 244 -6 321 -16 331 -10 10 -83 13 -315 15 -166 1 -315 -2 -332 -5z m525 -352 l0 -230 -220 0 -220 0 0 230 0 230 220 0 220 0 0 -230z"></path><path data-v-7e7f006c="" d="M1693 4260 c-36 -15 -43 -68 -43 -350 0 -293 6 -335 48 -351 17 -7 138 -9 329 -7 274 3 304 5 320 21 17 16 18 44 18 337 0 293 -1 321 -18 337 -16 16 -45 18 -325 20 -172 2 -317 -1 -329 -7z m537 -351 l0 -231 -217 7 c-120 4 -220 9 -222 11 -2 2 -6 102 -9 224 l-5 220 227 0 226 0 0 -231z"></path><path data-v-7e7f006c="" d="M588 3331 c-58 -3 -110 -10 -115 -14 -4 -5 -8 -157 -8 -337 0 -256 3 -332 13 -342 10 -10 83 -14 310 -16 163 -2 312 0 330 3 23 4 36 14 44 33 7 18 12 129 12 322 1 265 -1 298 -17 328 l-18 32 -222 -2 c-122 -1 -270 -4 -329 -7z m442 -356 l0 -225 -220 0 -220 0 0 225 0 225 220 0 220 0 0 -225z"></path><path data-v-7e7f006c="" d="M1775 3334 c-95 -6 -103 -10 -114 -52 -12 -40 -15 -570 -5 -610 13 -48 41 -52 353 -52 160 0 301 4 315 10 18 6 27 20 33 47 9 48 9 590 -1 620 -4 11 -13 24 -22 27 -18 7 -478 15 -559 10z m455 -360 l0 -227 -216 5 c-118 3 -218 8 -221 11 -3 3 -8 103 -11 221 l-5 216 227 0 226 0 0 -226z"></path><path data-v-7e7f006c="" d="M488 2393 c-13 -3 -18 -22 -23 -88 -9 -108 -2 -581 8 -592 10 -9 596 -17 644 -8 56 10 58 21 58 335 0 157 -4 298 -8 313 -4 16 -18 32 -33 37 -25 10 -611 12 -646 3z m542 -343 l0 -220 -220 0 -220 0 0 220 0 220 220 0 220 0 0 -220z"></path><path data-v-7e7f006c="" d="M1675 2386 c-19 -14 -20 -26 -20 -336 0 -310 1 -322 20 -336 28 -20 661 -16 674 4 13 21 22 318 14 491 -3 88 -10 166 -14 173 -13 20 -646 24 -674 4z m555 -336 l0 -220 -225 0 -225 0 0 220 0 220 225 0 225 0 0 -220z"></path></g></svg>
+              </div>
+
           </div>
         </section>
       </div>
 
-      <apartment-details v-if="mq.mdAndUp" />
+<!--   !!!!!!!fix1  v-if="mq.mdAndUp" -->
+      <apartment-details  v-if="mq.mdAndUp" @changemode="modal_3 = $event" />
     </main>
-    <footer :class="{'pa-2': mq.mdAndDown}">
+    </div>
+    </transition>
+<!--    </Transition>-->
+    <footer :class="{'pa-2': mq.mdAndDown}" v-if="false">
       <div class="l-row" :class="{'flex-column-reverse': mq.mdAndDown}">
         <div class="l-col py-0 text-body-2 has-text-primary">&copy; CRM4DEV {{ new Date().getFullYear() }}</div>
         <div class="l-col py-0">
@@ -282,7 +516,8 @@
     </modal>
 
     <modal
-      name="modal"
+        v-if="!isManagerMode"
+        name="modal"
       @before-open="onOpenModal" @closed="onCloseModal"
       adaptive width="100%" :max-width="340" height="auto"
     >
@@ -337,29 +572,289 @@
       </form>
     </modal>
 
-    <div class="loader" v-if="isLoading" :class="loadingClasses">
-      <div>
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 137.7 46.56" xml:space="preserve"><path class="st0" d="M126.49 3.07l-11.54 28.37-11.48-28.37h-8.95l16.55 39.63h7.66l16.54-39.63zM103.27 35.33H78.85V25.2h20.19l-2.99-7.15h-17.2v-7.6h14.03l-3.03-7.26H66.69v.57c1.14.72 2.22 1.53 3.23 2.45 4.72 4.33 7.12 9.94 7.12 16.68 0 6.78-2.4 12.41-7.12 16.73-1.01.92-2.09 1.72-3.23 2.45v.52h39.61l-3.03-7.26z"/><path d="M22.68 34.96H3.72L2.34 28.8 23.63 3.66h7.21V27.9h12.91v7.06H30.83v8.53h-8.15v-8.53zm0-7.06V15.58L12.37 27.9h10.31z" fill="#32addf"/><path class="st0" d="M65.79 8.7c-4-3.66-9.23-5.52-15.59-5.52H35.46v21.54h8.11V10.45h5.97c8.78 0 13.96 4.62 13.96 12.44 0 7.82-5.18 12.44-13.96 12.44H47.7v7.26h2.52c6.36 0 11.6-1.8 15.59-5.46 4-3.66 6.02-8.44 6.02-14.24-.01-5.8-2.04-10.53-6.04-14.19z"/></svg>
+    <div class="loader" v-if="isLoading && !isManagerMode" :class="loadingClasses">
+      <div v-if="false">
+
+        <div class="galTitle text-copy4">
+          Не хотите заниматься отделкой?
+        </div>
+
+        <!--        <br/>-->
+        <!--        <br/>-->
+        <!--        <br/>-->
+
+        <div class="galTitle text-body-21">
+          Вы можете приобрести квартиру с готовой отделкой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+        </div>
+
+        <main class="dflexContent flex-grow-1 pos-rel maincontentBottom" >
+
+
+
+          <div class="exampleGal">
+            <div class="galTitle text-body-21" style="margin-left: 15px;"> <div class="text-title3dTour"> Светлый «осовременненый» минимализм  </div>
+              <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a> </div>
+            </div>
+            <photo-collage-wrapper
+                gapSize="6px"
+                @itemClick="itemClickHandlerW"
+                v-bind="collageWtmb"></photo-collage-wrapper>
+          </div>
+
+          <div class="exampleGal">
+            <div class="galTitle text-body-21" style="margin-left: 15px;"> <div class="text-title3dTour"> Темный «оклассиченный» лофт  </div>
+               <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a> </div>
+            </div>
+            <photo-collage-wrapper
+                gapSize="6px"
+                @itemClick="itemClickHandlerD"
+                v-bind="collageDtmb"></photo-collage-wrapper>
+          </div>
+        </main>
+
       </div>
     </div>
+
+
+    <div class="mobile__flat__callback" v-on:click="gotoHome" v-if="!isLoading && !isManagerMode">
+<!--      <button class="buttonCopy2" style="  background-color: #e47554; "  >-->
+<!--        Вернуться к выбору планировки-->
+<!--      </button>-->
+
+
+        <div class="close" v-on:click="gotoHome" style="z-index: 71">
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <svg viewBox="0 0 36 36" class="circle" >
+            <path
+                stroke-dasharray="100, 100"
+                d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+        </div>
+
+
+    </div>
+
+    <!--   was here hided element -->
+    <div class="maincontent_parentBottom" v-if="!isManagerMode" >
+              <div class="galTitle text-copy4">
+
+              </div>
+
+
+      <div class="galTitle text-copy4">
+        Не хотите заниматься отделкой?
+      </div>
+
+<!--        <br/>-->
+<!--        <br/>-->
+<!--        <br/>-->
+
+      <div class="galTitle text-body-21">
+          Вы можете приобрести квартиру с готовой отделкой и даже с мебелью. Заезжай и живи. Дизайны ниже нам очень нравятся, надеемся что и вам они будут по душе.
+      </div>
+
+      <main class="dflexContent flex-grow-1 pos-rel maincontentBottom" >
+
+
+
+        <div class="exampleGal">
+          <div class="galTitle text-body-21" style="margin-left: 15px;"><div class="text-title3dTour"> Светлый «осовременненый» минимализм </div>
+            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XL3J?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a></div>
+          </div>
+          <photo-collage-wrapper
+              gapSize="6px"
+              @itemClick="itemClickHandlerW"
+              v-bind="collageWtmb"></photo-collage-wrapper>
+        </div>
+
+        <div class="exampleGal">
+          <div class="galTitle text-body-21" style="margin-left: 15px;"><div class="text-title3dTour"> Темный «оклассиченный» лофт </div>
+            <div class="galTitle"> Откройте фото ниже, или перейдите в <a href="https://kuula.co/share/collection/7XLsN?logo=1&info=1&fs=1&vr=0&thumbs=1" class="galTitle text-copy3dTour" style="margin:0px 5px" target="_blank">3D ТУР</a></div>
+          </div>
+          <photo-collage-wrapper
+              gapSize="6px"
+              @itemClick="itemClickHandlerD"
+              v-bind="collageDtmb"></photo-collage-wrapper>
+        </div>
+      </main>
+    </div>
+
+
+    <!--   show modal window with galary -->
+    <div>
+      <div class="c-modal" v-show="modal_5">
+        <span>modal_5</span>
+      </div>
+      <div class="bg" id="bg_fav_window5" v-show="modal_5" >
+        <div class="close" v-on:click="setModal5" >
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <span ></span>
+          <svg viewBox="0 0 36 36" class="circle" >
+            <path
+                stroke-dasharray="100, 100"
+                d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+        </div>
+
+        <light-box ref="lightbox5" :media="this.matched_all" :closable="false" :showCaption="false" :showThumbs="false"></light-box>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="maincontent_selector" v-if="!isManagerMode" >
+
+      <div class="galTitle text-copy4" style="font-size:14px">
+        <!--        Хотите посмотреть график платежей по вашей иппотеке?-->
+        Хотите посчитать возможную ипотеку? Выберите банк:
+      </div>
+
+      <br>
+      <div class="selector1domrf" v-on:click="goToDomRf()"   >
+        <!--      width: 100px;-->
+        <img src="https://xn--h1alcedd.xn--d1aqf.xn--p1ai/dist/img/logo-2-dom-rf.svg" alt="" style=" height: 42px;"/>
+      </div>
+      <br>
+
+      <div class="selector1" v-on:click=" setbank('sber') "  :class="{ 'opc3': bank!=='sber' }" >
+        <div class="shadow1" v-show="bank!=='sber'"></div>
+        <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/sber.png" alt=""/>
+        <!--        <br>-->
+        <!--        <label>Сбербанк</label>-->
+      </div>
+
+      <div class="selector1" v-on:click=" setbank('vtb') "  :class="{ 'opc3': bank!=='vtb' }" >
+        <div class="shadow1" v-show="bank!=='vtb'"></div>
+        <img src="https://xn--d1acscjb2a6f.xn--p1ai/images_custom_1/vtb.png" alt=""/>
+        <!--        <br>-->
+        <!--        <label>Втб</label>-->
+      </div>
+
+
+
+      <br>
+
+      <!--      <span>Выбрано: {{ bank }}</span>-->
+    </div>
+
+
+<!--    <div  v-on:click="setModal9" class="buttonCopy2" style="-->
+<!--    max-width: 1600px;-->
+<!--    margin: 0px auto 0px auto;-->
+<!--" v-show="!modal_9" >показать калькулятор иппотеки Сбербанка</div>-->
+<!--    modal_9-->
+
+    <div   class="maincontent_claculator" v-show="bank=='sber'" >
+
+    <iframe
+        src="https://ipoteka.domclick.ru/calc-reg/calculator.html"
+        width="100%"
+        height="1300px"
+        frameBorder="0"
+        style=" overflow: hidden; height: 1300px; width: 100%; max-width: 1600px; border:0;"
+        loading="lazy"
+    >
+      Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
+    </iframe>
+    </div>
+
+<!--    <div  v-on:click="setModal10" class="buttonCopy2" style="-->
+<!--    max-width: 1600px;-->
+<!--    margin: 0px auto 0px auto;-->
+<!--" v-show="!modal_10" >показать калькулятор иппотеки ВТБ</div>-->
+<!--    modal_10-->
+
+    <div   class="maincontent_claculator" v-show="bank=='vtb'"  style="max-width: 1000px; height: 8000px;">
+    <iframe
+        src="https://www.kreditnyi-calculator.ru/ipoteka/vtb_24/"
+        width="100%"
+        height="8000px"
+        frameBorder="0"
+        style=" overflow: hidden; height: 8000px; width: 100%; max-width: 1600px; border:0;"
+        loading="lazy"
+    >
+      Пожалуйста подождите, калькулятор ипотечных расчетов загружается на ваше устройство
+    </iframe>
+    </div>
+
   </div>
+
 </template>
 
 <script>
+
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function checkCookie(cname) {
+  let user = getCookie(cname);
+  if (user != "") {
+    return true
+  } else {
+    return false
+  }
+}
+
+
+
+  // import rokka from './rokka_gallery/components/Gallery.vue'
+  // import rokka from './rokka_gallery/Export.vue'
+  import { PhotoCollageWrapper } from 'vue-photo-collage'
+  import LightBox from './components/vue-image-lightbox/components/LightBox.vue'
+
   import ApartmentCard from './components/ApartmentCard'
+  import ApartmentCardFav from './components/ApartmentCardFav'
   import ApartmentDetails from './components/ApartmentDetails'
   import { mapState, mapGetters } from 'vuex'
   import debounce from 'lodash/debounce'
 
   export default {
-    components: { ApartmentCard, ApartmentDetails },
+    components: { PhotoCollageWrapper, LightBox, ApartmentCard, ApartmentDetails, ApartmentCardFav },
 
     data: () => ({
+      modal_3: false,
+      modal_5: false,
+      modal_9: false,
+      modal_10: false,
+
+      bank:'',
+
+      collageChoise: 'W',
+
+      cookieName_floorAppartament: "floorAppartament",
       view: 'tilePlus',
+      testData: ' <pre> </pre> ',
       timerForShowPanel:false,
       properties: [],
       isLoading: true,
       isSending: false,
+      isManagerMode: false,
       sentResult: null,
       loadingClasses: [],
       sliderWidth: '260px',
@@ -376,10 +871,224 @@
         name: '',
         phone: '',
         email: ''
+      },
+
+      collageW: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/10.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g/11.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
+      },
+
+      collageD: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g/10.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
+      },
+
+
+
+
+
+
+
+      collageWtmb: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/10.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/white_g_tmb/11.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
+      },
+
+      collageDtmb: {
+        width: "700px",
+        height: ["200px", "200px"],
+        layout: [1, 9],
+        photos: [
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/2.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/1.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/3.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/4.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/5.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/6.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/8.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/9.jpg",
+          },
+          {
+            source:
+                "https://xn--d1acscjb2a6f.xn--p1ai/images/dark_g_tmb/10.jpg",
+          },
+        ],
+        showNumOfRemainingPhotos: true,
       }
+
+
+
+
+
     }),
 
     computed: {
+      matched_all(){
+        if (this.collageChoise == 'D')
+          return this.collageD.photos.map(({source}) => ({
+            src: source,
+            caption: '',
+            thumb: source,
+          }))
+        // else
+        // if (this.collageChoise == 'W')
+          return this.collageW.photos.map(({source}) => ({
+            src: source,
+            caption: '',
+            thumb: source,
+          }))
+      },
       ...mapState({
         isOpen: state => state.infoPanel.isOpen,
         defaultFilters: state => state.chess.defaultFilters,
@@ -498,13 +1207,199 @@
       window.removeEventListener('message', this.messageListener)
       window.removeEventListener('resize', this.resizeListener)
     },
+    mounted: function() {
+      //console.log('!!!!!!!!!!!!!!!! mounted')
 
+      if(false)
+      if (this.isMobile()) {
+        let interval1 = setInterval(_ => {
+          var panel = document.getElementsByClassName("tableWithFloor")[0];
+          var FlatInfo = document.getElementsByClassName("flat__info")[0];
+          if (typeof panel !== "undefined")
+            if (typeof FlatInfo !== "undefined") {
+              FlatInfo.appendChild(panel);
+              clearInterval(interval1)
+            }
+        }, 50)
+      }
+
+    },
     methods: {
-      /**
-       * Отправка данных с виджета на сайт (скрипт вставку)
-       * @param payload
-       * @param origin
-       */
+
+      goToDomRf(){
+        let url = 'https://xn--h1alcedd.xn--d1aqf.xn--p1ai/calculators/kalkulyator-ipoteki/'
+
+        // window.parent.location.href = url
+        // window.parent.location.replace(url);
+
+        // window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+
+        window.open(url, '_blank')
+      },
+
+      setbank(b){
+        this.bank=b;
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
+
+      checkHidePanel(){
+
+        var panel1 = document.getElementById('idTableWithFloor')
+        // console.log('panel1.style.right checkHidePanel');
+        // console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-137px";
+          }
+        }
+
+        var panel1 = document.getElementById('closeArea')
+        if (panel1) {
+          panel1.style.width='0px';
+          panel1.style.height = "0px";
+        }
+
+      },
+
+      isMobile() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          return true
+        } else {
+          return false
+        }
+      },
+
+      itemClickHandlerW(data, i) {
+        // click event
+        // console.log('i',i)
+        this.collageChoise = 'W'
+        this.modal_5 = true
+        if(i>0)i+=1
+        window.indexGAlaryImg = i
+        this.$refs.lightbox5.showImage(i)
+        window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      itemClickHandlerD(data, i) {
+        // click event
+        // console.log('i',i)
+        this.collageChoise = 'D'
+        this.modal_5 = true
+        if(i>0)i+=1
+        window.indexGAlaryImg = i
+        this.$refs.lightbox5.showImage(i)
+        window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+
+      setModal9() {
+        this.modal_9 = !this.modal_9;
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
+
+      setModal10() {
+        this.modal_10 = !this.modal_10;
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 500)
+      },
+
+      setModal() {
+        this.modal_3 = !this.modal_3
+        // console.log(this.modal_3 , 'this.modal_3 ')
+        let elBg  = document.getElementById('bg_fav_window')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+      },
+
+
+      setModal5() {
+        this.modal_5 = !this.modal_5
+        // console.log(this.modal_3 , 'this.modal_3 ')
+        let elBg  = document.getElementById('bg_fav_window5')
+        let testParent  = document.getElementById('maincontent_parent1')
+
+        if(elBg && testParent){
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+      },
+
+      gotoHome() {
+        // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-,%D0%B2%D1%81%D0%B5,-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8';
+        // window.parent.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'/#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
+        // window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/'+'#:~:text=отделки%20с%20мебелью-,или%20без!%20Все.';
+        window.top.location.href  =  'https://xn--d1acscjb2a6f.xn--p1ai/#infrastructure';
+      },
+
+      maincontent_parent1_Click(){
+        var panel1 = document.getElementById('idTableWithFloor')
+        console.log('panel1.style.right maincontent_parent1_Click');
+        console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-137px";
+          }
+        }
+      },
+
+      floorClick(itemId, className){
+        const itemElement = document.getElementById(`floorView-${itemId}`);
+
+
+
+        var panel1 = document.getElementById('idTableWithFloor')
+        // console.log('panel1.style.right');
+        // console.log(panel1.style.right);
+        if (panel1) {
+          if(panel1.style.right=='0px'){
+            panel1.style.right = "-137px";
+          }
+
+        }
+
+        if (itemElement) {
+          let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
+          let foundEl = (childElements.length > 0)
+          if(foundEl){
+            childElements[0].click()
+
+            var FlatChooosed = document.getElementsByClassName("choosedFloor");
+            if (typeof FlatChooosed !== "undefined")
+              for (var i = 0; i < FlatChooosed.length; i++) {
+                FlatChooosed.item(i).classList.remove('choosedFloor')
+              }
+            itemElement.classList.add('choosedFloor');
+
+          }
+          return foundEl
+        } else {
+          return true;
+        }
+        return false;
+
+      },
       hasChildWithClass(itemId, className) {
 
         const itemElement = document.getElementById(`floorView-${itemId}`);
@@ -512,6 +1407,26 @@
 
         if (itemElement) {
           let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
+          let foundEl = (childElements.length > 0)
+
+          // console.log(itemId,foundEl)
+          return foundEl
+        } else {
+          // console.log('elem not exist')
+          return true;
+        }
+        // console.log('return false;')
+        return false;
+      },
+      hasChildWithClassFav(itemId, className) {
+
+        const itemElement = document.getElementById(`floorViewFav-${itemId}`);
+        // console.log(itemElement,itemId, className)
+
+        if (itemElement) {
+          let childElements = itemElement.getElementsByClassName(className);
+          // console.log('childElements1',childElements)
           let foundEl = (childElements.length > 0)
 
           // console.log(itemId,foundEl)
@@ -533,14 +1448,17 @@
         }
       },
       getName(name){
+        if(name=='0'){
+          return "0"
+        }
         if(name=='1'){
-          return "1комнатная"
+          return "1 комнатная"
         }
         if(name=='2'){
-          return "2комнатная"
+          return "2 комнатная"
         }
         if(name=='3'){
-          return "3комнатная"
+          return "3 комнатная"
         }
         if(name=='С'){
           return "Студия"
@@ -556,6 +1474,13 @@
           payload: window.innerWidth
         })
         await this.setInjectFrameSizes()
+
+        setTimeout(
+            ()=>{
+              this.setInjectFrameSizes()
+            }
+            , 1500)
+
       },
 
       async setInjectFrameSizes() {
@@ -564,7 +1489,7 @@
           const tiles = document.getElementById('tiles')
           const main = document.getElementById('main')
           if (tiles && main)
-            main.style.minHeight = `${tiles.scrollHeight}px`
+            main.style.minHeight = `${tiles.scrollHeight+100}px`
         }
         var win = window,
             doc = document,
@@ -575,7 +1500,19 @@
 
 
         const page = document.querySelector('.b-page')
+
+        // console.log('win.innerHeight',win.innerHeight)
+        // console.log('docElem.clientHeight',docElem.clientHeight)
+        // console.log('body.clientHeight',body.clientHeight)
+        // console.log('document.body.scrollHeight',document.body.scrollHeight)
+        // console.log('page.clientHeight',page.clientHeight)
+        // console.log('page.scrollHeight',page.scrollHeight)
+        // console.log('y',y)
+
+
+
         y = Math.max(y,page.scrollHeight,document.body.scrollHeight)
+        // console.log('y r',y)
         this.postMessage({
           method: '_$is_setFrameSize',
           payload: {
@@ -603,9 +1540,12 @@
 
       async init() {
         try {
+          this.isManagerMode = this.checkViewMode()
+
           this.isLoading = true
           await this.$store.dispatch('chess/selectObject', this.$config.objectId)
           await this.setFilter(true)
+
         }
         catch(e) {
           console.error(e)
@@ -613,6 +1553,13 @@
         finally {
           this.isLoading = false
           await this.setInjectFrameSizes()
+
+          setTimeout(
+              ()=>{
+                this.setInjectFrameSizes()
+              }
+              , 1500)
+
         }
       },
 
@@ -669,20 +1616,50 @@
         var urlparent = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
+
+        //console.log('---start----urlparent',urlparent)
         var typedefault = getParameterByName('typedefault',urlparent);
+        //console.log('---start----typedefault',typedefault)
           if (typedefault) {
-            defaultTypes.push(typedefault)
+                  // let typedefault = parseInt(typedefault, 10)
+                  // defaultTypes.push(typedefault)
+
+            //console.log('---start----defaultTypes',defaultTypes)
+            defaultTypes.push(typedefault.toString())
         }
+
+
+
+
+        var wordsSqr = []
+        var sqr = getParameterByName('sqr',urlparent);
+        if (sqr) {
+          // console.log('---start----sqr',sqr)
+          let wordsSqr1 = sqr.split('_');
+          wordsSqr[0] = parseFloat(wordsSqr1[0])
+          wordsSqr[1] = parseFloat(wordsSqr1[1])
+          // console.log('---start----wordsSqr',wordsSqr)
+        }
+        if(wordsSqr.length==0){
+          wordsSqr = ([(byArea||[])[0] || this.minArea, (byArea||[])[1] || this.maxArea])
+        }
+
+
 
 
         const filters = {
           bySection: sectionId || null,
           byLayout: byLayout || [],
           byType: byType || defaultTypes,
-          byArea: [(byArea||[])[0] || this.minArea, (byArea||[])[1] || this.maxArea],
+          byArea:  wordsSqr ,
           byFloor: [(byFloor||[])[0] || 1 , (byFloor||[])[1] || this.floorsCount],
           byPrice: [(byPrice||[])[0] || this.minPrice, (byPrice||[])[1] || this.maxPrice]
         }
+
+        // if(byArea){
+        //   console.log('---start----byArea',byArea)
+        // }
+        // console.log('---start----setFilter',filters)
 
         // if(byType){
         //   console.log('---start----byType',byType)
@@ -696,6 +1673,66 @@
       },
 
       reverseKeys: n => [...Array(n).keys()].slice().reverse(),
+
+      favCoocies() {
+        let cookieName = "favItemsAppartament"
+        if (checkCookie(cookieName)) {
+          let json1 = getCookie(cookieName);
+          let fav = JSON.parse(json1);
+          return fav
+        }
+      },
+
+
+      floorCoocies() {
+        if (checkCookie(this.cookieName_floorAppartament)) {
+          let val1 = getCookie(this.cookieName_floorAppartament);
+          let fav = parseInt(val1,10);
+          return fav
+        }
+        return 0
+      },
+
+
+      checkViewMode() {
+        var field = 'manager_mode';
+        var url = window.parent.location.href;
+        if (url.indexOf('?' + field + '=') != -1)
+          return true;
+        else if (url.indexOf('&' + field + '=') != -1)
+          return true;
+        return false
+      },
+
+      favCoociesNotEmpty() {
+        let cookieName = "favItemsAppartament"
+        if (checkCookie(cookieName)) {
+
+          let json1 = getCookie(cookieName);
+          let fav = JSON.parse(json1);
+
+          // if (fav.length>0){
+          //   console.log('fav - ',fav)
+          //   return true
+          // }
+
+          // console.log('fav - ',fav)
+          // console.log('fav.length - ',fav.length)
+
+          return fav.length>0
+        }
+        // console.log('fav0 - ',0)
+        return false
+      },
+
+      propertyGet(hash){
+        // console.log('this.$store.state.chess',this.$store.state.chess)
+        // console.log('this.$store.state.chess.properties[0]',this.$store.state.chess.properties[0])
+        let filterCriteria = [hash];
+        let filteredData = this.$store.state.chess.properties.filter(item => filterCriteria.includes(item.id));
+        // console.log('filteredData',filteredData);
+        return filteredData[0]
+      },
 
       closeInfoPanel() {
         this.$store.commit('infoPanel/set', {
@@ -717,10 +1754,111 @@
         this.closeInfoPanel(true)
       },
 
+      hasClass(element, className) {
+        return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+      },
+
       onChangeFilter() {
         this.$store.commit('chess/changeFilters', this.filters)
         this.closeInfoPanel(true)
-        setTimeout(_ => {let arrcards = document.getElementsByClassName('c-building__flat-type'); arrcards[0].click(); /*обработать ситуацию когда фильтры не вернули ничего*/ },500);
+        setTimeout(_ => {
+
+          let arrcards = document.getElementsByClassName('nowInSale');
+
+          let floor = this.floorCoocies()
+          if (floor > 0) {// если куки установлены
+            let floorcards = document.getElementById('floorView-' + floor);
+            if (floorcards) {
+              // let floorSaleCards = floorcards.getElementsByClassName('nowInSale');
+              if (this.hasClass(floorcards, 'nowInSale')) {
+                floorcards.click()
+                floorcards.querySelectorAll('.buttonFloor')[0].click();
+                document.cookie = this.cookieName_floorAppartament + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                return true
+              }
+            }
+          }
+
+          if (1){ // клик по первой квартире на этаже из фильтра
+            for (let floor_i = 0; floor_i <= (arrcards.length - 1); floor_i++) {
+              let floorcards = arrcards[floor_i] //.getElementById('floorView-' + floor_i);
+              if (floorcards) {
+                let floorSaleCards = floorcards.getElementsByClassName('c-building__flat-inner');
+                // let disNone = floorcards.getElementsByClassName('disNone');
+                if (floorSaleCards.length > 0) {
+                  console.log(floorSaleCards.textContent)
+                  floorcards.click()
+                  floorcards.querySelectorAll('.buttonFloor')[0].click();
+                }
+              }
+            }
+          }
+
+
+
+
+
+
+          // // let arrcards = document.getElementsByClassName('c-building__flat-type');//берем доступную к прдаже квартиру
+         // берем первый из этажей с квартирой доступной к продаже
+          arrcards = document.getElementsByClassName('nowInSale');
+          if (arrcards.length > 0) {
+            // arrcards[0].click()
+            // arrcards[0].querySelectorAll('.buttonFloor')[0].click();
+          } else {
+            console.log('по данному запросу объекты недвижимости недоступны')
+            // alert('по данному запросу объекты недвижимости недоступны')
+          }
+
+
+
+
+            // let itemElement = document.getElementById("floorView-"+0);
+            // if (typeof itemElement !== "undefined")
+            // {
+            //   var FlatChooosed = document.getElementsByClassName("choosedFloor");
+            //   if (typeof FlatChooosed !== "undefined")
+            //     for (var i = 0; i < FlatChooosed.length; i++) {
+            //       FlatChooosed.item(i).classList.remove('choosedFloor')
+            //     }
+            // }
+            // itemElement.classList.add('choosedFloor');
+
+
+            /// action after load and fix all transformations
+            // прячем все пустые строки на шахматке для менеджера
+            if(this.isManagerMode){
+              for(let floor_i = 0; floor_i <= 25; floor_i++){
+                let floorcards = document.getElementById('floorView-' + floor_i);
+                if(floorcards) {
+                  let floorSaleCards = floorcards.getElementsByClassName('c-building__flat-inner');
+                  let    stringLine = (floorcards.textContent===undefined) ? floorcards.innerText : floorcards.textContent;
+                  // let    stringLine =  floorcards.textContent;
+                  if(stringLine.length>40)
+                  {
+                    // console.log('floorView-' + floor_i)
+                    // console.log(stringLine)
+                    // console.log(stringLine.length)
+                    floorcards.style.removeProperty('display')
+                  }
+                  else{
+                    floorcards.style.display = 'none'
+                  }
+                }
+              }
+            }
+
+
+          ;
+          /*обработать ситуацию когда фильтры не вернули ничего*/
+        },500);
+
+
+
+        setTimeout(_ => {
+
+        });
+
       },
 
       priceFormatter(value) {
@@ -748,7 +1886,7 @@
           const url = this.parentLocation.href
           const urlSplit = new URL(url).host.split('.')
           let utms = {}
-
+          // console.log('urlSplit',urlSplit)
           if (urlSplit.length > 2) {
             const developer = urlSplit[0]
             utms['utm_google'] = `google_ads_${developer}`
@@ -789,19 +1927,106 @@
 </script>
 
 <style lang="scss" scoped>
+
+
+//.slide-fade-enter-active {
+//  transition: all 0.3s ease-out;
+//}
+//
+//.slide-fade-leave-active {
+//  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+//}
+//
+//.slide-fade-enter-from,
+//.slide-fade-leave-to {
+//  transform: translateY(20px);
+//  opacity: 0;
+//}
+
+
+
+//.slide-fade-leave-active,
+//.slide-fade-enter-active {
+//  transition: 2s;
+//}
+//.slide-fade-enter {
+//  transform: translateY(-100%);
+//}
+//.slide-fade-leave-to {
+//  transform: translateY(100%);
+//}
+
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: all 2.4s;
+  height: 1000px;
+  opacity: 1;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+  opacity: 0;
+  height: 0px;
+}
+
+
+.maincontent_parent {
+  width: 100%;
+  padding-top: 39px;
+  //min-height: 1000px;
+  //min-height: 1200px;
+  //border: 2px dashed;
+}
+.maincontent_parentBottom {
+  max-width: 100%;
+  //max-width: 1600px;
+  margin: 0px auto 0px auto;
+  z-index: 1009;
+}
+
+.maincontent_claculator {
+  //max-width: 100%;
+  max-width: 1600px;
+  margin: 0px auto 0px auto;
+  //z-index: 1009;
+  height: 1300px;
+  width: 100%;
+}
+
+
+
+.maincontent{
+  max-width: 1600px;
+
+  //height: 1000px;
+  //height: 1400px;
+  //height: 100%;
+  //max-height: 2160px;
+  //border: 5px solid;
+  margin: 0px auto 0px auto;
+}
+.maincontentBottom{
+  max-width: 1600px;
+  height: 400px;
+  margin: 0px auto 0px auto;
+}
+
+
+
   .st0 {
     fill: #18214b;
   }
   .loader {
     position: absolute;
-    display: flex;
+    //display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(white, .85);
+    //background-color: rgba(white, .85);
 
     svg {
       width: 100px;
@@ -894,10 +2119,48 @@
     left: 0;
     top: 0;
   }
-  .hidden {
-    display: none;
+  .nowInSale .buttonFloor {
+    cursor: pointer;
+    background-color: #219794;
+    color: white;
+    border: 2px #219794 solid;
   }
-  .scaling {
+  .choosedFloor .buttonFloor {
+    background-color: #e47554;
+    color: black;
+    border: 2px #219794 solid;
+  }
+  .scaling07 {
     transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
   }
+
+.disNone {
+  display:none;
+}
+
+
+
+
+  .just_building__floor{
+    display: flex;
+  }
+
+
+  .buttonFloor {
+    cursor: not-allowed;
+    background-color: #fff;
+    border: none;
+    color: #CCCDCF;
+    padding-top: 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 8px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    border: 2px #D7E6E2 solid;
+  }
+
 </style>

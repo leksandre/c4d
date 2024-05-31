@@ -1,9 +1,12 @@
 .e-select {
   position: relative;
   align-items: center;
-  border: 1px solid $color-light-grey;
+  //border: 1px solid $color-light-grey;
+  border: 1px solid $color-primary-DomOtel;
   height: $height-input-fields;
   overflow: hidden;
+
+  //background: no-repeat right #E47554;
 
   &::after {
     content: '';
@@ -17,7 +20,7 @@
     right: 8px;
     width: 14px;
     height: 14px;
-    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.102 1.392l4.95 4.95a1 1 0 010 1.414l-4.95 4.95' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='bevel'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.102 1.392l4.95 4.95a1 1 0 010 1.414l-4.95 4.95' stroke='%23E47554' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='bevel'/%3E%3C/svg%3E");
     transform: rotate(90deg);
   }
 
@@ -26,7 +29,8 @@
     width: 100%;
     height: 100%;
     padding: 0 27px 0 8px;
-    color: $color-black;
+    //color: $color-black;
+    color:  $color-primary-DomOtel;
     position: absolute;
     top: 0;
     left: 0;

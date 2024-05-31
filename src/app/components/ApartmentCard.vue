@@ -3,7 +3,7 @@
     href="#" class="c-building__flat"
     :class="{'is-active': property.isSelected, 'is-not-filtred': !property.isFiltred }"
     @click.prevent="onViewApartment"
-
+    :style="[ property.status == 'Свободна' ? {'cursor': 'pointer'} : {'cursor': 'not-allowed'} ]"
   >
     <div  v-if="property.isFiltred"
       class="c-building__flat-type"
@@ -21,26 +21,42 @@
           class="c-building__flat-type"
           :style="{'background-color': color}"
         >
-          {{ property['КоличествоКомнатСтрокой'] }}
+          {{ property['rooms'] }}
         </div>
-        <div class="ml-2 has-opacity-65">{{ property['ТипНедвижимости'] }}</div>
-        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>
+        <div class="ml-2 has-opacity-65">{{ property['type_object'] }}</div>
+        <!--        <div class="ml-auto has-opacity-65">№{{ property.name }}</div>-->
       </div>
-      <div class="font-weight-bold text-body-1 mt-2">{{ property.price | num }} ₽</div>
-      <div class="has-opacity-65 mt-1">{{ property['ПлощадьОбщая'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
+
+        <div class="ml-auto has-opacity-65">{{ property.name }}</div>
+
+        <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>
+      <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - {{ property.priceM2 | num }} ₽/м²</div>
+
+      <div v-if="property.status=='Свободна'" class="mt-1 has-opacity-65"  :style="{'background-color': color}" >Статус квартиры - {{ property.status }}</div>
+      <div v-else class="mt-1 has-opacity-65" >Статус квартиры - {{ property.status }}</div>
 
       <div class="mb-10">
-        <a class="c-image-property image-link"  @click="onOpenImage">
-          <img :src="property.plan" alt="">
+        <a class="c-image-property image-link"  @click="onOpenImage" >
+<!--          <img :src="property.plan" alt="">-->
+          <img  v-if="typeof property.images !== 'undefined' && typeof property.images[0] !== 'undefined' && typeof property.images[0].src !== 'undefined'"  :src="property.images[0].src" alt="">
         </a>
       </div>
 
     </div>
+
     </div>
   </a>
 </template>
 
 <script>
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
   import { mapGetters } from 'vuex'
   export default {
     props: {
@@ -78,7 +94,7 @@
       },
       KKS: vm => {
         let KKS
-        switch (vm.property.КоличествоКомнатСтрокой) {
+        switch (vm.property.rooms) {
           case '1':
             KKS = '1комнатная'
             break
@@ -102,8 +118,49 @@
     },
 
     methods: {
-      // TODO: copypaste to App.vue method setFilter()
+
+      checkViewMode() {
+        var field = 'manager_mode';
+        var url = window.parent.location.href;
+        if (url.indexOf('?' + field + '=') != -1)
+          return true;
+        else if (url.indexOf('&' + field + '=') != -1)
+          return true;
+        return false
+      },
+
+      onViewApartmentGoTo() {
+        //https://xn--d1acscjb2a6f.xn--p1ai/index.html?sqr=26.41_26.43
+        if (this.property.status!='Свободна'){
+          return
+        }
+        let value1 = parseFloat((""+this.property.area).replace(",", "."));
+        //console.log('value1', value1);
+        let value2 = value1-0.01
+        let value3 = value1+0.01
+        let addstr1 = '?sqr='+ value2.toFixed(2) + '_' + value3.toFixed(2)
+
+        setCookie('floorAppartament', this.property.floor, 1)
+
+        if ((window.parent.location.href.indexOf("localhost") != -1) | (window.parent.location.toString().indexOf("localhost") != -1)) {
+          window.parent.location.href = '/index.html' + addstr1;
+          window.parent.location.replace('/index.html' + addstr1);
+        }
+
+        window.open(
+            '/index.html' + addstr1, "_blank");
+
+        // window.parent.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
+        // window.parent.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+        // window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1;
+        // window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/index.html'+ addstr1);
+      },
+
+
       onViewApartment() {
+
+       if(this.checkViewMode()) this.onViewApartmentGoTo()
+
         if (this.$config.mode === 'api') {
           this.$parent.postMessage({
             method: '_$is_dispatchEvent',
