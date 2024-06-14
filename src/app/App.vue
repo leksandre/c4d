@@ -1565,6 +1565,9 @@ function checkCookie(cname) {
       },
 
       async createEventTenant(objId,tk,sqr) {
+        let lastSqr = getCookie('lastSqrApartament');
+        if(lastSqr==sqr) return;
+
         document.cookie = "lastSqrApartament="+sqr;
         let details = {
           'ApplicationId':1,
