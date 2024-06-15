@@ -1564,9 +1564,60 @@ function checkCookie(cname) {
         }
       },
 
+      extractUtmMarks(sqr) {
+        let dataforsend = {
+          "sqr_filter": sqr,
+        }
+
+        let utmsMarks = document.cookie.split(';').filter(function (c) {
+          return c.trim().indexOf('get_utm_mark_') === 0;
+        }).map(function (c) {
+          return c.trim();
+        });
+
+        let hasSource = false;
+        let source_my = '';
+        // console.log('utmsMarks', utmsMarks)
+
+        for (let utmMark of utmsMarks) {
+          let arrUtm = utmMark.split('=')
+          // console.log('arrUtm',arrUtm)
+          if (arrUtm.length == 2) {
+
+            if (arrUtm[0].indexOf('get_utm_mark_') == -1)
+              continue
+
+            let nameUtm = arrUtm[0].replace('get_utm_mark_', '')
+            // console.log('nameUtm',nameUtm)
+            if (nameUtm.toLowerCase() == 'source_my') {
+              source_my = arrUtm[1]
+              continue
+            }
+
+            if ((nameUtm.toLowerCase() == 'source') && (arrUtm[1].length > 0)) {
+              hasSource = true
+            }
+
+            dataforsend[nameUtm] = arrUtm[1]
+          }
+        }
+
+        if (hasSource) {
+        } else {
+          dataforsend['source'] = source_my
+        }
+        return dataforsend
+      },
+
       async createEventTenant(objId,tk,sqr) {
         let lastSqr = getCookie('lastSqrApartament');
         if(lastSqr==sqr) return;
+
+
+        //extract utm marks
+       let forValEvents = this.extractUtmMarks(sqr)
+
+        console.log('JSON.stringify',JSON.stringify(forValEvents))
 
         document.cookie = "lastSqrApartament="+sqr;
         let details = {
@@ -1574,7 +1625,7 @@ function checkCookie(cname) {
           'ObjectId':objId,
           'StatusId':1,
           'ActionName':'просмотр планировки',
-          'Value':'{"площадь":sqr,"sqr":sqr }',
+          'Value':JSON.stringify(forValEvents),
         }
         var formBody = [];
         for (var property in details) {
