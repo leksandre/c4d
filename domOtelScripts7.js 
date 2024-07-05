@@ -31,21 +31,24 @@
     $(document).ready(function(){
                       
                       setTimeout(() => {
-                                 if(!$.cookie('welcomeMsg')){}
+                                 if(!$.cookie('welcomeMsg')){
                                  $(".topBanner96").show();
                                  $.cookie('welcomeMsg', 'Y');
-                                 $( "#targettopBanner96" ).click(function() {
-                                                                 $( "#targettopBanner96" ).hide();
-                                                                 });
                                  
                                 
                                          setTimeout(() => {
                                                     $( "#targettopBanner96" ).hide();
                                                     }, 55000);
-                                 
+                                                }
                                  }, 2500);
                       
                       
+                        
+                                 $( "#targettopBanner96" ).click(function() {
+                                                                 $( "#targettopBanner96" ).hide();
+                                                                 });
+
+                                                                 
                       });
                       
     </script>
@@ -57,6 +60,7 @@
 }
 
 .topBanner96 {
+    display: none;
     padding: 30%;
     padding-top: 10%;
     position: fixed;
