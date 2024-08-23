@@ -68,7 +68,7 @@ var win = window,
     x = win.innerWidth || docElem.clientWidth || body.clientWidth,
     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
-if (x<450){
+if (x<670){
 makeScroll();
 }
 
