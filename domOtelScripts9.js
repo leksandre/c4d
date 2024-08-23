@@ -1,6 +1,6 @@
 <!-- add reaction for scroll galary part page -->
 <script type="text/javascript">
-
+window.addEventListener("load", (event) => {
  var timeoutScrool;
  var mobwrappers = document.getElementsByClassName('flats-block__mobile-wrapper');
  var elementWithPanels;
@@ -73,5 +73,5 @@ makeScroll();
 }
 
 //timeoutScrool = setInterval(() => makeScroll(),7000);
-
+  });
 </script>
