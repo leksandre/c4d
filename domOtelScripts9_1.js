@@ -13,7 +13,10 @@ elementWithPanels = elementWithPanels1[0];
 
 
 async  function hideNow(el,parent) {
-                        const timer1 = setInterval(() => {parent.scrollLeft=parent.scrollLeft+3; }, 10);
+                        el.style.marginRight="12px";
+                        const timer1 = setInterval(() => { let x1 = el.style.marginRight;
+                                                   let x2 = parseInt(x1, 10);
+                                                   el.style.marginRight=""+(x2-3)+"px" }, 10);
                         
                         el
                         .animate({ opacity: [1, 0], transform: ["scale(1)", "scale(0)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
@@ -22,7 +25,7 @@ async  function hideNow(el,parent) {
                         e.target.effect.target.style.opacity = 1;
                         e.target.effect.target.style.transform = 'scale(1)';
                         clearInterval(timer1);
-                        parent.scrollLeft=0;
+                        el.style.marginRight="12px";
                         };
                         
                         }
@@ -56,7 +59,7 @@ if (x<670){
 //makeScroll();
 }
 if(elementWithPanels)
-timeoutScrool = setInterval(() => makeScroll(),2000);
+timeoutScrool = setInterval(() => makeScroll(),4000);
                         
   });
 </script>
