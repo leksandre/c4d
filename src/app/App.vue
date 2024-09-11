@@ -844,6 +844,7 @@ function checkCookie(cname) {
       modal_10: false,
 
       bank:'',
+      alreadyStartedCatchInfoProcess:false,
 
       collageChoise: 'W',
 
@@ -1563,6 +1564,156 @@ function checkCookie(cname) {
         }
       },
 
+      extractUtmMarks(sqr) {
+        let dataforsend = {
+          "sqr_filter": sqr,
+        }
+
+        let utmsMarks = document.cookie.split(';').filter(function (c) {
+          return c.trim().indexOf('get_utm_mark_') === 0;
+        }).map(function (c) {
+          return c.trim();
+        });
+
+        let hasSource = false;
+        let source_my = '';
+        // console.log('utmsMarks', utmsMarks)
+
+        for (let utmMark of utmsMarks) {
+          let arrUtm = utmMark.split('=')
+          // console.log('arrUtm',arrUtm)
+          if (arrUtm.length == 2) {
+
+            if (arrUtm[0].indexOf('get_utm_mark_') == -1)
+              continue
+
+            let nameUtm = arrUtm[0].replace('get_utm_mark_', '')
+            // console.log('nameUtm',nameUtm)
+            if (nameUtm.toLowerCase() == 'source_my') {
+              source_my = arrUtm[1]
+              continue
+            }
+
+            if ((nameUtm.toLowerCase() == 'source') && (arrUtm[1].length > 0)) {
+              hasSource = true
+            }
+
+            dataforsend[nameUtm] = arrUtm[1]
+          }
+        }
+
+        if (hasSource) {
+        } else {
+          dataforsend['source'] = source_my
+        }
+        return dataforsend
+      },
+
+      async createEventTenant(objId,tk,sqr) {
+        let lastSqr = getCookie('lastSqrApartament');
+        if(lastSqr==sqr) return;
+
+
+        //extract utm marks
+       let forValEvents = this.extractUtmMarks(sqr)
+
+        console.log('JSON.stringify',JSON.stringify(forValEvents))
+
+        document.cookie = "lastSqrApartament="+sqr;
+        let details = {
+          'ApplicationId':1,
+          'ObjectId':objId,
+          'StatusId':1,
+          'ActionName':'просмотр планировки',
+          'Value':JSON.stringify(forValEvents),
+        }
+        var formBody = [];
+        for (var property in details) {
+          var encodedKey = encodeURIComponent(property);
+          var encodedValue = encodeURIComponent(details[property]);
+          formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+        fetch("https://domotel_stats-admin.mobsted.ru/api/v8/events", {
+          method: "POST",
+          body: formBody,
+          headers: {
+            // 'Content-Type': 'application/json;charset=utf-8',
+            // 'Content-Type': 'text/plain;charset=UTF-8',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "authorization": "Bearer "+tk
+          }
+        })   .then((responseNew) => responseNew.json())
+            .then((resJson) => {
+
+              console.log('c event json - ',resJson)
+
+            });
+
+      },
+
+      async catchInfoObj(sqr) {
+        this.alreadyStartedCatchInfoProcess = true
+        let tk = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkb21vdGVsX3N0YXRzIiwibmJmIjoxNzE4MzYxODY2LCJleHAiOjEwMTcxMDc4MTA2NiwidWlkIjoiYmQyYWZjYTEtYmZmNi00NWM3LTlhNTEtYTQ2ZWNlMjBjNGZmIiwic3ViIjoid2lkZ2V0cyIsIm9ianV1aWQiOiJkODQ2NmM0Yi0wYTk3LTQzM2QtOTk4Yy02NmFkZjIwNzI1NGYiLCJ1c2VydXVpZCI6IiJ9.wGgtRB-6kIAL4T1sSyYDN94YUIYyIsMs7iAIq1X9Jac'
+
+         fetch("https://domotel_stats-admin.mobsted.ru/api/v8/object?page=1&applicationId=1&pageSize=20",  {
+          method: "GET",
+          headers: {
+            "authorization": "Bearer "+tk
+          }
+        })
+            .then((response) => response.json())
+            .then((json) => {
+              // console.log(json)
+              // console.log(json.data)
+
+              var newArray = json.data.filter(function (el) {
+                return el.attributes.square == sqr;
+              });
+
+              // console.log('found!!!',newArray)
+
+              if(newArray.length==0){
+
+                var dataforsend = new URLSearchParams({
+                  'Enabled': 1,
+                  'ApplicationId': 1,
+                  'square': sqr,
+                });
+
+
+
+                fetch("https://domotel_stats-admin.mobsted.ru/api/v8/object", {
+                  method: "POST",
+                  body: (dataforsend),
+                  headers: {
+                    // 'Content-Type': 'application/json;charset=utf-8',
+                    // 'Content-Type': 'text/plain;charset=UTF-8',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "authorization": "Bearer "+tk
+                  }
+                })   .then((responseNew) => responseNew.json())
+                    .then((resJson) => {
+                      // console.log('c json - ',resJson)
+                      let objId = resJson['data'][0].id
+                      // console.log('objId created - ',objId)
+                      this.createEventTenant(objId,tk,sqr)
+                    });
+
+
+
+              } else {
+                let objId = newArray[0].id
+                // console.log('objId exist - ',objId)
+                this.createEventTenant(objId,tk,sqr)
+              }
+
+
+            });
+
+      },
+
       async setFilter(isReset) {
 
         const {
@@ -1639,6 +1790,16 @@ function checkCookie(cname) {
           wordsSqr[0] = parseFloat(wordsSqr1[0])
           wordsSqr[1] = parseFloat(wordsSqr1[1])
           // console.log('---start----wordsSqr',wordsSqr)
+
+
+          if (!this.alreadyStartedCatchInfoProcess){
+            let lastSqr = getCookie('lastSqrApartament');
+            if(lastSqr!=sqr){
+              this.catchInfoObj(sqr);
+            }
+          }
+
+
         }
         if(wordsSqr.length==0){
           wordsSqr = ([(byArea||[])[0] || this.minArea, (byArea||[])[1] || this.maxArea])
@@ -1786,7 +1947,7 @@ function checkCookie(cname) {
                 let floorSaleCards = floorcards.getElementsByClassName('c-building__flat-inner');
                 // let disNone = floorcards.getElementsByClassName('disNone');
                 if (floorSaleCards.length > 0) {
-                  console.log(floorSaleCards.textContent)
+                  // console.log(floorSaleCards.textContent)
                   floorcards.click()
                   floorcards.querySelectorAll('.buttonFloor')[0].click();
                 }
