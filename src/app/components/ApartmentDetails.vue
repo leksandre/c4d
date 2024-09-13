@@ -823,7 +823,7 @@ function checkCookie(cname) {
 
       saveToClipboard() {
         var urlparent = getUrl()
-        console.log('urlparent',urlparent)
+        //console.log('urlparent',urlparent)
         navigator.clipboard.writeText(urlparent);
 
 
@@ -1070,7 +1070,8 @@ function checkCookie(cname) {
       setModal() {
         this.$emit("changemode", "True");
 
-        console.log('set modal appartamentDetail Fav')
+        //console.log('set modal appartamentDetail Fav')
+
         // console.log(this.modal_3 , 'this.modal_3 ')
         // let elBg  = document.getElementById('bg_fav_window')
         // let testParent  = document.getElementById('maincontent_parent1')
