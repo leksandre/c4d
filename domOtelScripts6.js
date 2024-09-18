@@ -1,5 +1,46 @@
 <!-- on zvonok reaction -->
 <script type="text/javascript">
+    function createEventTenant(phone,name,data) {
+
+    let objId = 18
+    let tk = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkb21vdGVsX3N0YXRzIiwibmJmIjoxNzE4MzYxODY2LCJleHAiOjEwMTcxMDc4MTA2NiwidWlkIjoiYmQyYWZjYTEtYmZmNi00NWM3LTlhNTEtYTQ2ZWNlMjBjNGZmIiwic3ViIjoid2lkZ2V0cyIsIm9ianV1aWQiOiJkODQ2NmM0Yi0wYTk3LTQzM2QtOTk4Yy02NmFkZjIwNzI1NGYiLCJ1c2VydXVpZCI6IiJ9.wGgtRB-6kIAL4T1sSyYDN94YUIYyIsMs7iAIq1X9Jac'
+    let forValEvents = {phone,name,data}
+
+
+    let details = {
+    'ApplicationId':2,
+    'ObjectId':objId,
+    'StatusId':3,
+    'ActionName':'сообщение с сайта',
+    'Value':JSON.stringify(forValEvents),
+}
+    var formBody = [];
+    for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+}
+    formBody = formBody.join("&");
+
+    fetch("https://domotel_stats-admin.mobsted.ru/api/v8/events", {
+    method: "POST",
+    body: formBody,
+    headers: {
+    // 'Content-Type': 'application/json;charset=utf-8',
+    // 'Content-Type': 'text/plain;charset=UTF-8',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    "authorization": "Bearer "+tk
+}
+})   .then((responseNew) => responseNew.json())
+    .then((resJson) => {
+
+    //console.log('c event json - ',resJson)
+
+});
+
+}
+
+
     var timer1 = setInterval(function(){
 
     var forms = document.getElementsByClassName("form__form");
@@ -88,7 +129,7 @@
 });
 
     console.log(res1)
-
+    createEventTenant(phone1,name1,JSON.stringify(dataforsend))
 });
 
 } else {
@@ -104,5 +145,5 @@
 
 
 
-    }, 1000);
+}, 1000);
 </script>
