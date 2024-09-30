@@ -769,7 +769,13 @@ function checkCookie(cname) {
             return "Евро 2-комнатная"
           }
           if (name === '2'| name === 2) {
+            return "Евро 2-комнатная"
+          }
+          if (name === '3'| name === 3) {
             return "Евро 3-комнатная"
+          }
+          if (name === '4'| name === 4) {
+            return "Евро 4-комнатная"
           }
         } else {
           if (name === '1'| name === 1) {
