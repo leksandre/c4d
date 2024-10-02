@@ -175,7 +175,14 @@
     }, 1500);
 
 
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
 
+        function sleepFor(sleepDuration) {
+            var now = new Date().getTime();
+            while (new Date().getTime() < now + sleepDuration) { /* Do nothing */ }
+        }   
 
     function startTimerCatchFormCallingMe() {
 
@@ -192,6 +199,9 @@
                         clearInterval(timer1);
                         createCatcha();
                         element1.addEventListener("click", (event) => {
+
+                            element1.style.display = 'none';
+                            sleepFor(getRandomArbitrary(1,1000))
 
                             var name1 = ''
                             var phone1 = ''
