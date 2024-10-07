@@ -292,10 +292,6 @@
                         clearInterval(timer1);
                         createCatcha();
                         element1.addEventListener("click", (event) => {
-                            
-                            if (phone1.substring(1, 4) == '967') return
-                            if (phone1.substring(1, 5) == ' 967') return
-                            if (phone1.substring(1, 6) == ' (967') return
 
                             element1.style.display = 'none';
                             sleepFor(getRandomArbitrary(1,1000))
@@ -326,6 +322,12 @@
                             if (phone1.length == 0) return
                             if (code1.length == 0) return
 
+
+                            
+                            if (phone1.substring(1, 4) == '967') return
+                            if (phone1.substring(1, 5) == ' 967') return
+                            if (phone1.substring(1, 6) == ' (967') return
+                            
                             var dataforsend = {
                                 url: window.location.href
                             }
