@@ -326,8 +326,14 @@
                             
                             if (phone1.substring(1, 4) == '967') return
                             if (phone1.substring(1, 5) == ' 967') return
-                            if (phone1.substring(1, 6) == ' (967') return
-                            
+                            if (phone1.substring(1, 5) == '7967') return
+                            if (phone1.substring(1, 5) == ' 967') return
+                            if (phone1.substring(1, 5) == '7967') return
+                            if (phone1.substring(1, 6) == '7 967') return
+                            if (phone1.substring(2, 7) == '7 967') return
+                            if (phone1.indexOf('(967') !== -1) return
+                            if (phone1.indexOf('967)') !== -1) return
+
                             var dataforsend = {
                                 url: window.location.href
                             }
