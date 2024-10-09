@@ -76,16 +76,12 @@
 <!--              <img :src="property.plan" alt="">-->
 <!--            </a>-->
           </div>
-          <div class="mb-5">
-<!--            <div class="text-body-2 mb-1">Стоимость</div>-->
-            <div class="title-copy2">{{ property['cost'] | num }} ₽</div>
-
-
-
-
-
-
-
+          <div v-if="lenDiscounts()" class="mb-5">
+            <div class="title-copy2">{{ getCost() }} ₽</div>
+            <div class="title-copy2_1">{{ numberWithSpacesG() }} ₽</div>
+          </div>
+          <div v-else class="mb-5">
+            <div class="title-copy2">{{ numberWithSpacesG() }} ₽</div>
           </div>
 
 <!--          <div class="text-copy3">-->
@@ -133,10 +129,16 @@
                 <div>Статус</div>
                 <div>{{ property.status }}</div>
               </div>
-              <div class="c-list__item d-flex justify-space-between">
+
+              <div v-if="lenDiscounts()"  class="c-list__item d-flex justify-space-between">
+                <div>Цена, м²</div>
+                <div>{{ getCostM2() }} ₽  <div style="text-decoration: line-through">{{ property.priceM2 | num }} ₽</div> </div>
+              </div>
+              <div v-else class="c-list__item d-flex justify-space-between">
                 <div>Цена, м²</div>
                 <div>{{ property.priceM2 | num }} ₽</div>
               </div>
+
               <div class="c-list__item d-flex justify-space-between">
                 <div>Площадь</div>
                 <div>{{ property['area'] }} м²</div>
@@ -514,6 +516,12 @@ const myNotification = window.createNotification({
 });
 
 
+function numberWithSpaces(x) {
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return parts.join(".");
+}
+
 function getUrl(){
  let ulr0 =  (window.location != window.parent.location)
       ? document.referrer
@@ -760,7 +768,38 @@ function checkCookie(cname) {
         }, 100);
       },
 
-      getName(name,kitchen){
+      numberWithSpacesG(){
+        return (numberWithSpaces(this.property['cost']))
+      },
+      lenDiscounts(){
+        return ((this.property.discounts).length>0)
+      },
+      getCost(){
+        var sum = this.property['cost']
+        // console.log('sum')
+        // console.log(sum)
+        // console.log(this.property.discounts)
+        // console.log((this.property.discounts).length)
+        // console.log((this.property.discounts[0]))
+        for (let i = 0; i < (this.property.discounts).length; i++) {
+          // console.log(this.property.discounts[i])
+          // console.log()
+          sum = sum - (this.property.discounts[i]).amount
+        }
+
+        return numberWithSpaces(sum)
+      },
+
+      getCostM2(){
+        var sum = this.property['cost']
+        for (let i = 0; i < (this.property.discounts).length; i++) {
+          sum = sum - (this.property.discounts[i]).amount
+        }
+        sum = sum / this.property.area
+        return numberWithSpaces(sum)
+      },
+
+        getName(name,kitchen){
         if(name=='0'){
           return "Студия"
         }
