@@ -1,0 +1,55 @@
+<!-- add top panel on page -->
+<style>
+    #containerTopPaned {
+        display: block;
+        position: fixed;
+        z-index: 999999;
+        width: 100%;
+        height: 58px;
+        cursor: pointer;
+        /* color: var(--color-brand-text); */
+        color: #fff;
+        /* text-decoration: underline; */
+        text-align: center;
+        vertical-align: middle;
+        line-height: 58px;
+        font-size: 16px;
+        font-family: MultiKelnik, ptRootUi, sans-serif
+
+        transition: all .8s ease-in-out;
+        background-color: #e47554;
+    }
+
+    #containerTopPaned:hover {
+        transition: all .8s ease-in-out;
+        background-color: RGB(178, 178, 178);
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var BreakException = {};
+        var div = document.createElement("div");
+        div.id = "containerTopPaned"
+        div.innerHTML = 'Решим проблему с первоначальным взносом! Хотите узнать больше?'
+        document.body.insertBefore(div, document.body.childNodes[0]);
+        var h = document.getElementsByClassName("header header_theme_white j-header");
+        h[0].style.top = "58px";
+        div.addEventListener("click", function () {
+            var buttons = document.getElementsByClassName("button j-popup-callback");
+            try {
+                Array.from(buttons).forEach((element) => {
+                    if (element.innerHTML) {
+                        if (element.innerHTML = "Заказать звонок") {
+                            element.click();
+                            throw BreakException;
+                        }
+                    }
+                });
+            } catch (e) {
+                if (e !== BreakException) throw e;
+            }
+        });
+    });
+
+</script>
