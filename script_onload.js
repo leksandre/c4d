@@ -68,7 +68,7 @@ function scroll1to(){
 }
 
 //console.log('element! 1')
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 //console.log('element! ready')
     if (window.location.href.indexOf("/#infrastructure") > -1) {
 
