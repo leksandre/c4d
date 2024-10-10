@@ -38,7 +38,7 @@ async  function swalScale(el) {
    }
    
    
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 
 
 var newdiv = document.createElement('div');

@@ -1,6 +1,6 @@
 <!-- adding link ya gis -->
 <script>
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 
     let aTags4 = document.getElementsByClassName("location-adv__info");
     for (var i = 0; i < aTags4.length; i++) {
