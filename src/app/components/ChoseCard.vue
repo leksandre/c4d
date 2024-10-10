@@ -203,13 +203,16 @@ import { mapGetters } from 'vuex'
             break
           case '2'|2:
             if (vm.property.kitchen_living == 'true' | vm.property.kitchen_living == true){
-              KKS = 'Евро 3-комнатная'
+              KKS = 'Евро 2-комнатная'
             } else {
               KKS = '2-комнатнаяs'
             }
             break
           case '3'|3:
-            KKS = '3 комнатная'
+            KKS = 'Евро 3-комнатная'
+            break
+          case '4'|4:
+            KKS = 'Евро 4-комнатная'
             break
           case '0'||0:
             KKS = 'Студия'

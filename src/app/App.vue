@@ -1229,6 +1229,7 @@ function checkCookie(cname) {
 
       window.addEventListener("DOMContentLoaded", (event) => {
         let chatIcons1 = parent.document.getElementById('chatIcons');
+
         if (typeof chatIcons1 !== "undefined") {
 
           var newdiv = parent.document.createElement('div');
