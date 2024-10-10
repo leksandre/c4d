@@ -132,7 +132,7 @@ function scroll1to(){
 }
 
 //console.log('element! 1')
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 //console.log('element! ready')
     if (window.location.href.indexOf("/#infrastructure") > -1) {
 		setTimeout(function(){scroll1to();}, 1000);
@@ -149,7 +149,7 @@ window.addEventListener("load", (event) => {
 
 <!-- 3 adding link ya gis -->
 <script>
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 
     let aTags4 = document.getElementsByClassName("location-adv__info");
     for (var i = 0; i < aTags4.length; i++) {
