@@ -1,0 +1,19 @@
+<!-- delete bottom iframes -->
+<script>
+
+    setInterval(function () {
+        var crabs = document.getElementsByClassName("join-ad-interest-group");
+        Array.from(crabs).forEach((element) => {
+      
+                element.remove();
+            
+        });
+        crabs = document.querySelectorAll('[allow="join-ad-interest-group"]');
+        Array.from(crabs).forEach((element) => {
+      
+                element.remove();
+            
+        });
+    }, 200);
+
+</script>
