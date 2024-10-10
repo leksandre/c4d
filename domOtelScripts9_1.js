@@ -1,6 +1,6 @@
 <!-- add reaction for scroll galary part page -->
 <script type="text/javascript">
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
  var timeoutScrool;
  var mobwrappers = document.getElementsByClassName('flats-block__mobile-wrapper');
  var elementWithPanels;
