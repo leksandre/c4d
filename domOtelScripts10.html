@@ -1,0 +1,60 @@
+<!-- Fix prices actions -->
+<script>
+    window.urlActions = "https://xn--d1acscjb2a6f.xn--p1ai/sale_front.json";
+    function numberWithSpaces(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        return parts.join(".");
+    }
+    async function getActions() {
+
+        let response = await fetch(window.urlActions);
+
+        if (response.ok) {
+            let json = await response.json();
+            // console.log(json)
+
+
+            document.querySelectorAll('.flat-block-card__info-value').forEach((element) => {
+                if (element.innerHTML) {
+                    // console.log('-',element.innerHTML)
+                    if (element.innerHTML.indexOf(',') !== -1 && element.innerHTML.indexOf('м²') !== -1) {
+                        let arr1 = element.innerHTML.split(' ')
+                        // console.log(' -- ')
+                        // console.log(element.parentElement.parentElement.children)
+                        // console.log(element.parentElement.children)
+                        // console.log(element.parentElement.parentElement.children[0].innerHTML)
+                        // console.log(element.parentElement.parentElement.children[1].innerHTML)
+                        // console.log(arr1)
+                        // console.log(arr1[0].replace(',','.'))
+                        let prices = json.цена.filter((num) => num.площадь.toString() === (arr1[0].replace(',', '.')).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+                        // console.log('prices', prices)
+                        if (prices.length > 0) {
+                            let price = prices[0]
+                            let el = element.parentElement.parentElement.children[2].children[2]
+                            // console.log(el.innerHTML)
+                            el.innerHTML = " <div><div style='text-decoration: line-through'>"+numberWithSpaces(price.м2.toString())+" ₽</div> <div style='color: #e47554'>"+numberWithSpaces(price.цена_с_акцией.toString())+" ₽</div>   </div>"
+                        }
+                    }
+                } else {
+                }
+            });
+
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        getActions();
+
+        // fetch(window.urlActions)
+        //     .then(response => response.json())
+        //     .then(commits => alert(commits[0].author.login));
+
+
+    });
+
+
+</script>
