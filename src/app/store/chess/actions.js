@@ -76,6 +76,7 @@ export default {
   setDate1({ commit }, payload) {
 
     payload['data'].map(num => {
+      num.description = ""
       let images1 = (num.floor_planes)
       let images2 = (num.object_planes)
       let images3 = (num.tour_3d)

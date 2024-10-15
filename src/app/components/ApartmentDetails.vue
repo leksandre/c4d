@@ -517,6 +517,7 @@ const myNotification = window.createNotification({
 
 
 function numberWithSpaces(x) {
+  if (typeof x === "undefined") return "";
   var parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return parts.join(".");
@@ -772,7 +773,12 @@ function checkCookie(cname) {
         return (numberWithSpaces(this.property['cost']))
       },
       lenDiscounts(){
-        return ((this.property.discounts).length>0)
+        if ('discounts' in this.property){
+          // console.log('this.property !! - ',this.property.discounts)
+          return ((this.property.discounts).length>0)
+        }
+        // return ((this.property.discounts).length>0)
+        return false
       },
       getCost(){
         var sum = this.property['cost']
