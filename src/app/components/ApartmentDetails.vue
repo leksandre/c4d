@@ -796,7 +796,7 @@ function checkCookie(cname) {
         return numberWithSpaces(sum)
       },
 
-      getCostM2(){
+      getCostM2(){//m2
         var sum = this.property['cost']
         for (let i = 0; i < (this.property.discounts).length; i++) {
           sum = sum - (this.property.discounts[i]).amount
