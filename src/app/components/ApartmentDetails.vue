@@ -801,7 +801,7 @@ function checkCookie(cname) {
         for (let i = 0; i < (this.property.discounts).length; i++) {
           sum = sum - (this.property.discounts[i]).amount
         }
-        sum = sum / this.property.area
+        sum = parseInt(sum / this.property.area)
         return numberWithSpaces(sum)
       },
 
