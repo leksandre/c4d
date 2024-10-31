@@ -242,7 +242,7 @@
                             globalCreatedCaptcha = 0;
                             setTimeout(function () {
                                 createCatcha();
-                            }, 400);
+                            }, 200);
                         });
                     } catch (e) {
                         console.log('e451', e)
@@ -260,7 +260,7 @@
                             globalCreatedCaptcha = 0;
                             setTimeout(function () {
                                 createCatcha();
-                            }, 400);
+                            }, 200);
                         });
                     } catch (e) {
                         console.log('e452', e)
@@ -512,7 +512,7 @@
                             element1.click();
                             setTimeout(function () {
                                 createRieltFields();
-                            }, 400);
+                            }, 200);
                         });
                         element1.parentElement.appendChild(p_prime);
                         element1.parentElement.style="position: absolute; right: 0px;";
@@ -528,6 +528,6 @@
 
     setTimeout(function () {
                addrieltorButton();
-               }, 400);
+               }, 250);
            
 </script>
