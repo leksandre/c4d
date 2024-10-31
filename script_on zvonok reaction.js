@@ -237,6 +237,7 @@
                     
                     try {
                         element31.addEventListener("click", (event) => {
+                            window.alreadySet = false;
                             startTimerCatchFormCallingMe();
                             // console.log('-------------click button-circle')
                             globalCreatedCaptcha = 0;
@@ -255,6 +256,7 @@
                     
                     try {
                         element31.addEventListener("click", (event) => {
+                            window.alreadySet = false;
                             startTimerCatchFormCallingMe();
                             // console.log('-------------button header')
                             globalCreatedCaptcha = 0;
@@ -306,8 +308,8 @@
                             let phones1 = document.getElementsByName('zakazat-zvonok[field1]')
                             let codes1 = document.getElementsByName('code[field67]')
 
-                            let rielt_names1 = document.getElementsByName('zakazat-zvonok[reielt1]')
-                            let rielt_phones1 = document.getElementsByName('zakazat-zvonok[reielt2]')
+                            let rielt_names111 = document.getElementsByName('zakazat-zvonok[reielt1]')
+                            let rielt_phones111 = document.getElementsByName('zakazat-zvonok[reielt2]')
                                                   
                             Array.from(codes1).forEach((code1elem) => {
                                 code1 = code1elem.value;
@@ -319,13 +321,13 @@
                                 phone1 = phone1elem.value;
                             });
                                                  
-                                                  
-                              Array.from(rielt_names1).forEach((rielt_names1el) => {
-                                                          rielt_names1 = rielt_names1el.value;
+                            var rielt_names1 = "";                    
+                              Array.from(rielt_names111).forEach((rielt_names1el) => {
+                                                           rielt_names1 = rielt_names1el.value;
                                                           });
-                              
-                              Array.from(rielt_phones1).forEach((rielt_phones1el) => {
-                                                          rielt_phones1 = rielt_phones1el.value;
+                            var rielt_phones1 = "";  
+                              Array.from(rielt_phones111).forEach((rielt_phones1el) => {
+                                                           rielt_phones1 = rielt_phones1el.value;
                                                           });
 
                                                   
@@ -392,11 +394,13 @@
                             
                             let rieltinf = " \n "
                                                   if (typeof rielt_names1 !== undefined)
-                                                  if (typeof rielt_names1 !== null){
+                                                  if (typeof rielt_names1 !== null)
+                                                  if (rielt_names1.length>0) {
                                                   rieltinf = rieltinf+ "\n имя риэлтора:"+rielt_names1;
                                                   }
                                                   if (typeof rielt_phones1 !== undefined)
-                                                  if (typeof rielt_phones1 !== null){
+                                                  if (typeof rielt_phones1 !== null)
+                                                  if (rielt_phones1.length>0) {
                                                   rieltinf = rieltinf+ "\n телефон риэлтора:"+rielt_phones1;
                                                   }
                                                   
@@ -501,6 +505,7 @@
 
     function addrieltorButton() {//add button
 
+        var wasCreated = false;
         var forms = document.getElementsByClassName("header__container");
             Array.from(forms).forEach((element) => { //console.log('element',element);
                 var buttons = element.getElementsByClassName("button header__callback-button j-popup-callback");
@@ -508,8 +513,11 @@
                     if (element1.innerText == 'Заказать звонок') { //console.log('element1.parentElement',element1.parentElement)
                         var p_prime = element1.cloneNode(true);
                         p_prime.innerText = 'Риэлторам';
+                        wasCreated = true;
                         p_prime.addEventListener("click", (event) => {
+                            window.alreadySet = false;
                             element1.click();
+                            startTimerCatchFormCallingMe();
                             setTimeout(function () {
                                 createRieltFields();
                             }, 200);
@@ -522,12 +530,55 @@
                     }});
                  });
                 
+        if (!wasCreated) {  }
+
+            var isMobile = false;
+            let element3 = document.getElementsByClassName("button-circle header__mobile-phone j-popup-callback");
+            if (typeof element3 !== undefined)
+                if (typeof element3 !== null) {
+                    
+                    if (window.screen.width < 768) {
+                        Array.from(element3).forEach((element31) => { isMobile = true; });
+
+                        var element31 = document.getElementById("containerTopPaned");
+                        var div = document.createElement("div");
+                        div.id = "containerTopRielt"
+                        div.innerHTML = 'Риэлторам'
+
+                        try {
+                            element31.appendChild(div);
+                            div.addEventListener("click", (event) => {
+                                window.alreadySet = false;
+                                element3[0].click();
+                                startTimerCatchFormCallingMe();
+                                setTimeout(function () {
+                                    createRieltFields();
+                                }, 200);
+                            });
+                            div.style = "background-color: aquamarine;color: red;line-height: normal;height: 14px;cursor: pointer;position: relative;top: -14px;"
+                        } catch (e) {
+                            console.log('e451890', e)
+                        }
+
+
+                    }
+                }
+      
+
+
+
+          
+                   
+              
+
+
+
+     
+
     }
 
-    //addrieltorButton();
+    document.addEventListener("DOMContentLoaded", function () {  addrieltorButton();  });
 
-    setTimeout(function () {
-               addrieltorButton();
-               }, 250);
+    // setTimeout(function () {  addrieltorButton(); }, 250);
            
 </script>
