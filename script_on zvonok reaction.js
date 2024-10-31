@@ -306,6 +306,9 @@
                             let phones1 = document.getElementsByName('zakazat-zvonok[field1]')
                             let codes1 = document.getElementsByName('code[field67]')
 
+                            let rielt_names1 = document.getElementsByName('zakazat-zvonok[reielt1]')
+                            let rielt_phones1 = document.getElementsByName('zakazat-zvonok[reielt2]')
+                                                  
                             Array.from(codes1).forEach((code1elem) => {
                                 code1 = code1elem.value;
                             });
@@ -315,7 +318,20 @@
                             Array.from(phones1).forEach((phone1elem) => {
                                 phone1 = phone1elem.value;
                             });
+                                                 
+                                                  
+                              Array.from(rielt_names1).forEach((rielt_names1el) => {
+                                                          rielt_names1 = rielt_names1el.value;
+                                                          });
+                              
+                              Array.from(rielt_phones1).forEach((rielt_phones1el) => {
+                                                          rielt_phones1 = rielt_phones1el.value;
+                                                          });
 
+                                                  
+                                                  
+                                                  
+                                                  
                             // if (name1.length == 0) console.log('empty name')
                             // if (phone1.length == 0) console.log('empty phone')
                             // if (code1.length == 0) console.log('empty code')
@@ -374,7 +390,17 @@
                                 dataforsend['source'] = source_my
                             }
                             
-                            dataforsend['comment'] = " " + epxGlob + " " + code1;
+                            let rieltinf = " \n "
+                                                  if (typeof rielt_names1 !== undefined)
+                                                  if (typeof rielt_names1 !== null){
+                                                  rieltinf = rieltinf+ "\n имя риэлтора:"+rielt_names1;
+                                                  }
+                                                  if (typeof rielt_phones1 !== undefined)
+                                                  if (typeof rielt_phones1 !== null){
+                                                  rieltinf = rieltinf+ "\n телефон риэлтора:"+rielt_phones1;
+                                                  }
+                                                  
+                            dataforsend['comment'] = " " + epxGlob + " " + code1 + rieltinf;
 
                             let res1 = fetch("https://do72.4dev.app/do72api/hs/extint/send", {
                                 method: "POST",
@@ -411,4 +437,97 @@
 
     startTimerCatchFormCallingMe();
 
+
+
+    function createRieltFields() {
+        var forms = document.getElementsByClassName("form__form");
+        Array.from(forms).forEach((element) => {
+            var f_title = element.getElementsByClassName("form__title");
+            try{ 
+                f_title[0].innerText='Закрепить клиента';
+            } catch (e) {
+                            console.log('e4513', e)
+                        } 
+            var buttons = element.getElementsByClassName("button button_width_block");
+            Array.from(buttons).forEach((element1) => {
+                if (element1.innerText == 'Заказать звонок') {
+                   let form1 = element1.parentElement.parentElement;
+                   var fields = form1.getElementsByClassName("form__input");
+                   var found = false;
+                   Array.from(fields).forEach((field1) => { found = true; });
+
+                    if (!found) return;
+                    
+                        let p_input1 = fields[0].cloneNode(true);
+                        let p_input2 = fields[1].cloneNode(true);
+                        let str1 = 'Укажите номер телефона Вашего агента';
+                        let str2 = 'Укажите имя Вашего агента';
+
+                        form1.insertBefore(p_input1, fields[0]);
+                        form1.insertBefore(p_input2, fields[0]);
+
+                        let labels1 = p_input1.getElementsByClassName("input__label");
+                        let labels2 = p_input2.getElementsByClassName("input__label");
+                        try{    
+                            labels1[0].innerText=str2;
+                            labels2[0].innerText=str1;
+                        } catch (e) {
+                            console.log('e4510', e)
+                        }       
+
+                        let inputs1 = p_input1.getElementsByClassName("input__input");
+                        let inputs2 = p_input2.getElementsByClassName("input__input");
+                        try{                    
+                            inputs1[0].placeholder=str2;
+                            inputs1[0].name='zakazat-zvonok[reielt1]';
+                            inputs1[0].setAttribute("data-validate-name", 'reielt1');
+                        } catch (e) {
+                            console.log('e4511', e)
+                        }
+                    
+                        try{
+                            inputs2[0].placeholder=str1;
+                            inputs2[0].name='zakazat-zvonok[reielt2]';
+                            inputs2[0].setAttribute("data-validate-name", 'reielt2');
+                        } catch (e) {
+                            console.log('e4512', e)
+                        }           
+                
+
+                }
+            });
+        });
+    }
+
+    function addrieltorButton() {//add button
+
+        var forms = document.getElementsByClassName("header__container");
+            Array.from(forms).forEach((element) => { //console.log('element',element);
+                var buttons = element.getElementsByClassName("button header__callback-button j-popup-callback");
+                Array.from(buttons).forEach((element1) => { //console.log('element1',element1)
+                    if (element1.innerText == 'Заказать звонок') { //console.log('element1.parentElement',element1.parentElement)
+                        var p_prime = element1.cloneNode(true);
+                        p_prime.innerText = 'Риэлторам';
+                        p_prime.addEventListener("click", (event) => {
+                            element1.click();
+                            setTimeout(function () {
+                                createRieltFields();
+                            }, 400);
+                        });
+                        element1.parentElement.appendChild(p_prime);
+                        element1.parentElement.style="position: absolute; right: 0px;";
+                        element1.parentElement.parentElement.style="position: relative;";
+                        //element1.parentElement.insertBefore(p_prime, element1.parentElement.childNodes[0]);
+                        // element1.parentElement.insertBefore(p_prime, element1);
+                    }});
+                 });
+                
+    }
+
+    //addrieltorButton();
+
+    setTimeout(function () {
+               addrieltorButton();
+               }, 400);
+           
 </script>
