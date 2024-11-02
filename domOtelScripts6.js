@@ -464,14 +464,56 @@
                     
                         let p_input1 = fields[0].cloneNode(true);
                         let p_input2 = fields[1].cloneNode(true);
-                        let str1 = 'Укажите номер телефона Вашего агента';
-                        let str2 = 'Укажите имя Вашего агента';
+                        let str1 = 'Укажите номер телефона агента';
+                        let str2 = 'Укажите ФИО агента';
+
+                        try{ 
+                        let forms__caption = form1.getElementsByClassName("form__caption");
+                        forms__caption[0].style.display="none";
+                        } catch (e) {
+                            console.log('e500', e)
+                        } 
+                        
+                        let labels1 = p_input1.getElementsByClassName("input__label");
+                        let labels2 = p_input2.getElementsByClassName("input__label");
+                    try{  
+                        var labels3 = document.createElement('label');
+                        var labels4 = document.createElement('label');
+                        labels3.innerText='Клиент';
+                        labels4.innerText='Агент';
+                        labels3.class='input__label';
+                        labels4.class='input__label';
+                    } catch (e) {
+                        console.log('e451001', e)
+                    }  
+                    
+
+                        let hr1 = document.createElement('hr');
+                        let hr2 = document.createElement('hr');
+
+                       
+                        try{  
+                            form1.insertBefore(labels4, fields[0]);
+                        } catch (e) {
+                            console.log('e451003', e)
+                        }  
+                        form1.insertBefore(hr2, fields[0]);  
+                            
 
                         form1.insertBefore(p_input1, fields[0]);
                         form1.insertBefore(p_input2, fields[0]);
 
-                        let labels1 = p_input1.getElementsByClassName("input__label");
-                        let labels2 = p_input2.getElementsByClassName("input__label");
+
+                        try{  
+                            form1.insertBefore(labels3, fields[2]);
+                        } catch (e) {
+                            console.log('e451002', e)
+                        }  
+                        form1.insertBefore(hr1, fields[2]);
+
+            
+
+                        
                         try{    
                             labels1[0].innerText=str2;
                             labels2[0].innerText=str1;
@@ -497,6 +539,18 @@
                             console.log('e4512', e)
                         }           
                 
+
+
+                        if (window.screen.width < 768) {//is small mobile view 
+
+                            var pupups = document.getElementsByClassName("popup popup_theme_callback j-popup__body popup_state_open");
+                            Array.from(pupups).forEach((element) => { 
+                                var pupupsforms = element.getElementsByClassName("popup__wrapper");
+                                pupupsforms[0].style = " max-height: 94%; overflow: scroll; "
+                            });
+
+                        }   
+
 
                 }
             });
@@ -537,17 +591,41 @@
             if (typeof element3 !== undefined)
                 if (typeof element3 !== null) {
                     
-                    if (window.screen.width < 768) {
+                    if (window.screen.width < 768) {//is mobile view 
                         Array.from(element3).forEach((element31) => { isMobile = true; });
 
-                        var element31 = document.getElementById("containerTopPaned");
-                        var div = document.createElement("div");
-                        div.id = "containerTopRielt"
-                        div.innerHTML = 'Риэлторам'
+                        // var element31 = document.getElementById("containerTopPaned");
+                        // var div = document.createElement("div");
+                        // div.id = "containerTopRielt"
+                        // div.innerHTML = 'Риэлторам'
+
+                        // try {
+                        //     element31.appendChild(div);
+                        //     div.addEventListener("click", (event) => {
+                        //         window.alreadySet = false;
+                        //         element3[0].click();
+                        //         startTimerCatchFormCallingMe();
+                        //         setTimeout(function () {
+                        //             createRieltFields();
+                        //         }, 200);
+                        //     });
+                        //     div.style = "background-color: aquamarine;color: red;line-height: normal;height: 14px;cursor: pointer;position: relative;top: -14px;"
+                        // } catch (e) {
+                        //     console.log('e451890', e)
+                        // }
+
+
+
+                        let elementMenu = document.getElementsByClassName("navigation-mobile j-navigation-mobile");
+                        elementMenu[0].style="padding-top: 62px;";
+                        let elsMenu = elementMenu[0].getElementsByClassName("navigation-mobile__list-item ");
+                        let elmenu1c = elsMenu[0].cloneNode(true);
+                        elmenu1c.innerHTML = '<div class="navigation-mobile__link j-anchor" >Риэлторам</div>';
 
                         try {
-                            element31.appendChild(div);
-                            div.addEventListener("click", (event) => {
+
+                            elsMenu[0].parentElement.appendChild(elmenu1c);
+                            elmenu1c.addEventListener("click", (event) => {
                                 window.alreadySet = false;
                                 element3[0].click();
                                 startTimerCatchFormCallingMe();
@@ -555,11 +633,10 @@
                                     createRieltFields();
                                 }, 200);
                             });
-                            div.style = "background-color: aquamarine;color: red;line-height: normal;height: 14px;cursor: pointer;position: relative;top: -14px;"
+                        
                         } catch (e) {
-                            console.log('e451890', e)
+                            console.log('e4518901', e)
                         }
-
 
                     }
                 }
