@@ -1,0 +1,35 @@
+<!-- add link to top banner -->
+<style>
+
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var BreakException = {};
+
+        var div = document.createElement("span");
+        div.id = "more_info"
+        div.innerHTML =  'Узнать подробнее'
+        div.classList.add('first-screen__lead-title');
+        div.style = "text-decoration: underline; cursor: pointer; float: right; position: relative; right: -22px; top: -14px;"
+        
+        var h = document.getElementsByClassName("first-screen__lead");
+        h[0].appendChild(div)
+        div.addEventListener("click", function () {
+            var buttons = document.getElementsByClassName("button j-popup-callback");
+            try {
+                Array.from(buttons).forEach((element) => {
+                    if (element.innerHTML) {
+                        if (element.innerHTML = "Заказать звонок") {
+                            element.click();
+                            throw BreakException;
+                        }
+                    }
+                });
+            } catch (e) {
+                if (e !== BreakException) throw e;
+            }
+        });
+    });
+
+</script>
