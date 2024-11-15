@@ -117,7 +117,7 @@
                     element1.parentElement.insertBefore(div, element1.parentElement.childNodes[0]);
 
                     let j = document.getElementById("containerCanvas");
-                    j.innerHTML = '<span style="font-size: 14px;line-height: 1.5;font-weight: 400;color: var(--color-brand-text);">ответьте на вопрос:</span><br><canvas id="myCanvas" width="570px" height="'+(y1)+'px" style="display:none;paddig:20px"></canvas><canvas id="canvas" width="570px" height="'+(y1)+'px" style="paddig:20px"></canvas><input type="text" class="input__input" name="code[field67]" id="id-code" aria-label="ответ" placeholder="ответ" data-validate-required="true" data-validate-name="code" data-validate-required-ms="решите пример" data-init="true">';
+                    j.innerHTML = '<span style="font-size: 16px;line-height: 1.5;font-weight: 400;color: var(--color-brand-text);">"!Обязательно ответьте на вопрос:</span><br><canvas id="myCanvas" width="570px" height="'+(y1)+'px" style="display:none;paddig:20px"></canvas><canvas id="canvas" width="570px" height="'+(y1)+'px" style="paddig:20px"></canvas><input type="text" class="input__input" name="code[field67]" id="id-code" aria-label="ответ" placeholder="ответ" data-validate-required="true" data-validate-name="code" data-validate-required-ms="решите пример" data-init="true">';
 
                     // let c = document.getElementById("myCanvas");
                     // let ctx = c.getContext("2d");
@@ -310,6 +310,9 @@
 
                             let rielt_names111 = document.getElementsByName('zakazat-zvonok[reielt1]')
                             let rielt_phones111 = document.getElementsByName('zakazat-zvonok[reielt2]')
+
+                            let rielt_agency111 = document.getElementsByName('zakazat-zvonok[reielt3]')
+                            let rielt_potreb_client111 = document.getElementsByName('zakazat-zvonok[reielt4]')
                                                   
                             Array.from(codes1).forEach((code1elem) => {
                                 code1 = code1elem.value;
@@ -330,6 +333,16 @@
                                                            rielt_phones1 = rielt_phones1el.value;
                                                           });
 
+
+                            var rielt_agency_1 = "";  
+                              Array.from(rielt_agency111).forEach((rielt_agency1_1) => {
+                                                            rielt_agency_1 = rielt_agency1_1.value;
+                                                          });
+                            var rielt_potreb_client_1 = "";  
+                              Array.from(rielt_potreb_client111).forEach((rielt_potreb_client1_1) => {
+                                                            rielt_potreb_client_1 = rielt_potreb_client1_1.value;
+                                                          });
+
                                                   
                                                   
                                                   
@@ -340,7 +353,13 @@
 
                             if (name1.length == 0) return
                             if (phone1.length == 0) return
-                            if (code1.length == 0) return
+                            if (code1.length == 0) {
+                                alert("не отправлено, обязательно ответьте на вопрос");
+                                window.location.reload();
+                                window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/#zakazat-zvonok';
+                                window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/#zakazat-zvonok');
+                                return false
+                            }
 
 
                             
@@ -403,6 +422,19 @@
                                                   if (rielt_phones1.length>0) {
                                                   rieltinf = rieltinf+ "\n телефон риэлтора:"+rielt_phones1;
                                                   }
+
+
+                                                  if (typeof rielt_potreb_client_1 !== undefined)
+                                                  if (typeof rielt_potreb_client_1 !== null)
+                                                  if (rielt_potreb_client_1.length>0) {
+                                                  rieltinf = rieltinf+ "\n потребности клиента:"+rielt_potreb_client_1;
+                                                  }
+                                                  if (typeof rielt_agency_1 !== undefined)
+                                                  if (typeof rielt_agency_1 !== null)
+                                                  if (rielt_agency_1.length>0) {
+                                                  rieltinf = rieltinf+ "\n агентство:"+rielt_agency_1;
+                                                  }
+                                                  
                                                   
                             dataforsend['comment'] = " " + epxGlob + " " + code1 + rieltinf;
 
@@ -464,8 +496,12 @@
                     
                         let p_input1 = fields[0].cloneNode(true);
                         let p_input2 = fields[1].cloneNode(true);
+                        let p_input3 = fields[1].cloneNode(true);
+                        let p_input4 = fields[1].cloneNode(true);
                         let str1 = 'Укажите номер телефона агента';
                         let str2 = 'Укажите ФИО агента';
+                        let str3 = 'Агентство недвижимости';
+                        let str4 = 'Потребность клиента';
 
                         try{ 
                         let forms__caption = form1.getElementsByClassName("form__caption");
@@ -476,6 +512,8 @@
                         
                         let labels1 = p_input1.getElementsByClassName("input__label");
                         let labels2 = p_input2.getElementsByClassName("input__label");
+                        let labels03 = p_input3.getElementsByClassName("input__label");
+                        let labels04 = p_input4.getElementsByClassName("input__label");
                     try{  
                         var labels3 = document.createElement('label');
                         var labels4 = document.createElement('label');
@@ -502,14 +540,18 @@
 
                         form1.insertBefore(p_input1, fields[0]);
                         form1.insertBefore(p_input2, fields[0]);
-
+                        
+                        
+                        form1.insertBefore(p_input3, fields[2]);
+                        form1.insertBefore(p_input4, fields[3]);
+                        
 
                         try{  
-                            form1.insertBefore(labels3, fields[2]);
+                            form1.insertBefore(labels3, fields[3]);
                         } catch (e) {
                             console.log('e451002', e)
                         }  
-                        form1.insertBefore(hr1, fields[2]);
+                        form1.insertBefore(hr1, fields[3]);
 
             
 
@@ -517,18 +559,24 @@
                         try{    
                             labels1[0].innerText=str2;
                             labels2[0].innerText=str1;
+                            labels03[0].innerText=str3;
+                            labels04[0].innerText=str4;
                         } catch (e) {
                             console.log('e4510', e)
                         }       
 
                         let inputs1 = p_input1.getElementsByClassName("input__input");
                         let inputs2 = p_input2.getElementsByClassName("input__input");
+                        let inputs3 = p_input3.getElementsByClassName("input__input");
+                        let inputs4 = p_input4.getElementsByClassName("input__input");
+
+
                         try{                    
                             inputs1[0].placeholder=str2;
                             inputs1[0].name='zakazat-zvonok[reielt1]';
                             inputs1[0].setAttribute("data-validate-name", 'reielt1');
                         } catch (e) {
-                            console.log('e4511', e)
+                            console.log('e4511_1', e)
                         }
                     
                         try{
@@ -536,7 +584,27 @@
                             inputs2[0].name='zakazat-zvonok[reielt2]';
                             inputs2[0].setAttribute("data-validate-name", 'reielt2');
                         } catch (e) {
-                            console.log('e4512', e)
+                            console.log('e4512_2', e)
+                        }           
+                
+
+
+
+                    
+                        try{
+                            inputs3[0].placeholder=str3;
+                            inputs3[0].name='zakazat-zvonok[reielt3]';
+                            inputs3[0].setAttribute("data-validate-name", 'reielt3');
+                        } catch (e) {
+                            console.log('e4512_3', e)
+                        }        
+                        
+                        try{
+                            inputs4[0].placeholder=str4;
+                            inputs4[0].name='zakazat-zvonok[reielt4]';
+                            inputs4[0].setAttribute("data-validate-name", 'reielt4');
+                        } catch (e) {
+                            console.log('e4512_4', e)
                         }           
                 
 
