@@ -337,7 +337,7 @@
 <!--         this.areaWithWiteBoxFinsh.includes(idxf.trim())    -->
 
               <chose-card-wb
-                  :wbPrices = true
+                  :prices_finish = this.prices_finish??[]
                   :key="idhash"
                   :property="propertyGet(idhash)"
               />
@@ -787,8 +787,10 @@ function checkCookie(cname) {
         // console.log('this.prices_finish',this.prices_finish)
         this.pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
         // console.log('prices', prices)
+        // window.pricesForWhiteBox = this.prices_finish
 
-        if (this.pricesForWhiteBox.length > 0) {
+        if (typeof this.prices_finish.цена !== "undefined")
+        if (this.prices_finish.цена.length > 0) {
           this.areaWithWiteBoxFinsh = this.prices_finish.цена.map(item => item.площадь.toString().trim());
           // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
         }

@@ -8,7 +8,7 @@
 
 <!--    v-if="property.isFiltred"-->
 <!--    v-if="this.inFav"-->
-    {{ this.wbPrices }}
+    {{  }}
     <div
       class="c-building__flat-type"
     >
@@ -38,7 +38,8 @@
         <div class="ml-2 has-opacity-65" style="font-size: small">{{ KKS }}</div>
 <!--        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>-->
       </div>
-<!--      <div class="font-weight-bold text-body-1 mt-2">{{ property.cost | num }} ₽</div>-->
+      <div class="font-weight-bold text-body-1 mt-2">Цена на "white box"  {{ property.cost | num }} ₽</div>
+      <div class="font-weight-bold text-body-1 mt-2">Цена с полной чистовой отделкой {{ priceWhiteBox() }} ₽</div>
       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - <br> {{ property.priceM2 | num }} ₽/м²</div>
 
       <div class="mb-10">
@@ -57,6 +58,13 @@
 </template>
 
 <script>
+
+function numberWithSpaces(x) {
+  if (typeof x === "undefined") return "";
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return parts.join(".");
+}
 
 function onlyUnique(value, index, array) {
   return array.indexOf(value) === index;
@@ -109,7 +117,7 @@ import { mapGetters } from 'vuex'
         type: Object,
         required: true
       },
-      wbPrices: false
+      prices_finish: []
     },
     data: () => ({
       free: '#02C39E',
@@ -234,7 +242,21 @@ import { mapGetters } from 'vuex'
 
     methods: {
 
+      priceWhiteBox(){
+        try {
 
+          let pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+
+          if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
+            return numberWithSpaces(pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
+
+        } catch (e) {
+          // console.log('urlparent',urlparent)
+          // alert(e)
+        }
+        //prices_finish
+        return false;
+      },
 
       removeFromFav(uuid){
         let cookieName = "favItemsAppartament"
