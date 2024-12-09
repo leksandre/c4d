@@ -91,7 +91,7 @@
           <div class="mb-10">
             <div class="c-list text-body-2">
               <div class="c-list__item d-flex justify-space-between">
-                <div>Скидки за наличный расчет, цена выше указана на "white box" <span style="display:inline; text-decoration: underline" v-if="priceWhiteBox()"><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
+                <div>Скидки за наличный расчет, цена выше указана на "white box" <span style="cursor: pointer; display:inline; text-decoration: underline" v-if="priceWhiteBox()"  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
                 </div>
 
               </div>
@@ -303,6 +303,60 @@
       </div>
 
 
+
+
+
+      <div>
+        <div class="c-modal" v-show="modal_14">
+          <span>modal_14</span>
+        </div>
+        <div class="bg" id="switcher_window_dialog" v-show="modal_14" v-on:click="setModalDialogBySelectFaltWhiteBox">
+          <div class="close" v-on:click="setModalDialogBySelectFaltWhiteBox">
+            <span v-on:click="setModalDialogBySelectFaltWhiteBox"></span>
+            <span v-on:click="setModalDialogBySelectFaltWhiteBox"></span>
+            <span v-on:click="setModalDialogBySelectFaltWhiteBox"></span>
+            <span v-on:click="setModalDialogBySelectFaltWhiteBox"></span>
+            <svg viewBox="0 0 36 36" class="circle" v-on:click="setModalDialogBySelectFaltWhiteBox">
+              <path v-on:click="setModalDialogBySelectFaltWhiteBox"
+                    stroke-dasharray="100, 100"
+                    d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+            </svg>
+          </div>
+
+          <div class="favwindowFlatParent2selCards" >
+            <div class="favwindowFlat" style="    width: 166px;  " v-for=" (idhash, idxf) in boardUniq" v-if="isAreaInList(idxf)" >
+
+<!--              <br>  {{property.id}}-->
+<!--            <br>  {{idhash}}-->
+<!--              <br>   {{idxf}}-->
+<!--              idxf-->
+<!--                 :finishWb = this.areaWithWiteBoxFinsh || []-->
+<!--         this.areaWithWiteBoxFinsh.includes(idxf.trim())    -->
+
+              <chose-card-wb
+                  :wbPrices = true
+                  :key="idhash"
+                  :property="propertyGet(idhash)"
+              />
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
 
@@ -583,20 +637,22 @@ function checkCookie(cname) {
   // import LightBox from './vue-image-lightbox/src/App.vue'
   import LightBox from './vue-image-lightbox/components/LightBox.vue'
   import ChoseCard from './ChoseCard'
+  import ChoseCardWb from './ChoseCardWb'
   // import {media} from "vue-image-lightbox/src/dummy";
   // require('vue-image-lightbox/dist/vue-image-lightbox.min.css')//original style
 
 
   export default {
     data: () => ({
+
       prices_finish: {
         "цена": [
-          {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
           {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
-          {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
-          {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
         ]
       },
+      pricesForWhiteBox:[],
+      areaWithWiteBoxFinsh:[],
+
       message1:"",
       phone1:"",
       name1:"",
@@ -606,6 +662,7 @@ function checkCookie(cname) {
 
       modal_2: false,
       modal_12: false,
+      modal_14: false,
       inFavCustom:false,
       asideClasses: ['c-aside'],
       descriptioOpened: false,
@@ -628,7 +685,7 @@ function checkCookie(cname) {
     }),
 
     components: {
-      LightBox, ChoseCard,
+      LightBox, ChoseCard, ChoseCardWb
     },
     computed: {
       webShareApiSupported() {
@@ -726,23 +783,58 @@ function checkCookie(cname) {
         } else {
           this.asideClasses = ['c-aside']
         }
+
+        // console.log('this.prices_finish',this.prices_finish)
+        this.pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+        // console.log('prices', prices)
+
+        if (this.pricesForWhiteBox.length > 0) {
+          this.areaWithWiteBoxFinsh = this.prices_finish.цена.map(item => item.площадь.toString().trim());
+          // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
+        }
+
       }
     },
     mounted: function() {
-      // async function getActions() {
-      //
-      //   let response = await fetch("https://xn--d1acscjb2a6f.xn--p1ai/final_front.json");
-      //
-      //   if (response.ok) {
-      //     this.prices_finish = await response.json();
-      //
-      //   } else {
-      //     alert("Ошибка HTTP: " + response.status);
-      //   }
-      // }
-      // getActions();
+      async function getActions() {
+
+        try {
+          // let response = await fetch("/final_front.json");
+          let response = await fetch("https://xn--d1acscjb2a6f.xn--p1ai/final_front.json");
+
+          if (response.ok) {
+            this.prices_finish = await response.json();
+
+          }
+
+        } catch (e) {
+          // console.error(e)
+          this.prices_finish = {
+            "цена": [
+              {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
+              {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
+              {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
+              {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
+            ]
+          }
+        }
+
+
+            // alert("Ошибка HTTP: " + response.status);
+
+
+      }
+      getActions();
     },
     methods: {
+
+      isAreaInList(idxf) {
+        if (this.areaWithWiteBoxFinsh.length > 0)
+
+        return this.areaWithWiteBoxFinsh.includes(idxf.trim());
+
+        return false
+      },
 
       propertyGet(hash){
         // console.log('this.$store.state.chess',this.$store.state.chess)
@@ -793,13 +885,11 @@ function checkCookie(cname) {
 
       priceWhiteBox(){
         try {
-          // console.log('this.prices_finish',this.prices_finish)
-          let prices = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
-          // console.log('prices', prices)
-          if (prices.length > 0) {
-            if (typeof prices[0].цена_с_ремонтом_сбер !== "undefined")
-              return numberWithSpaces(prices[0].цена_с_ремонтом_сбер)//.toString()
-          }
+
+
+          if (typeof this.pricesForWhiteBox [0].цена_с_ремонтом_сбер !== "undefined")
+            return numberWithSpaces(this.pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
+
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
@@ -1081,6 +1171,21 @@ function checkCookie(cname) {
         });
       },
 
+
+
+      setModalDialogBySelectFaltWhiteBox(isBron = false, propertyL = []) {
+        scrollTop();
+        let elBg = document.getElementById('switcher_window_dialog')
+        let testParent = document.getElementById('maincontent_parent1')
+
+        if (elBg && testParent) {
+          // console.log(elBg)
+          // console.log(testParent)
+          testParent.appendChild(elBg)
+        }
+
+        this.modal_14 = !this.modal_14;
+      },
 
       setModalDialogBySelectFalt(isBron = false, propertyL = []) {
         scrollTop();
