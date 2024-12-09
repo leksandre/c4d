@@ -91,7 +91,9 @@
           <div class="mb-10">
             <div class="c-list text-body-2">
               <div class="c-list__item d-flex justify-space-between">
-                <div>Скидки за наличный расчет</div>
+                <div>Скидки за наличный расчет, цена выше указана на "white box" <span style="display:inline; text-decoration: underline" v-if="priceWhiteBox()"><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
+                </div>
+
               </div>
             </div>
           </div>
@@ -587,7 +589,14 @@ function checkCookie(cname) {
 
   export default {
     data: () => ({
-
+      prices_finish: {
+        "цена": [
+          {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
+          {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
+          {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
+          {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
+        ]
+      },
       message1:"",
       phone1:"",
       name1:"",
@@ -719,7 +728,20 @@ function checkCookie(cname) {
         }
       }
     },
-
+    mounted: function() {
+      // async function getActions() {
+      //
+      //   let response = await fetch("https://xn--d1acscjb2a6f.xn--p1ai/final_front.json");
+      //
+      //   if (response.ok) {
+      //     this.prices_finish = await response.json();
+      //
+      //   } else {
+      //     alert("Ошибка HTTP: " + response.status);
+      //   }
+      // }
+      // getActions();
+    },
     methods: {
 
       propertyGet(hash){
@@ -767,6 +789,23 @@ function checkCookie(cname) {
         setTimeout(() => {
           this.submitted = true;
         }, 100);
+      },
+
+      priceWhiteBox(){
+        try {
+          // console.log('this.prices_finish',this.prices_finish)
+          let prices = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+          // console.log('prices', prices)
+          if (prices.length > 0) {
+            if (typeof prices[0].цена_с_ремонтом_сбер !== "undefined")
+              return numberWithSpaces(prices[0].цена_с_ремонтом_сбер)//.toString()
+          }
+        } catch (e) {
+          // console.log('urlparent',urlparent)
+          // alert(e)
+        }
+        //prices_finish
+        return false;
       },
 
       numberWithSpacesG(){
