@@ -38,10 +38,14 @@
         <div class="ml-2 has-opacity-65" style="font-size: small">{{ KKS }}</div>
 <!--        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>-->
       </div>
-      <div class="font-weight-bold text-body-1 mt-2">Цена на "white box"  {{ property.cost | num }} ₽</div>
-      <div class="font-weight-bold text-body-1 mt-2">Цена с полной чистовой отделкой {{ priceWhiteBox() }} ₽</div>
-      <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - <br> {{ property.priceM2 | num }} ₽/м²</div>
+        <br>
+      <div class=" text-body-1 mt-2">Цена на "white box"  {{ property.cost | num }} ₽</div>
+      <div class=" text-body-1 mt-2">Цена с полной чистовой отделкой {{ priceWhiteBox() }} ₽</div>
+        <br>
+<!--       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - <br> {{ property.priceM2 | num }} ₽/м²</div>-->
+       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² </div>
 
+        <br>
       <div class="mb-10">
         <a class="c-image-property image-link"  @click="onOpenImage">
           <img :src="property.images[0].src" alt="">

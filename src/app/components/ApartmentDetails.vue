@@ -91,7 +91,9 @@
           <div class="mb-10">
             <div class="c-list text-body-2">
               <div class="c-list__item d-flex justify-space-between">
-                <div>Скидки за наличный расчет, цена выше указана на "white box" <span style="cursor: pointer; display:inline; text-decoration: underline" v-if="priceWhiteBox()"  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
+                <div>Скидки за наличный расчет, цена выше указана на "white box"
+                  <span style="cursor: pointer; display:inline; text-decoration: underline" v-if="priceWhiteBox()"  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
+                  <span style="cursor: pointer; display:inline; text-decoration: underline" v-else  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Посмотреть планировки с полной чистовой отделкой  </span>
                 </div>
 
               </div>
@@ -337,7 +339,7 @@
 <!--         this.areaWithWiteBoxFinsh.includes(idxf.trim())    -->
 
               <chose-card-wb
-                  :prices_finish = this.prices_finish??[]
+                  :prices_finish = "prices_finish ?? []"
                   :key="idhash"
                   :property="propertyGet(idhash)"
               />
@@ -647,7 +649,10 @@ function checkCookie(cname) {
 
       prices_finish: {
         "цена": [
+          {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
           {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
+          {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
+          {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
         ]
       },
       pricesForWhiteBox:[],
@@ -813,10 +818,10 @@ function checkCookie(cname) {
           // console.error(e)
           this.prices_finish = {
             "цена": [
-              {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
+              // {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
               {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
-              {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
-              {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
+              // {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
+              // {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
             ]
           }
         }
