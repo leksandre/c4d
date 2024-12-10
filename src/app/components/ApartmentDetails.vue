@@ -338,6 +338,7 @@
 <!--                 :finishWb = this.areaWithWiteBoxFinsh || []-->
 <!--         this.areaWithWiteBoxFinsh.includes(idxf.trim())    -->
 
+
               <chose-card-wb
                   :prices_finish = "prices_finish ?? []"
                   :key="idhash"
@@ -647,14 +648,7 @@ function checkCookie(cname) {
   export default {
     data: () => ({
 
-      prices_finish: {
-        "цена": [
-          {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
-          {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
-          {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
-          {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
-        ]
-      },
+      prices_finish:[],
       pricesForWhiteBox:[],
       areaWithWiteBoxFinsh:[],
 
@@ -789,55 +783,51 @@ function checkCookie(cname) {
           this.asideClasses = ['c-aside']
         }
 
-        // console.log('this.prices_finish',this.prices_finish)
-        this.pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
-        // console.log('prices', prices)
-        // window.pricesForWhiteBox = this.prices_finish
-
-        if (typeof this.prices_finish.цена !== "undefined")
-        if (this.prices_finish.цена.length > 0) {
-          this.areaWithWiteBoxFinsh = this.prices_finish.цена.map(item => item.площадь.toString().trim());
-          // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
-        }
 
       }
     },
-    mounted: function() {
-      async function getActions() {
-
-        try {
-          // let response = await fetch("/final_front.json");
-          let response = await fetch("https://xn--d1acscjb2a6f.xn--p1ai/final_front.json");
-
-          if (response.ok) {
-            this.prices_finish = await response.json();
-
-          }
-
-        } catch (e) {
-          // console.error(e)
-          this.prices_finish = {
-            "цена": [
-              // {"м2": 6631000, "площадь": 43.34, "акция": true, "цена_с_ремонтом_сбер": 8914650},
-              {"м2": 4779000, "площадь": 26.55, "акция": true, "цена_с_ремонтом_сбер": 5830000},
-              // {"м2": 5848000, "площадь": 36.55, "акция": true, "цена_с_ремонтом_сбер": 7490000},
-              // {"м2": 5304750, "площадь": 32.15, "акция": true, "цена_с_ремонтом_сбер": 6957483},
-            ]
-          }
-        }
-
-
-            // alert("Ошибка HTTP: " + response.status);
-
-
-      }
-      getActions();
+    mounted() {
+      this.fetchData();
     },
     methods: {
+      async fetchData() {
+        try {
+          const response = await fetch('/final_front.json');
+          if (!response.ok) {
+            // throw new Error('Network response was not ok');
+            return
+          }
+
+          let prices_finish = await response.json();
+          // console.log('prices_finish',prices_finish)
+
+
+          if (typeof prices_finish.цена !== "undefined")
+            if (prices_finish.цена.length > 0) {
+
+
+              if (typeof this.property['area'] !== "undefined")
+              this.pricesForWhiteBox = prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString())
+              // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+
+              this.areaWithWiteBoxFinsh = prices_finish.цена.map(item => item.площадь.toString().trim());
+              // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
+              this.prices_finish = prices_finish
+            }
+
+
+
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          this.error = 'Ошибка при загрузке данных. Пожалуйста, попробуйте позже.';
+        }
+      },
 
       isAreaInList(idxf) {
-        if (this.areaWithWiteBoxFinsh.length > 0)
 
+        // console.log('---areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
+
+        if (this.areaWithWiteBoxFinsh.length > 0)
         return this.areaWithWiteBoxFinsh.includes(idxf.trim());
 
         return false
@@ -893,15 +883,14 @@ function checkCookie(cname) {
       priceWhiteBox(){
         try {
 
-
           if (typeof this.pricesForWhiteBox [0].цена_с_ремонтом_сбер !== "undefined")
-            return numberWithSpaces(this.pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
+            return numberWithSpaces(this.pricesForWhiteBox[0].цена_с_ремонтом_сбер)
 
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
         }
-        //prices_finish
+
         return false;
       },
 

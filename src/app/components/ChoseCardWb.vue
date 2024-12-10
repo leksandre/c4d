@@ -39,11 +39,11 @@
 <!--        <div class="ml-auto has-opacity-65">№{{ property.number }}</div>-->
       </div>
         <br>
-      <div class=" text-body-1 mt-2">Цена на "white box"  {{ property.cost | num }} ₽</div>
-      <div class=" text-body-1 mt-2">Цена с полной чистовой отделкой {{ priceWhiteBox() }} ₽</div>
+      <div class=" text-body-1 mt-2">Цена на "white box"  <br>{{ property.cost | num }} ₽</div>
+      <div class=" text-body-1 mt-2">Цена с полной чистовой отделкой <br>{{ priceWhiteBox() }} ₽</div>
         <br>
 <!--       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² - <br> {{ property.priceM2 | num }} ₽/м²</div>-->
-       <div class="has-opacity-65 mt-1">{{ property['area'] | num }} м² </div>
+       <div class="has-opacity-65 mt-1">площадь {{ property['area'] | num }} м² </div>
 
         <br>
       <div class="mb-10">
@@ -248,12 +248,16 @@ import { mapGetters } from 'vuex'
 
       priceWhiteBox(){
         try {
+          if (typeof this.prices_finish.цена !== "undefined")
+            if (this.prices_finish.цена.length > 0) {
 
-          let pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+              let pricesForWhiteBox = {}
+              if (typeof this.property['area'] !== "undefined")
+                pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
 
-          if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
-            return numberWithSpaces(pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
-
+              if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
+                return numberWithSpaces(pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
+            }
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
