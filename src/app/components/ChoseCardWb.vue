@@ -251,16 +251,22 @@ import { mapGetters } from 'vuex'
           if (typeof this.prices_finish.цена !== "undefined")
             if (this.prices_finish.цена.length > 0) {
 
-              let pricesForWhiteBox = {}
+              var pricesForWhiteBox = []
               if (typeof this.property['area'] !== "undefined")
                 pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
-
-              if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
-                return numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)//.toString()
+              try {
+                if (pricesForWhiteBox.length > 0)
+                  if (typeof pricesForWhiteBox[0] !== "undefined")
+                  if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
+                    return numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)//.toString()
+              } catch (e) {
+                console.error(e)
+              }
             }
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
+          console.error(e)
         }
         //prices_finish
         return false;

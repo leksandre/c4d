@@ -648,7 +648,9 @@ function checkCookie(cname) {
   export default {
     data: () => ({
 
-      prices_finish:[],
+      prices_finish:{
+
+      },
       areaWithWiteBoxFinsh:[],
       whitePriceBox:false,
 
@@ -692,7 +694,7 @@ function checkCookie(cname) {
         try {
           return navigator.canShare()
         } catch (e) {
-          // console.error(e)
+          console.error(e)
         }
         return navigator.share
       },
@@ -787,7 +789,10 @@ function checkCookie(cname) {
       }
     },
     mounted() {
-      this.fetchData();
+      setTimeout(() => {
+        this.fetchData();
+      }, 1000);
+
     },
     methods: {
       async fetchData() {
@@ -799,7 +804,7 @@ function checkCookie(cname) {
           }
 
           this.prices_finish = await response.json();
-          // console.log('prices_finish',prices_finish)
+          // console.log('prices_finish',this.prices_finish)
 
 
           if (typeof this.prices_finish.цена !== "undefined")
@@ -808,14 +813,23 @@ function checkCookie(cname) {
               this.areaWithWiteBoxFinsh = this.prices_finish.цена.map(item => item.площадь.toString().trim());
               // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
 
-              var pricesForWhiteBox = {}
+              var pricesForWhiteBox = []
               if (typeof this.property['area'] !== "undefined")
                 pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString())
               // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
+              // console.log('pricesForWhiteBox', pricesForWhiteBox)
+              // console.log('this.property[\'area\']', this.property['area'])
+              try {
+                if (pricesForWhiteBox.length > 0)
+                  if (typeof pricesForWhiteBox[0] !== "undefined")
+                  if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined"){
+                    this.whitePriceBox = numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)
+                    // console.log('this.whitePriceBox', this.whitePriceBox)
+                  }
 
-              if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
-                this.whitePriceBox =  numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)
-
+              } catch (e) {
+                console.error(e)
+              }
             }
 
 
@@ -894,6 +908,7 @@ function checkCookie(cname) {
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
+          console.error(e)
         }
 
         return false;
@@ -997,6 +1012,7 @@ function checkCookie(cname) {
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)
+          console.error(e)
           return this.saveToClipboard()
         }
 
