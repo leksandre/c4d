@@ -92,7 +92,7 @@
             <div class="c-list text-body-2">
               <div class="c-list__item d-flex justify-space-between">
                 <div>Скидки за наличный расчет, цена выше указана на "white box"
-                  <span style="cursor: pointer; display:inline; text-decoration: underline" v-if="priceWhiteBox()"  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Цена с полной чистовой отделкой  {{ priceWhiteBox() }}  </span>
+                  <span style="cursor: pointer; display:inline; text-decoration: underline" v-if="whitePriceBox"  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Цена с полной чистовой отделкой  {{ whitePriceBox }}  </span>
                   <span style="cursor: pointer; display:inline; text-decoration: underline" v-else  v-on:click="setModalDialogBySelectFaltWhiteBox" ><br>Посмотреть планировки с полной чистовой отделкой  </span>
                 </div>
 
@@ -649,8 +649,8 @@ function checkCookie(cname) {
     data: () => ({
 
       prices_finish:[],
-      pricesForWhiteBox:[],
       areaWithWiteBoxFinsh:[],
+      whitePriceBox:false,
 
       message1:"",
       phone1:"",
@@ -798,21 +798,24 @@ function checkCookie(cname) {
             return
           }
 
-          let prices_finish = await response.json();
+          this.prices_finish = await response.json();
           // console.log('prices_finish',prices_finish)
 
 
-          if (typeof prices_finish.цена !== "undefined")
-            if (prices_finish.цена.length > 0) {
+          if (typeof this.prices_finish.цена !== "undefined")
+            if (this.prices_finish.цена.length > 0) {
 
+              this.areaWithWiteBoxFinsh = this.prices_finish.цена.map(item => item.площадь.toString().trim());
+              // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
 
+              var pricesForWhiteBox = {}
               if (typeof this.property['area'] !== "undefined")
-              this.pricesForWhiteBox = prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString())
+                pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString())
               // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
 
-              this.areaWithWiteBoxFinsh = prices_finish.цена.map(item => item.площадь.toString().trim());
-              // console.log('areaWithWiteBoxFinsh', this.areaWithWiteBoxFinsh)
-              this.prices_finish = prices_finish
+              if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
+                this.whitePriceBox =  numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)
+
             }
 
 
@@ -880,12 +883,14 @@ function checkCookie(cname) {
         }, 100);
       },
 
-      priceWhiteBox(){
+      priceWhiteBox() {
         try {
+          if (typeof this.prices_finish.цена !== "undefined")
+            if (this.prices_finish.цена.length > 0) {
 
-          if (typeof this.pricesForWhiteBox [0].цена_с_ремонтом_сбер !== "undefined")
-            return numberWithSpaces(this.pricesForWhiteBox[0].цена_с_ремонтом_сбер)
 
+
+            }
         } catch (e) {
           // console.log('urlparent',urlparent)
           // alert(e)

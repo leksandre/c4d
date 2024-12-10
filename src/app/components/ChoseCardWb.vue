@@ -256,7 +256,7 @@ import { mapGetters } from 'vuex'
                 pricesForWhiteBox = this.prices_finish.цена.filter((num) => num.площадь.toString() === (this.property['area']).toString()) // ; console.log(num.площадь,arr1[0].replace(',','.'),num.площадь.toString(),num)
 
               if (typeof pricesForWhiteBox[0].цена_с_ремонтом_сбер !== "undefined")
-                return numberWithSpaces(pricesForWhiteBox [0].цена_с_ремонтом_сбер)//.toString()
+                return numberWithSpaces(pricesForWhiteBox[0].цена_с_ремонтом_сбер)//.toString()
             }
         } catch (e) {
           // console.log('urlparent',urlparent)
