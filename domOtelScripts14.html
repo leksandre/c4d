@@ -1,0 +1,12 @@
+<!-- Fix corrupted galaxy -->
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+    var buttons = document.getElementsByClassName("slider__fullscreen-button j-popup-slider");
+    Array.from(buttons).forEach((element) => {
+    if (element.innerHTML) {
+    element.remove();
+  } else {
+  }
+  });
+  });
+ </script>
