@@ -7,6 +7,10 @@
     var offset = 0;
     window.alreadySet = false;
 
+	function insertAfterEl6(referenceNode, newNode) {
+		referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+	}
+
     function createEventTenant(phone, name, data) {
         var epxGlob = ''
         let objId = 18
@@ -503,6 +507,9 @@
                         let str3 = 'Агентство недвижимости';
                         let str4 = 'Потребность клиента';
 
+						let str7 = "Телефон клиента";
+						let str8 = "Имя клиента";
+						
                         try{ 
                         let forms__caption = form1.getElementsByClassName("form__caption");
                         forms__caption[0].style.display="none";
@@ -543,7 +550,9 @@
                         
                         
                         form1.insertBefore(p_input3, fields[2]);
-                        form1.insertBefore(p_input4, fields[3]);
+						
+						insertAfterEl6(fields[4], p_input4);
+                    
                         
 
                         try{  
@@ -609,6 +618,22 @@
                 
 
 
+
+
+                        let inputs7 = fields[3].getElementsByClassName("input__input");
+                        let inputs8 = fields[4].getElementsByClassName("input__input");
+                        let labels7 = fields[3].getElementsByClassName("input__label");
+                        let labels8 = fields[4].getElementsByClassName("input__label");
+						try{                    
+                            inputs7[0].placeholder=str7;
+                            inputs8[0].placeholder=str8;
+                            labels7[0].innerText=str7;
+                            labels8[0].innerText=str8;
+                        } catch (e) {
+                            console.log('e43451_145', e)
+                        }
+					
+						
                         if (window.screen.width < 768) {//is small mobile view 
 
                             var pupups = document.getElementsByClassName("popup popup_theme_callback j-popup__body popup_state_open");
