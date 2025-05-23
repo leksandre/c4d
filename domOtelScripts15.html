@@ -1,0 +1,45 @@
+<!-- 2 buttos for pos  pos2 -->
+<script>
+    function addrieltorButtonPosPos1() {
+        var forms = document.getElementsByClassName("header__container");
+            Array.from(forms).forEach((element) => { //console.log('element',element);
+                var buttons = element.getElementsByClassName("button header__callback-button j-popup-callback");
+                Array.from(buttons).forEach((element1) => { //console.log('element1',element1)
+                    if (element1.innerText == 'Заказать звонок') { //console.log('element1.parentElement',element1.parentElement)
+                        var p_prime = element1.cloneNode(true);
+						p_prime.innerText = 'Получить консультацию';
+                        p_prime.addEventListener("click", (event) => {
+                            window.alreadySet = false;
+                            element1.click();
+                            startTimerCatchFormCallingMe();
+                            //setTimeout(function () {
+                            //    createRieltFields();
+                            //}, 200);
+                        });
+			
+						var elements = document.querySelectorAll('.grid__wrapper');
+						for(var i=0; i<elements.length; i++){
+						//if(i === 0) continue
+						var theFirstChild = elements[i].firstChild;
+						//elements[i].appendChild(p_prime);
+						elements[i].insertBefore(p_prime, theFirstChild);
+						p_prime.style="float: right; vertical-align: middle; scale: 2.0; margin-top: 58px;";
+						//elements[i].parentElement.parentElement.style="position: relative;";
+						return true;
+						}
+    
+                    }});
+                 });			
+    }
+  
+ 
+    document.addEventListener("DOMContentLoaded", function() { 
+	const {
+			host, hostname, href, origin, pathname, port, protocol, search
+	} = window.location
+	//console.log('pathname',pathname)
+	if (pathname === '/pos' || pathname === '/pos2' ){
+	addrieltorButtonPosPos1(); 
+	}
+	});
+  </script>
