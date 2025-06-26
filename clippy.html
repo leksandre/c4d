@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Маскот Дом Отеля</title>
+  <style>
+    #mascot-container {
+      position: fixed;
+      left: -150px;
+      top: -150px;
+      z-index: 1000;
+      animation: walkIn 2s ease-out forwards;
+    }
+
+    @keyframes walkIn {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      30% {
+        transform: translateY(40px) translateX(-20px);
+        opacity: 0.7;
+      }
+      60% {
+        transform: translateY(-10px) translateX(-60px);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    #mascot {
+      width: 100px;
+      height: 100px;
+      background-color: #FFA07A;
+      position: relative;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    /* Крыша */
+    #mascot::before {
+      content: "";
+      position: absolute;
+      top: -25px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 30px solid #FF7F50;
+      z-index: 2;
+    }
+
+    /* Труба */
+    .chimney {
+      position: absolute;
+      top: -40px;
+      left: 65px;
+      width: 10px;
+      height: 15px;
+      background: #8B4513;
+      z-index: 3;
+    }
+
+    /* Пузырёк сообщения */
+    #speech-bubble {
+      position: absolute;
+      bottom: 110px;
+      right: -110;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      width: 150px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      animation: fadeIn 0.3s ease;
+      z-index: 999;
+    }
+
+    #speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: white transparent;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Выражения лица */
+    .face-smile .left-window {
+      transform: translateY(-3px);
+    }
+    .face-smile .right-window {
+      transform: translateY(-3px);
+    }
+
+    .face-sad .left-window {
+      transform: translateY(3px);
+    }
+    .face-sad .right-window {
+      transform: translateY(3px);
+    }
+
+    .face-angry .left-window {
+      transform: rotate(-30deg) translateY(-2px);
+    }
+    .face-angry .right-window {
+      transform: rotate(30deg) translateY(-2px);
+    }
+
+    .face-wink .left-window {
+      transform: scaleY(0.3) translateY(5px);
+    }
+
+    .face-surprised .window {
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+    }
+
+    /* Глаза-окна */
+    .window {
+      position: absolute;
+      top: 20px;
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 3px;
+    }
+
+    .left-window {
+      left: 15px;
+    }
+
+    .right-window {
+      right: 15px;
+    }
+
+    /* Рот-дверь */
+    .mouth {
+      position: absolute;
+      bottom: 10px;
+      left: 40px;
+      width: 20px;
+      height: 30px;
+      background-color: #8B4513;
+      border-radius: 0 0 5px 5px;
+    }
+
+    /* Ножки */
+    .legs-container {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 15px;
+    }
+
+    .leg {
+      position: absolute;
+      bottom: 0;
+      width: 10px;
+      height: 15px;
+      background: #A0522D;
+      border-radius: 2px;
+    }
+
+    .left-leg {
+      left: 20px;
+    }
+
+    .right-leg {
+      right: 20px;
+    }
+
+    /* Анимация ходьбы */
+    @keyframes walk {
+      0%   { transform: translateY(0px); }
+      25%  { transform: translateY(-12px) rotate(-15deg); }
+      50%  { transform: translateY(0px); }
+      75%  { transform: translateY(-12px) rotate(15deg); }
+      100% { transform: translateY(0px); }
+    }
+
+    .walk {
+      animation: walk 1.6s ease-in-out;
+    }
+
+    /* Скрытие элементов */
+    .hidden {
+      display: none;
+    }
+
+    /* Меню вопросов */
+#question-buttons {
+  position: absolute;
+  top: -200px;
+  right: 120px;
+  width: 250px;
+
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+
+    .button {
+      padding: 8px 12px;
+      background-color: #f0f0f0;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+	  margin: 10px;
+      transition: background-color 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #e0e0e0;
+    }
+
+    /* Поле ввода */
+    #custom-question {
+      margin-top: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 5px;
+    }
+
+    .input-wrapper input {
+      flex: 1;
+      padding: 6px;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .input-wrapper button {
+      padding: 6px 10px;
+      font-size: 12px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .input-wrapper button:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Маскот -->
+<div id="mascot-container">
+  <div id="mascot" onclick="speak()">
+    <div id="speech-bubble"></div>
+    <!-- Труба -->
+    <div class="chimney"></div>
+    <!-- Окна-глаза -->
+    <div class="window left-window"></div>
+    <div class="window right-window"></div>
+    <!-- Рот-дверь -->
+    <div class="mouth"></div>
+    <!-- Ножки -->
+    <div class="legs-container">
+      <div class="leg left-leg"></div>
+      <div class="leg right-leg"></div>
+    </div>
+
+
+  <!-- Меню с вопросами -->
+  <div id="question-buttons" class="hidden">
+	<div class="button" onclick="HideMaskot()">Не мешай</div>
+    <div class="button" onclick="askQuestion('Расскажи о проекте Дом Отель?', event)">Расскажи о проекте Дом Отель?</div>
+    <div class="button" onclick="askQuestion('Какие планировки можно купить?', event)">Какие планировки можно купить?</div>
+    <div class="button" onclick="askQuestion('Средняя стоимость за квадрат?', event)">Средняя стоимость за квадрат?</div>
+    <div class="button" onclick="askQuestion('Покажи контактный телефон?', event)">Покажи контактный телефон?</div>
+    <div class="button" onclick="askQuestion('Какой адрес вашего офиса?', event)">Какой адрес вашего офиса?</div>
+    <div class="button" onclick="showCustomInput()">Дай я напишу вопрос?</div>
+  </div>
+
+  <!-- Поле для пользовательского вопроса -->
+  <div id="custom-question" class="hidden">
+    <div class="input-wrapper">
+      <input type="text" id="user-input" placeholder="Введите ваш вопрос..." />
+      <button onclick="submitCustomQuestion()">Отправить</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script>
+
+let isLocked = false;         // блокировка движения
+let walkAnimationEnabled = true;
+
+function HideMaskot(){
+const mascotContainer = document.getElementById("mascot-container");
+mascotContainer.style.display = "none";
+}
+
+function moveToCenter() {
+  const mascotContainer = document.getElementById("mascot-container");
+
+  // Получаем размеры окна
+  const centerX = window.innerWidth / 2 - 50; // 50 = половина ширины маскота
+  const centerY = window.innerHeight / 2 - 50;
+
+  // Блокируем дальнейшие действия, если уже зафиксирован
+  if (isLocked) return;
+
+  // Плавное перемещение в центр
+  mascotContainer.style.transition = "all 1s ease";
+  mascotContainer.style.left = `${centerX}px`;
+  mascotContainer.style.top = `${centerY}px`;
+
+  // Отключаем анимацию ног
+  const legs = document.querySelectorAll('.leg');
+  legs.forEach(leg => {
+    leg.classList.remove('walk');
+  });
+  walkAnimationEnabled = false;
+
+  // Блокируем автоматическое перемещение
+  isLocked = true;
+
+  // Возобновляем всё через 3 минуты (180000 мс)
+  setTimeout(() => {
+    isLocked = false;
+    walkAnimationEnabled = true;
+  }, 180000); // 3 минуты
+}
+
+  // Фразы для маскота
+  const phrases = [
+    "Привет! Я ваш Дом Отеля-маскот!",
+    "Сегодня отличный день!",
+    "Не забывайте поливать цветы!",
+    "Уют начинается с чистоты!",
+    "Может, чашечку чая?",
+    "Я люблю, когда меня украшают!"
+  ];
+
+  let currentPhrase = 0;
+
+  function speak() {
+  
+  moveToCenter(); // перемещаем в центр при клике
+  toggleQuestions(); // открываем меню с вопросами
+  
+
+
+    const mascot = document.getElementById("mascot");
+    mascot.style.transform = "translateY(-10px)";
+    setTimeout(() => {
+      mascot.style.transform = "translateY(0)";
+    }, 200);
+
+    const colors = ["#FFA07A", "#98FB98", "#ADD8E6", "#FFD700", "#E6E6FA"];
+    document.getElementById("mascot").style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    changeFace();
+  
+  }
+
+  // Перемещение маскота
+  const mascotContainer = document.getElementById("mascot-container");
+
+  function moveMascotRandomly() {
+  
+  if (isLocked) return; 
+  
+    const padding = 250;
+    const maxX = window.innerWidth - padding;
+    const maxY = window.innerHeight - padding;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    const legs = document.querySelectorAll(".leg");
+    legs.forEach((leg) => {
+      leg.classList.remove("walk");
+      void leg.offsetWidth;
+      leg.classList.add("walk");
+    });
+
+    mascotContainer.style.transition = "all 1s ease";
+    mascotContainer.style.left = `${randomX}px`;
+    mascotContainer.style.right = "auto";
+    mascotContainer.style.top = `${randomY}px`;
+    mascotContainer.style.bottom = "auto";
+  }
+
+  window.addEventListener("load", () => {
+    moveMascotRandomly();
+    setTimeout(() => {
+      setInterval(moveMascotRandomly, 10000);
+    }, 2000);
+  });
+
+  // Эмоции
+  const mascot = document.getElementById("mascot");
+  const faces = ["", "face-smile", "face-sad", "face-angry", "face-wink", "face-surprised"];
+
+  function changeFace() {
+    try {
+      mascot.classList.remove(...faces.filter((face) => face !== ""));
+      const randomFace = faces[Math.floor(Math.random() * faces.length)];
+      if (randomFace) mascot.classList.add(randomFace);
+
+      if (randomFace === "face-wink") {
+        setTimeout(() => {
+          mascot.classList.remove("face-wink");
+        }, 800);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Вопросы
+  let hideTimeout;
+
+  function toggleQuestions() {
+    const buttons = document.getElementById("question-buttons");
+    buttons.classList.toggle("hidden");
+  
+    if (!buttons.classList.contains("hidden")) {
+      showHint("Выберите интересующий вас вопрос 😊");
+      hideTimeout = setTimeout(() => {
+        buttons.classList.add("hidden");
+        document.getElementById("custom-question").classList.add("hidden");
+      }, 36000);
+    } else {
+      //clearTimeout(hideTimeout);
+    }
+  }
+
+  function showHint(text) {
+    const bubble = document.getElementById("speech-bubble");
+    bubble.textContent = text;
+    bubble.style.display = "block";
+    setTimeout(() => {
+      bubble.style.display = "none";
+    }, 4000);
+  }
+
+function askQuestion(questionText, event) {
+  if (event) event.stopPropagation();
+    const bubble = document.getElementById("speech-bubble");
+    bubble.textContent = questionText;
+    bubble.style.display = "block";
+    setTimeout(() => {
+      bubble.style.display = "none";
+    }, 14000);
+	const buttons = document.getElementById("question-buttons");
+    buttons.classList.add("hidden");
+	
+	
+  if (false && !buttons.classList.contains("hidden")) {
+    bubble.textContent = phrases[currentPhrase];
+    bubble.style.display = "block";
+    currentPhrase = (currentPhrase + 1) % phrases.length;
+    setTimeout(() => {
+      bubble.style.display = "none";
+    }, 3000);
+	}
+	
+  }
+
+  function showCustomInput() {
+    document.getElementById("question-buttons").classList.add("hidden");
+    document.getElementById("custom-question").classList.remove("hidden");
+    document.getElementById("user-input").focus();
+
+    setTimeout(() => {
+      if (!document.getElementById("custom-question").classList.contains("hidden")) {
+        document.getElementById("custom-question").classList.add("hidden");
+      }
+    }, 4000);
+  }
+
+  function submitCustomQuestion() {
+    const input = document.getElementById("user-input");
+    const question = input.value.trim();
+    if (question) {
+      askQuestion(question);
+      input.value = "";
+    }
+    document.getElementById("custom-question").classList.add("hidden");
+  }
+</script>
+
+</body>
+</html>
