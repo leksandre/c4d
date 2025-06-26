@@ -353,7 +353,7 @@ function moveToCenter() {
 
   // Фразы для маскота
   const phrases = [
-    "Привет! Я ваш Дом Отеля-маскот!",
+    "Привет! Я ваш маскот Дом Отеля!",
     "Сегодня отличный день!",
     "Не забывайте поливать цветы!",
     "Уют начинается с чистоты!",
@@ -412,6 +412,19 @@ function moveToCenter() {
   }
 
   window.addEventListener("load", () => {
+  
+  
+    //if (false && !buttons.classList.contains("hidden")) {}
+	const bubble = document.getElementById("speech-bubble");
+    bubble.textContent = phrases[currentPhrase];
+    bubble.style.display = "block";
+    currentPhrase = (currentPhrase + 1) % phrases.length;
+    setTimeout(() => {
+      bubble.style.display = "none";
+    }, 3000);
+	
+	
+	
     moveMascotRandomly();
     setTimeout(() => {
       setInterval(moveMascotRandomly, 10000);
@@ -477,14 +490,7 @@ function askQuestion(questionText, event) {
     buttons.classList.add("hidden");
 	
 	
-  if (false && !buttons.classList.contains("hidden")) {
-    bubble.textContent = phrases[currentPhrase];
-    bubble.style.display = "block";
-    currentPhrase = (currentPhrase + 1) % phrases.length;
-    setTimeout(() => {
-      bubble.style.display = "none";
-    }, 3000);
-	}
+
 	
   }
 
