@@ -555,31 +555,37 @@ function moveToCenter() {
   // Перемещение маскота
   const mascotContainer = document.getElementById("mascot-container");
 
-  function moveMascotRandomly() {
-  
-  if (isLocked) return; 
-  
-    const padding = 250;
-    const maxX = window.innerWidth - padding;
-    const maxY = window.innerHeight - padding;
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
 
-    const legs = document.querySelectorAll(".leg");
-    legs.forEach((leg) => {
-      leg.classList.remove("walk");
-      void leg.offsetWidth;
-      leg.classList.add("walk");
-    });
 
-    mascotContainer.style.transition = "all 1s ease";
-    mascotContainer.style.left = `${randomX}px`;
-    mascotContainer.style.right = "auto";
-    mascotContainer.style.top = `${randomY}px`;
-    mascotContainer.style.bottom = "auto";
-  }
 
-  window.addEventListener("load", () => {
+function moveMascotRandomly() {
+  if (isLocked) return;
+
+  const padding = 20; // Уменьшаем отступ от краев
+  const maxX = window.innerWidth * 0.3; // Ограничиваем движение по X левой частью экрана (30% ширины)
+  const minY = window.innerHeight * 0.7; // Начинаем движение с 70% высоты экрана (нижняя часть)
+  const randomX = Math.floor(Math.random() * maxX) + padding;
+  const randomY = Math.floor(Math.random() * (window.innerHeight - minY)) + minY - padding;
+
+  const legs = document.querySelectorAll(".leg");
+  legs.forEach((leg) => {
+    leg.classList.remove("walk");
+    void leg.offsetWidth; // Триггер reflow
+    leg.classList.add("walk");
+  });
+
+  mascotContainer.style.transition = "all 1s ease";
+  mascotContainer.style.left = `${randomX}px`;
+  mascotContainer.style.right = "auto";
+  mascotContainer.style.bottom = `${window.innerHeight - randomY}px`; // Используем bottom вместо top
+  mascotContainer.style.top = "auto";
+}
+
+
+
+
+
+ window.addEventListener("load", () => {
   
   
     //if (false && !buttons.classList.contains("hidden")) {}
