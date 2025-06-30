@@ -2,9 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Маскот Дом Отеля</title>
+
+
+
+
   <style>
-    #mascot-container {
+   #mascot-container {
       position: fixed;
       left: -150px;
       top: -150px;
@@ -277,12 +280,21 @@
     .input-wrapper button:hover {
       background-color: #C0C0C0;
     }
+  
   </style>
-</head>
-<body>
+  
+  
+   
+   
 
-<!-- Маскот -->
-<div id="mascot-container">
+<script>
+
+// Функция для добавления HTML структуры маскота
+function createMascotHTML() {
+  const mascotContainer = document.createElement('div');
+  mascotContainer.id = 'mascot-container';
+  mascotContainer.innerHTML = 
+  `<div id="mascot-container">
   <div id="mascot" onclick="speak()">
     <div id="speech-bubble"></div>
     <!-- Труба -->
@@ -322,11 +334,18 @@
     </div>
   </div>
   </div>
-</div>
+</div>`;
+  document.body.appendChild(mascotContainer);
+}
 
-<script>
 
-let isLocked = false;         // блокировка движения
+function initMascot() {
+  createMascotHTML();
+
+  
+  
+  
+  let isLocked = false;         // блокировка движения
 let walkAnimationEnabled = true;
 let timeBuble1 = setTimeout(() => {
     
@@ -749,7 +768,32 @@ async function askQuestion(questionText, event) {
     }
     document.getElementById("custom-question").classList.add("hidden");
   }
+  
+  
+
+  window.HideMaskot = HideMaskot;
+  window.speak = speak;
+  window.askQuestion = askQuestion;
+  window.showCustomInput = showCustomInput;
+  window.submitCustomQuestion = submitCustomQuestion;
+}
+
+
+document.addEventListener('DOMContentLoaded', initMascot);
+
+
+
 </script>
+
+
+
+
+</head>
+<body>
+
+
+
+
 
 </body>
 </html>
