@@ -7,6 +7,10 @@
 scale: 1;
 border-radius: 50px;
 }
+#chatIcons2{
+scale: 1;
+border-radius: 50px;
+}
 }
 </style>
 
@@ -18,14 +22,14 @@ border-radius: 50px;
 async  function swalScale(el) {
 
    el
-   .animate({ opacity: [1, 0], transform: ["scale(1)", "scale(0)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
+   .animate({ opacity: [1, 0.7], transform: ["scale(1)", "scale(0.7)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
    .onfinish = (e) => {
 
-   e.target.effect.target.style.opacity = 0;
-   e.target.effect.target.style.transform = 'scale(0)';
+   e.target.effect.target.style.opacity = 0.7;
+   e.target.effect.target.style.transform = 'scale(0.7)';
 
    el
-   .animate({ opacity: [0, 1], transform: ["scale(0)", "scale(1)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
+   .animate({ opacity: [0.7, 1], transform: ["scale(0.7)", "scale(1)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
    .onfinish = (e) => {
 
    e.target.effect.target.style.opacity = 1;
@@ -55,10 +59,11 @@ newdiv.style.padding="15px";
 newdiv.style.paddingTop="17px";
 newdiv.onclick = function() {
 	
+	if(timer1){clearInterval(timer1);}
+	if(timer1){clearInterval(timer1);}
 	
-          let elementWithIcons = document.getElementById('18iconsChat');
+        let elementWithIcons = document.getElementById('18iconsChat');
 
-        clearInterval(timer1);
 
         if(elementWithIcons.style.display === 'block'){
         elementWithIcons.style.display = "none";
@@ -180,7 +185,7 @@ let url2 = "https://t.me/DomOtelManual_bot";
 
 
 const timer1 = setInterval(() => { swalScale(newdiv); }, 3000);
-setTimeout(function(){ clearInterval(timer1); }, 10000);
+setTimeout(function(){ if(timer1){clearInterval(timer1); }  if(timer1){clearInterval(timer1); }  }, 10000);
                    
 });
 
@@ -191,6 +196,10 @@ setTimeout(function(){ clearInterval(timer1); }, 10000);
 <style>
 @media (min-width: 450px) {
 #chatIcons{
+scale: 1;
+border-radius: 50px;
+}
+#chatIcons2{
 scale: 1;
 border-radius: 50px;
 }
@@ -205,14 +214,14 @@ border-radius: 50px;
 async  function swalScale(el) {
 
    el
-   .animate({ opacity: [1, 0], transform: ["scale(1)", "scale(0)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
+   .animate({ opacity: [1, 0.7], transform: ["scale(1)", "scale(0.7)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
    .onfinish = (e) => {
 
-   e.target.effect.target.style.opacity = 0;
-   e.target.effect.target.style.transform = 'scale(0)';
+   e.target.effect.target.style.opacity = 0.7;
+   e.target.effect.target.style.transform = 'scale(0.7)';
 
    el
-   .animate({ opacity: [0, 1], transform: ["scale(0)", "scale(1)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
+   .animate({ opacity: [0.7, 1], transform: ["scale(0.7)", "scale(1)"], }, { duration: 1000, iterations: 1, easing: "ease-in" })
    .onfinish = (e) => {
 
    e.target.effect.target.style.opacity = 1;
@@ -229,7 +238,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 var newdiv = document.createElement('div');
-newdiv.id="chatIcons";
+newdiv.id="chatIcons2";
 newdiv.style.background = "#e47654";
 
 newdiv.style.width="65px";
@@ -243,9 +252,12 @@ newdiv.style.paddingTop="17px";
 newdiv.onclick = function() {
 	
 	
+        if(timer1){clearInterval(timer1);}
+        if(timer1){clearInterval(timer1);}
+	
+	
           let elementWithIcons = document.getElementById('18iconsChat');
 
-        clearInterval(timer1);
 
         if(elementWithIcons.style.display === 'block'){
         elementWithIcons.style.display = "none";
@@ -371,7 +383,7 @@ let url2 = "https://t.me/DomOtelManual_bot";
 
 const timer1 = setInterval(() => { swalScale(newdiv); }, 3000);
 
-setTimeout(function(){ clearInterval(timer1); }, 10000);
+setTimeout(function(){ if(timer1){clearInterval(timer1);}  if(timer1){clearInterval(timer1); }  }, 10000);
                    
 });
 
