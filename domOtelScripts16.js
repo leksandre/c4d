@@ -1,6 +1,130 @@
 <style>
 
 
+
+
+/* --- Адаптация фильтров для мобильных устройств --- */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch !important;
+    padding: 15px 10px !important;
+  }
+
+  .filter-container > div {
+    /* Применяется ко всем непосредственным дочерним div'ам контейнера фильтров */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 10px !important;
+    border-bottom: 1px solid #eee; /* Визуальное разделение секций */
+  }
+
+  .filter-container > div:last-child {
+     /* Убираем border у последнего элемента */
+     border-bottom: none;
+     padding-bottom: 0 !important;
+     margin-bottom: 0 !important;
+  }
+
+  /* Группы чекбоксов комнат */
+  .e-checkboxes-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px; /* Расстояние между чекбоксами */
+    justify-content: center; /* Центрируем на мобильных */
+  }
+
+  .e-checkbox-btn {
+    margin-bottom: 0; /* Убираем нижний margin у отдельных кнопок */
+    flex: 1 1 auto; /* Позволяем кнопкам расти и сжиматься */
+    min-width: calc(50% - 4px); /* Минимум две колонки */
+  }
+
+  .e-checkbox-btn label {
+    /* Адаптируем лейблы чекбоксов */
+    width: 100%; /* Растягиваем на всю ширину родителя */
+    text-align: center; /* Центрируем текст */
+    font-size: 0.8rem; /* Уменьшаем шрифт, если нужно */
+    padding: 6px 4px; /* Корректируем отступы */
+  }
+
+  /* Секции слайдеров */
+  .mr-20.pr-10.pb-8,
+  .pb-8.mr-10 {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Контейнеры слайдеров */
+  .mr-20.pr-10.pb-8 > div:not(.text-body-2),
+  .pb-8.mr-10 > div:not(.text-body-2) {
+    /* Применяется к div'у, содержащему слайдер и значения (исключаем заголовок) */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  /* Слайдеры */
+  .filter-slider {
+    width: 100%; /* Слайдеры растягиваются на всю ширину */
+    flex: 1; /* Занимают всё доступное пространство */
+  }
+
+  /* Значения слайдеров */
+  #price-min-value, #price-max-value, #area-min-value, #area-max-value {
+    font-size: 0.85rem; /* Немного уменьшаем шрифт */
+    /* Можно добавить background или border для лучшей видимости */
+    /* padding: 2px 5px;
+    background-color: #f0f0f0;
+    border-radius: 3px; */
+  }
+
+  /* Кнопка "очистить" */
+  .filter-clear-link {
+    align-self: center !important; /* Центрируем кнопку */
+    margin-bottom: 0 !important;
+    padding: 8px 15px; /* Делаем кнопку больше для удобства нажатия */
+    border: 1px solid #d32f2f; /* Добавляем рамку */
+    border-radius: 4px; /* Скругляем углы */
+    text-align: center;
+    /* Можно изменить фон */
+    /* background-color: #fff; */
+  }
+}
+
+/* --- Ещё более компактный вид для очень маленьких экранов --- */
+@media (max-width: 480px) {
+  .filter-container {
+    padding: 12px 8px !important;
+  }
+
+  .e-checkboxes-group {
+    gap: 6px;
+  }
+
+  .e-checkbox-btn {
+    min-width: 100%; /* Одна колонка на очень маленьком экране */
+  }
+
+  .e-checkbox-btn label {
+    font-size: 0.75rem;
+    padding: 5px 3px;
+  }
+
+  .red-color-domOtel {
+    font-size: 0.9rem; /* Уменьшаем заголовки фильтров */
+  }
+
+  #price-min-value, #price-max-value, #area-min-value, #area-max-value {
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
 /* --- Стили для визуального выделения выбранных чекбоксов --- */
 /* Базовые стили для лейблов чекбоксов, чтобы их можно было стилизовать */
 .e-checkbox-btn label {
