@@ -1,224 +1,328 @@
 <!-- adding-flat-filters -->
 
+
+
+
+
 <style>
+/* ==========================================================================
+   Стили для блока фильтров недвижимости (с обводкой чекбоксов)
+   ========================================================================== */
 
+/* --- Основной контейнер фильтров --- */
+.filter-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 15px !important;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef; /* Обводка вокруг всего блока фильтров */
+  border-radius: 8px; /* Скругление углов всего блока */
+  box-sizing: border-box;
+  gap: 15px 20px;
+}
 
+/* --- Группа фильтров (например, "Кол-во комнат", "Стоимость") --- */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 180px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
+/* Заголовок группы фильтров */
+.filter-group .filter-title {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  opacity: 0.8;
+  color: #212529;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-align: left;
+}
 
-/* --- Адаптация фильтров для мобильных устройств --- */
-@media (max-width: 768px) {
+/* --- Чекбоксы --- */
+/* !!! ДОБАВЛЕНО: Обводка вокруг ВСЕГО блока чекбоксов !!! */
+.e-checkboxes-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* --- Новые стили для обводки группы --- */
+  border: 1px solid #ced4da; /* Цвет рамки группы чекбоксов */
+  border-radius: 6px; /* Скругление углов группы */
+  padding: 12px; /* Внутренний отступ внутри группы */
+  background-color: #ffffff; /* Фон группы */
+  /* --- Конец новых стилей --- */
+}
+
+.e-checkbox-btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.e-checkbox-btn input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #0d6efd;
+  cursor: pointer;
+}
+
+/* !!! ДОБАВЛЕНО/ИЗМЕНЕНО: Обводка вокруг КАЖДОЙ кнопки чекбокса !!! */
+.e-checkbox-btn label {
+  font-size: 0.875rem;
+  cursor: pointer;
+  user-select: none;
+  /* --- Измененные/новые стили для обводки кнопки --- */
+  padding: 6px 12px; /* Внутренние отступы */
+  border: 1px solid #ced4da; /* Обводка кнопки */
+  border-radius: 4px; /* Скругление углов кнопки */
+  background-color: #ffffff; /* Фон кнопки */
+  transition: all 0.2s ease-in-out; /* Плавный переход */
+  flex: 1; /* Лейбл занимает всё доступное пространство */
+  text-align: center; /* Центрируем текст внутри лейбла */
+  /* --- Конец измененных стилей --- */
+}
+
+/* Стиль для выбранного чекбокса */
+.e-checkbox-btn input[type="checkbox"]:checked + label {
+  /* background-color: #e7f1ff; */ /* Можно оставить фон */
+  /* border-color: #0d6efd; */ /* Можно изменить цвет рамки */
+  /* font-weight: 500; */ /* Можно сделать текст жирнее */
+  /* --- Усиленная визуализация выбранного состояния --- */
+  background-color: #e7f1ff; /* Фон при выборе */
+  border-color: #0d6efd; /* Цвет рамки при выборе */
+  font-weight: 500; /* Жирный текст при выборе */
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Тень вокруг выбранной кнопки */
+  /* --- Конец усиленной визуализации --- */
+}
+
+/* --- Слайдеры --- */
+.filter-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  color: #495057;
+  min-height: 1.2em;
+}
+
+.filter-slider-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.filter-slider {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #dee2e6;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.filter-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* --- Кнопка "очистить" --- */
+.filter-clear-link {
+  align-self: flex-end;
+  margin-top: auto;
+  padding: 8px 16px;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  color: #dc3545;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.filter-clear-link:hover,
+.filter-clear-link:focus {
+  background-color: #dc3545;
+  color: #ffffff;
+  text-decoration: none;
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 1024px) {
   .filter-container {
-    flex-direction: column;
-    align-items: stretch !important;
-    padding: 15px 10px !important;
+    padding: 18px 12px !important;
+    gap: 12px 15px;
   }
 
-  .filter-container > div {
-    /* Применяется ко всем непосредственным дочерним div'ам контейнера фильтров */
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 15px !important;
-    margin-bottom: 10px !important;
-    border-bottom: 1px solid #eee; /* Визуальное разделение секций */
+  .filter-group {
+    min-width: 150px;
+    padding: 0 8px;
   }
 
-  .filter-container > div:last-child {
-     /* Убираем border у последнего элемента */
-     border-bottom: none;
-     padding-bottom: 0 !important;
-     margin-bottom: 0 !important;
-  }
-
-  /* Группы чекбоксов комнат */
-  .e-checkboxes-group {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px; /* Расстояние между чекбоксами */
-    justify-content: center; /* Центрируем на мобильных */
-  }
-
-  .e-checkbox-btn {
-    margin-bottom: 0; /* Убираем нижний margin у отдельных кнопок */
-    flex: 1 1 auto; /* Позволяем кнопкам расти и сжиматься */
-    min-width: calc(50% - 4px); /* Минимум две колонки */
+  .filter-group .filter-title {
+    font-size: 0.8125rem;
+    margin-bottom: 8px;
   }
 
   .e-checkbox-btn label {
-    /* Адаптируем лейблы чекбоксов */
-    width: 100%; /* Растягиваем на всю ширину родителя */
-    text-align: center; /* Центрируем текст */
-    font-size: 0.8rem; /* Уменьшаем шрифт, если нужно */
-    padding: 6px 4px; /* Корректируем отступы */
+    font-size: 0.8125rem;
+    padding: 5px 10px;
   }
 
-  /* Секции слайдеров */
-  .mr-20.pr-10.pb-8,
-  .pb-8.mr-10 {
-    padding-right: 0 !important;
-    margin-right: 0 !important;
+  .filter-slider-labels {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
   }
 
-  /* Контейнеры слайдеров */
-  .mr-20.pr-10.pb-8 > div:not(.text-body-2),
-  .pb-8.mr-10 > div:not(.text-body-2) {
-    /* Применяется к div'у, содержащему слайдер и значения (исключаем заголовок) */
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-
-  /* Слайдеры */
-  .filter-slider {
-    width: 100%; /* Слайдеры растягиваются на всю ширину */
-    flex: 1; /* Занимают всё доступное пространство */
-  }
-
-  /* Значения слайдеров */
-  #price-min-value, #price-max-value, #area-min-value, #area-max-value {
-    font-size: 0.85rem; /* Немного уменьшаем шрифт */
-    /* Можно добавить background или border для лучшей видимости */
-    /* padding: 2px 5px;
-    background-color: #f0f0f0;
-    border-radius: 3px; */
-  }
-
-  /* Кнопка "очистить" */
   .filter-clear-link {
-    align-self: center !important; /* Центрируем кнопку */
-    margin-bottom: 0 !important;
-    padding: 8px 15px; /* Делаем кнопку больше для удобства нажатия */
-    border: 1px solid #d32f2f; /* Добавляем рамку */
-    border-radius: 4px; /* Скругляем углы */
-    text-align: center;
-    /* Можно изменить фон */
-    /* background-color: #fff; */
+    font-size: 0.8125rem;
+    padding: 7px 14px;
   }
 }
 
-/* --- Ещё более компактный вид для очень маленьких экранов --- */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .filter-container {
-    padding: 12px 8px !important;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px 10px !important;
+    gap: 20px;
+  }
+
+  .filter-group {
+    min-width: auto;
+    padding: 0 5px;
+    width: 100%;
   }
 
   .e-checkboxes-group {
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 6px;
+    justify-content: center;
+    padding: 10px; /* Адаптация внутреннего отступа */
   }
 
   .e-checkbox-btn {
-    min-width: 100%; /* Одна колонка на очень маленьком экране */
+    flex: 1 1 calc(50% - 6px);
+    min-width: 40%;
+  }
+
+  .e-checkbox-btn label {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8125rem;
+    padding: 5px 8px;
+  }
+
+  .filter-slider-labels {
+    font-size: 0.8125rem;
+    margin-bottom: 6px;
+  }
+
+  .filter-slider-container {
+    gap: 8px;
+  }
+
+  .filter-clear-link {
+    align-self: center;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-container {
+    padding: 12px 8px !important;
+    gap: 18px;
+  }
+
+  .e-checkboxes-group {
+    gap: 5px;
+    padding: 8px; /* Адаптация внутреннего отступа */
+  }
+
+  .e-checkbox-btn {
+    flex: 1 1 100%;
+    min-width: 100%;
   }
 
   .e-checkbox-btn label {
     font-size: 0.75rem;
-    padding: 5px 3px;
+    padding: 4px 6px;
   }
 
-  .red-color-domOtel {
-    font-size: 0.9rem; /* Уменьшаем заголовки фильтров */
+  .filter-group .filter-title,
+  .filter-slider-labels,
+  .filter-clear-link {
+    font-size: 0.75rem;
   }
 
-  #price-min-value, #price-max-value, #area-min-value, #area-max-value {
-    font-size: 0.8rem;
+  .filter-slider-container {
+    gap: 6px;
+  }
+
+  .filter-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  .filter-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
   }
 }
 
-
-
-
-/* --- Стили для визуального выделения выбранных чекбоксов --- */
-/* Базовые стили для лейблов чекбоксов, чтобы их можно было стилизовать */
-.e-checkbox-btn label {
-    display: inline-block; /* Или block, если нужно */
-    padding: 5px 10px; /* Добавим немного отступов */
-    border: 1px solid #ccc; /* Рамка по умолчанию */
-    border-radius: 4px; /* Скругленные углы */
-    background-color: #fff; /* Белый фон по умолчанию */
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s; /* Плавный переход */
-    user-select: none; /* Предотвращаем выделение текста при двойном клике */
-}
-
-/* Стили для выбранного состояния */
-.e-checkbox-btn label.checkbox-label--selected,
-/* Или используем инлайновые стили, установленные JS */
-/* Пример с использованием класса: */
-/*
-.e-checkbox-btn input[type="checkbox"]:checked + label {
-    background-color: #e3f2fd;
-    border-color: #1976d2;
-}
-*/
-/* Но так как мы используем JS для установки стилей, класс может быть избыточным для базового состояния,
-   но полезен для добавления других эффектов, если нужно */
-
-/* Убедимся, что сам чекбокс не мешает стилям */
-.e-checkbox-btn input[type="checkbox"] {
-    /* Можно скрыть стандартный чекбокс и стилизовать только label, если нужно полностью кастомный вид */
-    /* margin-right: 5px; */ /* Если чекбокс виден */
-}
-
-
-/* --- 1. Цвет ползунков --- */
-/* Для Webkit (Chrome, Safari) */
-.filter-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px; /* Примерный размер */
-  height: 16px;
-  border-radius: 50%;
-  background-color: #727272; /* Новый цвет */
-  cursor: pointer;
-  border: 1px solid #ccc; /* Опционально, для лучшей видимости */
-}
-
-/* Для Firefox */
-.filter-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #727272; /* Новый цвет */
-  cursor: pointer;
-  border: 1px solid #ccc; /* Опционально */
-}
-
-/* Стиль трека слайдера (опционально) */
-.filter-slider::-webkit-slider-runnable-track {
-  background: #ddd;
-  height: 4px;
-  border-radius: 2px;
-}
-.filter-slider::-moz-range-track {
-  background: #ddd;
-  height: 4px;
-  border-radius: 2px;
-}
-
-/* --- 2. Cursor pointer --- */
-/* Для чекбоксов и их лейблов */
-.e-checkbox-btn input[type="checkbox"],
-.e-checkbox-btn label {
-  cursor: pointer;
-}
-
-/* Для слайдеров */
-.filter-slider {
-  cursor: pointer;
-}
-
-/* Для кнопки "очистить" */
-.filter-clear-link {
-  cursor: pointer;
-}
-
-/* Для всего контейнера фильтров (опционально) */
-.filter-container {
-    cursor: default; /* Или оставьте как есть */
-}
-
+/* --- Устаревшие классы (сохранены для совместимости) --- */
+.d-flex { display: flex !important; }
+.align-center { align-items: center !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.ml-10 { margin-left: 10px !important; }
+.mr-20 { margin-right: 20px !important; }
+.pr-10 { padding-right: 10px !important; }
+.pb-8 { padding-bottom: 8px !important; }
+.mr-10 { margin-right: 10px !important; }
+.py-2 { padding-top: 2px !important; padding-bottom: 2px !important; }
+.mb-2 { margin-bottom: 2px !important; }
+.text-body-2 { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+.has-opacity-65 { opacity: 0.65 !important; }
+.red-color-domOtel { color: #000000 !important; }
+.align-center-inner { align-items: flex-start !important; }
+/* --- Конец устаревших классов --- */
 
 </style>
+
+
+
+
 
 
 <script>
@@ -1410,91 +1514,3 @@ let currentFilters = {
   }); // Конец DOMContentLoaded
 </script>
 
-<style>
-/* Убедимся, что стили фильтров применяются */
-.d-flex {
-  display: flex !important;
-}
-.align-center {
-  align-items: center !important;
-}
-.flex-wrap {
-  flex-wrap: wrap !important;
-}
-
-.filter-group {
-	margin: 20px;
-}
-
-.m50 {
-  margin: 50px;
-}
-.ml-10 {
-  margin-left: 10px !important;
-}
-.mr-20 {
-  margin-right: 20px !important;
-}
-.pr-10 {
-  padding-right: 10px !important;
-}
-.pb-8 {
-  padding-bottom: 8px !important;
-}
-.mr-10 {
-  margin-right: 10px !important;
-}
-.py-2 {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-.mb-2 {
-  margin-bottom: 2px !important;
-}
-.text-body-2 {
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
-}
-.has-opacity-65 {
-  opacity: 0.65 !important;
-}
-.red-color-domOtel {
-  // color: #d32f2f !important; /* Пример цвета, замените на ваш */
-  color: #000000 !important; /* Пример цвета, замените на ваш */
-}
-.e-checkboxes-group {
-  display: flex;
-  flex-direction: column;
-}
-.e-checkbox-btn {
-  margin-bottom: 5px;
-}
-.e-checkbox-btn input[type="checkbox"] {
-  margin-right: 5px;
-}
-.align-center-inner {
-    align-items: flex-start; /* Выравнивание по верхнему краю внутри флекс-контейнера */
-}
-/* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-  .d-flex {
-    flex-direction: column;
-    align-items: stretch !important;
-  }
-  .ml-10, .mr-20, .pr-10, .pb-8, .mr-10 {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 16px !important;
-  }
-  .e-checkboxes-group {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .e-checkbox-btn {
-    margin-bottom: 0;
-    flex: 1 1 auto;
-  }
-}
-</style>
