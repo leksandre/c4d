@@ -5,318 +5,318 @@
 
 
 <style>
-/* ==========================================================================
-   Стили для блока фильтров недвижимости (с обводкой чекбоксов)
-   ========================================================================== */
+    /* ==========================================================================
+    Стили для блока фильтров недвижимости (с обводкой чекбоксов)
+    ========================================================================== */
 
-/* --- Основной контейнер фильтров --- */
-.filter-container {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: flex-start !important;
-  justify-content: center;
-  width: 100%;
-  padding: 20px 15px !important;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef; /* Обводка вокруг всего блока фильтров */
-  border-radius: 8px; /* Скругление углов всего блока */
-  box-sizing: border-box;
-  gap: 15px 20px;
+    /* --- Основной контейнер фильтров --- */
+    .filter-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 15px !important;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef; /* Обводка вокруг всего блока фильтров */
+    border-radius: 8px; /* Скругление углов всего блока */
+    box-sizing: border-box;
+    gap: 15px 20px;
 }
 
-/* --- Группа фильтров (например, "Кол-во комнат", "Стоимость") --- */
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-width: 180px;
-  padding: 0 10px;
-  box-sizing: border-box;
+    /* --- Группа фильтров (например, "Кол-во комнат", "Стоимость") --- */
+    .filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 180px;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
-/* Заголовок группы фильтров */
-.filter-group .filter-title {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  opacity: 0.8;
-  color: #212529;
-  margin-bottom: 10px;
-  font-weight: 500;
-  text-align: left;
+    /* Заголовок группы фильтров */
+    .filter-group .filter-title {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    opacity: 0.8;
+    color: #212529;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: left;
 }
 
-/* --- Чекбоксы --- */
-/* !!! ДОБАВЛЕНО: Обводка вокруг ВСЕГО блока чекбоксов !!! */
-.e-checkboxes-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  /* --- Новые стили для обводки группы --- */
-  border: 1px solid #ced4da; /* Цвет рамки группы чекбоксов */
-  border-radius: 6px; /* Скругление углов группы */
-  padding: 12px; /* Внутренний отступ внутри группы */
-  background-color: #ffffff; /* Фон группы */
-  /* --- Конец новых стилей --- */
+    /* --- Чекбоксы --- */
+    /* !!! ДОБАВЛЕНО: Обводка вокруг ВСЕГО блока чекбоксов !!! */
+    .e-checkboxes-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* --- Новые стили для обводки группы --- */
+    border: 1px solid #ced4da; /* Цвет рамки группы чекбоксов */
+    border-radius: 6px; /* Скругление углов группы */
+    padding: 12px; /* Внутренний отступ внутри группы */
+    background-color: #ffffff; /* Фон группы */
+    /* --- Конец новых стилей --- */
 }
 
-.e-checkbox-btn {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
+    .e-checkbox-btn {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
 }
 
-.e-checkbox-btn input[type="checkbox"] {
-  margin-right: 8px;
-  accent-color: #0d6efd;
-  cursor: pointer;
+    .e-checkbox-btn input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #0d6efd;
+    cursor: pointer;
 }
 
-/* !!! ДОБАВЛЕНО/ИЗМЕНЕНО: Обводка вокруг КАЖДОЙ кнопки чекбокса !!! */
-.e-checkbox-btn label {
-  font-size: 0.875rem;
-  cursor: pointer;
-  user-select: none;
-  /* --- Измененные/новые стили для обводки кнопки --- */
-  padding: 6px 12px; /* Внутренние отступы */
-  border: 1px solid #ced4da; /* Обводка кнопки */
-  border-radius: 4px; /* Скругление углов кнопки */
-  background-color: #ffffff; /* Фон кнопки */
-  transition: all 0.2s ease-in-out; /* Плавный переход */
-  flex: 1; /* Лейбл занимает всё доступное пространство */
-  text-align: center; /* Центрируем текст внутри лейбла */
-  /* --- Конец измененных стилей --- */
+    /* !!! ДОБАВЛЕНО/ИЗМЕНЕНО: Обводка вокруг КАЖДОЙ кнопки чекбокса !!! */
+    .e-checkbox-btn label {
+    font-size: 0.875rem;
+    cursor: pointer;
+    user-select: none;
+    /* --- Измененные/новые стили для обводки кнопки --- */
+    padding: 6px 12px; /* Внутренние отступы */
+    border: 1px solid #ced4da; /* Обводка кнопки */
+    border-radius: 4px; /* Скругление углов кнопки */
+    background-color: #ffffff; /* Фон кнопки */
+    transition: all 0.2s ease-in-out; /* Плавный переход */
+    flex: 1; /* Лейбл занимает всё доступное пространство */
+    text-align: center; /* Центрируем текст внутри лейбла */
+    /* --- Конец измененных стилей --- */
 }
 
-/* Стиль для выбранного чекбокса */
-.e-checkbox-btn input[type="checkbox"]:checked + label {
-  /* background-color: #e7f1ff; */ /* Можно оставить фон */
-  /* border-color: #0d6efd; */ /* Можно изменить цвет рамки */
-  /* font-weight: 500; */ /* Можно сделать текст жирнее */
-  /* --- Усиленная визуализация выбранного состояния --- */
-  background-color: #e7f1ff; /* Фон при выборе */
-  border-color: #0d6efd; /* Цвет рамки при выборе */
-  font-weight: 500; /* Жирный текст при выборе */
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Тень вокруг выбранной кнопки */
-  /* --- Конец усиленной визуализации --- */
+    /* Стиль для выбранного чекбокса */
+    .e-checkbox-btn input[type="checkbox"]:checked + label {
+    /* background-color: #e7f1ff; */ /* Можно оставить фон */
+    /* border-color: #0d6efd; */ /* Можно изменить цвет рамки */
+    /* font-weight: 500; */ /* Можно сделать текст жирнее */
+    /* --- Усиленная визуализация выбранного состояния --- */
+    background-color: #e7f1ff; /* Фон при выборе */
+    border-color: #0d6efd; /* Цвет рамки при выборе */
+    font-weight: 500; /* Жирный текст при выборе */
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Тень вокруг выбранной кнопки */
+    /* --- Конец усиленной визуализации --- */
 }
 
-/* --- Слайдеры --- */
-.filter-slider-labels {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 8px;
-  font-size: 0.8125rem;
-  color: #495057;
-  min-height: 1.2em;
+    /* --- Слайдеры --- */
+    .filter-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+    font-size: 0.8125rem;
+    color: #495057;
+    min-height: 1.2em;
 }
 
-.filter-slider-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
+    .filter-slider-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
 }
 
-.filter-slider {
-  flex: 1;
-  height: 4px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #dee2e6;
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
+    .filter-slider {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #dee2e6;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
 }
 
-.filter-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #0d6efd;
-  cursor: pointer;
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    .filter-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.filter-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #0d6efd;
-  cursor: pointer;
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    .filter-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* --- Кнопка "очистить" --- */
-.filter-clear-link {
-  align-self: flex-end;
-  margin-top: auto;
-  padding: 8px 16px;
-  border: 1px solid #dc3545;
-  border-radius: 4px;
-  color: #dc3545;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  white-space: nowrap;
+    /* --- Кнопка "очистить" --- */
+    .filter-clear-link {
+    align-self: flex-end;
+    margin-top: auto;
+    padding: 8px 16px;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
 }
 
-.filter-clear-link:hover,
-.filter-clear-link:focus {
-  background-color: #dc3545;
-  color: #ffffff;
-  text-decoration: none;
-  outline: 2px solid #0d6efd;
-  outline-offset: 2px;
+    .filter-clear-link:hover,
+    .filter-clear-link:focus {
+    background-color: #dc3545;
+    color: #ffffff;
+    text-decoration: none;
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
 }
 
-/* --- Адаптивность --- */
-@media (max-width: 1024px) {
-  .filter-container {
+    /* --- Адаптивность --- */
+    @media (max-width: 1024px) {
+    .filter-container {
     padding: 18px 12px !important;
     gap: 12px 15px;
-  }
-
-  .filter-group {
-    min-width: 150px;
-    padding: 0 8px;
-  }
-
-  .filter-group .filter-title {
-    font-size: 0.8125rem;
-    margin-bottom: 8px;
-  }
-
-  .e-checkbox-btn label {
-    font-size: 0.8125rem;
-    padding: 5px 10px;
-  }
-
-  .filter-slider-labels {
-    font-size: 0.75rem;
-    margin-bottom: 6px;
-  }
-
-  .filter-clear-link {
-    font-size: 0.8125rem;
-    padding: 7px 14px;
-  }
 }
 
-@media (max-width: 768px) {
-  .filter-container {
+    .filter-group {
+    min-width: 150px;
+    padding: 0 8px;
+}
+
+    .filter-group .filter-title {
+    font-size: 0.8125rem;
+    margin-bottom: 8px;
+}
+
+    .e-checkbox-btn label {
+    font-size: 0.8125rem;
+    padding: 5px 10px;
+}
+
+    .filter-slider-labels {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+}
+
+    .filter-clear-link {
+    font-size: 0.8125rem;
+    padding: 7px 14px;
+}
+}
+
+    @media (max-width: 768px) {
+    .filter-container {
     flex-direction: column;
     align-items: stretch;
     padding: 15px 10px !important;
     gap: 20px;
-  }
+}
 
-  .filter-group {
+    .filter-group {
     min-width: auto;
     padding: 0 5px;
     width: 100%;
-  }
+}
 
-  .e-checkboxes-group {
+    .e-checkboxes-group {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
     justify-content: center;
     padding: 10px; /* Адаптация внутреннего отступа */
-  }
+}
 
-  .e-checkbox-btn {
+    .e-checkbox-btn {
     flex: 1 1 calc(50% - 6px);
     min-width: 40%;
-  }
+}
 
-  .e-checkbox-btn label {
+    .e-checkbox-btn label {
     width: 100%;
     text-align: center;
     font-size: 0.8125rem;
     padding: 5px 8px;
-  }
+}
 
-  .filter-slider-labels {
+    .filter-slider-labels {
     font-size: 0.8125rem;
     margin-bottom: 6px;
-  }
+}
 
-  .filter-slider-container {
+    .filter-slider-container {
     gap: 8px;
-  }
+}
 
-  .filter-clear-link {
+    .filter-clear-link {
     align-self: center;
     width: fit-content;
-  }
+}
 }
 
-@media (max-width: 480px) {
-  .filter-container {
+    @media (max-width: 480px) {
+    .filter-container {
     padding: 12px 8px !important;
     gap: 18px;
-  }
-
-  .e-checkboxes-group {
-    gap: 5px;
-    padding: 8px; /* Адаптация внутреннего отступа */
-  }
-
-  .e-checkbox-btn {
-    flex: 1 1 100%;
-    min-width: 100%;
-  }
-
-  .e-checkbox-btn label {
-    font-size: 0.75rem;
-    padding: 4px 6px;
-  }
-
-  .filter-group .filter-title,
-  .filter-slider-labels,
-  .filter-clear-link {
-    font-size: 0.75rem;
-  }
-
-  .filter-slider-container {
-    gap: 6px;
-  }
-
-  .filter-slider::-webkit-slider-thumb {
-    width: 16px;
-    height: 16px;
-  }
-
-  .filter-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-  }
 }
 
-/* --- Устаревшие классы (сохранены для совместимости) --- */
-.d-flex { display: flex !important; }
-.align-center { align-items: center !important; }
-.flex-wrap { flex-wrap: wrap !important; }
-.ml-10 { margin-left: 10px !important; }
-.mr-20 { margin-right: 20px !important; }
-.pr-10 { padding-right: 10px !important; }
-.pb-8 { padding-bottom: 8px !important; }
-.mr-10 { margin-right: 10px !important; }
-.py-2 { padding-top: 2px !important; padding-bottom: 2px !important; }
-.mb-2 { margin-bottom: 2px !important; }
-.text-body-2 { font-size: 0.875rem !important; line-height: 1.25rem !important; }
-.has-opacity-65 { opacity: 0.65 !important; }
-.red-color-domOtel { color: #000000 !important; }
-.align-center-inner { align-items: flex-start !important; }
-/* --- Конец устаревших классов --- */
+    .e-checkboxes-group {
+    gap: 5px;
+    padding: 8px; /* Адаптация внутреннего отступа */
+}
+
+    .e-checkbox-btn {
+    flex: 1 1 100%;
+    min-width: 100%;
+}
+
+    .e-checkbox-btn label {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+}
+
+    .filter-group .filter-title,
+    .filter-slider-labels,
+    .filter-clear-link {
+    font-size: 0.75rem;
+}
+
+    .filter-slider-container {
+    gap: 6px;
+}
+
+    .filter-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+}
+
+    .filter-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+}
+}
+
+    /* --- Устаревшие классы (сохранены для совместимости) --- */
+    .d-flex { display: flex !important; }
+    .align-center { align-items: center !important; }
+    .flex-wrap { flex-wrap: wrap !important; }
+    .ml-10 { margin-left: 10px !important; }
+    .mr-20 { margin-right: 20px !important; }
+    .pr-10 { padding-right: 10px !important; }
+    .pb-8 { padding-bottom: 8px !important; }
+    .mr-10 { margin-right: 10px !important; }
+    .py-2 { padding-top: 2px !important; padding-bottom: 2px !important; }
+    .mb-2 { margin-bottom: 2px !important; }
+    .text-body-2 { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+    .has-opacity-65 { opacity: 0.65 !important; }
+    .red-color-domOtel { color: #000000 !important; }
+    .align-center-inner { align-items: flex-start !important; }
+    /* --- Конец устаревших классов --- */
 
 </style>
 
@@ -328,10 +328,194 @@
 <script>
 
 
-// 1. Оборачиваем код в функцию
-function clearCardStylesPeriodically() {
+    // 1. Оборачиваем код в функцию
+    function clearCardStylesPeriodically() {
     try {
-        // Ваш код для поиска cardsContainer
+    // Ваш код для поиска cardsContainer
+    let cardsContainer = document.getElementsByClassName('flats-block__gallery')[0];
+    if (cardsContainer) {
+    // Проваливаемся на 5 уровней
+    for (let i = 0; i < 5; i++) {
+    if (cardsContainer.firstElementChild) {
+    cardsContainer = cardsContainer.firstElementChild;
+} else {
+    console.log(`Провалиться не удалось на уровне ${i + 1}, так как нет firstElementChild.`);
+    cardsContainer = null; // Прерываем "проваливание"
+    break;
+}
+}
+}
+
+    // Если успешно дошли до 5 уровня, выполняем очистку
+    if (cardsContainer) {
+    const cards = cardsContainer.querySelectorAll('.flat-block-card');
+    cards.forEach(card => {
+    // Убираем стили анимации
+    card.style.opacity = '';
+    card.style.transform = '';
+    card.style.transition = '';
+    //card.style.display = ''; // Опционально: также сбросить display, если нужно // !!!!!!!! сбрасывает работу фильтров!!!!!!
+});
+    console.log("Периодическая очистка стилей анимации выполнена");
+} else {
+    console.warn("Не удалось найти контейнер карточек для периодической очистки");
+}
+} catch (e) {
+    console.error('Ошибка при периодической очистке стилей:', e);
+}
+}
+
+    // 2. Назначаем выполнение функции каждые 5 секунд (5000 миллисекунд)
+    //const intervalId = setInterval(clearCardStylesPeriodically, 5000);
+
+    // --- Опционально ---
+    // Если вам нужно будет остановить этот интервал позже, сохраните intervalId
+    // и вызовите clearInterval(intervalId);
+    // Например, при выгрузке страницы или по другому событию:
+    // window.addEventListener('beforeunload', () => {
+//     clearInterval(intervalId);
+// });
+
+
+    document.addEventListener('DOMContentLoaded', async function () {
+        //console.log("DOM fully loaded and parsed");
+
+        // --- НОВОЕ: Загрузка дополнительных данных ---
+        let additionalData = null;
+        let minPvMin = 0, minPvMax = 0, minEmpMin = 0, minEmpMax = 0;
+        try {
+            console.log("Загрузка дополнительных данных из sale_front.json...");
+            const response = await fetch('https://xn--d1acscjb2a6f.xn--p1ai/sale_front.json'); // <-- URL может потребовать CORS прокси
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} при загрузке sale_front.json`);
+            }
+            const jsonData = await response.json();
+            console.log("Дополнительные данные загружены:", jsonData);
+
+            additionalData = {};
+            const prices = jsonData.цена || [];
+            let firstPv = true, firstEmp = true;
+            prices.forEach(item => {
+                const areaKey = parseFloat(item.площадь).toFixed(2); // Ключ - площадь, округленная до 2 знаков
+                //const areaKey = parseFloat(item.площадь).toFixed(2).replace('.', ',');
+                additionalData[areaKey] = {
+                    discountedPrice: item.цена_с_акцией,
+                    minPv: item.min_pv,
+                    minEmp: item.min_emp,
+                    normPv: item.norm_pv,
+                    normEmp: item.norm_emp
+                };
+
+
+
+// Определяем диапазоны для слайдеров (минимальная и максимальная границы из данных)
+                if (item.min_pv !== undefined && item.min_pv !== null && !isNaN(item.min_pv)  &&   item.norm_pv !== undefined && item.norm_pv !== null && !isNaN(item.norm_pv)   ) {
+                    if (firstPv) {
+                        minPvMin = Math.min(item.min_pv, item.norm_pv) ; // Устанавливаем начальный минимум
+                        minPvMax = Math.max(item.min_pv, item.norm_pv) // Устанавливаем начальный максимум
+                        firstPv = false;
+                        console.log(`       Первое значение min_pv. Установлены границы: Min=${minPvMin}, Max=${minPvMax}`);
+                    } else {
+                        // Обновляем минимальную и максимальную границы
+                        const oldMin = minPvMin;
+                        const oldMax = minPvMax;
+                        minPvMin = Math.min(minPvMin, item.min_pv);
+                        minPvMax = Math.max(minPvMax, item.norm_pv);
+                        if (minPvMin !== oldMin || minPvMax !== oldMax) {
+                            console.log(`       Обновлены границы min_pv: Min=${oldMin} -> ${minPvMin}, Max=${oldMax} -> ${minPvMax}`);
+                        }
+                    }
+                } else {
+                    console.warn(`     Элемент #${item}: min_pv norm_pv отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_pv);
+                }
+
+                if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp)  &&   item.norm_emp !== undefined && item.norm_emp !== null && !isNaN(item.norm_emp)   ) {
+                    if (firstEmp) {
+                        minEmpMin = Math.min(item.min_emp, item.norm_emp) ; // Устанавливаем начальный минимум
+                        minEmpMax = Math.max(item.min_emp, item.norm_emp) ; // Устанавливаем начальный максимум
+                        firstEmp = false;
+                        console.log(`       Первое значение min_emp. Установлены границы: Min=${minEmpMin}, Max=${minEmpMax}`);
+                    } else {
+                        // Обновляем минимальную и максимальную границы
+                        const oldMin = minEmpMin;
+                        const oldMax = minEmpMax;
+                        minEmpMin = Math.min(minEmpMin, item.min_emp);
+                        minEmpMax = Math.max(minEmpMax, item.norm_emp);
+                        if (minEmpMin !== oldMin || minEmpMax !== oldMax) {
+                            console.log(`       Обновлены границы min_emp: Min=${oldMin} -> ${minEmpMin}, Max=${oldMax} -> ${minEmpMax}`);
+                        }
+                    }
+                } else {
+                    console.warn(`     Элемент #${item}: min_emp norm_emp отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_emp);
+                }
+
+
+
+            });
+            console.log("Данные по площадям для сопоставления:", additionalData);
+            console.log("Диапазоны для фильтров: MinPV(0, " + minPvMax + "), MinEmp(0, " + minEmpMax + ")");
+
+
+
+
+            // Если данные не загрузились или пустые, устанавливаем разумные умолчания
+            if (minPvMax === 0) minPvMax = 1000000;
+            if (minEmpMax === 0) minEmpMax = 50000;
+
+
+
+
+
+
+            /*
+                // Убедимся, что диапазоны корректны (уже есть в коде)
+                if (minPrice === Infinity) minPrice = 0;
+                if (maxPrice === -Infinity) maxPrice = 10000000;
+                if (minArea === Infinity) minArea = 0;
+                if (maxArea === -Infinity) maxArea = 200;
+
+                // Если данные не загрузились или пустые, устанавливаем разумные умолчания (уже есть в коде)
+                if (minPvMax === 0) minPvMax = 1000000;
+                if (minEmpMax === 0) minEmpMax = 50000;
+
+                // --- ДОБАВИТЬ ИЛИ ПЕРЕМЕСТИТЬ СЮДА ---
+                // Инициализация объекта фильтров ДО назначения обработчиков
+                let currentFilters = {
+                  rooms: [],
+                  price: { min: minPrice, max: maxPrice },
+                  area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
+                  // !!! ИЗМЕНЕНО: Поля для новых фильтров (только max) !!!
+                  minPv: { max: minPvMax }, // Только максимальное значение, левая граница 0
+                  minEmp: { max: minEmpMax } // Только максимальное значение, левая граница 0
+                };
+                console.log("currentFilters инициализирован:", currentFilters); // Для отладки
+            */
+
+
+            /*
+
+
+
+
+
+            */
+
+
+
+
+
+
+
+        } catch (e) {
+            console.error('Ошибка при загрузке или обработке sale_front.json:', e);
+            // Устанавливаем умолчания в случае ошибки
+            minPvMax = 1000000;
+            minEmpMax = 50000;
+        }
+        // --- КОНЕЦ НОВОГО ---
+
+
+
         let cardsContainer = document.getElementsByClassName('flats-block__gallery')[0];
         if (cardsContainer) {
             // Проваливаемся на 5 уровней
@@ -344,469 +528,294 @@ function clearCardStylesPeriodically() {
                     break;
                 }
             }
-        }
-
-        // Если успешно дошли до 5 уровня, выполняем очистку
-        if (cardsContainer) {
-            const cards = cardsContainer.querySelectorAll('.flat-block-card');
-            cards.forEach(card => {
-                // Убираем стили анимации
-                card.style.opacity = '';
-                card.style.transform = '';
-                card.style.transition = '';
-                // card.style.display = ''; // Опционально: также сбросить display, если нужно
-            });
-            console.log("Периодическая очистка стилей анимации выполнена");
         } else {
-             console.warn("Не удалось найти контейнер карточек для периодической очистки");
+
+            // 1. Найти контейнер для вставки фильтров
+            cardsContainer = document.getElementsByClassName('flats-block__gallery')[0].firstElementChild // Уровень 1
+                .firstElementChild // Уровень 2
+                .firstElementChild // Уровень 3
+                .firstElementChild // Уровень 4
+                .firstElementChild; // Уровень 5;
+
+
         }
-    } catch (e) {
-        console.error('Ошибка при периодической очистке стилей:', e);
-    }
-}
-
-// 2. Назначаем выполнение функции каждые 5 секунд (5000 миллисекунд)
-//const intervalId = setInterval(clearCardStylesPeriodically, 5000);
-
-// --- Опционально ---
-// Если вам нужно будет остановить этот интервал позже, сохраните intervalId
-// и вызовите clearInterval(intervalId);
-// Например, при выгрузке страницы или по другому событию:
-// window.addEventListener('beforeunload', () => {
-//     clearInterval(intervalId);
-// });
-
-
-  document.addEventListener('DOMContentLoaded', async function () {
-    //console.log("DOM fully loaded and parsed");
-
- // --- НОВОЕ: Загрузка дополнительных данных ---
-    let additionalData = null;
-    let minPvMin = 0, minPvMax = 0, minEmpMin = 0, minEmpMax = 0;
-    try {
-        console.log("Загрузка дополнительных данных из sale_front.json...");
-        const response = await fetch('https://xn--d1acscjb2a6f.xn--p1ai/sale_front.json'); // <-- URL может потребовать CORS прокси
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status} при загрузке sale_front.json`);
-        }
-        const jsonData = await response.json();
-        console.log("Дополнительные данные загружены:", jsonData);
-
-        additionalData = {};
-        const prices = jsonData.цена || [];
-        let firstPv = true, firstEmp = true;
-        prices.forEach(item => {
-            const areaKey = parseFloat(item.площадь).toFixed(2); // Ключ - площадь, округленная до 2 знаков
-			//const areaKey = parseFloat(item.площадь).toFixed(2).replace('.', ',');
-            additionalData[areaKey] = {
-                discountedPrice: item.цена_с_акцией,
-                minPv: item.min_pv,
-                minEmp: item.min_emp
-            };
-
-			
-
-// Определяем диапазоны для слайдеров (минимальная и максимальная границы из данных)
-if (item.min_pv !== undefined && item.min_pv !== null && !isNaN(item.min_pv)) {
-    if (firstPv) {
-        minPvMin = item.min_pv; // Устанавливаем начальный минимум
-        minPvMax = item.min_pv; // Устанавливаем начальный максимум
-        firstPv = false;
-        console.log(`       Первое значение min_pv. Установлены границы: Min=${minPvMin}, Max=${minPvMax}`);
-    } else {
-        // Обновляем минимальную и максимальную границы
-        const oldMin = minPvMin;
-        const oldMax = minPvMax;
-        minPvMin = Math.min(minPvMin, item.min_pv);
-        minPvMax = Math.max(minPvMax, item.min_pv);
-        if (minPvMin !== oldMin || minPvMax !== oldMax) {
-            console.log(`       Обновлены границы min_pv: Min=${oldMin} -> ${minPvMin}, Max=${oldMax} -> ${minPvMax}`);
-        }
-    }
-} else {
-    console.warn(`     Элемент #${item}: min_pv отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_pv);
-}
-
-if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp)) {
-    if (firstEmp) {
-        minEmpMin = item.min_emp; // Устанавливаем начальный минимум
-        minEmpMax = item.min_emp; // Устанавливаем начальный максимум
-        firstEmp = false;
-        console.log(`       Первое значение min_emp. Установлены границы: Min=${minEmpMin}, Max=${minEmpMax}`);
-    } else {
-        // Обновляем минимальную и максимальную границы
-        const oldMin = minEmpMin;
-        const oldMax = minEmpMax;
-        minEmpMin = Math.min(minEmpMin, item.min_emp);
-        minEmpMax = Math.max(minEmpMax, item.min_emp);
-        if (minEmpMin !== oldMin || minEmpMax !== oldMax) {
-            console.log(`       Обновлены границы min_emp: Min=${oldMin} -> ${minEmpMin}, Max=${oldMax} -> ${minEmpMax}`);
-        }
-    }
-} else {
-    console.warn(`     Элемент #${item}: min_emp отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_emp);
-}
-
-			
-			
-        });
-        console.log("Данные по площадям для сопоставления:", additionalData);
-        console.log("Диапазоны для фильтров: MinPV(0, " + minPvMax + "), MinEmp(0, " + minEmpMax + ")");
 
 
 
 
-         // Если данные не загрузились или пустые, устанавливаем разумные умолчания
-        if (minPvMax === 0) minPvMax = 1000000;
-        if (minEmpMax === 0) minEmpMax = 50000;
-
-
-
-
-
-
-/*
-    // Убедимся, что диапазоны корректны (уже есть в коде)
-    if (minPrice === Infinity) minPrice = 0;
-    if (maxPrice === -Infinity) maxPrice = 10000000;
-    if (minArea === Infinity) minArea = 0;
-    if (maxArea === -Infinity) maxArea = 200;
-
-    // Если данные не загрузились или пустые, устанавливаем разумные умолчания (уже есть в коде)
-    if (minPvMax === 0) minPvMax = 1000000;
-    if (minEmpMax === 0) minEmpMax = 50000;
-
-    // --- ДОБАВИТЬ ИЛИ ПЕРЕМЕСТИТЬ СЮДА ---
-    // Инициализация объекта фильтров ДО назначения обработчиков
-    let currentFilters = {
-      rooms: [],
-      price: { min: minPrice, max: maxPrice },
-      area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
-      // !!! ИЗМЕНЕНО: Поля для новых фильтров (только max) !!!
-      minPv: { max: minPvMax }, // Только максимальное значение, левая граница 0
-      minEmp: { max: minEmpMax } // Только максимальное значение, левая граница 0
-    };
-    console.log("currentFilters инициализирован:", currentFilters); // Для отладки
-*/
-	
-	
-	/*
-	
-	
-	
-	
-	
-	*/
-	
-	
-	
-	
-	
-	
-
-    } catch (e) {
-        console.error('Ошибка при загрузке или обработке sale_front.json:', e);
-        // Устанавливаем умолчания в случае ошибки
-        minPvMax = 1000000;
-        minEmpMax = 50000;
-    }
-    // --- КОНЕЦ НОВОГО ---
-
-
-
-    let cardsContainer = document.getElementsByClassName('flats-block__gallery')[0];
-    if (cardsContainer) {
-        // Проваливаемся на 5 уровней
-        for (let i = 0; i < 5; i++) {
-            if (cardsContainer.firstElementChild) {
-                cardsContainer = cardsContainer.firstElementChild;
-            } else {
-                console.log(`Провалиться не удалось на уровне ${i + 1}, так как нет firstElementChild.`);
-                cardsContainer = null; // Прерываем "проваливание"
-                break;
-            }
-        }
-    } else {
-	
-    // 1. Найти контейнер для вставки фильтров
-    cardsContainer = document.getElementsByClassName('flats-block__gallery')[0].firstElementChild // Уровень 1
-    .firstElementChild // Уровень 2
-    .firstElementChild // Уровень 3
-    .firstElementChild // Уровень 4
-    .firstElementChild; // Уровень 5;	
-		
-		
-	}
-
-
-	
-
-    if (!cardsContainer) {
-        // Попробуем альтернативный способ найти контейнер, если предыдущий не сработал
-        //console.log("Контейнер .flats-block__gallery не найден. Ищем альтернативы...");
-        // Ищем внутри аккордеона, где находятся карточки
-        const accordionContent = document.querySelector('.accordion__content');
-        if (accordionContent) {
-            // Ищем первый подходящий контейнер внутри аккордеона
-            cardsContainer = accordionContent.querySelector('[data-items]') || accordionContent.querySelector('.j-animation__row');
-        }
-    }
-    
-	
-	//const intervalId = 
-	setInterval(clearCardStylesPeriodically, 5000);
-	
-	
-	
-    // Если все еще не нашли, ищем по более общему селектору
-    if (!cardsContainer) {
-        console.log("Альтернативные контейнеры не найдены. Ищем по data-items...");
-        cardsContainer = document.querySelector('[data-items]');
-    }
-    
-    if (!cardsContainer) {
-        console.error('Контейнер с карточками не найден. Проверьте селекторы.');
-        return;
-    }
-    //console.log("Контейнер найден:", cardsContainer);
-
-    // 2. Найти все карточки внутри контейнера
-    const allCards = cardsContainer.querySelectorAll('.flat-block-card');
-    //console.log(`Найдено карточек: ${allCards.length}`);
-
-    if (allCards.length === 0) {
-        console.warn('Карточки .flat-block-card не найдены.');
-        return; // Нечего фильтровать
-    }
-
-    // 3. Собрать данные для фильтров
-    let minPrice = Infinity;
-    let maxPrice = -Infinity;
-    let minArea = Infinity;
-    let maxArea = -Infinity;
-    const roomCounts = new Set();
-
-    allCards.forEach(card => {
-        // --- Извлечение количества комнат ---
-        let rooms = null;
-        const titleElement = card.querySelector('.flat-block-card__title');
-        if (titleElement) {
-            const titleText = titleElement.textContent.trim().toLowerCase();
-            //console.log("Текст заголовка:", titleText);
-            // Определяем количество комнат
-            if (titleText.includes('студия')) {
-                rooms = 1;
-            } else {
-                // Ищем число в начале названия, например "3-комнатная"
-                let roomMatch = titleText.match(/^(\d)/); // Число в начале
-                if (!roomMatch) {
-                    // Ищем "N-комнатная"
-                    roomMatch = titleText.match(/(\d)\s*[-\s]*комнат/i);
-                }
-                 if (!roomMatch) {
-                    // Ищем "N к"
-                    roomMatch = titleText.match(/(\d)\s*к/i);
-                }
-                if (roomMatch) {
-                    rooms = parseInt(roomMatch[1], 10);
-                }
+        if (!cardsContainer) {
+            // Попробуем альтернативный способ найти контейнер, если предыдущий не сработал
+            //console.log("Контейнер .flats-block__gallery не найден. Ищем альтернативы...");
+            // Ищем внутри аккордеона, где находятся карточки
+            const accordionContent = document.querySelector('.accordion__content');
+            if (accordionContent) {
+                // Ищем первый подходящий контейнер внутри аккордеона
+                cardsContainer = accordionContent.querySelector('[data-items]') || accordionContent.querySelector('.j-animation__row');
             }
         }
 
-        if (rooms !== null && !isNaN(rooms)) {
-            roomCounts.add(rooms);
-            card.dataset.rooms = rooms; // Сохраняем в dataset
-        } else {
-            console.warn('Количество комнат не определено для карточки:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
-            card.dataset.rooms = 'undefined'; // Или пропустить эту карточку
-            roomCounts.add('undefined');
+
+        //const intervalId =
+        setInterval(clearCardStylesPeriodically, 1000);
+
+
+
+        // Если все еще не нашли, ищем по более общему селектору
+        if (!cardsContainer) {
+            console.log("Альтернативные контейнеры не найдены. Ищем по data-items...");
+            cardsContainer = document.querySelector('[data-items]');
         }
 
+        if (!cardsContainer) {
+            console.error('Контейнер с карточками не найден. Проверьте селекторы.');
+            return;
+        }
+        //console.log("Контейнер найден:", cardsContainer);
 
+        // 2. Найти все карточки внутри контейнера
+        const allCards = cardsContainer.querySelectorAll('.flat-block-card');
+        //console.log(`Найдено карточек: ${allCards.length}`);
 
-
-
-
-
-               // --- Извлечение площади ---
-        let area = null;
-        let areaElement = null;
-
-        // Найдем все контейнеры с информацией в текущей карточке
-        const infoContainers = card.querySelectorAll('.flat-block-card__info');
-        // Пройдемся по ним и найдем тот, у которого заголовок "Площадь"
-        for (let i = 0; i < infoContainers.length; i++) {
-            const titleElement = infoContainers[i].querySelector('.flat-block-card__info-title');
-            if (titleElement && titleElement.textContent.trim() === 'Площадь') {
-                areaElement = infoContainers[i].querySelector('.flat-block-card__info-value');
-                break; // Нашли нужный блок, выходим из цикла
-            }
+        if (allCards.length === 0) {
+            console.warn('Карточки .flat-block-card не найдены.');
+            return; // Нечего фильтровать
         }
 
-        if (areaElement) {
-            //console.log("Найден элемент с площадью:", areaElement);
-            const areaText = areaElement.textContent.trim();
-            // Извлекаем число из строки вида "69,5 м²"
-            const areaMatch = areaText.match(/([\d,]+)\s*м²/);
-            if (areaMatch) {
-                area = parseFloat(areaMatch[1].replace(',', '.'));
-                //console.log("Извлечена площадь:", area);
-            } else {
-                console.warn("Не удалось извлечь числовое значение площади из текста:", areaText);
-            }
-        } else {
-            console.warn("Элемент с площадью .flat-block-card__info-value для поля 'Площадь' не найден в карточке");
-        }
+        // 3. Собрать данные для фильтров
+        let minPrice = Infinity;
+        let maxPrice = -Infinity;
+        let minArea = Infinity;
+        let maxArea = -Infinity;
+        const roomCounts = new Set();
 
-        if (area !== null && !isNaN(area)) {
-            minArea = Math.min(minArea, area);
-            maxArea = Math.max(maxArea, area);
-            card.dataset.area = area; // Сохраняем в dataset
-        } else {
-            console.warn('Площадь не найдена или некорректна в карточке:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
-            // card.dataset.area = '0'; // Или пропустить
-        }
-
-        // --- Извлечение цены ---
-        let price = null;
-        let priceElement = null;
-
-        // Снова пройдемся по контейнерам с информацией, но теперь ищем "Цена"
-        for (let i = 0; i < infoContainers.length; i++) { // infoContainers уже найден выше
-            const titleElement = infoContainers[i].querySelector('.flat-block-card__info-title');
-            if (titleElement && titleElement.textContent.trim() === 'Цена') {
-                priceElement = infoContainers[i].querySelector('.flat-block-card__info-value');
-                break; // Нашли нужный блок, выходим из цикла
-            }
-        }
-
-        if (priceElement) {
-            //console.log("Найден элемент с ценой:", priceElement);
-            // Получаем все дочерние div элементы внутри .flat-block-card__info-value > div
-            // Структура: .flat-block-card__info-value > div > [div с зачеркнутой ценой, div со скидочной ценой]
-            const directChildrenDiv = priceElement.querySelector(':scope > div'); // Прямой потомок div
-            let priceText = '';
-
-            if (directChildrenDiv) {
-                const nestedDivs = directChildrenDiv.querySelectorAll(':scope > div'); // Прямые потомки второго уровня
-
-                if (nestedDivs.length >= 2) {
-                    // Берем текст из второго div'а (индекс 1) - это скидочная цена
-                    priceText = nestedDivs[1].textContent.trim();
-                    //console.log("Найдена скидочная цена (2-й div):", priceText);
-                } else if (nestedDivs.length === 1) {
-                    // Если есть только один div, берем текст из него
-                    priceText = nestedDivs[0].textContent.trim();
-                    //console.log("Найдена единственная цена (1-й div):", priceText);
+        allCards.forEach(card => {
+            // --- Извлечение количества комнат ---
+            let rooms = null;
+            const titleElement = card.querySelector('.flat-block-card__title');
+            if (titleElement) {
+                const titleText = titleElement.textContent.trim().toLowerCase();
+                //console.log("Текст заголовка:", titleText);
+                // Определяем количество комнат
+                if (titleText.includes('студия')) {
+                    rooms = 1;
                 } else {
-                    // Если вложенных div'ов нет, берем текст из directChildrenDiv
-                    priceText = directChildrenDiv.textContent.trim();
-                    //console.log("Найдена цена напрямую из directChildrenDiv:", priceText);
+                    // Ищем число в начале названия, например "3-комнатная"
+                    let roomMatch = titleText.match(/^(\d)/); // Число в начале
+                    if (!roomMatch) {
+                        // Ищем "N-комнатная"
+                        roomMatch = titleText.match(/(\d)\s*[-\s]*комнат/i);
+                    }
+                    if (!roomMatch) {
+                        // Ищем "N к"
+                        roomMatch = titleText.match(/(\d)\s*к/i);
+                    }
+                    if (roomMatch) {
+                        rooms = parseInt(roomMatch[1], 10);
+                    }
+                }
+            }
+
+            if (rooms !== null && !isNaN(rooms)) {
+                roomCounts.add(rooms);
+                card.dataset.rooms = rooms; // Сохраняем в dataset
+            } else {
+                console.warn('Количество комнат не определено для карточки:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
+                card.dataset.rooms = 'undefined'; // Или пропустить эту карточку
+                roomCounts.add('undefined');
+            }
+
+
+
+
+
+
+
+            // --- Извлечение площади ---
+            let area = null;
+            let areaElement = null;
+
+            // Найдем все контейнеры с информацией в текущей карточке
+            const infoContainers = card.querySelectorAll('.flat-block-card__info');
+            // Пройдемся по ним и найдем тот, у которого заголовок "Площадь"
+            for (let i = 0; i < infoContainers.length; i++) {
+                const titleElement = infoContainers[i].querySelector('.flat-block-card__info-title');
+                if (titleElement && titleElement.textContent.trim() === 'Площадь') {
+                    areaElement = infoContainers[i].querySelector('.flat-block-card__info-value');
+                    break; // Нашли нужный блок, выходим из цикла
+                }
+            }
+
+            if (areaElement) {
+                //console.log("Найден элемент с площадью:", areaElement);
+                const areaText = areaElement.textContent.trim();
+                // Извлекаем число из строки вида "69,5 м²"
+                const areaMatch = areaText.match(/([\d,]+)\s*м²/);
+                if (areaMatch) {
+                    area = parseFloat(areaMatch[1].replace(',', '.')).toFixed(2);
+                    //console.log("Извлечена площадь:", area);
+                } else {
+                    console.warn("Не удалось извлечь числовое значение площади из текста:", areaText);
                 }
             } else {
-                // Если нет прямого потомка div, берем текст напрямую из .flat-block-card__info-value
-                priceText = priceElement.textContent.trim();
-                //console.log("Найдена цена напрямую из .flat-block-card__info-value:", priceText);
+                console.warn("Элемент с площадью .flat-block-card__info-value для поля 'Площадь' не найден в карточке");
             }
 
-            // Извлекаем число из строки вида "6 260 540 ₽"
-            const priceMatch = priceText.match(/([\d\s]+)₽/);
-            if (priceMatch) {
-                price = parseInt(priceMatch[1].replace(/\s/g, ''), 10);
-                //console.log("Извлечена цена:", price);
+            if (area !== null && !isNaN(area)) {
+                minArea = Math.min(minArea, area);
+                maxArea = Math.max(maxArea, area);
+                card.dataset.area = area; // Сохраняем в dataset
             } else {
-                console.warn("Не удалось извлечь числовое значение цены из текста:", priceText);
+                console.warn('Площадь не найдена или некорректна в карточке:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
+                // card.dataset.area = '0'; // Или пропустить
             }
-        } else {
-            console.warn("Элемент с ценой .flat-block-card__info-value для поля 'Цена' не найден в карточке");
-        }
 
-        if (price !== null && !isNaN(price)) {
-            minPrice = Math.min(minPrice, price);
-            maxPrice = Math.max(maxPrice, price);
-            card.dataset.price = price; // Сохраняем в dataset
-        } else {
-            console.warn('Цена не найдена или некорректна в карточке:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
-            // card.dataset.price = '0'; // Или пропустить
-        }
-		
-	// console.log('additionalData ', additionalData);	
-	// console.log('area ', area);	
-	// console.log('card.dataset.area ', card.dataset.area);	
-	// console.log('additionalData[area] ', additionalData[area]);	
+            // --- Извлечение цены ---
+            let price = null;
+            let priceElement = null;
 
-	
+            // Снова пройдемся по контейнерам с информацией, но теперь ищем "Цена"
+            for (let i = 0; i < infoContainers.length; i++) { // infoContainers уже найден выше
+                const titleElement = infoContainers[i].querySelector('.flat-block-card__info-title');
+                if (titleElement && titleElement.textContent.trim() === 'Цена') {
+                    priceElement = infoContainers[i].querySelector('.flat-block-card__info-value');
+                    break; // Нашли нужный блок, выходим из цикла
+                }
+            }
+
+            if (priceElement) {
+                //console.log("Найден элемент с ценой:", priceElement);
+                // Получаем все дочерние div элементы внутри .flat-block-card__info-value > div
+                // Структура: .flat-block-card__info-value > div > [div с зачеркнутой ценой, div со скидочной ценой]
+                const directChildrenDiv = priceElement.querySelector(':scope > div'); // Прямой потомок div
+                let priceText = '';
+
+                if (directChildrenDiv) {
+                    const nestedDivs = directChildrenDiv.querySelectorAll(':scope > div'); // Прямые потомки второго уровня
+
+                    if (nestedDivs.length >= 2) {
+                        // Берем текст из второго div'а (индекс 1) - это скидочная цена
+                        priceText = nestedDivs[1].textContent.trim();
+                        //console.log("Найдена скидочная цена (2-й div):", priceText);
+                    } else if (nestedDivs.length === 1) {
+                        // Если есть только один div, берем текст из него
+                        priceText = nestedDivs[0].textContent.trim();
+                        //console.log("Найдена единственная цена (1-й div):", priceText);
+                    } else {
+                        // Если вложенных div'ов нет, берем текст из directChildrenDiv
+                        priceText = directChildrenDiv.textContent.trim();
+                        //console.log("Найдена цена напрямую из directChildrenDiv:", priceText);
+                    }
+                } else {
+                    // Если нет прямого потомка div, берем текст напрямую из .flat-block-card__info-value
+                    priceText = priceElement.textContent.trim();
+                    //console.log("Найдена цена напрямую из .flat-block-card__info-value:", priceText);
+                }
+
+                // Извлекаем число из строки вида "6 260 540 ₽"
+                const priceMatch = priceText.match(/([\d\s]+)₽/);
+                if (priceMatch) {
+                    price = parseInt(priceMatch[1].replace(/\s/g, ''), 10);
+                    //console.log("Извлечена цена:", price);
+                } else {
+                    console.warn("Не удалось извлечь числовое значение цены из текста:", priceText);
+                }
+            } else {
+                console.warn("Элемент с ценой .flat-block-card__info-value для поля 'Цена' не найден в карточке");
+            }
+
+            if (price !== null && !isNaN(price)) {
+                minPrice = Math.min(minPrice, price);
+                maxPrice = Math.max(maxPrice, price);
+                card.dataset.price = price; // Сохраняем в dataset
+            } else {
+                console.warn('Цена не найдена или некорректна в карточке:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
+                // card.dataset.price = '0'; // Или пропустить
+            }
+
+            // console.log('additionalData ', additionalData);
+            // console.log('area ', area);
+            // console.log('card.dataset.area ', card.dataset.area);
+            // console.log('additionalData[area] ', additionalData[area]);
 
 
 
-if (additionalData && additionalData[area] !== undefined && additionalData[area].minPv !== undefined) {
-card.dataset.minPv = additionalData[area].minPv;
-}
-if (additionalData && additionalData[area] !== undefined && additionalData[area].minEmp !== undefined) {
-card.dataset.minEmp = additionalData[area].minEmp;
-}
-		
-		
-		
-		
-		
-	
-if (additionalData && additionalData.discountedPrice !== undefined) {
-    card.dataset.minPv = additionalData.minPv !== undefined && additionalData.minPv !== null ? additionalData.minPv : 'N/A';
-    card.dataset.minEmp = additionalData.minEmp !== undefined && additionalData.minEmp !== null ? additionalData.minEmp : 'N/A';
-}	
-		
-		
-		
-		
-    });
 
-    // Убедимся, что диапазоны корректны
-    if (minPrice === Infinity) minPrice = 0;
-    if (maxPrice === -Infinity) maxPrice = 10000000;
-    if (minArea === Infinity) minArea = 0;
-    if (maxArea === -Infinity) maxArea = 200;
 
-    console.log("Извлеченные данные для фильтров:", { minPrice, maxPrice, minArea, maxArea, roomCounts: Array.from(roomCounts).filter(r => r !== 'undefined').sort((a, b) => a - b) });
+            if (additionalData && additionalData[area] !== undefined && additionalData[area].minPv !== undefined) {
+                card.dataset.minPv = additionalData[area].minPv;
+            }
+            if (additionalData && additionalData[area] !== undefined && additionalData[area].minEmp !== undefined) {
+                card.dataset.minEmp = additionalData[area].minEmp;
+            }
 
-    
-	
-	
-	
-	
-	
-	    // --- Создание HTML для чекбоксов комнат ---
-    // Предполагая, что uniqueRooms уже определен как массив чисел, например, [1, 2, 3, 4]
-    let roomCheckboxesHTML = '';
-    const uniqueRooms = Array.from(roomCounts).filter(r => r !== 'undefined' && typeof r === 'number').sort((a, b) => a - b);
-    
-    uniqueRooms.forEach((room, index) => {
-        const displayRoom = room >= 4 ? `${room}+` : `${room}`;
-        const labelEnding = room >= 4 ? ' и более' : (room == 1 ? 'ная' : 'ные');
-        // Добавляем атрибут checked к первому чекбоксу
-        //const checkedAttr = (index === 0) ? ' checked' : '';
-        const checkedAttr = '';
-        roomCheckboxesHTML += `
+            if (additionalData && additionalData[area] !== undefined && additionalData[area].normPv !== undefined) {
+                card.dataset.normPv = additionalData[area].normPv;
+            }
+            if (additionalData && additionalData[area] !== undefined && additionalData[area].normEmp !== undefined) {
+                card.dataset.normEmp = additionalData[area].normEmp;
+            }
+
+
+
+
+
+
+            if (additionalData && additionalData.discountedPrice !== undefined) {
+                card.dataset.minPv = additionalData.minPv !== undefined && additionalData.minPv !== null ? additionalData.minPv : 'N/A';
+                card.dataset.minEmp = additionalData.minEmp !== undefined && additionalData.minEmp !== null ? additionalData.minEmp : 'N/A';
+            }
+
+
+
+
+        });
+
+        // Убедимся, что диапазоны корректны
+        if (minPrice === Infinity) minPrice = 0;
+        if (maxPrice === -Infinity) maxPrice = 10000000;
+        if (minArea === Infinity) minArea = 0;
+        if (maxArea === -Infinity) maxArea = 200;
+
+        console.log("Извлеченные данные для фильтров:", { minPrice, maxPrice, minArea, maxArea, roomCounts: Array.from(roomCounts).filter(r => r !== 'undefined').sort((a, b) => a - b) });
+
+
+
+
+
+
+
+        // --- Создание HTML для чекбоксов комнат ---
+        // Предполагая, что uniqueRooms уже определен как массив чисел, например, [1, 2, 3, 4]
+        let roomCheckboxesHTML = '';
+        const uniqueRooms = Array.from(roomCounts).filter(r => r !== 'undefined' && typeof r === 'number').sort((a, b) => a - b);
+
+        uniqueRooms.forEach((room, index) => {
+            const displayRoom = room >= 4 ? `${room}+` : `${room}`;
+            const labelEnding = room >= 4 ? ' и более' : (room == 1 ? 'ная' : 'ные');
+            // Добавляем атрибут checked к первому чекбоксу
+            //const checkedAttr = (index === 0) ? ' checked' : '';
+            const checkedAttr = '';
+            roomCheckboxesHTML += `
             <div data-v-629e44ba="" class="e-checkbox-btn">
                 <input data-v-629e44ba="" type="checkbox" name="rooms" id="type${room}" value="${room}"${checkedAttr}>
                 <label data-v-629e44ba="" for="type${room}">${displayRoom} комнат${labelEnding}</label>
             </div>
         `;
-    });
+        });
 
-    // Обновленный filterHTML с классами для стилизации
-     const filterHTML = `
+        // Обновленный filterHTML с классами для стилизации
+        const filterHTML = `
       <div data-v-629e44ba="" class="d-flex align-center flex-wrap align-center-inner filter-container" style="justify-content: center; width: 100%; padding: 22px; background-color: #f9f9f9; border-bottom: 1px solid #eee; box-sizing: border-box;">
-	  
-	  
+
+
 	    <!-- Счетчик показанных планировок -->
         <div data-v-629e44ba="" class="ml-10 text-body-2 has-opacity-65" id="shown-count" style="align-self: flex-end; margin-bottom: 8px;     position: absolute;">
             Показано <span id="shown-count-value">0</span>
         </div>
         <!-- КОНЕЦ Счетчика -->
-		
-		
-		
+
+
+
         <div data-v-629e44ba="" class="ml-10">
           <div data-v-629e44ba="" class="text-body-2 has-opacity-65 mb-2 red-color-domOtel">Кол-во комнат</div>
           <div data-v-629e44ba="" class="e-checkboxes-group py-2">
@@ -857,12 +866,12 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
           </div>
         </div>
         <!-- КОНЕЦ ФИЛЬТРА: Ежемесячный платеж -->
-</div>	
+</div>
 
 
- 
- 
- 
+
+
+
   <div data-v-629e44ba="" class="m50">
          <!-- ФИЛЬТР: Стоимость -->
         <div data-v-629e44ba="" class="mr-20 pr-10 pb-8 filter-group">
@@ -898,8 +907,8 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
 </div>
 
 
- 
-		
+
+
 
 
 
@@ -912,605 +921,645 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
         <a data-v-629e44ba="" href="#" id="clear-filters" class="text-body-2 red-color-domOtel filter-clear-link" style="align-self: flex-end; margin-bottom: 8px; white-space: nowrap;">очистить</a>
       </div>
     `;
-	
-	
-	
-	
-	
-	
-	
-	
 
- // 5. Найти элемент, ПОСЛЕ которого нужно вставить фильтры
-const targetElement = document.querySelector('.flats-block__content');
 
-if (targetElement) {
-  // 6. Вставить фильтры ПОСЛЕ элемента .flats-block__content
-  targetElement.insertAdjacentHTML('afterend', filterHTML);
-  //console.log("Фильтры вставлены после .flats-block__content");
-} else {
-  console.error('Элемент .flats-block__content не найден. Фильтры не вставлены.');
-  // Альтернатива: вставить в начало cardsContainer, если основной элемент не найден
-  // cardsContainer.insertAdjacentHTML('afterbegin', filterHTML);
-  // console.log("Фильтры вставлены в начало cardsContainer как запасной вариант");
-  return; // Прерываем выполнение, если нет места для вставки
-}
+
+
+
+
+
+
+
+        // 5. Найти элемент, ПОСЛЕ которого нужно вставить фильтры
+        const targetElement = document.querySelector('.flats-block__content');
+
+        if (targetElement) {
+            // 6. Вставить фильтры ПОСЛЕ элемента .flats-block__content
+            targetElement.insertAdjacentHTML('afterend', filterHTML);
+            //console.log("Фильтры вставлены после .flats-block__content");
+        } else {
+            console.error('Элемент .flats-block__content не найден. Фильтры не вставлены.');
+            // Альтернатива: вставить в начало cardsContainer, если основной элемент не найден
+            // cardsContainer.insertAdjacentHTML('afterbegin', filterHTML);
+            // console.log("Фильтры вставлены в начало cardsContainer как запасной вариант");
+            return; // Прерываем выполнение, если нет места для вставки
+        }
 
 
 // 7. Найти вставленный контейнер фильтров
 // Так как мы вставили *после* .flats-block__content, фильтры теперь являются следующим соседом (nextElementSibling)
-let filterContainer = null;
-if (targetElement && targetElement.nextElementSibling && targetElement.nextElementSibling.classList.contains('d-flex')) {
-    filterContainer = targetElement.nextElementSibling;
-} else {
-    // Альтернативный поиск, если предыдущий не сработал
-    filterContainer = document.querySelector('.d-flex.align-center.flex-wrap'); // Или другой уникальный селектор из вашего filterHTML
-}
+        let filterContainer = null;
+        if (targetElement && targetElement.nextElementSibling && targetElement.nextElementSibling.classList.contains('d-flex')) {
+            filterContainer = targetElement.nextElementSibling;
+        } else {
+            // Альтернативный поиск, если предыдущий не сработал
+            filterContainer = document.querySelector('.d-flex.align-center.flex-wrap'); // Или другой уникальный селектор из вашего filterHTML
+        }
 
 // Или, если filterHTML обернут в один корневой div, можно искать его напрямую:
 // filterContainer = document.querySelector('[data-v-629e44ba].d-flex.align-center-inner');
 
-if (!filterContainer) {
-    console.error("Вставленный контейнер фильтров не найден");
-    return;
-}
+        if (!filterContainer) {
+            console.error("Вставленный контейнер фильтров не найден");
+            return;
+        }
 //console.log("Контейнер фильтров найден:", filterContainer);
 
-    const roomCheckboxes = filterContainer.querySelectorAll('input[name="rooms"]');
-    const priceSliderMin = filterContainer.querySelector('#price-slider-min');
-    const priceSliderMax = filterContainer.querySelector('#price-slider-max');
-    const priceMinValue = filterContainer.querySelector('#price-min-value');
-    const priceMaxValue = filterContainer.querySelector('#price-max-value');
-    const areaSliderMin = filterContainer.querySelector('#area-slider-min');
-    const areaSliderMax = filterContainer.querySelector('#area-slider-max');
-    const areaMinValue = filterContainer.querySelector('#area-min-value');
-    const areaMaxValue = filterContainer.querySelector('#area-max-value');
-    const clearButton = filterContainer.querySelector('#clear-filters');
+        const roomCheckboxes = filterContainer.querySelectorAll('input[name="rooms"]');
+        const priceSliderMin = filterContainer.querySelector('#price-slider-min');
+        const priceSliderMax = filterContainer.querySelector('#price-slider-max');
+        const priceMinValue = filterContainer.querySelector('#price-min-value');
+        const priceMaxValue = filterContainer.querySelector('#price-max-value');
+        const areaSliderMin = filterContainer.querySelector('#area-slider-min');
+        const areaSliderMax = filterContainer.querySelector('#area-slider-max');
+        const areaMinValue = filterContainer.querySelector('#area-min-value');
+        const areaMaxValue = filterContainer.querySelector('#area-max-value');
+        const clearButton = filterContainer.querySelector('#clear-filters');
 
-    const minPvSliderMin = filterContainer.querySelector('#min-pv-slider-min');
-    const minPvSliderMax = filterContainer.querySelector('#min-pv-slider-max');
-    const minPvMinValue = filterContainer.querySelector('#min-pv-min-value');
-    const minPvMaxValue = filterContainer.querySelector('#min-pv-max-value');
+        const minPvSliderMin = filterContainer.querySelector('#min-pv-slider-min');
+        const minPvSliderMax = filterContainer.querySelector('#min-pv-slider-max');
+        const minPvMinValue = filterContainer.querySelector('#min-pv-min-value');
+        const minPvMaxValue = filterContainer.querySelector('#min-pv-max-value');
 
-    const minEmpSliderMin = filterContainer.querySelector('#min-emp-slider-min');
-    const minEmpSliderMax = filterContainer.querySelector('#min-emp-slider-max');
-    const minEmpMinValue = filterContainer.querySelector('#min-emp-min-value');
-    const minEmpMaxValue = filterContainer.querySelector('#min-emp-max-value');
-	
-
-
-    // --- Функция для открытия аккордеона ---
-    function openAccordion() {
-        // Найти кнопку аккордеона "Показать все планировки" / "Скрыть все планировки"
-        const accordionButton = document.querySelector('.accordion__title.button.j-accordion-title');
-        if (accordionButton) {
-            // Проверим, содержит ли кнопка текст "Показать все планировки"
-            const buttonText = accordionButton.textContent.trim();
-            if (buttonText.includes("Показать все")) {
-                //console.log("Открываем аккордеон 'Показать все планировки'");
-                accordionButton.click(); // Эмулируем клик
-            } else {
-                //console.log("Аккордеон уже открыт");
-            }
-        } else {
-            console.warn("Кнопка аккордеона '.accordion__title.button.j-accordion-title' не найдена");
-            // Попробуем альтернативный селектор
-            const altAccordionButton = document.querySelector('.accordion__header.j-accordion-header');
-            if (altAccordionButton) {
-                altAccordionButton.click();
-                //console.log("Клик выполнен по альтернативному заголовку аккордеона");
-            } else {
-                console.warn("Альтернативный заголовок аккордеона также не найден");
-            }
-        }
-    }
-
-    // --- Логика фильтрации ---
-    // --- Логика фильтрации ---
-    // !!! ИЗМЕНЕНО: Добавляем поля для новых фильтров (только max) !!!
-let currentFilters = {
-  rooms: [],
-  price: { min: minPrice, max: maxPrice },
-  area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
-  // !!! ИЗМЕНЕНО: Поля для новых фильтров (min и max) !!!
-  minPv: { min: minPvMin, max: minPvMax }, // Используем minPvMin
-  minEmp: { min: minEmpMin, max: minEmpMax } // Используем minEmpMin
-};
-
-    function applyFilters() {
-      //console.log("Применение фильтров:", currentFilters);
-      
-      // --- Добавлено: Открытие аккордеона при применении фильтров ---
-      openAccordion();
-      
-      const cards = cardsContainer.querySelectorAll('.flat-block-card');
-
-      cards.forEach(card => {
-        const cardRoomsStr = card.dataset.rooms;
-        const cardPriceStr = card.dataset.price;
-        const cardAreaStr = card.dataset.area;
-		const cardMinPvStr = card.dataset.minPv;
-        const cardMinEmpStr = card.dataset.minEmp;
-		let show = true;
-		   
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и max) !!!
-        let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
-        if (!isNaN(cardMinPv) && (cardMinPv < currentFilters.minPv.min || cardMinPv > currentFilters.minPv.max)) {
-            show = false;
-        }
-
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и max) !!!
-        let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
-        if (!isNaN(cardMinEmp) && (cardMinEmp < currentFilters.minEmp.min || cardMinEmp > currentFilters.minEmp.max)) {
-            show = false;
-        }
+        const minEmpSliderMin = filterContainer.querySelector('#min-emp-slider-min');
+        const minEmpSliderMax = filterContainer.querySelector('#min-emp-slider-max');
+        const minEmpMinValue = filterContainer.querySelector('#min-emp-min-value');
+        const minEmpMaxValue = filterContainer.querySelector('#min-emp-max-value');
 
 
-        // Если данные не были извлечены, пропускаем фильтрацию для этой карточки
-        if (cardRoomsStr === undefined || cardPriceStr === undefined || cardAreaStr === undefined) {
-             card.style.display = ''; // Показываем, если данные не полные
-             // Убираем любые стили анимации/прозрачности, которые могут быть
-             card.style.opacity = '';
-             card.style.transform = '';
-             card.style.transition = '';
-             return;
-        }
 
-
-			 card.style.opacity = '';
-             card.style.transform = '';
-             card.style.transition = '';
-			 
-			 
-        const cardRooms = parseInt(cardRoomsStr, 10);
-        const cardPrice = parseFloat(cardPriceStr);
-        const cardArea = parseFloat(cardAreaStr);
-
-     
-
-        // Фильтр по комнатам
-        if (currentFilters.rooms.length > 0) {
-            let roomMatch = false;
-            for (let filterRoom of currentFilters.rooms) {
-                const filterRoomInt = parseInt(filterRoom, 10);
-                if (cardRooms === filterRoomInt) {
-                    roomMatch = true;
-                    break;
+        // --- Функция для открытия аккордеона ---
+        function openAccordion() {
+            // Найти кнопку аккордеона "Показать все планировки" / "Скрыть все планировки"
+            const accordionButton = document.querySelector('.accordion__title.button.j-accordion-title');
+            if (accordionButton) {
+                // Проверим, содержит ли кнопка текст "Показать все планировки"
+                const buttonText = accordionButton.textContent.trim();
+                if (buttonText.includes("Показать все")) {
+                    //console.log("Открываем аккордеон 'Показать все планировки'");
+                    accordionButton.click(); // Эмулируем клик
+                } else {
+                    //console.log("Аккордеон уже открыт");
                 }
-                if (filterRoomInt === 4 && cardRooms >= 4) {
-                     roomMatch = true;
-                     break;
+            } else {
+                console.warn("Кнопка аккордеона '.accordion__title.button.j-accordion-title' не найдена");
+                // Попробуем альтернативный селектор
+                const altAccordionButton = document.querySelector('.accordion__header.j-accordion-header');
+                if (altAccordionButton) {
+                    altAccordionButton.click();
+                    //console.log("Клик выполнен по альтернативному заголовку аккордеона");
+                } else {
+                    console.warn("Альтернативный заголовок аккордеона также не найден");
                 }
             }
-            if (!roomMatch) {
-                 show = false;
-            }
         }
 
-        // Фильтр по цене
-        if (!isNaN(cardPrice) && (cardPrice < currentFilters.price.min || cardPrice > currentFilters.price.max)) {
-            show = false;
-        }
-
-        // Фильтр по площади
-        if (!isNaN(cardArea) && (cardArea < currentFilters.area.min || cardArea > currentFilters.area.max)) {
-            show = false;
-        }
-
-
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (только max) !!!
-        cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
-        if (!isNaN(cardMinPv) && cardMinPv > currentFilters.minPv.max) { // Карточка показывается, если её значение <= max фильтра
-            show = false;
-        }
-
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (только max) !!!
-        cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
-        if (!isNaN(cardMinEmp) && cardMinEmp > currentFilters.minEmp.max) { // Карточка показывается, если её значение <= max фильтра
-            show = false;
-        }
-
-		
-        // console.log("Обработка карточки:", {
-            // element: card, // Сам элемент DOM карточки
-            // rooms: cardRoomsStr,
-            // price: cardPriceStr,
-            // area: cardAreaStr,
-            // minPv: cardMinPvStr,
-            // minEmp: cardMinEmpStr
-        // });
-		// console.log(`show ${show} `);
-
-        // --- Изменено: Простое скрытие/показ без анимации ---
-        // Вместо изменения opacity или transform, просто меняем display
-        if (show) {
-            card.style.display = ''; // Показываем (возвращаем к дефолтному display из CSS)
-            // card.style.display = 'block'; // Или 'flex', если это требуется вашим стилям
-        } else {
-            card.style.display = 'none'; // Скрываем
-        }
-        
-        // Убираем любые стили анимации/прозрачности, которые могут быть у карточки
-        // Это важно, если карточки изначально имеют какие-то стили анимации
-        card.style.opacity = '';
-        card.style.transform = '';
-        card.style.transition = '';
-        // Если вы используете классы для анимации, их тоже нужно убрать
-        // card.classList.remove('some-animation-class');
-        
-      });
-
-    // --- Добавлено: Обновление счетчика показанных планировок ---
-    const totalCards = cards.length/2;
-    const shownCards = (Array.from(cards).filter(card => card.style.display !== 'none').length)/2;
-    const countElement = document.getElementById('shown-count-value');
-    if (countElement) {
-        countElement.textContent = shownCards;
-    }
-    console.log(`Фильтрация завершена: Показано ${shownCards} из ${totalCards}`);
-    // --- Конец добавления ---
-
-      //saveFiltersToStorage();   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	  
-	  
- // --- Добавлено: Пересчет высоты аккордеона после фильтрации ---
-      // Найдем контейнер аккордеона, высоту которого нужно пересчитать
-      // Ищем по классам, которые вы предоставили
-      const accordionContentWrapper = document.querySelector('.accordion__content-wrapper.j-accordion-content-outer');
-
-      if (accordionContentWrapper) {
-        console.log("Найден контейнер аккордеона для пересчета высоты:", accordionContentWrapper);
-
-        // Даем браузеру немного времени, чтобы применить изменения display
-        // и пересчитать layout. requestAnimationFrame может быть лучше setTimeout
-        requestAnimationFrame(() => {
-          try {
-            // Найдем непосредственное содержимое аккордеона, высоту которого нужно измерить
-            const accordionContent = accordionContentWrapper.querySelector('.accordion__content.j-accordion-content');
-            if (accordionContent) {
-              // Сбросим предыдущую фиксированную высоту, чтобы содержимое "распахнулось"
-              accordionContentWrapper.style.height = 'auto';
-              // Измеряем натуральную высоту содержимого
-              const newHeight = accordionContent.offsetHeight;
-              console.log("Новая рассчитанная высота содержимого аккордеона:", newHeight, "px");
-
-              // Устанавливаем новую высоту
-              accordionContentWrapper.style.height = newHeight + 'px';
-            } else {
-              console.warn("Содержимое аккордеона (.accordion__content.j-accordion-content) не найдено для измерения высоты.");
-            }
-          } catch (error) {
-            console.error("Ошибка при пересчете высоты аккордеона:", error);
-            // В случае ошибки, можно попробовать установить height: auto
-            // accordionContentWrapper.style.height = 'auto';
-          }
-        });
-      } else {
-        console.warn("Контейнер аккордеона (.accordion__content-wrapper.j-accordion-content-outer) не найден для пересчета высоты.");
-      }
- // --- Конец пересчета высоты ---
-	  
-	  
-    }
-
-    function saveFiltersToStorage() {
-      try {
-        localStorage.setItem('myPageFilters', JSON.stringify(currentFilters));
-        //console.log("Фильтры сохранены в localStorage");
-      } catch (e) {
-        console.error('Ошибка при сохранении фильтров в localStorage:', e);
-      }
-    }
-
-
-
-
-
-
-
-
-    // Функция для загрузки фильтров из localStorage
-    function loadFiltersFromStorage() {
-       try {
-        const savedFilters = localStorage.getItem('myPageFilters');
-		
-        if (savedFilters) {
-          const parsedFilters = JSON.parse(savedFilters);
-          console.log("Фильтры загружены из localStorage:", parsedFilters);
-          currentFilters = parsedFilters;
-
-          // Обновить UI фильтров (включая новые)
-          roomCheckboxes.forEach(cb => {
-            cb.checked = currentFilters.rooms.includes(cb.value);
-          });
-
-          priceSliderMin.value = currentFilters.price.min;
-          priceSliderMax.value = currentFilters.price.max;
-          priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
-          priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
-
-          areaSliderMin.value = currentFilters.area.min;
-          areaSliderMax.value = currentFilters.area.max;
-          areaMinValue.textContent = currentFilters.area.min;
-          areaMaxValue.textContent = currentFilters.area.max;
-
-          // !!! ИЗМЕНЕНО: Обновить UI для новых фильтров (только max) !!!
-          // Проверяем, существуют ли поля в загруженных фильтрах, чтобы избежать ошибок
-          if (currentFilters.minPv && minPvSliderMax) {
-              const loadedMaxPv = Math.max(0, Math.min(minPvMax, currentFilters.minPv.max)); // Санитизация
-              minPvSliderMax.value = loadedMaxPv;
-              if (minPvMaxValue) minPvMaxValue.textContent = loadedMaxPv.toLocaleString('ru-RU');
-              currentFilters.minPv.max = loadedMaxPv; // Обновляем в памяти после санитизации
-          }
-
-          if (currentFilters.minEmp && minEmpSliderMax) {
-              const loadedMaxEmp = Math.max(0, Math.min(minEmpMax, currentFilters.minEmp.max)); // Санитизация
-              minEmpSliderMax.value = loadedMaxEmp;
-              if (minEmpMaxValue) minEmpMaxValue.textContent = loadedMaxEmp.toLocaleString('ru-RU');
-              currentFilters.minEmp.max = loadedMaxEmp; // Обновляем в памяти после санитизации
-          }
-
-          applyFilters();
-        } else {
-            console.log("Сохраненные фильтры не найдены");
-			
-			          // В блоке else внутри loadFiltersFromStorage или при инициализации по умолчанию:
-          console.log("Сохраненные фильтры не найдены или ошибка загрузки");
-          // Инициализируем с дефолтными значениями, включая новые фильтры
-          currentFilters = {
+        // --- Логика фильтрации ---
+        // --- Логика фильтрации ---
+        // !!! ИЗМЕНЕНО: Добавляем поля для новых фильтров (только max) !!!
+        let currentFilters = {
             rooms: [],
             price: { min: minPrice, max: maxPrice },
             area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
+            // !!! ИЗМЕНЕНО: Поля для новых фильтров (min и max) !!!
             minPv: { min: minPvMin, max: minPvMax }, // Используем minPvMin
             minEmp: { min: minEmpMin, max: minEmpMax } // Используем minEmpMin
-          };
-		  
-            applyFilters(); // Применить фильтры по умолчанию
-			
-        }
-      } catch (e) {
-        console.error('Ошибка при загрузке фильтров из localStorage:', e);
-        applyFilters(); // Применить фильтры по умолчанию при ошибке
-      }
-    }
-	
-	
-	
-    // --- Назначение обработчиков событий ---
+        };
 
-     const updateCheckboxVisualState = (cb) => {
-              const label = cb.nextElementSibling; // Предполагаем, что label идет сразу после input
-              if (label && label.tagName === 'LABEL') {
-                  if (cb.checked) {
-                      // Добавляем класс или меняем стиль для выбранного состояния
-                      label.classList.add('checkbox-label--selected');
-                      label.style.backgroundColor = '#e3f2fd'; // Светло-голубой фон
-                      label.style.borderColor = '#1976d2'; // Синяя рамка
-                      // Можно также изменить цвет текста
-                      // label.style.color = '#1976d2';
-                  } else {
-                      // Убираем класс или возвращаем стиль для не выбранного состояния
-                      label.classList.remove('checkbox-label--selected');
-                      label.style.backgroundColor = ''; // Возвращаем к дефолтному
-                      label.style.borderColor = ''; // Возвращаем к дефолтному
-                      // label.style.color = '';
-                  }
-              }
-          };
+        function applyFilters() {
+            //console.log("Применение фильтров:", currentFilters);
+
+            // --- Добавлено: Открытие аккордеона при применении фильтров ---
+            openAccordion();
+
+            const cards = cardsContainer.querySelectorAll('.flat-block-card');
+
+            cards.forEach(card => {
+                const cardRoomsStr = card.dataset.rooms;
+                const cardPriceStr = card.dataset.price;
+                const cardAreaStr = card.dataset.area;
+                const cardMinPvStr = card.dataset.minPv;
+                const cardMinEmpStr = card.dataset.minEmp;
+                const cardNormPvStr = card.dataset.normPv;
+                const cardNormEmpStr = card.dataset.normEmp;
+                let show = true;
+
+                // // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и max) !!!
+                // let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
+                // if (!isNaN(cardMinPv) && (cardMinPv < currentFilters.minPv.min || cardMinPv > currentFilters.minPv.max)) {
+                //     show = false;
+                // }
+                //
+                // // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и max) !!!
+                // let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
+                // if (!isNaN(cardMinEmp) && (cardMinEmp < currentFilters.minEmp.min || cardMinEmp > currentFilters.minEmp.max)) {
+                //     show = false;
+                // }
 
 
-    if (roomCheckboxes.length > 0) {
-        roomCheckboxes.forEach(checkbox => {
-          // Добавим функцию для обновления визуального состояния
-      
-          // Обновляем визуальное состояние для уже отмеченных чекбоксов (например, первого)
-          updateCheckboxVisualState(checkbox);
-
-          checkbox.addEventListener('change', function () {
-            console.log(`Чекбокс комнат ${this.value} ${this.checked ? 'включен' : 'выключен'}`);
-            const roomValue = this.value;
-            const roomValueInt = parseInt(roomValue, 10);
-
-            if (this.checked) {
-                if (roomValueInt === 4) {
-                    currentFilters.rooms = currentFilters.rooms.filter(r => parseInt(r, 10) < 4);
-                    if (!currentFilters.rooms.includes('4')) {
-                         currentFilters.rooms.push('4');
-                    }
-                } else {
-                     if (!currentFilters.rooms.includes(roomValue)) {
-                        currentFilters.rooms.push(roomValue);
-                     }
+                // Если данные не были извлечены, пропускаем фильтрацию для этой карточки
+                if (cardRoomsStr === undefined || cardPriceStr === undefined || cardAreaStr === undefined) {
+                    card.style.display = ''; // Показываем, если данные не полные
+                    // Убираем любые стили анимации/прозрачности, которые могут быть
+                    card.style.opacity = '';
+                    card.style.transform = '';
+                    card.style.transition = '';
+                    return;
                 }
+
+
+                card.style.opacity = '';
+                card.style.transform = '';
+                card.style.transition = '';
+
+
+                const cardRooms = parseInt(cardRoomsStr, 10);
+                const cardPrice = parseFloat(cardPriceStr);
+                const cardArea = parseFloat(cardAreaStr);
+
+
+
+                // Фильтр по комнатам
+                if (currentFilters.rooms.length > 0) {
+                    let roomMatch = false;
+                    for (let filterRoom of currentFilters.rooms) {
+                        const filterRoomInt = parseInt(filterRoom, 10);
+                        if (cardRooms === filterRoomInt) {
+                            roomMatch = true;
+                            break;
+                        }
+                        if (filterRoomInt === 4 && cardRooms >= 4) {
+                            roomMatch = true;
+                            break;
+                        }
+                    }
+                    if (!roomMatch) {
+                        show = false;
+                    }
+                }
+
+                // Фильтр по цене
+                if (!isNaN(cardPrice) && ((cardPrice+100000) < currentFilters.price.min || (cardPrice-100000) >  currentFilters.price.max)) {
+                    show = false;
+                }
+
+                // Фильтр по площади
+                if (!isNaN(cardArea) && (cardArea < currentFilters.area.min || cardArea > currentFilters.area.max)) {
+                    show = false;
+                }
+
+
+                // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (только max) !!! //левая границ на 100 000 люфт
+                cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
+                if (!isNaN(cardMinPv) && (cardMinPv-100000) > currentFilters.minPv.max) { // Карточка показывается, если её значение <= max фильтра
+                    show = false;
+                }
+
+                // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (только max) !!! //левая границ на 100 000 люфт
+                cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
+                if (!isNaN(cardMinEmp) && (cardMinEmp) > currentFilters.minEmp.max) { // Карточка показывается, если её значение <= max фильтра
+                    show = false;
+                }
+
+
+
+
+                // // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и norm) !!!
+                // let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
+                // let cardNormPv = cardNormPvStr !== 'N/A' ? parseFloat(cardNormPvStr) : NaN;
+                // if (!isNaN(cardMinPv) && !isNaN(cardNormPv) &&  (cardMinPv > currentFilters.minPv.max || cardNormPv < currentFilters.minPv.max )) {
+                //     show = false;
+                // }
+                //
+                // // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и norm) !!!
+                // let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
+                // let cardNormEmp = cardNormEmpStr !== 'N/A' ? parseFloat(cardNormEmpStr) : NaN;
+                // if (!isNaN(cardMinEmp) && !isNaN(cardNormEmp) &&  (cardMinEmp > currentFilters.minEmp.max || cardNormEmp < currentFilters.minEmp.max )) {
+                //     show = false;
+                // }
+
+
+
+
+                //   console.log(`currentFilters.minPv.max ${currentFilters.minPv.max} `);
+                //   console.log("Обработка карточки:", {
+                //       // element: card, // Сам элемент DOM карточки
+                //       // rooms: cardRoomsStr,
+                //       // price: cardPriceStr,
+                //       // area: cardAreaStr,
+                //       minPv: cardMinPv
+                //
+                //       //cardNormPv: cardNormPv
+                //
+                //   });
+                //
+                //   console.log(`currentFilters.minEmp.max ${currentFilters.minEmp.max} `);
+                // console.log("Обработка карточки:", {
+                //     // element: card, // Сам элемент DOM карточки
+                //     // rooms: cardRoomsStr,
+                //     // price: cardPriceStr,
+                //     // area: cardAreaStr,
+                //
+                //     minEmp: cardMinEmp
+                //
+                //     //cardNormEmp: cardNormEmp
+                // });
+                // console.log(`show ${show} `);
+
+
+
+
+
+                // --- Изменено: Простое скрытие/показ без анимации ---
+                // Вместо изменения opacity или transform, просто меняем display
+                if (show) {
+                    card.style.display = ''; // Показываем (возвращаем к дефолтному display из CSS)
+                    // card.style.display = 'block'; // Или 'flex', если это требуется вашим стилям
+                } else {
+                    card.style.display = 'none'; // Скрываем
+                }
+
+                // Убираем любые стили анимации/прозрачности, которые могут быть у карточки
+                // Это важно, если карточки изначально имеют какие-то стили анимации
+                card.style.opacity = '';
+                card.style.transform = '';
+                card.style.transition = '';
+                // Если вы используете классы для анимации, их тоже нужно убрать
+                // card.classList.remove('some-animation-class');
+
+            });
+
+            // --- Добавлено: Обновление счетчика показанных планировок ---
+            const totalCards = cards.length/2;
+            const shownCards = (Array.from(cards).filter(card => card.style.display !== 'none').length)/2;
+            const countElement = document.getElementById('shown-count-value');
+            if (countElement) {
+                countElement.textContent = shownCards;
+            }
+            console.log(`Фильтрация завершена: Показано ${shownCards} из ${totalCards}`);
+            // --- Конец добавления ---
+
+            //saveFiltersToStorage();   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+            // --- Добавлено: Пересчет высоты аккордеона после фильтрации ---
+            // Найдем контейнер аккордеона, высоту которого нужно пересчитать
+            // Ищем по классам, которые вы предоставили
+            const accordionContentWrapper = document.querySelector('.accordion__content-wrapper.j-accordion-content-outer');
+
+            if (accordionContentWrapper) {
+                console.log("Найден контейнер аккордеона для пересчета высоты:", accordionContentWrapper);
+
+                // Даем браузеру немного времени, чтобы применить изменения display
+                // и пересчитать layout. requestAnimationFrame может быть лучше setTimeout
+                requestAnimationFrame(() => {
+                    try {
+                        // Найдем непосредственное содержимое аккордеона, высоту которого нужно измерить
+                        const accordionContent = accordionContentWrapper.querySelector('.accordion__content.j-accordion-content');
+                        if (accordionContent) {
+                            // Сбросим предыдущую фиксированную высоту, чтобы содержимое "распахнулось"
+                            accordionContentWrapper.style.height = 'auto';
+                            // Измеряем натуральную высоту содержимого
+                            const newHeight = accordionContent.offsetHeight;
+                            console.log("Новая рассчитанная высота содержимого аккордеона:", newHeight, "px");
+
+                            // Устанавливаем новую высоту
+                            accordionContentWrapper.style.height = newHeight + 'px';
+                        } else {
+                            console.warn("Содержимое аккордеона (.accordion__content.j-accordion-content) не найдено для измерения высоты.");
+                        }
+                    } catch (error) {
+                        console.error("Ошибка при пересчете высоты аккордеона:", error);
+                        // В случае ошибки, можно попробовать установить height: auto
+                        // accordionContentWrapper.style.height = 'auto';
+                    }
+                });
             } else {
-                 currentFilters.rooms = currentFilters.rooms.filter(r => r !== roomValue);
+                console.warn("Контейнер аккордеона (.accordion__content-wrapper.j-accordion-content-outer) не найден для пересчета высоты.");
             }
-            console.log("Текущие фильтры комнат:", currentFilters.rooms);
-            
-            // --- Обновляем визуальное состояние для ВСЕХ чекбоксов комнат ---
-            // Это нужно для корректного отображения, если логика фильтрации влияет на другие чекбоксы
-            roomCheckboxes.forEach(cb => updateCheckboxVisualState(cb));
-            
-            applyFilters();
-          });
-        });
-    } else {
-        console.warn("Чекбоксы комнат не найдены в DOM");
-    }
+            // --- Конец пересчета высоты ---
 
-    if (priceSliderMin && priceSliderMax) {
-        const updatePriceUI = () => {
-             if (priceMinValue) priceMinValue.textContent = parseInt(priceSliderMin.value, 10).toLocaleString('ru-RU');
-             if (priceMaxValue) priceMaxValue.textContent = parseInt(priceSliderMax.value, 10).toLocaleString('ru-RU');
+
+        }
+
+        function saveFiltersToStorage() {
+            try {
+                localStorage.setItem('myPageFilters', JSON.stringify(currentFilters));
+                //console.log("Фильтры сохранены в localStorage");
+            } catch (e) {
+                console.error('Ошибка при сохранении фильтров в localStorage:', e);
+            }
+        }
+
+
+
+
+
+
+
+
+        // Функция для загрузки фильтров из localStorage
+        function loadFiltersFromStorage() {
+            try {
+                const savedFilters = localStorage.getItem('myPageFilters');
+
+                if (savedFilters) {
+                    const parsedFilters = JSON.parse(savedFilters);
+                    console.log("Фильтры загружены из localStorage:", parsedFilters);
+                    currentFilters = parsedFilters;
+
+                    // Обновить UI фильтров (включая новые)
+                    roomCheckboxes.forEach(cb => {
+                        cb.checked = currentFilters.rooms.includes(cb.value);
+                    });
+
+                    priceSliderMin.value = currentFilters.price.min;
+                    priceSliderMax.value = currentFilters.price.max;
+                    priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
+                    priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
+
+                    areaSliderMin.value = currentFilters.area.min;
+                    areaSliderMax.value = currentFilters.area.max;
+                    areaMinValue.textContent = currentFilters.area.min;
+                    areaMaxValue.textContent = currentFilters.area.max;
+
+                    // !!! ИЗМЕНЕНО: Обновить UI для новых фильтров (только max) !!!
+                    // Проверяем, существуют ли поля в загруженных фильтрах, чтобы избежать ошибок
+                    if (currentFilters.minPv && minPvSliderMax) {
+                        const loadedMaxPv = Math.max(0, Math.min(minPvMax, currentFilters.minPv.max)); // Санитизация
+                        minPvSliderMax.value = loadedMaxPv;
+                        if (minPvMaxValue) minPvMaxValue.textContent = loadedMaxPv.toLocaleString('ru-RU');
+                        currentFilters.minPv.max = loadedMaxPv; // Обновляем в памяти после санитизации
+                    }
+
+                    if (currentFilters.minEmp && minEmpSliderMax) {
+                        const loadedMaxEmp = Math.max(0, Math.min(minEmpMax, currentFilters.minEmp.max)); // Санитизация
+                        minEmpSliderMax.value = loadedMaxEmp;
+                        if (minEmpMaxValue) minEmpMaxValue.textContent = loadedMaxEmp.toLocaleString('ru-RU');
+                        currentFilters.minEmp.max = loadedMaxEmp; // Обновляем в памяти после санитизации
+                    }
+
+                    applyFilters();
+                } else {
+                    console.log("Сохраненные фильтры не найдены");
+
+                    // В блоке else внутри loadFiltersFromStorage или при инициализации по умолчанию:
+                    console.log("Сохраненные фильтры не найдены или ошибка загрузки");
+                    // Инициализируем с дефолтными значениями, включая новые фильтры
+                    currentFilters = {
+                        rooms: [],
+                        price: { min: minPrice, max: maxPrice },
+                        area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
+                        minPv: { min: minPvMin, max: minPvMax }, // Используем minPvMin
+                        minEmp: { min: minEmpMin, max: minEmpMax } // Используем minEmpMin
+                    };
+
+                    applyFilters(); // Применить фильтры по умолчанию
+
+                }
+            } catch (e) {
+                console.error('Ошибка при загрузке фильтров из localStorage:', e);
+                applyFilters(); // Применить фильтры по умолчанию при ошибке
+            }
+        }
+
+
+
+        // --- Назначение обработчиков событий ---
+
+        const updateCheckboxVisualState = (cb) => {
+            const label = cb.nextElementSibling; // Предполагаем, что label идет сразу после input
+            if (label && label.tagName === 'LABEL') {
+                if (cb.checked) {
+                    // Добавляем класс или меняем стиль для выбранного состояния
+                    label.classList.add('checkbox-label--selected');
+                    label.style.backgroundColor = '#e3f2fd'; // Светло-голубой фон
+                    label.style.borderColor = '#1976d2'; // Синяя рамка
+                    // Можно также изменить цвет текста
+                    // label.style.color = '#1976d2';
+                } else {
+                    // Убираем класс или возвращаем стиль для не выбранного состояния
+                    label.classList.remove('checkbox-label--selected');
+                    label.style.backgroundColor = ''; // Возвращаем к дефолтному
+                    label.style.borderColor = ''; // Возвращаем к дефолтному
+                    // label.style.color = '';
+                }
+            }
         };
 
-        priceSliderMin.addEventListener('input', function() {
-            let value = parseInt(this.value, 10);
-            const maxVal = parseInt(priceSliderMax.value, 10);
-            if (value > maxVal) {
-                this.value = maxVal;
-                value = maxVal;
-            }
-            currentFilters.price.min = value;
-            updatePriceUI();
-        });
-        priceSliderMin.addEventListener('change', applyFilters);
 
-        priceSliderMax.addEventListener('input', function() {
-            let value = parseInt(this.value, 10);
-            const minVal = parseInt(priceSliderMin.value, 10);
-            if (value < minVal) {
-                this.value = minVal;
-                value = minVal;
-            }
-            currentFilters.price.max = value;
-            updatePriceUI();
-        });
-        priceSliderMax.addEventListener('change', applyFilters);
-    } else {
-        console.warn("Слайдеры цены не найдены в DOM");
-    }
+        if (roomCheckboxes.length > 0) {
+            roomCheckboxes.forEach(checkbox => {
+                // Добавим функцию для обновления визуального состояния
 
-    if (areaSliderMin && areaSliderMax) {
-         const updateAreaUI = () => {
-             if (areaMinValue) areaMinValue.textContent = parseInt(areaSliderMin.value, 10);
-             if (areaMaxValue) areaMaxValue.textContent = parseInt(areaSliderMax.value, 10);
-        };
+                // Обновляем визуальное состояние для уже отмеченных чекбоксов (например, первого)
+                updateCheckboxVisualState(checkbox);
 
-        areaSliderMin.addEventListener('input', function() {
-            let value = parseInt(this.value, 10);
-            const maxVal = parseInt(areaSliderMax.value, 10);
-            if (value > maxVal) {
-                this.value = maxVal;
-                value = maxVal;
-            }
-            currentFilters.area.min = value;
-            updateAreaUI();
-        });
-        areaSliderMin.addEventListener('change', applyFilters);
+                checkbox.addEventListener('change', function () {
+                    console.log(`Чекбокс комнат ${this.value} ${this.checked ? 'включен' : 'выключен'}`);
+                    const roomValue = this.value;
+                    const roomValueInt = parseInt(roomValue, 10);
 
-        areaSliderMax.addEventListener('input', function() {
-             let value = parseInt(this.value, 10);
-            const minVal = parseInt(areaSliderMin.value, 10);
-            if (value < minVal) {
-                this.value = minVal;
-                value = minVal;
-            }
-            currentFilters.area.max = value;
-            updateAreaUI();
-        });
-        areaSliderMax.addEventListener('change', applyFilters);
-    } else {
-        console.warn("Слайдеры площади не найдены в DOM");
-    }
+                    if (this.checked) {
+                        if (roomValueInt === 4) {
+                            currentFilters.rooms = currentFilters.rooms.filter(r => parseInt(r, 10) < 4);
+                            if (!currentFilters.rooms.includes('4')) {
+                                currentFilters.rooms.push('4');
+                            }
+                        } else {
+                            if (!currentFilters.rooms.includes(roomValue)) {
+                                currentFilters.rooms.push(roomValue);
+                            }
+                        }
+                    } else {
+                        currentFilters.rooms = currentFilters.rooms.filter(r => r !== roomValue);
+                    }
+                    console.log("Текущие фильтры комнат:", currentFilters.rooms);
 
-   
-    // --- Назначение обработчиков событий ---
+                    // --- Обновляем визуальное состояние для ВСЕХ чекбоксов комнат ---
+                    // Это нужно для корректного отображения, если логика фильтрации влияет на другие чекбоксы
+                    roomCheckboxes.forEach(cb => updateCheckboxVisualState(cb));
 
-    // ... (предыдущие обработчики для комнат, цены, площади) ...
+                    applyFilters();
+                });
+            });
+        } else {
+            console.warn("Чекбоксы комнат не найдены в DOM");
+        }
 
-    // !!! ИЗМЕНЕНО: Обработчики событий для новых фильтров (только правые слайдеры) !!!
-    if (minPvSliderMax) {
-        const updateMinPvUI = () => {
-             if (minPvMaxValue) minPvMaxValue.textContent = parseInt(minPvSliderMax.value, 10).toLocaleString('ru-RU');
-        };
+        if (priceSliderMin && priceSliderMax) {
+            const updatePriceUI = () => {
+                if (priceMinValue) priceMinValue.textContent = parseInt(priceSliderMin.value, 10).toLocaleString('ru-RU');
+                if (priceMaxValue) priceMaxValue.textContent = parseInt(priceSliderMax.value, 10).toLocaleString('ru-RU');
+            };
 
-        // Обработчик изменения правого слайдера (minPv)
-        minPvSliderMax.addEventListener('input', function() {
-            let value = parseInt(this.value, 10);
-            // Убеждаемся, что значение в пределах допустимого диапазона
-            value = Math.max(0, Math.min(minPvMax, value));
-            this.value = value;
-            currentFilters.minPv.max = value;
-            updateMinPvUI();
-        });
-        minPvSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
-    }
+            priceSliderMin.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                const maxVal = parseInt(priceSliderMax.value, 10);
+                if (value > maxVal) {
+                    this.value = maxVal;
+                    value = maxVal;
+                }
+                currentFilters.price.min = value;
+                updatePriceUI();
+            });
+            priceSliderMin.addEventListener('change', applyFilters);
 
-    if (minEmpSliderMax) {
-        const updateMinEmpUI = () => {
-             if (minEmpMaxValue) minEmpMaxValue.textContent = parseInt(minEmpSliderMax.value, 10).toLocaleString('ru-RU');
-        };
+            priceSliderMax.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                const minVal = parseInt(priceSliderMin.value, 10);
+                if (value < minVal) {
+                    this.value = minVal;
+                    value = minVal;
+                }
+                currentFilters.price.max = value;
+                updatePriceUI();
+            });
+            priceSliderMax.addEventListener('change', applyFilters);
+        } else {
+            console.warn("Слайдеры цены не найдены в DOM");
+        }
 
-        // Обработчик изменения правого слайдера (minEmp)
-        minEmpSliderMax.addEventListener('input', function() {
-             let value = parseInt(this.value, 10);
-            // Убеждаемся, что значение в пределах допустимого диапазона
-            value = Math.max(0, Math.min(minEmpMax, value));
-            this.value = value;
-            currentFilters.minEmp.max = value;
-            updateMinEmpUI();
-        });
-        minEmpSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
-    }
+        if (areaSliderMin && areaSliderMax) {
+            const updateAreaUI = () => {
+                if (areaMinValue) areaMinValue.textContent = parseInt(areaSliderMin.value, 10);
+                if (areaMaxValue) areaMaxValue.textContent = parseInt(areaSliderMax.value, 10);
+            };
 
-    // ... (остальные обработчики, включая кнопку "очистить") ...
-   
-   
-   
-   
-   
-   
-   
-   
-     if (clearButton) {
-        clearButton.addEventListener('click', function (e) {
-          e.preventDefault();
-          console.log("Очистка фильтров");
+            areaSliderMin.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                const maxVal = parseInt(areaSliderMax.value, 10);
+                if (value > maxVal) {
+                    this.value = maxVal;
+                    value = maxVal;
+                }
+                currentFilters.area.min = value;
+                updateAreaUI();
+            });
+            areaSliderMin.addEventListener('change', applyFilters);
 
-          // Сброс к значениям по умолчанию (диапазоны от анализа карточек)
-          // !!! ИСПРАВЛЕНО: Сброс новых фильтров (min и max) !!!
-          currentFilters = {
-            rooms: [],
-            price: { min: minPrice, max: maxPrice },
-            area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
-            minPv: { min: minPvMin, max: minPvMax }, // Сброс min и max
-            minEmp: { min: minEmpMin, max: minEmpMax } // Сброс min и max
-          };
-
-          // --- Сброс чекбоксов ---
-          if (roomCheckboxes.length > 0) {
-              roomCheckboxes.forEach(cb => {
-                  cb.checked = false;
-                  updateCheckboxVisualState(cb);
-              });
-          }
-
-          // --- Сброс старых слайдеров (Цена, Площадь) ---
-          if (priceSliderMin) priceSliderMin.value = currentFilters.price.min;
-          if (priceSliderMax) priceSliderMax.value = currentFilters.price.max;
-          if (priceMinValue) priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
-          if (priceMaxValue) priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
-          if (areaSliderMin) areaSliderMin.value = currentFilters.area.min;
-          if (areaSliderMax) areaSliderMax.value = currentFilters.area.max;
-          if (areaMinValue) areaMinValue.textContent = currentFilters.area.min;
-          if (areaMaxValue) areaMaxValue.textContent = currentFilters.area.max;
-
-          // !!! ИСПРАВЛЕНО: Сброс новых слайдеров (min и max) !!!
-          // Для слайдеров, задающих максимальную границу, "сброс" означает установку на максимальное значение
-          if (minPvSliderMin) minPvSliderMin.value = currentFilters.minPv.min; // Устанавливаем на минимальное значение диапазона
-          if (minPvSliderMax) minPvSliderMax.value = currentFilters.minPv.max; // Устанавливаем на максимальное значение диапазона (сброс)
-          if (minPvMinValue) minPvMinValue.textContent = currentFilters.minPv.min.toLocaleString('ru-RU');
-          if (minPvMaxValue) minPvMaxValue.textContent = currentFilters.minPv.max.toLocaleString('ru-RU');
-
-          if (minEmpSliderMin) minEmpSliderMin.value = currentFilters.minEmp.min; // Устанавливаем на минимальное значение диапазона
-          if (minEmpSliderMax) minEmpSliderMax.value = currentFilters.minEmp.max; // Устанавливаем на максимальное значение диапазона (сброс)
-          if (minEmpMinValue) minEmpMinValue.textContent = currentFilters.minEmp.min.toLocaleString('ru-RU');
-          if (minEmpMaxValue) minEmpMaxValue.textContent = currentFilters.minEmp.max.toLocaleString('ru-RU');
-          // !!! КОНЕЦ ИСПРАВЛЕНИЯ СБРОСА НОВЫХ СЛАЙДЕРОВ !!!
-
-          applyFilters();
-        });
-    } else {
-        console.warn("Кнопка 'Очистить' не найдена в DOM");
-    }
-	
+            areaSliderMax.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                const minVal = parseInt(areaSliderMin.value, 10);
+                if (value < minVal) {
+                    this.value = minVal;
+                    value = minVal;
+                }
+                currentFilters.area.max = value;
+                updateAreaUI();
+            });
+            areaSliderMax.addEventListener('change', applyFilters);
+        } else {
+            console.warn("Слайдеры площади не найдены в DOM");
+        }
 
 
-    // --- Инициализация ---
-    loadFiltersFromStorage();
-    //console.log("Инициализация фильтров завершена");
+        // --- Назначение обработчиков событий ---
 
-  }); // Конец DOMContentLoaded
-</script>
+        // ... (предыдущие обработчики для комнат, цены, площади) ...
+
+        // !!! ИЗМЕНЕНО: Обработчики событий для новых фильтров (только правые слайдеры) !!!
+        if (minPvSliderMax) {
+            const updateMinPvUI = () => {
+                if (minPvMaxValue) minPvMaxValue.textContent = parseInt(minPvSliderMax.value, 10).toLocaleString('ru-RU');
+            };
+
+            // Обработчик изменения правого слайдера (minPv)
+            minPvSliderMax.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                // Убеждаемся, что значение в пределах допустимого диапазона
+                value = Math.max(0, Math.min(minPvMax, value));
+                this.value = value;
+                currentFilters.minPv.max = value;
+                updateMinPvUI();
+            });
+            minPvSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
+        }
+
+        if (minEmpSliderMax) {
+            const updateMinEmpUI = () => {
+                if (minEmpMaxValue) minEmpMaxValue.textContent = parseInt(minEmpSliderMax.value, 10).toLocaleString('ru-RU');
+            };
+
+            // Обработчик изменения правого слайдера (minEmp)
+            minEmpSliderMax.addEventListener('input', function() {
+                let value = parseInt(this.value, 10);
+                // Убеждаемся, что значение в пределах допустимого диапазона
+                value = Math.max(0, Math.min(minEmpMax, value));
+                this.value = value;
+                currentFilters.minEmp.max = value;
+                updateMinEmpUI();
+            });
+            minEmpSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
+        }
+
+        // ... (остальные обработчики, включая кнопку "очистить") ...
+
+
+
+
+
+
+
+
+        if (clearButton) {
+            clearButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                console.log("Очистка фильтров");
+
+                // Сброс к значениям по умолчанию (диапазоны от анализа карточек)
+                // !!! ИСПРАВЛЕНО: Сброс новых фильтров (min и max) !!!
+                currentFilters = {
+                    rooms: [],
+                    price: { min: minPrice, max: maxPrice },
+                    area: { min: Math.floor(minArea), max: Math.ceil(maxArea) },
+                    minPv: { min: minPvMin, max: minPvMax }, // Сброс min и max
+                    minEmp: { min: minEmpMin, max: minEmpMax } // Сброс min и max
+                };
+
+                // --- Сброс чекбоксов ---
+                if (roomCheckboxes.length > 0) {
+                    roomCheckboxes.forEach(cb => {
+                        cb.checked = false;
+                        updateCheckboxVisualState(cb);
+                    });
+                }
+
+                // --- Сброс старых слайдеров (Цена, Площадь) ---
+                if (priceSliderMin) priceSliderMin.value = currentFilters.price.min;
+                if (priceSliderMax) priceSliderMax.value = currentFilters.price.max;
+                if (priceMinValue) priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
+                if (priceMaxValue) priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
+                if (areaSliderMin) areaSliderMin.value = currentFilters.area.min;
+                if (areaSliderMax) areaSliderMax.value = currentFilters.area.max;
+                if (areaMinValue) areaMinValue.textContent = currentFilters.area.min;
+                if (areaMaxValue) areaMaxValue.textContent = currentFilters.area.max;
+
+                // !!! ИСПРАВЛЕНО: Сброс новых слайдеров (min и max) !!!
+                // Для слайдеров, задающих максимальную границу, "сброс" означает установку на максимальное значение
+                if (minPvSliderMin) minPvSliderMin.value = currentFilters.minPv.min; // Устанавливаем на минимальное значение диапазона
+                if (minPvSliderMax) minPvSliderMax.value = currentFilters.minPv.max; // Устанавливаем на максимальное значение диапазона (сброс)
+                if (minPvMinValue) minPvMinValue.textContent = currentFilters.minPv.min.toLocaleString('ru-RU');
+                if (minPvMaxValue) minPvMaxValue.textContent = currentFilters.minPv.max.toLocaleString('ru-RU');
+
+                if (minEmpSliderMin) minEmpSliderMin.value = currentFilters.minEmp.min; // Устанавливаем на минимальное значение диапазона
+                if (minEmpSliderMax) minEmpSliderMax.value = currentFilters.minEmp.max; // Устанавливаем на максимальное значение диапазона (сброс)
+                if (minEmpMinValue) minEmpMinValue.textContent = currentFilters.minEmp.min.toLocaleString('ru-RU');
+                if (minEmpMaxValue) minEmpMaxValue.textContent = currentFilters.minEmp.max.toLocaleString('ru-RU');
+                // !!! КОНЕЦ ИСПРАВЛЕНИЯ СБРОСА НОВЫХ СЛАЙДЕРОВ !!!
+
+                applyFilters();
+            });
+        } else {
+            console.warn("Кнопка 'Очистить' не найдена в DOM");
+        }
+
+
+
+        // --- Инициализация ---
+        loadFiltersFromStorage();
+        //console.log("Инициализация фильтров завершена");
+
+    }); // Конец DOMContentLoaded
+    </script>
 
