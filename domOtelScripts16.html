@@ -396,6 +396,31 @@
 <script>
 
 
+    // --- Флаг для отслеживания взаимодействия с фильтром ПВ ---
+    let lastInteractionWasPvFilter = false;
+    window.hasUserInteracted = false;
+    // Обёртка для applyFilters, проверяющая первое взаимодействие и источник взаимодействия
+    function handleUserInteractionAndApplyFilters(source = 'unknown') {
+        console.log(`handleUserInteractionAndApplyFilters вызвана источником: ${source}`);
+        if (!window.hasUserInteracted) {
+            console.log("Первое взаимодействие пользователя с фильтрами. Инициализация фильтрации.");
+            window.hasUserInteracted = true;
+            // Можно выполнить однократные действия при первом взаимодействии
+            // openAccordion(); // Например, открыть аккордеон
+        }
+
+        // --- ДОБАВЛЕНО: Проверка источника взаимодействия ---
+        // Предполагаем, что источник будет 'pv' для фильтра ПВ
+        lastInteractionWasPvFilter = (source === 'pv');
+        console.log(`Флаг lastInteractionWasPvFilter установлен в: ${lastInteractionWasPvFilter}`);
+        // --- КОНЕЦ ДОБАВЛЕНИЯ ---
+
+
+
+        // Вызываем основную функцию фильтрации, передавая флаг
+        applyFilters(lastInteractionWasPvFilter);
+    }
+
     // 1. Оборачиваем код в функцию
     function clearCardStylesPeriodically() {
         try {
@@ -1082,17 +1107,25 @@
             minEmp: {min: minEmpMin, max: minEmpMax} // Используем minEmpMin
         };
 
-        function applyFilters() {
+        function applyFilters(sortByPvDesc = false) {
             //console.log("Применение фильтров:", currentFilters);
 
+
+            // --- ДОБАВЛЕНО: Показываем индикатор активности ---
             showActivitySpinner(true);
             // --- Добавлено: Открытие аккордеона при применении фильтров ---
-            openAccordion();
+
 
             setTimeout(() => {
                 showActivitySpinner(false);
                 console.log("Таймер скрытия индикатора активности сработал.");
             }, 1200);
+            // --- КОНЕЦ ДОБАВЛЕНИЯ ---
+
+
+            openAccordion();
+
+
 
             const cards = cardsContainer.querySelectorAll('.flat-block-card');
 
@@ -1254,6 +1287,89 @@
             // --- Конец добавления ---
 
             //saveFiltersToStorage();   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+            // --- 2. Условная Сортировка ---
+            if (sortByPvDesc) {
+                console.log("Выполняется сортировка по убыванию первоначального взноса.");
+                cardsToShow.sort((cardA, cardB) => {
+                    // Получаем ПВ для сортировки, используя N/A как очень большое число (в конец)
+                    const pvA = cardA.dataset.minPv !== 'N/A' ? parseFloat(cardA.dataset.minPv) : Number.MAX_VALUE;
+                    const pvB = cardB.dataset.minPv !== 'N/A' ? parseFloat(cardB.dataset.minPv) : Number.MAX_VALUE;
+
+                    // Сортировка по УБЫВАНИЮ: B - A
+                    // Если оба N/A, порядок не важен (pvA - pvB = 0)
+                    // Если один N/A, он уйдет в конец
+                    return pvB - pvA;
+                });
+            } else {
+                // Если не сортируем по ПВ, можно оставить порядок как есть (или сортировать по умолчанию, например, по цене)
+                // Для примера, сортировка по убыванию цены по умолчанию:
+                console.log("Выполняется сортировка по убыванию цены (по умолчанию).");
+                cardsToShow.sort((cardA, cardB) => {
+                    const priceA = parseFloat(cardA.dataset.price) || 0;
+                    const priceB = parseFloat(cardB.dataset.price) || 0;
+                    return priceB - priceA; // По убыванию цены
+                });
+            }
+            console.log("Карточки отсортированы.");
+
+            // --- 3. Обновление DOM ---
+            // Используем подход с перемещением через appendChild для изменения порядка
+            const fragment = document.createDocumentFragment();
+            cardsToShow.forEach(card => {
+                // Сбрасываем стили перед добавлением во фрагмент
+                card.style.display = '';
+                card.style.opacity = '';
+                card.style.transform = '';
+                card.style.transition = '';
+                fragment.appendChild(card); // Перемещает карточку во фрагмент
+            });
+
+            // Очищаем контейнер от карточек (сохраняя фильтры)
+            // Предполагаем, что фильтры - это первый элемент
+            const filterContainerElement = cardsContainer.firstElementChild;
+            const isFilterContainerPresent = filterContainerElement && filterContainerElement.classList.contains('d-flex');
+
+            if (isFilterContainerPresent) {
+                // Удаляем все дочерние элементы, кроме первого (фильтров)
+                while (cardsContainer.children.length > 1) {
+                    cardsContainer.removeChild(cardsContainer.lastChild); // Удаляем с конца
+                }
+                // Добавляем отсортированные карточки после фильтров
+                cardsContainer.appendChild(fragment);
+            } else {
+                // Если фильтров нет или структура другая, просто заменяем всё
+                // ВАЖНО: Это удалит фильтры! Убедитесь, что это приемлемо или адаптируйте.
+                // cardsContainer.innerHTML = '';
+                // cardsContainer.appendChild(fragment);
+                // Лучше скрыть/показать:
+                allCards.forEach(card => card.style.display = 'none');
+                cardsToShow.forEach(card => card.style.display = '');
+            }
+            console.log("DOM обновлен: карточки отфильтрованы и, при необходимости, отсортированы.");
+
+            // // --- Обновление счетчика показанных планировок ---
+            // const shownCards = cardsToShow.length; // Убрано / 2, если оно не нужно
+            // const countElement = document.getElementById('shown-count-value');
+            // if (countElement) {
+            //     countElement.textContent = shownCards;
+            // }
+            // console.log(`Фильтрация и (возможная) сортировка завершены: Показано ${shownCards} планировок.`);
+
+
+
+
+
+
+
+
 
 
             // --- Добавлено: Пересчет высоты аккордеона после фильтрации ---
@@ -1520,7 +1636,12 @@
                 currentFilters.minPv.max = value;
                 updateMinPvUI();
             });
-            minPvSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
+            // minPvSliderMax.addEventListener('change', applyFilters); // Применяем фильтр после изменения
+
+            minPvSliderMin.addEventListener('change', function() {
+                handleUserInteractionAndApplyFilters('pv'); // <-- Источник 'pv'
+            });
+
         }
 
         if (minEmpSliderMax) {
