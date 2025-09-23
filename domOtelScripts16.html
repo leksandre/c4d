@@ -354,7 +354,7 @@ function clearCardStylesPeriodically() {
                 card.style.opacity = '';
                 card.style.transform = '';
                 card.style.transition = '';
-                // card.style.display = ''; // Опционально: также сбросить display, если нужно
+                //card.style.display = ''; // Опционально: также сбросить display, если нужно // !!!!!!!! сбрасывает работу фильтров!!!!!!
             });
             console.log("Периодическая очистка стилей анимации выполнена");
         } else {
@@ -401,16 +401,18 @@ function clearCardStylesPeriodically() {
             additionalData[areaKey] = {
                 discountedPrice: item.цена_с_акцией,
                 minPv: item.min_pv,
-                minEmp: item.min_emp
+                minEmp: item.min_emp,
+                normPv: item.norm_pv,
+                normEmp: item.norm_emp
             };
 
-			
+
 
 // Определяем диапазоны для слайдеров (минимальная и максимальная границы из данных)
-if (item.min_pv !== undefined && item.min_pv !== null && !isNaN(item.min_pv)) {
+if (item.min_pv !== undefined && item.min_pv !== null && !isNaN(item.min_pv)  &&   item.norm_pv !== undefined && item.norm_pv !== null && !isNaN(item.norm_pv)   ) {
     if (firstPv) {
-        minPvMin = item.min_pv; // Устанавливаем начальный минимум
-        minPvMax = item.min_pv; // Устанавливаем начальный максимум
+        minPvMin = Math.min(item.min_pv, item.norm_pv) ; // Устанавливаем начальный минимум
+        minPvMax = Math.max(item.min_pv, item.norm_pv) // Устанавливаем начальный максимум
         firstPv = false;
         console.log(`       Первое значение min_pv. Установлены границы: Min=${minPvMin}, Max=${minPvMax}`);
     } else {
@@ -418,19 +420,19 @@ if (item.min_pv !== undefined && item.min_pv !== null && !isNaN(item.min_pv)) {
         const oldMin = minPvMin;
         const oldMax = minPvMax;
         minPvMin = Math.min(minPvMin, item.min_pv);
-        minPvMax = Math.max(minPvMax, item.min_pv);
+        minPvMax = Math.max(minPvMax, item.norm_pv);
         if (minPvMin !== oldMin || minPvMax !== oldMax) {
             console.log(`       Обновлены границы min_pv: Min=${oldMin} -> ${minPvMin}, Max=${oldMax} -> ${minPvMax}`);
         }
     }
 } else {
-    console.warn(`     Элемент #${item}: min_pv отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_pv);
+    console.warn(`     Элемент #${item}: min_pv norm_pv отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_pv);
 }
 
-if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp)) {
+if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp)  &&   item.norm_emp !== undefined && item.norm_emp !== null && !isNaN(item.norm_emp)   ) {
     if (firstEmp) {
-        minEmpMin = item.min_emp; // Устанавливаем начальный минимум
-        minEmpMax = item.min_emp; // Устанавливаем начальный максимум
+        minEmpMin = Math.min(item.min_emp, item.norm_emp) ; // Устанавливаем начальный минимум
+        minEmpMax = Math.max(item.min_emp, item.norm_emp) ; // Устанавливаем начальный максимум
         firstEmp = false;
         console.log(`       Первое значение min_emp. Установлены границы: Min=${minEmpMin}, Max=${minEmpMax}`);
     } else {
@@ -438,17 +440,17 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
         const oldMin = minEmpMin;
         const oldMax = minEmpMax;
         minEmpMin = Math.min(minEmpMin, item.min_emp);
-        minEmpMax = Math.max(minEmpMax, item.min_emp);
+        minEmpMax = Math.max(minEmpMax, item.norm_emp);
         if (minEmpMin !== oldMin || minEmpMax !== oldMax) {
             console.log(`       Обновлены границы min_emp: Min=${oldMin} -> ${minEmpMin}, Max=${oldMax} -> ${minEmpMax}`);
         }
     }
 } else {
-    console.warn(`     Элемент #${item}: min_emp отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_emp);
+    console.warn(`     Элемент #${item}: min_emp norm_emp отсутствует, null, или не число. Пропущен для расчета диапазона.`, item.min_emp);
 }
 
-			
-			
+
+
         });
         console.log("Данные по площадям для сопоставления:", additionalData);
         console.log("Диапазоны для фильтров: MinPV(0, " + minPvMax + "), MinEmp(0, " + minEmpMax + ")");
@@ -488,21 +490,21 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
     };
     console.log("currentFilters инициализирован:", currentFilters); // Для отладки
 */
-	
-	
+
+
 	/*
-	
-	
-	
-	
-	
+
+
+
+
+
 	*/
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
     } catch (e) {
         console.error('Ошибка при загрузке или обработке sale_front.json:', e);
@@ -527,19 +529,19 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
             }
         }
     } else {
-	
+
     // 1. Найти контейнер для вставки фильтров
     cardsContainer = document.getElementsByClassName('flats-block__gallery')[0].firstElementChild // Уровень 1
     .firstElementChild // Уровень 2
     .firstElementChild // Уровень 3
     .firstElementChild // Уровень 4
-    .firstElementChild; // Уровень 5;	
-		
-		
+    .firstElementChild; // Уровень 5;
+
+
 	}
 
 
-	
+
 
     if (!cardsContainer) {
         // Попробуем альтернативный способ найти контейнер, если предыдущий не сработал
@@ -551,19 +553,19 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
             cardsContainer = accordionContent.querySelector('[data-items]') || accordionContent.querySelector('.j-animation__row');
         }
     }
-    
-	
-	//const intervalId = 
-	setInterval(clearCardStylesPeriodically, 5000);
-	
-	
-	
+
+
+	//const intervalId =
+	setInterval(clearCardStylesPeriodically, 1000);
+
+
+
     // Если все еще не нашли, ищем по более общему селектору
     if (!cardsContainer) {
         console.log("Альтернативные контейнеры не найдены. Ищем по data-items...");
         cardsContainer = document.querySelector('[data-items]');
     }
-    
+
     if (!cardsContainer) {
         console.error('Контейнер с карточками не найден. Проверьте селекторы.');
         return;
@@ -649,7 +651,7 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
             // Извлекаем число из строки вида "69,5 м²"
             const areaMatch = areaText.match(/([\d,]+)\s*м²/);
             if (areaMatch) {
-                area = parseFloat(areaMatch[1].replace(',', '.'));
+                area = parseFloat(areaMatch[1].replace(',', '.')).toFixed(2);
                 //console.log("Извлечена площадь:", area);
             } else {
                 console.warn("Не удалось извлечь числовое значение площади из текста:", areaText);
@@ -729,13 +731,13 @@ if (item.min_emp !== undefined && item.min_emp !== null && !isNaN(item.min_emp))
             console.warn('Цена не найдена или некорректна в карточке:', card.querySelector('.flat-block-card__title')?.textContent || 'Без названия');
             // card.dataset.price = '0'; // Или пропустить
         }
-		
-	// console.log('additionalData ', additionalData);	
-	// console.log('area ', area);	
-	// console.log('card.dataset.area ', card.dataset.area);	
-	// console.log('additionalData[area] ', additionalData[area]);	
 
-	
+	// console.log('additionalData ', additionalData);
+	// console.log('area ', area);
+	// console.log('card.dataset.area ', card.dataset.area);
+	// console.log('additionalData[area] ', additionalData[area]);
+
+
 
 
 
@@ -745,20 +747,27 @@ card.dataset.minPv = additionalData[area].minPv;
 if (additionalData && additionalData[area] !== undefined && additionalData[area].minEmp !== undefined) {
 card.dataset.minEmp = additionalData[area].minEmp;
 }
-		
-		
-		
-		
-		
-	
+
+if (additionalData && additionalData[area] !== undefined && additionalData[area].normPv !== undefined) {
+card.dataset.normPv = additionalData[area].normPv;
+}
+if (additionalData && additionalData[area] !== undefined && additionalData[area].normEmp !== undefined) {
+card.dataset.normEmp = additionalData[area].normEmp;
+}
+
+
+
+
+
+
 if (additionalData && additionalData.discountedPrice !== undefined) {
     card.dataset.minPv = additionalData.minPv !== undefined && additionalData.minPv !== null ? additionalData.minPv : 'N/A';
     card.dataset.minEmp = additionalData.minEmp !== undefined && additionalData.minEmp !== null ? additionalData.minEmp : 'N/A';
-}	
-		
-		
-		
-		
+}
+
+
+
+
     });
 
     // Убедимся, что диапазоны корректны
@@ -769,17 +778,17 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
 
     console.log("Извлеченные данные для фильтров:", { minPrice, maxPrice, minArea, maxArea, roomCounts: Array.from(roomCounts).filter(r => r !== 'undefined').sort((a, b) => a - b) });
 
-    
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	    // --- Создание HTML для чекбоксов комнат ---
     // Предполагая, что uniqueRooms уже определен как массив чисел, например, [1, 2, 3, 4]
     let roomCheckboxesHTML = '';
     const uniqueRooms = Array.from(roomCounts).filter(r => r !== 'undefined' && typeof r === 'number').sort((a, b) => a - b);
-    
+
     uniqueRooms.forEach((room, index) => {
         const displayRoom = room >= 4 ? `${room}+` : `${room}`;
         const labelEnding = room >= 4 ? ' и более' : (room == 1 ? 'ная' : 'ные');
@@ -797,16 +806,16 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
     // Обновленный filterHTML с классами для стилизации
      const filterHTML = `
       <div data-v-629e44ba="" class="d-flex align-center flex-wrap align-center-inner filter-container" style="justify-content: center; width: 100%; padding: 22px; background-color: #f9f9f9; border-bottom: 1px solid #eee; box-sizing: border-box;">
-	  
-	  
+
+
 	    <!-- Счетчик показанных планировок -->
         <div data-v-629e44ba="" class="ml-10 text-body-2 has-opacity-65" id="shown-count" style="align-self: flex-end; margin-bottom: 8px;     position: absolute;">
             Показано <span id="shown-count-value">0</span>
         </div>
         <!-- КОНЕЦ Счетчика -->
-		
-		
-		
+
+
+
         <div data-v-629e44ba="" class="ml-10">
           <div data-v-629e44ba="" class="text-body-2 has-opacity-65 mb-2 red-color-domOtel">Кол-во комнат</div>
           <div data-v-629e44ba="" class="e-checkboxes-group py-2">
@@ -857,12 +866,12 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
           </div>
         </div>
         <!-- КОНЕЦ ФИЛЬТРА: Ежемесячный платеж -->
-</div>	
+</div>
 
 
- 
- 
- 
+
+
+
   <div data-v-629e44ba="" class="m50">
          <!-- ФИЛЬТР: Стоимость -->
         <div data-v-629e44ba="" class="mr-20 pr-10 pb-8 filter-group">
@@ -898,8 +907,8 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
 </div>
 
 
- 
-		
+
+
 
 
 
@@ -912,14 +921,14 @@ if (additionalData && additionalData.discountedPrice !== undefined) {
         <a data-v-629e44ba="" href="#" id="clear-filters" class="text-body-2 red-color-domOtel filter-clear-link" style="align-self: flex-end; margin-bottom: 8px; white-space: nowrap;">очистить</a>
       </div>
     `;
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 
  // 5. Найти элемент, ПОСЛЕ которого нужно вставить фильтры
 const targetElement = document.querySelector('.flats-block__content');
@@ -976,7 +985,7 @@ if (!filterContainer) {
     const minEmpSliderMax = filterContainer.querySelector('#min-emp-slider-max');
     const minEmpMinValue = filterContainer.querySelector('#min-emp-min-value');
     const minEmpMaxValue = filterContainer.querySelector('#min-emp-max-value');
-	
+
 
 
     // --- Функция для открытия аккордеона ---
@@ -1019,10 +1028,10 @@ let currentFilters = {
 
     function applyFilters() {
       //console.log("Применение фильтров:", currentFilters);
-      
+
       // --- Добавлено: Открытие аккордеона при применении фильтров ---
       openAccordion();
-      
+
       const cards = cardsContainer.querySelectorAll('.flat-block-card');
 
       cards.forEach(card => {
@@ -1031,19 +1040,21 @@ let currentFilters = {
         const cardAreaStr = card.dataset.area;
 		const cardMinPvStr = card.dataset.minPv;
         const cardMinEmpStr = card.dataset.minEmp;
+          const cardNormPvStr = card.dataset.normPv;
+          const cardNormEmpStr = card.dataset.normEmp;
 		let show = true;
-		   
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и max) !!!
-        let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
-        if (!isNaN(cardMinPv) && (cardMinPv < currentFilters.minPv.min || cardMinPv > currentFilters.minPv.max)) {
-            show = false;
-        }
 
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и max) !!!
-        let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
-        if (!isNaN(cardMinEmp) && (cardMinEmp < currentFilters.minEmp.min || cardMinEmp > currentFilters.minEmp.max)) {
-            show = false;
-        }
+        // // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и max) !!!
+        // let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
+        // if (!isNaN(cardMinPv) && (cardMinPv < currentFilters.minPv.min || cardMinPv > currentFilters.minPv.max)) {
+        //     show = false;
+        // }
+        //
+        // // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и max) !!!
+        // let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
+        // if (!isNaN(cardMinEmp) && (cardMinEmp < currentFilters.minEmp.min || cardMinEmp > currentFilters.minEmp.max)) {
+        //     show = false;
+        // }
 
 
         // Если данные не были извлечены, пропускаем фильтрацию для этой карточки
@@ -1060,13 +1071,13 @@ let currentFilters = {
 			 card.style.opacity = '';
              card.style.transform = '';
              card.style.transition = '';
-			 
-			 
+
+
         const cardRooms = parseInt(cardRoomsStr, 10);
         const cardPrice = parseFloat(cardPriceStr);
         const cardArea = parseFloat(cardAreaStr);
 
-     
+
 
         // Фильтр по комнатам
         if (currentFilters.rooms.length > 0) {
@@ -1088,7 +1099,7 @@ let currentFilters = {
         }
 
         // Фильтр по цене
-        if (!isNaN(cardPrice) && (cardPrice < currentFilters.price.min || cardPrice > currentFilters.price.max)) {
+        if (!isNaN(cardPrice) && ((cardPrice+100000) < currentFilters.price.min || (cardPrice-100000) >  currentFilters.price.max)) {
             show = false;
         }
 
@@ -1098,28 +1109,66 @@ let currentFilters = {
         }
 
 
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (только max) !!!
+        // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (только max) !!! //левая границ на 100 000 люфт
         cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
-        if (!isNaN(cardMinPv) && cardMinPv > currentFilters.minPv.max) { // Карточка показывается, если её значение <= max фильтра
+        if (!isNaN(cardMinPv) && (cardMinPv-100000) > currentFilters.minPv.max) { // Карточка показывается, если её значение <= max фильтра
             show = false;
         }
 
-        // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (только max) !!!
+        // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (только max) !!! //левая границ на 100 000 люфт
         cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
-        if (!isNaN(cardMinEmp) && cardMinEmp > currentFilters.minEmp.max) { // Карточка показывается, если её значение <= max фильтра
+        if (!isNaN(cardMinEmp) && (cardMinEmp) > currentFilters.minEmp.max) { // Карточка показывается, если её значение <= max фильтра
             show = false;
         }
 
-		
+
+
+
+          // // !!! ИЗМЕНЕНО: Фильтр по минимальному первоначальному взносу (min и norm) !!!
+          // let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
+          // let cardNormPv = cardNormPvStr !== 'N/A' ? parseFloat(cardNormPvStr) : NaN;
+          // if (!isNaN(cardMinPv) && !isNaN(cardNormPv) &&  (cardMinPv > currentFilters.minPv.max || cardNormPv < currentFilters.minPv.max )) {
+          //     show = false;
+          // }
+          //
+          // // !!! ИЗМЕНЕНО: Фильтр по минимальному ежемесячному платежу (min и norm) !!!
+          // let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
+          // let cardNormEmp = cardNormEmpStr !== 'N/A' ? parseFloat(cardNormEmpStr) : NaN;
+          // if (!isNaN(cardMinEmp) && !isNaN(cardNormEmp) &&  (cardMinEmp > currentFilters.minEmp.max || cardNormEmp < currentFilters.minEmp.max )) {
+          //     show = false;
+          // }
+
+
+
+
+        //   console.log(`currentFilters.minPv.max ${currentFilters.minPv.max} `);
+        //   console.log("Обработка карточки:", {
+        //       // element: card, // Сам элемент DOM карточки
+        //       // rooms: cardRoomsStr,
+        //       // price: cardPriceStr,
+        //       // area: cardAreaStr,
+        //       minPv: cardMinPv
+        //
+        //       //cardNormPv: cardNormPv
+        //
+        //   });
+        //
+        //   console.log(`currentFilters.minEmp.max ${currentFilters.minEmp.max} `);
         // console.log("Обработка карточки:", {
-            // element: card, // Сам элемент DOM карточки
-            // rooms: cardRoomsStr,
-            // price: cardPriceStr,
-            // area: cardAreaStr,
-            // minPv: cardMinPvStr,
-            // minEmp: cardMinEmpStr
+        //     // element: card, // Сам элемент DOM карточки
+        //     // rooms: cardRoomsStr,
+        //     // price: cardPriceStr,
+        //     // area: cardAreaStr,
+        //
+        //     minEmp: cardMinEmp
+        //
+        //     //cardNormEmp: cardNormEmp
         // });
-		// console.log(`show ${show} `);
+        // console.log(`show ${show} `);
+
+
+
+
 
         // --- Изменено: Простое скрытие/показ без анимации ---
         // Вместо изменения opacity или transform, просто меняем display
@@ -1129,7 +1178,7 @@ let currentFilters = {
         } else {
             card.style.display = 'none'; // Скрываем
         }
-        
+
         // Убираем любые стили анимации/прозрачности, которые могут быть у карточки
         // Это важно, если карточки изначально имеют какие-то стили анимации
         card.style.opacity = '';
@@ -1137,7 +1186,7 @@ let currentFilters = {
         card.style.transition = '';
         // Если вы используете классы для анимации, их тоже нужно убрать
         // card.classList.remove('some-animation-class');
-        
+
       });
 
     // --- Добавлено: Обновление счетчика показанных планировок ---
@@ -1151,8 +1200,8 @@ let currentFilters = {
     // --- Конец добавления ---
 
       //saveFiltersToStorage();   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	  
-	  
+
+
  // --- Добавлено: Пересчет высоты аккордеона после фильтрации ---
       // Найдем контейнер аккордеона, высоту которого нужно пересчитать
       // Ищем по классам, которые вы предоставили
@@ -1189,8 +1238,8 @@ let currentFilters = {
         console.warn("Контейнер аккордеона (.accordion__content-wrapper.j-accordion-content-outer) не найден для пересчета высоты.");
       }
  // --- Конец пересчета высоты ---
-	  
-	  
+
+
     }
 
     function saveFiltersToStorage() {
@@ -1213,7 +1262,7 @@ let currentFilters = {
     function loadFiltersFromStorage() {
        try {
         const savedFilters = localStorage.getItem('myPageFilters');
-		
+
         if (savedFilters) {
           const parsedFilters = JSON.parse(savedFilters);
           console.log("Фильтры загружены из localStorage:", parsedFilters);
@@ -1253,7 +1302,7 @@ let currentFilters = {
           applyFilters();
         } else {
             console.log("Сохраненные фильтры не найдены");
-			
+
 			          // В блоке else внутри loadFiltersFromStorage или при инициализации по умолчанию:
           console.log("Сохраненные фильтры не найдены или ошибка загрузки");
           // Инициализируем с дефолтными значениями, включая новые фильтры
@@ -1264,18 +1313,18 @@ let currentFilters = {
             minPv: { min: minPvMin, max: minPvMax }, // Используем minPvMin
             minEmp: { min: minEmpMin, max: minEmpMax } // Используем minEmpMin
           };
-		  
+
             applyFilters(); // Применить фильтры по умолчанию
-			
+
         }
       } catch (e) {
         console.error('Ошибка при загрузке фильтров из localStorage:', e);
         applyFilters(); // Применить фильтры по умолчанию при ошибке
       }
     }
-	
-	
-	
+
+
+
     // --- Назначение обработчиков событий ---
 
      const updateCheckboxVisualState = (cb) => {
@@ -1302,7 +1351,7 @@ let currentFilters = {
     if (roomCheckboxes.length > 0) {
         roomCheckboxes.forEach(checkbox => {
           // Добавим функцию для обновления визуального состояния
-      
+
           // Обновляем визуальное состояние для уже отмеченных чекбоксов (например, первого)
           updateCheckboxVisualState(checkbox);
 
@@ -1326,11 +1375,11 @@ let currentFilters = {
                  currentFilters.rooms = currentFilters.rooms.filter(r => r !== roomValue);
             }
             console.log("Текущие фильтры комнат:", currentFilters.rooms);
-            
+
             // --- Обновляем визуальное состояние для ВСЕХ чекбоксов комнат ---
             // Это нужно для корректного отображения, если логика фильтрации влияет на другие чекбоксы
             roomCheckboxes.forEach(cb => updateCheckboxVisualState(cb));
-            
+
             applyFilters();
           });
         });
@@ -1404,7 +1453,7 @@ let currentFilters = {
         console.warn("Слайдеры площади не найдены в DOM");
     }
 
-   
+
     // --- Назначение обработчиков событий ---
 
     // ... (предыдущие обработчики для комнат, цены, площади) ...
@@ -1445,14 +1494,14 @@ let currentFilters = {
     }
 
     // ... (остальные обработчики, включая кнопку "очистить") ...
-   
-   
-   
-   
-   
-   
-   
-   
+
+
+
+
+
+
+
+
      if (clearButton) {
         clearButton.addEventListener('click', function (e) {
           e.preventDefault();
@@ -1504,7 +1553,7 @@ let currentFilters = {
     } else {
         console.warn("Кнопка 'Очистить' не найдена в DOM");
     }
-	
+
 
 
     // --- Инициализация ---
