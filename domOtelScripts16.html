@@ -1339,7 +1339,7 @@
             //console.log("Карточки отсортированы.");
 
 
-            if (window.location.href.includes('967111')) {
+            if (window.location.href.includes('967111') || true) {//удобно тестить
                 console.log("с!!!!!!!!!!! Выполняется сортировка ");
 
 
@@ -1354,59 +1354,55 @@
 
 
                 if (pvWasSorted)
-                for (let i = 0; i < cardsToShow.length; i += 4) {
-                    const card0 = cardsToShow[i];
-                    const card1 = cardsToShow[i + 1];
-                    const card2 = cardsToShow[i + 2];
-                    const card3 = cardsToShow[i + 3]; // Может быть undefined, если элементов нечетное количество
+                    for (let i = 0; i < cardsToShow.length; i += 4) {
+                        const card0 = cardsToShow[i];
+                        const card1 = cardsToShow[i + 1];
+                        const card2 = cardsToShow[i + 2];
+                        const card3 = cardsToShow[i + 3]; // Может быть undefined, если элементов нечетное количество
 
-                    // Создаем обёртывающий div
-                    const wrapperDiv = document.createElement('div');
-                    wrapperDiv.className = 'flats-block__container j-animation__row';
+                        // Создаем обёртывающий div
+                        const wrapperDiv = document.createElement('div');
+                        wrapperDiv.className = 'flats-block__container j-animation__row';
 
-                    // Пример установки data-атрибутов на основе ПЕРВОЙ карточки в паре
-                    // Вы можете изменить логику, если нужно брать данные из обеих или усреднять
-                    if (card1) {
-                        wrapperDiv.dataset.rooms = card1.dataset.rooms;
-                        wrapperDiv.dataset.area = card1.dataset.area;
-                        wrapperDiv.dataset.price = card1.dataset.price;
-                        wrapperDiv.dataset.minPv = card1.dataset.minPv;
-                        wrapperDiv.dataset.minEmp = card1.dataset.minEmp;
-                        wrapperDiv.dataset.normPv = card1.dataset.normPv;
-                        wrapperDiv.dataset.normEmp = card1.dataset.normEmp;
+                        // Пример установки data-атрибутов на основе ПЕРВОЙ карточки в паре
+                        // Вы можете изменить логику, если нужно брать данные из обеих или усреднять
+                        if (card1) {
+                            wrapperDiv.dataset.rooms = card1.dataset.rooms;
+                            wrapperDiv.dataset.area = card1.dataset.area;
+                            wrapperDiv.dataset.price = card1.dataset.price;
+                            wrapperDiv.dataset.minPv = card1.dataset.minPv;
+                            wrapperDiv.dataset.minEmp = card1.dataset.minEmp;
+                            wrapperDiv.dataset.normPv = card1.dataset.normPv;
+                            wrapperDiv.dataset.normEmp = card1.dataset.normEmp;
+                        }
+                        // Если card1 нет, dataset останется пустым или можно установить значения по умолчанию
+
+                        // Устанавливаем стиль
+
+
+                        // Добавляем первую карточку в обёртку
+                        if (card1) {
+                            // Убираем инлайновые стили, если не нужны внутри обёртки
+                            // card1.style.display = '';
+                            // card1.style.opacity = '';
+                            // card1.style.transform = '';
+                            // card1.style.transition = '';
+                            wrapperDiv.appendChild(card1);
+                        }
+
+                        // Добавляем вторую карточку в обёртку (если существует)
+                        if (card3) {
+                            // Убираем инлайновые стили, если не нужны внутри обёртки
+                            // card2.style.display = '';
+                            // card2.style.opacity = '';
+                            // card2.style.transform = '';
+                            // card2.style.transition = '';
+                            wrapperDiv.appendChild(card3);
+                        }
+
+                        // Добавляем обёрнутую пару в основной контейнер
+                        cardsContainer.appendChild(wrapperDiv);
                     }
-                    // Если card1 нет, dataset останется пустым или можно установить значения по умолчанию
-
-                    // Устанавливаем стиль
-
-
-                    // Добавляем первую карточку в обёртку
-                    if (card1) {
-                        // Убираем инлайновые стили, если не нужны внутри обёртки
-                        // card1.style.display = '';
-                        // card1.style.opacity = '';
-                        // card1.style.transform = '';
-                        // card1.style.transition = '';
-                        wrapperDiv.appendChild(card1);
-                    }
-
-                    // Добавляем вторую карточку в обёртку (если существует)
-                    if (card3) {
-                        // Убираем инлайновые стили, если не нужны внутри обёртки
-                        // card2.style.display = '';
-                        // card2.style.opacity = '';
-                        // card2.style.transform = '';
-                        // card2.style.transition = '';
-                        wrapperDiv.appendChild(card3);
-                    }
-
-                    // Добавляем обёрнутую пару в основной контейнер
-                    cardsContainer.appendChild(wrapperDiv);
-                }
-
-
-
-
 
 
             }
@@ -1465,7 +1461,7 @@
                         currentFilters.minEmp.max = loadedMaxEmp; // Обновляем в памяти после санитизации
                     }
 
-                    applyFilters();
+                    applyFilters();//loadFiltersFromStorage()
                 } else {
                     console.log("Сохраненные фильтры не найдены");
 
@@ -1480,12 +1476,12 @@
                         minEmp: {min: minEmpMin, max: minEmpMax} // Используем minEmpMin
                     };
 
-                    applyFilters(); // Применить фильтры по умолчанию
+                    //applyFilters(); // loadFiltersFromStorage()  Применить фильтры по умолчанию
 
                 }
             } catch (e) {
                 console.error('Ошибка при загрузке фильтров из localStorage:', e);
-                applyFilters(); // Применить фильтры по умолчанию при ошибке
+                applyFilters(); //  loadFiltersFromStorage()  Применить фильтры по умолчанию при ошибке
             }
         }
 
@@ -1545,7 +1541,7 @@
                     // Это нужно для корректного отображения, если логика фильтрации влияет на другие чекбоксы
                     roomCheckboxes.forEach(cb => updateCheckboxVisualState(cb));
 
-                    applyFilters();
+                    applyFilters();// checkbox.addEventListener('change', function () {
                 });
             });
         } else {
@@ -1639,7 +1635,7 @@
                 updateMinPvUI();
             });
             minPvSliderMax.addEventListener('change', function () {
-                applyFilters('pv');
+                applyFilters('pv'); //minPvSliderMax.addEventListener('change'
             }); // Применяем фильтр после изменения
         }
 
@@ -1709,7 +1705,7 @@
                 if (minEmpMaxValue) minEmpMaxValue.textContent = currentFilters.minEmp.max.toLocaleString('ru-RU');
                 // !!! КОНЕЦ ИСПРАВЛЕНИЯ СБРОСА НОВЫХ СЛАЙДЕРОВ !!!
 
-                applyFilters();
+                applyFilters();// clearButton.addEventListener('click'
             });
         } else {
             console.warn("Кнопка 'Очистить' не найдена в DOM");
