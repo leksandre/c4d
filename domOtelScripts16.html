@@ -5,8 +5,12 @@
     /* ==========================================================================
        Стили для блока фильтров недвижимости (с обводкой чекбоксов)
        ========================================================================== */
-    //e47554 наш оранжевый
-    //219794 наш зеленый
+    /*
+    e47554 наш оранжевый
+    219794 наш зеленый
+     */
+
+
     .specific-element-class_Pokazano {
         box-sizing: border-box;
         color: inherit; /* или конкретный цвет, например #000 */
@@ -41,7 +45,7 @@
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
-        min-width: 180px;
+        min-width: 210px;
         padding: 0 10px;
         box-sizing: border-box;
         margin: 21px;
@@ -119,8 +123,10 @@
 
     /* --- Слайдеры --- */
 
-
-
+    /*
+        #min-pv-slider-max,
+        #min-emp-slider-max,
+    */
 
     #area-slider-max,
     #price-slider-max {
@@ -177,8 +183,9 @@
         border-radius: 50%;
         background-color: #219794;
         cursor: pointer;
-        border: 2px solid #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        //border: 2px solid #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+        opacity: 0.3;
     }
 
     .filter-slider::-moz-range-thumb {
@@ -187,8 +194,9 @@
         border-radius: 50%;
         background-color: #219794;
         cursor: pointer;
-        border: 2px solid #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        //border: 2px solid #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+        opacity: 0.3;
     }
 
 
@@ -199,9 +207,10 @@
         background: #dee2e6; /* Цвет трека */
         height: 2px; /* Высота трека */
         border-radius: 5px; /* Скругление трека */
+
         //z-index: -1000;
         /* border: 1px solid #ccc; */ /* Рамка трека */
-        /* box-shadow: 0 1px 1px #000 inset; */ /* Тень трека */
+         box-shadow: 0 1px 1px #000 inset;  /* Тень трека */
     }
     /* Для Firefox */
     .filter-slider::-moz-range-track {
@@ -210,7 +219,7 @@
         border-radius: 5px; /* Скругление трека */
         //z-index: -1000;
         /* border: 1px solid #ccc; */ /* Рамка трека */
-        /* box-shadow: 0 1px 1px #000 inset; */ /* Тень трека */
+         box-shadow: 0 1px 1px #000 inset;  /* Тень трека */
     }
 
 
