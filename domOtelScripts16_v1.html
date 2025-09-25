@@ -5,8 +5,7 @@
     /* ==========================================================================
        Стили для блока фильтров недвижимости (с обводкой чекбоксов)
        ========================================================================== */
-    //e47554 наш оранжевый
-    //219794 наш зеленый
+
     .specific-element-class_Pokazano {
         box-sizing: border-box;
         color: inherit; /* или конкретный цвет, например #000 */
@@ -59,7 +58,15 @@
     }
 
 
-
+    //#min-pv-slider-max,
+    //#min-emp-slider-max,
+    //#area-slider-max,
+    //#area-slider-min,
+    //#price-slider-max,
+    //#price-slider-min {
+    //    background-color: #219794
+    //}
+    //
 
     /* --- Чекбоксы --- */
     /* !!! ДОБАВЛЕНО: Обводка вокруг ВСЕГО блока чекбоксов !!! */
@@ -118,23 +125,6 @@
     }
 
     /* --- Слайдеры --- */
-
-
-
-
-    #area-slider-max,
-    #price-slider-max {
-        //background-color: #219794;
-        min-width: 210px;
-    }
-
-    #area-slider-min,
-    #price-slider-min {
-        //background-color: #219794;
-        min-width: 200px;
-    }
-
-
     .filter-slider-labels {
         display: flex;
         justify-content: space-between;
@@ -153,8 +143,6 @@
     }
 
     .filter-slider {
-        position: absolute;
-
         flex: 1;
         height: 4px;
         -webkit-appearance: none;
@@ -166,9 +154,8 @@
         cursor: pointer;
     }
 
-
-
-
+    //e47554 наш оранжевый
+    //219794 наш зеленый
     .filter-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -190,30 +177,6 @@
         border: 2px solid #ffffff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-
-
-
-
-    /* Для Webkit (Chrome, Safari, newer Edge) */
-    .filter-slider::-webkit-slider-runnable-track {
-        background: #dee2e6; /* Цвет трека */
-        height: 2px; /* Высота трека */
-        border-radius: 5px; /* Скругление трека */
-        //z-index: -1000;
-        /* border: 1px solid #ccc; */ /* Рамка трека */
-        /* box-shadow: 0 1px 1px #000 inset; */ /* Тень трека */
-    }
-    /* Для Firefox */
-    .filter-slider::-moz-range-track {
-        background: #dee2e6; /* Цвет трека */
-        height: 2px; /* Высота трека */
-        border-radius: 5px; /* Скругление трека */
-        //z-index: -1000;
-        /* border: 1px solid #ccc; */ /* Рамка трека */
-        /* box-shadow: 0 1px 1px #000 inset; */ /* Тень трека */
-    }
-
-
 
     /* --- Кнопка "очистить" --- */
     .filter-clear-link {
