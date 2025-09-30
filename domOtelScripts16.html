@@ -1274,10 +1274,13 @@
                 const cardArea = parseFloat(cardAreaStr);
 
 
+                let roomMatch = false;
+
                 // Фильтр по комнатам
                 if (currentFilters.rooms.length > 0) {
-                    let roomMatch = false;
+                    console.log('currentFilters.rooms',currentFilters.rooms)
                     for (let filterRoom of currentFilters.rooms) {
+                        console.log('filterRoom',filterRoom, "cardRooms", cardRooms)
                         const filterRoomInt = parseInt(filterRoom, 10);
                         if (cardRooms === filterRoomInt) {
                             roomMatch = true;
@@ -1288,10 +1291,14 @@
                             break;
                         }
                     }
-                    if (!roomMatch) {
-                        show = false;
-                    }
                 }
+
+                console.log('roomMatch',roomMatch)
+
+                if (!roomMatch) {
+                    show = false;
+                }
+
 
                 // Фильтр по цене
                 if (!isNaN(cardPrice) && ((cardPrice + 100000) < currentFilters.price.min || (cardPrice - 100000) > currentFilters.price.max)) {
