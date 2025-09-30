@@ -1421,68 +1421,57 @@
             // Проверяем, существует ли элемент перед тем, как изменять его атрибуты.
             if (priceSliderMin) {
                 // Устанавливаем минимальное значение слайдера цены на новое минимальное значение из отфильтрованных карточек
-                priceSliderMin.min = newMinPrice;
                 // (Опционально) Устанавливаем максимальное значение слайдера цены на новое максимальное значение
                 // priceSliderMin.max = newMaxPrice; // Обычно max не меняется у левого слайдера, но можно и так
+
+                // priceSliderMin.min = newMinPrice;
             }
             if (priceSliderMax) {
                 // (Опционально) Устанавливаем минимальное значение слайдера цены на новое минимальное значение
                 // priceSliderMax.min = newMinPrice; // Обычно min не меняется у правого слайдера, но можно и так
                 // Устанавливаем максимальное значение слайдера цены на новое максимальное значение из отфильтрованных карточек
-                priceSliderMax.max = newMaxPrice;
+
+                // priceSliderMax.max = newMaxPrice;
             }
 
             // --- Площадь ---
             if (areaSliderMin) {
-                areaSliderMin.min = newMinArea;
-                // areaSliderMin.max = newMaxArea; // (Опционально)
+                // areaSliderMin.min = newMinArea;
             }
             if (areaSliderMax) {
-                // areaSliderMax.min = newMinArea; // (Опционально)
-                areaSliderMax.max = newMaxArea;
+                // areaSliderMax.max = newMaxArea;
             }
 
-            // --- Первоначальный взнос (предполагается односторонний фильтр, только max) ---
-            // Если у вас теперь два слайдера (minPvSliderMin и minPvSliderMax), логика будет аналогичной цене/площади
-            // if (minPvSliderMin) {
-            //     minPvSliderMin.min = newMinPv; // Если newMinPv рассчитывается
-            //     // minPvSliderMin.max = newMaxPv; // (Опционально)
-            // }
+
             if (minPvSliderMax) { // Если используется только правый слайдер для max
-                // minPvSliderMax.min = newMinPv; // Если newMinPv рассчитывается и нужно обновить min
-                minPvSliderMax.max = newMaxPv; // Обновляем max диапазона для слайдера ПВ
+                // minPvSliderMax.max = newMaxPv; // Обновляем max диапазона для слайдера ПВ
             }
 
-            // --- Ежемесячный платеж (предполагается односторонний фильтр, только max) ---
-            // if (minEmpSliderMin) {
-            //     minEmpSliderMin.min = newMinEmp; // Если newMinEmp рассчитывается
-            //     // minEmpSliderMin.max = newMaxEmp; // (Опционально)
-            // }
+
             if (minEmpSliderMax) { // Если используется только правый слайдер для max
-                // minEmpSliderMax.min = newMinEmp; // Если newMinEmp рассчитывается и нужно обновить min
-                minEmpSliderMax.max = newMaxEmp; // Обновляем max диапазона для слайдера ЕП
+                // minEmpSliderMax.max = newMaxEmp; // Обновляем max диапазона для слайдера ЕП
             }
 
             // Обновляем отображаемые значения (labels)
             // Проверяем, существует ли элемент перед тем, как изменять его текст.
             if (priceMinValue) {
                 // Отображаем новое минимальное значение цены, отформатированное с разделителями тысяч
-                priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
+                // priceMinValue.textContent = currentFilters.price.min.toLocaleString('ru-RU');
                 // Или, если вы хотите показать новое рассчитанное значение: priceMinValue.textContent = newMinPrice.toLocaleString('ru-RU');
             }
             if (priceMaxValue) {
                 // Отображаем новое максимальное значение цены, отформатированное с разделителями тысяч
-                priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
+                // priceMaxValue.textContent = currentFilters.price.max.toLocaleString('ru-RU');
                 // Или, если вы хотите показать новое рассчитанное значение: priceMaxValue.textContent = newMaxPrice.toLocaleString('ru-RU');
             }
 
             // --- Площадь ---
             if (areaMinValue) {
-                areaMinValue.textContent = currentFilters.area.min; // Показываем значение из currentFilters
+                // areaMinValue.textContent = currentFilters.area.min; // Показываем значение из currentFilters
                 // Или, если вы хотите показать новое рассчитанное значение: areaMinValue.textContent = newMinArea;
             }
             if (areaMaxValue) {
-                areaMaxValue.textContent = currentFilters.area.max; // Показываем значение из currentFilters
+                // areaMaxValue.textContent = currentFilters.area.max; // Показываем значение из currentFilters
                 // Или, если вы хотите показать новое рассчитанное значение: areaMaxValue.textContent = newMaxArea;
             }
 
@@ -1493,7 +1482,7 @@
             // }
             if (minPvMaxValue) {
                 // Показываем текущее максимальное значение фильтра ПВ (которое, возможно, было обновлено ранее в applyFilters)
-                minPvMaxValue.textContent = currentFilters.minPv.max.toLocaleString('ru-RU');
+                // minPvMaxValue.textContent = currentFilters.minPv.max.toLocaleString('ru-RU');
                 // Или, если вы хотите показать новое рассчитанное значение: minPvMaxValue.textContent = newMaxPv.toLocaleString('ru-RU');
             }
 
@@ -1504,7 +1493,7 @@
             // }
             if (minEmpMaxValue) {
                 // Показываем текущее максимальное значение фильтра ЕП (которое, возможно, было обновлено ранее в applyFilters)
-                minEmpMaxValue.textContent = currentFilters.minEmp.max.toLocaleString('ru-RU');
+                // minEmpMaxValue.textContent = currentFilters.minEmp.max.toLocaleString('ru-RU');
                 // Или, если вы хотите показать новое рассчитанное значение: minEmpMaxValue.textContent = newMaxEmp.toLocaleString('ru-RU');
             }
 
