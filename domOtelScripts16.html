@@ -1144,7 +1144,7 @@
 
 
                     cardsContainer.animate({opacity: [1, 0.2], transform: ["scale(1)", "scale(0.3)"],}, {
-                        duration: 150,
+                        duration: 200,
                         iterations: 1,
                         easing: "ease-in"
                     })
@@ -1274,13 +1274,10 @@
                 const cardArea = parseFloat(cardAreaStr);
 
 
-                let roomMatch = false;
-
                 // Фильтр по комнатам
                 if (currentFilters.rooms.length > 0) {
-                    console.log('currentFilters.rooms',currentFilters.rooms)
+                    let roomMatch = false;
                     for (let filterRoom of currentFilters.rooms) {
-                        console.log('filterRoom',filterRoom, "cardRooms", cardRooms)
                         const filterRoomInt = parseInt(filterRoom, 10);
                         if (cardRooms === filterRoomInt) {
                             roomMatch = true;
@@ -1291,14 +1288,10 @@
                             break;
                         }
                     }
+                    if (!roomMatch) {
+                        show = false;
+                    }
                 }
-
-                console.log('roomMatch',roomMatch)
-
-                if (!roomMatch) {
-                    show = false;
-                }
-
 
                 // Фильтр по цене
                 if (!isNaN(cardPrice) && ((cardPrice + 100000) < currentFilters.price.min || (cardPrice - 100000) > currentFilters.price.max)) {
@@ -1419,14 +1412,18 @@
 
             // --- ШАГ 5: Обновление currentFilters (если нужно) ---
             // Обновляем диапазоны в currentFilters, но только если были найдены карточки
-            if (newMinPrice !== Infinity) currentFilters.price.min = newMinPrice;
-            if (newMaxPrice !== -Infinity) currentFilters.price.max = newMaxPrice;
-            if (newMinArea !== Infinity) currentFilters.area.min = newMinArea;
-            if (newMaxArea !== -Infinity) currentFilters.area.max = newMaxArea;
-            if (newMinPv !== Infinity) currentFilters.minPv.max = newMaxPv; // Обновляем max для одностороннего фильтра
-            if (newMaxPv !== -Infinity) currentFilters.minPv.max = newMaxPv; // Обновляем max для одностороннего фильтра
-            if (newMinEmp !== Infinity) currentFilters.minEmp.max = newMaxEmp; // Обновляем max для одностороннего фильтра
-            if (newMaxEmp !== -Infinity) currentFilters.minEmp.max = newMaxEmp; // Обновляем max для одностороннего фильтра
+
+
+            // if (newMinPrice !== Infinity) currentFilters.price.min = newMinPrice;
+            // if (newMaxPrice !== -Infinity) currentFilters.price.max = newMaxPrice;
+            // if (newMinArea !== Infinity) currentFilters.area.min = newMinArea;
+            // if (newMaxArea !== -Infinity) currentFilters.area.max = newMaxArea;
+            // if (newMinPv !== Infinity) currentFilters.minPv.max = newMaxPv; // Обновляем max для одностороннего фильтра
+            // if (newMaxPv !== -Infinity) currentFilters.minPv.max = newMaxPv; // Обновляем max для одностороннего фильтра
+            // if (newMinEmp !== Infinity) currentFilters.minEmp.max = newMaxEmp; // Обновляем max для одностороннего фильтра
+            // if (newMaxEmp !== -Infinity) currentFilters.minEmp.max = newMaxEmp; // Обновляем max для одностороннего фильтра
+
+
             // Для комнат - можно обновить currentFilters.rooms, если нужно ограничить доступные чекбоксы
             // currentFilters.rooms = Array.from(newRoomCounts); // Это изменит логику фильтрации комнат!
 
