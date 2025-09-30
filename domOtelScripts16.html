@@ -69,7 +69,7 @@
     /* !!! ДОБАВЛЕНО: Обводка вокруг ВСЕГО блока чекбоксов !!! */
     .e-checkboxes-group {
         display: flex;
-        flex-direction: column;
+        flex-direction: row-reverse;
         gap: 8px;
         /* --- Новые стили для обводки группы --- */
         //border: 1px solid #ced4da; /* Цвет рамки группы чекбоксов */
@@ -77,6 +77,7 @@
         padding: 12px; /* Внутренний отступ внутри группы */
         //background-color: #ffffff; /* Фон группы */
         /* --- Конец новых стилей --- */
+        margin-top: 70px;
     }
 
     .e-checkbox-btn {
@@ -911,6 +912,22 @@
         let roomCheckboxesHTML = '';
         const uniqueRooms = Array.from(roomCounts).filter(r => r !== 'undefined' && typeof r === 'number').sort((a, b) => a - b);
 
+        // uniqueRooms.forEach((room, index) => {
+        //     const displayRoom = room >= 4 ? `${room}+` : `${room}`;
+        //     const labelEnding = room >= 4 ? ' и более' : (room == 1 ? 'ная' : 'ные');
+        //     // Добавляем атрибут checked к первому чекбоксу
+        //     //const checkedAttr = (index === 0) ? ' checked' : '';
+        //     const checkedAttr = '';
+        //     roomCheckboxesHTML += `
+        //     <div data-v-629e44ba="" class="e-checkbox-btn">
+        //         <input data-v-629e44ba="" type="checkbox" name="rooms" id="type${room}" value="${room}"${checkedAttr}>
+        //         <label data-v-629e44ba="" for="type${room}">${displayRoom} комнат${labelEnding}</label>
+        //     </div>
+        // `;
+        // });
+
+
+
         uniqueRooms.forEach((room, index) => {
             const displayRoom = room >= 4 ? `${room}+` : `${room}`;
             const labelEnding = room >= 4 ? ' и более' : (room == 1 ? 'ная' : 'ные');
@@ -920,10 +937,14 @@
             roomCheckboxesHTML += `
             <div data-v-629e44ba="" class="e-checkbox-btn">
                 <input data-v-629e44ba="" type="checkbox" name="rooms" id="type${room}" value="${room}"${checkedAttr}>
-                <label data-v-629e44ba="" for="type${room}">${displayRoom} комнат${labelEnding}</label>
+                <label data-v-629e44ba="" for="type${room}">${displayRoom}  </label>
             </div>
         `;
+
+
         });
+
+        roomCheckboxesHTML += `<label style=" padding-top: 11px; ">Комнат: </label>`;
 
         // Обновленный filterHTML с классами для стилизации
         const filterHTML = `
@@ -1123,7 +1144,7 @@
 
 
                     cardsContainer.animate({opacity: [1, 0.2], transform: ["scale(1)", "scale(0.3)"],}, {
-                        duration: 350,
+                        duration: 250,
                         iterations: 1,
                         easing: "ease-in"
                     })
