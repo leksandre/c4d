@@ -1411,7 +1411,7 @@
                 // --- Обновление слайдера и фильтров ---
                 if (!isNaN(newValue)) {
                     // valueElement.value = newValue;
-                    associatedSlider.value = newValue;
+                    // associatedSlider.value = newValue;
                     if (boundType === 'value') {
                         associatedSlider.value = newValue;
                         console.log(`Значение слайдера ${associatedSlider.id} установлено на ${newValue} через редактирование.`);
@@ -1446,10 +1446,10 @@
                 // Уборка
                 cleanup();
 
-                setTimeout(() => {
-                    applyFilters(associatedSlider)
-                    //console.log("Таймер скрытия индикатора активности сработал.");
-                }, 200);
+                // setTimeout(() => {
+                //     applyFilters(associatedSlider)
+                //     //console.log("Таймер скрытия индикатора активности сработал.");
+                // }, 200);
             };
 
             const cancelEdit = () => {
