@@ -479,6 +479,39 @@
     /* --- Конец стилей для индикатора --- */
 
 
+    .filter-slider-labels span {
+        border-style: dashed;
+        border-width: 1px;
+        padding: 2px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+
+    .editable-value {
+        cursor: text;
+        user-select: text;
+        border-radius: 3px;
+        padding: 1px 3px;
+        transition: background-color 0.2s ease;
+        display: inline-block; /* Убедиться, что это блочный или инлайн-блок для правильного скрытия/показа */
+    }
+
+    .editable-value:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .editable-value:focus {
+        outline: none;
+        background-color: #e9f5fe;
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+    }
+
+    /* Класс для скрытия элемента */
+    .hidden-editable {
+        display: none !important;
+    }
+
 </style>
 
 
@@ -1282,6 +1315,223 @@
                 }
             }
         }
+
+
+        function makeEditable(valueElement, associatedSlider, boundType, minValue, maxValue, step = 1) {
+            if (!valueElement || !associatedSlider) {
+                console.warn("Невозможно сделать значение редактируемым: отсутствует элемент или слайдер", valueElement, associatedSlider);
+                return;
+            }
+
+            const originalText = valueElement.textContent.trim().replace(/\s/g, ''); // Убираем пробелы для парсинга
+            const originalValue = parseInt(originalText, 10);
+
+            if (isNaN(originalValue)) {
+                console.warn("Не удалось распарсить оригинальное значение для редактирования:", valueElement.textContent);
+                return;
+            }
+            // console.log("originalValue", originalValue);
+            // --- Скрыть оригинальный span ---
+            valueElement.classList.add('hidden-editable');
+            // Или valueElement.style.display = 'none';
+
+            // --- Создать input рядом с оригинальным span ---
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.value = originalValue;
+            input.min = minValue;
+            input.max = maxValue;
+            input.step = step;
+            // Копируем стили или добавляем классы
+            // input.className = valueElement.className + ' editable-value'; // Можно добавить класс
+            // Применяем стили напрямую или через класс
+            input.classList.add('editable-value'); // Добавляем класс для стилей
+            input.style.width = (valueElement.offsetWidth + 130) + 'px'; // Примерная ширина
+            input.style.boxSizing = 'border-box';
+            // Убедиться, что input вставлен рядом (например, после valueElement)
+            // Это требует аккуратной работы с DOM. Проще вставить его "перед следующим" или "после" valueElement.
+            // Предположим, что valueElement имеет родителя.
+            const parentElement = valueElement.parentNode;
+            if (parentElement) {
+                parentElement.insertBefore(input, valueElement.nextSibling); // Вставляем input ПОСЛЕ valueElement
+            } else {
+                console.error("Родительский элемент для valueElement не найден, невозможно вставить input:", valueElement);
+                valueElement.classList.remove('hidden-editable'); // Показываем обратно span в случае ошибки
+                return;
+            }
+            input.focus();
+            input.select(); // Выделяем текст
+
+            // --- Функции для сохранения и отмены ---
+            const cleanup = () => {
+                console.log("cleanup try");
+                if (input) {
+                    if (input.parentNode) {
+                        let p1 = input.parentNode;
+                        if (p1)
+                            if (p1.contains(input)) { // Дополнительная проверка на всякий случай
+                                try {
+                                    p1.removeChild(input);
+                                } catch (e) {
+                                    console.error("Ошибка при p1.removeChild(input); на span в cancelEdit:", e);
+                                    // Возможно, элемент уже был заменён другим обработчиком
+                                }
+
+                                try {
+                                    //input.remove();
+                                } catch (e) {
+                                    console.error("Ошибка при  input.remove(); на span в cancelEdit:", e);
+                                    // Возможно, элемент уже был заменён другим обработчиком
+                                }
+
+                            } else {
+                                console.warn("Родительский элемент input отсутствует при попытке cancelEdit.");
+                            }
+                    }
+
+                } else {
+                    console.warn("Input уже был удалён при cleanup.");
+                }
+                // Показать оригинальный span
+                valueElement.classList.remove('hidden-editable');
+                // Или valueElement.style.display = '';
+            };
+
+            const saveValue = () => {
+                let newValue = parseInt(input.value, 10);
+                if (isNaN(newValue)) {
+                    newValue = originalValue; // Восстанавливаем старое значение при ошибке парсинга
+                    console.warn("Введено некорректное значение, восстанавливаем оригинальное:", originalValue);
+                } else {
+                    // Ограничиваем диапазоном
+                    newValue = Math.max(minValue, Math.min(maxValue, newValue));
+                    console.log(`Новое значение ${input.value} ограничено диапазоном [${minValue}, ${maxValue}] -> ${newValue}`);
+                }
+
+                // --- Обновление слайдера и фильтров ---
+                if (!isNaN(newValue)) {
+                    // valueElement.value = newValue;
+                    associatedSlider.value = newValue;
+                    if (boundType === 'value') {
+                        associatedSlider.value = newValue;
+                        console.log(`Значение слайдера ${associatedSlider.id} установлено на ${newValue} через редактирование.`);
+                        // Триггерим событие 'change' или 'input'
+                        const event = new Event('change'); // Или 'input'
+                        associatedSlider.dispatchEvent(event);
+                    } else if (boundType === 'min') {
+                        associatedSlider.min = newValue;
+                        if (parseInt(associatedSlider.value, 10) < newValue) {
+                            associatedSlider.value = newValue;
+                            const event = new Event('change');
+                            associatedSlider.dispatchEvent(event);
+                            console.log(`Значение слайдера ${associatedSlider.id} скорректировано до нового min ${newValue}.`);
+                        }
+                        console.log(`Атрибут min слайдера ${associatedSlider.id} изменен на ${newValue}.`);
+                    } else if (boundType === 'max') {
+                        associatedSlider.max = newValue;
+                        if (parseInt(associatedSlider.value, 10) > newValue) {
+                            associatedSlider.value = newValue;
+                            const event = new Event('change');
+                            associatedSlider.dispatchEvent(event);
+                            console.log(`Значение слайдера ${associatedSlider.id} скорректировано до нового max ${newValue}.`);
+                        }
+                        console.log(`Атрибут max слайдера ${associatedSlider.id} изменен на ${newValue}.`);
+                    }
+                    // Обновляем текст в оригинальном span
+                    valueElement.textContent = newValue.toLocaleString('ru-RU');
+
+                }
+                // --- Конец обновления ---
+
+                // Уборка
+                cleanup();
+
+                setTimeout(() => {
+                    applyFilters(associatedSlider)
+                    //console.log("Таймер скрытия индикатора активности сработал.");
+                }, 200);
+            };
+
+            const cancelEdit = () => {
+                console.log("Редактирование значения отменено пользователем.");
+                // Просто убираем input и показываем span без изменений
+                cleanup();
+            };
+            // --- Конец функций сохранения/отмены ---
+
+            // --- Назначение обработчиков для input ---
+            const onBlur = () => {
+                console.log("Input потерял фокус, сохраняем значение.");
+                saveValue(); // Сохранить при потере фокуса
+            };
+            const onKeyDown = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    console.log("Нажат Enter в input, сохраняем значение.");
+                    saveValue(); // Сохранить по Enter
+                }
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    console.log("Нажат Escape в input, отменяем редактирование.");
+                    cancelEdit(); // Отменить по Esc
+                }
+            };
+
+            input.addEventListener('blur', onBlur);
+            input.addEventListener('keydown', onKeyDown);
+
+            // --- Переопределение функций очистки для removeEventListener ---
+            // Сохраняем ссылки на функции, чтобы их можно было удалить
+            input._cleanupHandlers = () => {
+                input.removeEventListener('blur', onBlur);
+                input.removeEventListener('keydown', onKeyDown);
+            };
+            // --- Конец назначения обработчиков ---
+        }
+
+        function initiateEdit(e) {
+            e.preventDefault();
+            const element = e.target;
+            const id = element.id;
+            console.log(`Начало редактирования для элемента с ID: ${id}`);
+
+            // Определяем, какой слайдер и атрибут связан с этим элементом
+            switch (id) {
+                // --- Цена ---
+                case 'price-min-value':
+                    makeEditable(element, priceSliderMin, 'value', minPrice, maxPrice, 100000);
+                    break;
+                case 'price-max-value':
+                    makeEditable(element, priceSliderMax, 'value', minPrice, maxPrice, 100000);
+                    break;
+                // --- Площадь ---
+                case 'area-min-value':
+                    makeEditable(element, areaSliderMin, 'value', Math.floor(minArea), Math.ceil(maxArea), 1);
+                    break;
+                case 'area-max-value':
+                    makeEditable(element, areaSliderMax, 'value', Math.floor(minArea), Math.ceil(maxArea), 1);
+                    break;
+                // --- Первоначальный взнос (Max) ---
+                case 'min-pv-max-value':
+                    makeEditable(element, minPvSliderMax, 'value', 0, minPvMax, 100000);
+                    break;
+                // --- Ежемесячный платеж (Max) ---
+                case 'min-emp-max-value':
+                    makeEditable(element, minEmpSliderMax, 'value', 0, minEmpMax, 1000); // Шаг 1000 для ЕП?
+                    break;
+                default:
+                    console.warn(`Неизвестный ID элемента для редактирования: ${id}`);
+            }
+        }
+
+
+        if (priceMinValue) priceMinValue.addEventListener('click', initiateEdit);
+        if (priceMaxValue) priceMaxValue.addEventListener('click', initiateEdit);
+        if (areaMinValue) areaMinValue.addEventListener('click', initiateEdit);
+        if (areaMaxValue) areaMaxValue.addEventListener('click', initiateEdit);
+        if (minPvMaxValue) minPvMaxValue.addEventListener('click', initiateEdit);
+        if (minEmpMaxValue) minEmpMaxValue.addEventListener('click', initiateEdit);
+
 
         // --- Логика фильтрации ---
         // --- Логика фильтрации ---
