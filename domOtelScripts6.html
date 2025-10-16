@@ -354,13 +354,25 @@
                                 // if (phone1.length == 0) console.log('empty phone')
                                 // if (code1.length == 0) console.log('empty code')
 
-                                if (name1.length == 0) return
-                                if (phone1.length == 0) return
+                                if (name1.length == 0) {
+                                    alert("не отправлено, обязательно заполните имя");
+                                    window.location.reload();
+                                    window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/';
+                                    window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/');
+                                    return false
+                                }
+                                if (phone1.length == 0) {
+                                    alert("не отправлено, обязательно заполните телефон");
+                                    window.location.reload();
+                                    window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/';
+                                    window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/');
+                                    return false
+                                }
                                 if (code1.length == 0) {
                                     alert("не отправлено, обязательно ответьте на вопрос");
                                     window.location.reload();
-                                    window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/#zakazat-zvonok';
-                                    window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/#zakazat-zvonok');
+                                    window.location.href = 'https://xn--d1acscjb2a6f.xn--p1ai/';
+                                    window.location.replace('https://xn--d1acscjb2a6f.xn--p1ai/');
                                     return false
                                 }
 
