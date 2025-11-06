@@ -515,400 +515,6 @@
 </style>
 
 
-<style>
-    /* --- Обновлённые стили для фильтров v2des (без слайдеров) --- */
-
-    /* - Основной контейнер фильтров v2des - */
-    .filter-container_v2des {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: flex-start !important;
-        justify-content: center !important;
-        width: 100%;
-        padding: 20px 15px !important;
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        box-sizing: border-box;
-        gap: 20px;
-    }
-
-    /* - Группа фильтров v2des - */
-    .filter-group_v2des {
-        display: flex !important;
-        flex-direction: column !important;
-        flex: 1 1 auto !important;
-        min-width: 200px !important;
-        padding: 0 10px !important;
-        box-sizing: border-box !important;
-        margin: 0 !important;
-    }
-
-    /* - Заголовок группы фильтров v2des - */
-    .filter-group_v2des .text-body-2_v2des.has-opacity-65_v2des.red-color-domOtel_v2des,
-    .text-body-2_v2des.has-opacity-65_v2des.red-color-domOtel_v2des {
-
-        color: #000 !important;
-
-        opacity: 1 !important;
-        margin-bottom: 8px !important;
-        text-align: left !important;
-
-        font-family: MultiKelnik, ptRootUi, sans-serif;
-        font-style: normal;
-        font-size: 16px !important;
-        font-weight: 400 !important;
-    }
-
-    /* - Контейнер для значений над слайдерами (будет скрыт) - */
-    .filter-slider-labels_v2des {
-        display: none !important; /* Скрываем, так как значения теперь в input type="text" */
-    }
-
-    /* - Контейнер для самих слайдеров (теперь это контейнер для текстовых полей) - */
-    .filter-slider-container_v2des, .filter-slider-container_v2des_2input {
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
-        width: 100% !important;
-        border: 1px solid #ddd !important;
-        border-radius: 8px !important;
-        background: #fff !important;
-        position: relative !important;
-        justify-content: space-between !important;
-        //padding: 10px !important;
-    }
-
-    .filter-slider-container_v2des_2input {
-        /* Размеры */
-        width: 293px !important; /* Ширина */
-        height: 50px !important; /* Высота */
-    }
-
-    .filter-slider-container_v2des {
-        /* Размеры */
-        width: 257px !important; /* Ширина */
-        height: 50px !important; /* Высота */
-    }
-
-    /* - Текстовые поля ввода - */
-    /* --- Изменённые стили для текстовых полей v2des --- */
-    .filter-input-text_v2des {
-        width: 141px;
-        text-align: left !important;
-        padding: 0px 10px;
-        margin: 0px;
-
-
-        /* Скругление углов */
-        border-radius: 6px !important;
-
-        /* Граница */
-        //border: 1px solid #000000 !important; /* Черная рамка */
-
-        /* Внутренние отступы (для центрирования) */
-        //padding: 0 12px !important; /* Горизонтальные отступы, можно подобрать */
-        /* Вертикальное центрирование достигается за счёт высоты и line-height */
-        line-height: 50px !important; /* Равно высоте, для вертикального центрирования */
-        //text-align: center !important; /* Горизонтальное центрирование */
-
-
-        color: #000 !important;
-
-        /* Остальные стили */
-        font-family: MultiKelnik, ptRootUi, sans-serif;
-        font-style: normal;
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        outline: none !important;
-        background-color: transparent !important;
-        box-sizing: border-box !important;
-        cursor: pointer; /* Для удобства, так как это поле ввода */
-    }
-
-    /* - Имитация slider-line (линия под текстовым полем) - */
-    //.filter-slider-container_v2des::after {
-    //
-    //    content: '';
-    //    position: absolute !important;
-    //    bottom: -4px !important;
-    //    left: 10px !important;
-    //    right: 10px !important;
-    //    height: 2px !important;
-    //    background: #009688 !important;
-    //    border-radius: 1px !important;
-    //    z-index: 1 !important;
-    //}
-
-    /* --- Стили для чекбоксов комнат v2des --- */
-    .e-checkboxes-group_v2des {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 10px !important;
-        justify-content: flex-start !important;
-        padding: 8px !important;
-        border: 1px solid #ddd !important;
-        border-radius: 8px !important;
-        background-color: #f7f7f7 !important;
-        width: 100% !important;
-    }
-
-    .e-checkbox-btn_v2des {
-        display: flex !important;
-        align-items: center !important;
-        margin-bottom: 0 !important;
-        flex: 1 1 auto !important;
-        min-width: calc(25% - 10px) !important;
-    }
-
-    .e-checkbox-btn_v2des label {
-        font-size: 14px !important;
-        cursor: pointer !important;
-        user-select: none !important;
-        padding: 6px 12px !important;
-        border-radius: 6px !important;
-        background-color: #ffffff !important;
-        color: #333 !important;
-        transition: background 0.2s !important;
-        width: 100% !important;
-        text-align: center !important;
-        box-sizing: border-box !important;
-        font-weight: normal !important;
-    }
-
-    .e-checkbox-btn_v2des label:hover {
-        background-color: #e0e0e0 !important;
-    }
-
-    .e-checkbox-btn_v2des input[type="checkbox"]:checked + label {
-        background: #009688 !important;
-        color: white !important;
-        font-weight: 500 !important;
-    }
-
-    .e-checkbox-btn_v2des input[type="checkbox"] {
-        display: none !important;
-    }
-
-    /* --- Стили для кнопки "очистить" v2des --- */
-    .filter-clear-link_v2des {
-        align-self: flex-end !important;
-        margin-top: 20px !important;
-        padding: 10px 20px !important;
-        border: none !important;
-        border-radius: 20px !important;
-        color: #ffffff !important;
-        background: #009688 !important;
-        text-decoration: none !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
-        cursor: pointer !important;
-        transition: background 0.2s !important;
-        white-space: nowrap !important;
-        width: fit-content !important;
-    }
-
-    .filter-clear-link_v2des:hover,
-    .filter-clear-link_v2des:focus {
-        background: #007a6b !important;
-        color: #ffffff !important;
-        text-decoration: none !important;
-        outline: 2px solid #0d6efd !important;
-        outline-offset: 2px !important;
-    }
-
-    /* --- Стили для счётчика результатов v2des --- */
-    #shown-count_v2des, .filter-results-info_v2des {
-        text-align: center !important;
-        color: #009688 !important;
-        font-size: 14px !important;
-        margin-top: 20px !important;
-        font-weight: 500 !important;
-        width: 100% !important;
-        display: block !important;
-    }
-
-    /* --- Адаптивность v2des --- */
-    @media (max-width: 768px) {
-        .filter-container_v2des {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            padding: 15px 10px !important;
-            gap: 20px !important;
-        }
-
-        .filter-group_v2des {
-            min-width: auto !important;
-            padding: 0 5px !important;
-            width: 100% !important;
-        }
-
-        .filter-group_v2des .filter-title_v2des,
-        .filter-slider-labels_v2des,
-        .filter-clear-link_v2des {
-            font-size: 0.9rem !important;
-            margin-bottom: 10px !important;
-        }
-
-        .e-checkboxes-group_v2des {
-            flex-direction: row !important;
-            flex-wrap: wrap !important;
-            gap: 8px !important;
-            padding: 10px !important;
-        }
-
-        .e-checkbox-btn_v2des {
-            flex: 1 1 calc(50% - 8px) !important;
-            min-width: calc(50% - 8px) !important;
-            max-width: none !important;
-        }
-
-        .e-checkbox-btn_v2des label {
-            font-size: 0.8125rem !important;
-            padding: 6px 10px !important;
-        }
-
-        .filter-slider-labels_v2des {
-            font-size: 0.8125rem !important;
-            margin-bottom: 8px !important;
-        }
-
-        .filter-slider-container_v2des, .filter-slider-container_v2des_2input {
-            gap: 10px !important;
-        }
-
-        .filter-input-text_v2des {
-            height: 28px !important;
-            font-size: 14px !important;
-        }
-
-        .filter-slider_v2des::-webkit-slider-thumb {
-            width: 16px !important;
-            height: 16px !important;
-        }
-
-        .filter-slider_v2des::-moz-range-thumb {
-            width: 16px !important;
-            height: 16px !important;
-        }
-
-        .filter-clear-link_v2des {
-            font-size: 0.8125rem !important;
-            padding: 8px 16px !important;
-            align-self: center !important;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .filter-container_v2des {
-            padding: 12px 8px !important;
-            gap: 18px !important;
-        }
-
-        .e-checkboxes-group_v2des {
-            gap: 6px !important;
-            padding: 8px !important;
-        }
-
-        .e-checkbox-btn_v2des {
-            flex: 1 1 100% !important;
-            min-width: 100% !important;
-        }
-
-        .e-checkbox-btn_v2des label {
-            font-size: 0.75rem !important;
-            padding: 5px 8px !important;
-        }
-
-        .filter-slider-labels_v2des {
-            font-size: 0.75rem !important;
-        }
-
-        .filter-slider-container_v2des input[type="text"] {
-            width: 80px !important;
-            font-size: 0.75rem !important;
-            padding: 5px 6px !important;
-        }
-
-        .filter-slider-container_v2des_2input input[type="text"] {
-            width: 80px !important;
-            font-size: 0.75rem !important;
-            padding: 5px 6px !important;
-        }
-
-        .filter-clear-link_v2des {
-            font-size: 0.75rem !important;
-            padding: 7px 14px !important;
-        }
-    }
-
-    /* --- Конец адаптации v2des --- */
-
-    /* --- Устаревшие классы v2des (для совместимости) --- */
-    .d-flex_v2des {
-        display: flex !important;
-    }
-
-    .align-center_v2des {
-        align-items: center !important;
-    }
-
-    .flex-wrap_v2des {
-        flex-wrap: wrap !important;
-    }
-
-    .ml-10_v2des {
-        margin-left: 10px !important;
-    }
-
-    .mr-20_v2des {
-        margin-right: 20px !important;
-    }
-
-    .pr-10_v2des {
-        padding-right: 10px !important;
-    }
-
-    .pb-8_v2des {
-        padding-bottom: 8px !important;
-    }
-
-    .mr-10_v2des {
-        margin-right: 10px !important;
-    }
-
-    .py-2_v2des {
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-    }
-
-    .mb-2_v2des {
-        margin-bottom: 2px !important;
-    }
-
-    .text-body-2_v2des {
-        font-size: 0.875rem !important;
-        line-height: 1.25rem !important;
-    }
-
-    .has-opacity-65_v2des {
-        opacity: 0.65 !important;
-    }
-
-    .red-color-domOtel_v2des {
-        color: #000000 !important;
-    }
-
-    .align-center-inner_v2des {
-        align-items: flex-start !important;
-    }
-
-    /* --- Конец устаревших классов v2des --- */
-
-</style>
-
-
 <script>
 
 
@@ -1495,9 +1101,9 @@
 
 
 <div data-v-629e44ba="" class="m50">
-        <!-- ФИЛЬТР: Первоначальный взнос  ₽ -->
+        <!-- ФИЛЬТР: Первоначальный взнос -->
         <div data-v-629e44ba="" class="pb-8 mr-10 filter-group">
-          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Первоначальный взнос, руб</div>
+          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Первоначальный взнос, ₽</div>
           <!-- Контейнер для значений НАД слайдерами -->
           <div class="filter-slider-labels">
             <!-- Для одностороннего фильтра показываем Min и Max значения диапазона -->
@@ -1516,7 +1122,7 @@
 
         <!-- ФИЛЬТР: Ежемесячный платеж -->
         <div data-v-629e44ba="" class="pb-8 mr-10 filter-group">
-          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Ежемесячный платеж, руб</div>
+          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Ежемесячный платеж, ₽</div>
           <!-- Контейнер для значений НАД слайдерами -->
           <div class="filter-slider-labels">
             <!-- Для одностороннего фильтра показываем Min и Max значения диапазона -->
@@ -1541,7 +1147,7 @@
   <div data-v-629e44ba="" class="m50">
          <!-- ФИЛЬТР: Стоимость -->
         <div data-v-629e44ba="" class="mr-20 pr-10 pb-8 filter-group">
-          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Стоимость, руб</div>
+          <div data-v-629e44ba="" class="text-body-2 has-opacity-65 red-color-domOtel">Стоимость, ₽</div>
           <!-- Контейнер для значений НАД слайдерами -->
           <div class="filter-slider-labels">
             <span id="price-min-value">${minPrice.toLocaleString('ru-RU')}</span>
@@ -1589,104 +1195,12 @@
     `;
 
 
-// --- Новая версия HTML для фильтров v2des (без слайдеров) ---
-        const filterHTML_v2des = `
-  <div data-v-629e44ba="" class="d-flex_v2des align-center_v2des flex-wrap_v2des align-center-inner_v2des filter-container_v2des" style="justify-content: center; width: 100%; padding: 22px; background-color: #f9f9f9; border-bottom: 1px solid #eee; box-sizing: border-box;">
-
-    <!-- ФИЛЬТР: Комнатность -->
-    <div data-v-629e44ba="" class="ml-10_v2des filter-group_v2des">
-      <div data-v-629e44ba="" class="text-body-2_v2des has-opacity-65_v2des mb-2_v2des red-color-domOtel_v2des">Кол-во комнат</div>
-      <div data-v-629e44ba="" class="e-checkboxes-group_v2des py-2_v2des">
-        ${roomCheckboxesHTML}
-      </div>
-    </div>
-
-    <!-- ФИЛЬТР: Первоначальный взнос -->
-    <div data-v-629e44ba="" class="mr-20_v2des pr-10_v2des pb-8_v2des filter-group_v2des">
-      <div data-v-629e44ba="" class="text-body-2_v2des has-opacity-65_v2des red-color-domOtel_v2des">Первоначальный взнос, ₽</div>
-      <!-- Контейнер для значений НАД слайдерами (будет скрыт или заменён) -->
-      <div class="filter-slider-labels_v2des">
-        <span id="min-pv-max-value_v2des">${minPvMax.toLocaleString('ru-RU')}</span>
-      </div>
-      <!-- Контейнер для самих слайдеров (теперь это input type="text") -->
-      <div class="filter-slider-container_v2des">
-        <input type="text" id="min-pv-input-max_v2des" value="${minPvMax.toLocaleString('ru-RU')}" class="filter-input-text_v2des">
-      </div>
-    </div>
-
-    <!-- ФИЛЬТР: Ежемесячный платеж -->
-    <div data-v-629e44ba="" class="pb-8_v2des mr-10_v2des filter-group_v2des">
-      <div data-v-629e44ba="" class="text-body-2_v2des has-opacity-65_v2des red-color-domOtel_v2des">Ежемесячный платеж, ₽</div>
-      <!-- Контейнер для значений НАД слайдерами (будет скрыт или заменён) -->
-      <div class="filter-slider-labels_v2des">
-        <span id="min-emp-max-value_v2des">${minEmpMax.toLocaleString('ru-RU')}</span>
-      </div>
-      <!-- Контейнер для самих слайдеров (теперь это input type="text") -->
-      <div class="filter-slider-container_v2des">
-        <input type="text" id="min-emp-input-max_v2des" value="${minEmpMax.toLocaleString('ru-RU')}" class="filter-input-text_v2des">
-      </div>
-    </div>
-
-    <!-- ФИЛЬТР: Стоимость -->
-    <div data-v-629e44ba="" class="mr-20_v2des pr-10_v2des pb-8_v2des filter-group_v2des">
-      <div data-v-629e44ba="" class="text-body-2_v2des has-opacity-65_v2des red-color-domOtel_v2des">Стоимость, ₽</div>
-      <!-- Контейнер для значений НАД слайдерами (будет скрыт или заменён) -->
-      <div class="filter-slider-labels_v2des">
-        <span id="price-min-value_v2des">${minPrice.toLocaleString('ru-RU')}</span>
-        <span id="price-max-value_v2des">${maxPrice.toLocaleString('ru-RU')}</span>
-      </div>
-      <!-- Контейнер для самих слайдеров (теперь это два input type="text") -->
-      <div class="filter-slider-container_v2des_2input">
-        <input type="text" id="price-input-min_v2des" value="${minPrice.toLocaleString('ru-RU')}" class="filter-input-text_v2des">
-        <input type="text" id="price-input-max_v2des" value="${maxPrice.toLocaleString('ru-RU')}" class="filter-input-text_v2des">
-      </div>
-    </div>
-
-    <!-- ФИЛЬТР: Площадь -->
-    <div data-v-629e44ba="" class="pb-8_v2des mr-10_v2des filter-group_v2des">
-      <div data-v-629e44ba="" class="text-body-2_v2des has-opacity-65_v2des red-color-domOtel_v2des">Площадь, м²</div>
-      <!-- Контейнер для значений НАД слайдерами (будет скрыт или заменён) -->
-      <div class="filter-slider-labels_v2des">
-        <span id="area-min-value_v2des">${Math.floor(minArea)}</span>
-        <span id="area-max-value_v2des">${Math.ceil(maxArea)}</span>
-      </div>
-      <!-- Контейнер для самих слайдеров (теперь это два input type="text") -->
-      <div class="filter-slider-container_v2des_2input">
-        <input type="text" id="area-input-min_v2des" value="${Math.floor(minArea)}" class="filter-input-text_v2des">
-        <input type="text" id="area-input-max_v2des" value="${Math.ceil(maxArea)}" class="filter-input-text_v2des">
-      </div>
-    </div>
-
-    <!-- Счетчик показанных планировок (если нужен) -->
-    <div data-v-629e44ba="" class="ml-10_v2des text-body-2_v2des has-opacity-65_v2des" id="shown-count_v2des" style="align-self: flex-end; margin-bottom: 8px;">
-        Показано <span id="shown-count-value_v2des">0</span> планировок
-    </div>
-
-    <a data-v-629e44ba="" href="#" id="clear-filters_v2des" class="text-body-2_v2des red-color-domOtel_v2des filter-clear-link_v2des" style="align-self: flex-end; margin-bottom: 8px; white-space: nowrap;">очистить</a>
-  </div>
-`;
-// --- Конец новой версии HTML ---
-
-
         // 5. Найти элемент, ПОСЛЕ которого нужно вставить фильтры
         const targetElement = document.querySelector('.flats-block__content');
 
         if (targetElement) {
             // 6. Вставить фильтры ПОСЛЕ элемента .flats-block__content
-            //targetElement.insertAdjacentHTML('afterend', filterHTML);
-
-
-            if (window.location.href.includes('a_123456')) {
-                // Вставляем новую версию фильтров
-                targetElement.insertAdjacentHTML('afterend', filterHTML_v2des);
-                // console.log("Фильтры v2des вставлены после .flats-block__content");
-            } else {
-                // Вставляем обычную версию фильтров
-                targetElement.insertAdjacentHTML('afterend', filterHTML);
-                // console.log("Обычные фильтры вставлены после .flats-block__content");
-            }
-
-
+            targetElement.insertAdjacentHTML('afterend', filterHTML);
             //console.log("Фильтры вставлены после .flats-block__content");
         } else {
             console.error('Элемент .flats-block__content не найден. Фильтры не вставлены.');
@@ -1717,30 +1231,27 @@
 //console.log("Контейнер фильтров найден:", filterContainer);
 
         const roomCheckboxes = filterContainer.querySelectorAll('input[name="rooms"]');
-        let _1postfix = '';
+        const priceSliderMin = filterContainer.querySelector('#price-slider-min');
+        const priceSliderMax = filterContainer.querySelector('#price-slider-max');
+        const priceMinValue = filterContainer.querySelector('#price-min-value');
+        const priceMaxValue = filterContainer.querySelector('#price-max-value');
+        const areaSliderMin = filterContainer.querySelector('#area-slider-min');
+        const areaSliderMax = filterContainer.querySelector('#area-slider-max');
+        const areaMinValue = filterContainer.querySelector('#area-min-value');
+        const areaMaxValue = filterContainer.querySelector('#area-max-value');
+        const clearButton = filterContainer.querySelector('#clear-filters');
 
-        if (window.location.href.includes('a_123456')) {
-            _1postfix = '_v2des';
-        }
+        const minPvSliderMin = filterContainer.querySelector('#min-pv-slider-min');
+        const minPvSliderMax = filterContainer.querySelector('#min-pv-slider-max');
+        const minPvMinValue = filterContainer.querySelector('#min-pv-min-value');
+        const minPvMaxValue = filterContainer.querySelector('#min-pv-max-value');
 
-        const priceSliderMin = filterContainer.querySelector('#price-slider-min' + _1postfix);
-        const priceSliderMax = filterContainer.querySelector('#price-slider-max' + _1postfix);
-        const priceMinValue = filterContainer.querySelector('#price-min-value' + _1postfix);
-        const priceMaxValue = filterContainer.querySelector('#price-max-value' + _1postfix);
-        const areaSliderMin = filterContainer.querySelector('#area-slider-min' + _1postfix);
-        const areaSliderMax = filterContainer.querySelector('#area-slider-max' + _1postfix);
-        const areaMinValue = filterContainer.querySelector('#area-min-value' + _1postfix);
-        const areaMaxValue = filterContainer.querySelector('#area-max-value' + _1postfix);
-        const clearButton = filterContainer.querySelector('#clear-filters' + _1postfix);
-        const minPvSliderMin = filterContainer.querySelector('#min-pv-slider-min' + _1postfix);
-        const minPvSliderMax = filterContainer.querySelector('#min-pv-slider-max' + _1postfix);
-        const minPvMinValue = filterContainer.querySelector('#min-pv-min-value' + _1postfix);
-        const minPvMaxValue = filterContainer.querySelector('#min-pv-max-value' + _1postfix);
-        const minEmpSliderMin = filterContainer.querySelector('#min-emp-slider-min' + _1postfix);
-        const minEmpSliderMax = filterContainer.querySelector('#min-emp-slider-max' + _1postfix);
-        const minEmpMinValue = filterContainer.querySelector('#min-emp-min-value' + _1postfix);
-        const minEmpMaxValue = filterContainer.querySelector('#min-emp-max-value' + _1postfix);
-        const activitySpinner = filterContainer.querySelector('#filter-activity-spinner' + _1postfix);
+        const minEmpSliderMin = filterContainer.querySelector('#min-emp-slider-min');
+        const minEmpSliderMax = filterContainer.querySelector('#min-emp-slider-max');
+        const minEmpMinValue = filterContainer.querySelector('#min-emp-min-value');
+        const minEmpMaxValue = filterContainer.querySelector('#min-emp-max-value');
+
+        const activitySpinner = filterContainer.querySelector('#filter-activity-spinner');
 
 
         // --- Функция для показа/скрытия индикатора активности ---
@@ -2124,6 +1635,7 @@
                 }
 
 
+
                 let cardMinPv = cardMinPvStr !== 'N/A' ? parseFloat(cardMinPvStr) : NaN;
                 let cardMinEmp = cardMinEmpStr !== 'N/A' ? parseFloat(cardMinEmpStr) : NaN;
                 if (source !== 'roomCheckboxes') { // !!!!!! если  щелкнули кол-комнат
@@ -2275,6 +1787,7 @@
 
 
             // --- ШАГ 6: Обновление UI слайдеров и меток (если нужно) ---
+
 
 
             // --- Конец ШАГА 6 ---
