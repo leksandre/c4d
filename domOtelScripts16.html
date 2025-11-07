@@ -518,6 +518,10 @@
 <style>
     /* --- Обновлённые стили для фильтров v2des (без слайдеров) --- */
 
+    :root {
+        --height_v2des: 36px;
+    }
+
     /* - Основной контейнер фильтров v2des - */
     .filter-container_v2des {
         display: flex !important;
@@ -537,7 +541,7 @@
     .filter-group_v2des {
         display: flex !important;
         flex-direction: column !important;
-        flex: 1 1 auto !important;
+        //flex: 1 1 auto !important;
         min-width: 200px !important;
         padding: 0 10px !important;
         box-sizing: border-box !important;
@@ -582,13 +586,13 @@
     .filter-slider-container_v2des_2input {
         /* Размеры */
         width: 293px !important; /* Ширина */
-        height: 50px !important; /* Высота */
+        height: var(--height_v2des) !important; /* Высота */
     }
 
     .filter-slider-container_v2des {
         /* Размеры */
         width: 257px !important; /* Ширина */
-        height: 50px !important; /* Высота */
+        height: var(--height_v2des) !important; /* Высота */
     }
 
     /* - Текстовые поля ввода - */
@@ -609,7 +613,7 @@
         /* Внутренние отступы (для центрирования) */
         //padding: 0 12px !important; /* Горизонтальные отступы, можно подобрать */
         /* Вертикальное центрирование достигается за счёт высоты и line-height */
-        line-height: 50px !important; /* Равно высоте, для вертикального центрирования */
+        line-height: var(--height_v2des) !important; /* Равно высоте, для вертикального центрирования */
         //text-align: center !important; /* Горизонтальное центрирование */
 
 
@@ -650,8 +654,38 @@
         padding: 8px !important;
         border: 1px solid #ddd !important;
         border-radius: 8px !important;
-        background-color: #f7f7f7 !important;
-        width: 100% !important;
+        //background-color: #f7f7f7 !important;
+        background-color: #fff !important;
+        //width: 100% !important;
+        width: 219px !important;
+    }
+
+    .e-checkboxes-group_v2des .e-checkbox-btn {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .e-checkboxes-group_v2des .e-checkbox-btn input[type="checkbox"] {
+        margin: 0px;
+        accent-color: #219794;
+        cursor: pointer;
+        height: var(--height_v2des);
+    }
+
+    .e-checkboxes-group_v2des .e-checkbox-btn label {
+        font-size: 0.875rem;
+        cursor: pointer;
+        user-select: none;
+        padding: 6px 12px;
+        border: none;
+        //border: 1px solid #ced4da;
+        //border-radius: 4px;
+        background-color: #ffffff;
+        transition: all 0.2s ease-in-out;
+        flex: 1;
+        text-align: center;
     }
 
     .e-checkbox-btn_v2des {
@@ -1439,6 +1473,9 @@
             //const checkedAttr = (index === 0) ? ' checked' : '';
             if (room == 1) {
                 displayRoom = "Студии и 1К";
+                if (window.location.href.includes('a_123456')) {
+                    displayRoom = "С и 1";
+                }
             }
             const checkedAttr = '';
             roomCheckboxesHTML += `
