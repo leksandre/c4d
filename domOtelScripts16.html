@@ -557,9 +557,9 @@
         flex-direction: column !important;
         //flex: 1 1 auto !important;
         min-width: 200px !important;
-        padding: 0 10px !important;
+        padding: 0px !important;
         box-sizing: border-box !important;
-        margin: 0 !important;
+        margin: 3px !important;
     }
 
     /* - Заголовок группы фильтров v2des - */
@@ -1033,11 +1033,11 @@
     }
 
     .mr-20_v2des {
-        margin-right: 20px !important;
+        //margin-right: 20px !important;
     }
 
     .pr-10_v2des {
-        padding-right: 10px !important;
+        //padding-right: 10px !important;
     }
 
     .pb-8_v2des {
@@ -1080,10 +1080,13 @@
 
 
 <script>
-    // window.v2des = window.location.href.includes('a_123456');
+    //
     const randomNum = Math.floor(Math.random() * 5);
+    window.v2des = (randomNum !== 0);
 
-    window.v2des = (randomNum === 0);
+
+    window.v2des = window.location.href.includes('a_123456');
+
 
     // 1. Оборачиваем код в функцию
     function clearCardStylesPeriodically() {
