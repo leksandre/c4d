@@ -711,7 +711,7 @@
         align-items: center !important;
         margin-bottom: 0 !important;
         flex: 1 1 auto !important;
-        min-width: calc(25% - 10px) !important;
+        //min-width: calc(25% - 10px) !important;
     }
 
     .e-checkbox-btn_v2des label {
@@ -734,9 +734,15 @@
     }
 
     .e-checkbox-btn_v2des input[type="checkbox"]:checked + label {
-        background: #009688 !important;
-        color: white !important;
-        font-weight: 500 !important;
+        //background: #009688 !important;
+        //color: white !important;
+        //font-weight: 500 !important;
+        color: #219794 !important;
+    }
+
+
+    .e-checkbox-btn_v2des input[type="checkbox"]:checked div {
+        //background: #009688 !important;
     }
 
     .e-checkbox-btn_v2des input[type="checkbox"] {
@@ -796,7 +802,6 @@
     .filter-slider_v2des {
 
 
-
         position: absolute;
 
         margin: 0px 8px;
@@ -839,7 +844,7 @@
         box-shadow: 0 1px 1px #000 inset; /* Тень трека */
     }
 
-    .filter-sliderHided_v2des{
+    .filter-sliderHided_v2des {
         margin-left: 16px;
     }
 
@@ -860,6 +865,7 @@
         opacity: 0.999;
     }
 
+
     .filter-slider_v2des::-webkit-slider-thumb {
         -webkit-appearance: none; /* Обязательно для кастомизации */
         appearance: none;
@@ -872,6 +878,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset; /* Тень */
         opacity: 0.999; /* Прозрачность */
         margin-top: -3px;
+        z-index: 99;
     }
 
     /* Для Firefox */
@@ -885,6 +892,53 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
         opacity: 0.999;
         margin-top: -3px;
+        z-index: 99;
+    }
+
+
+    /* Для Webkit */
+    .filter-slider_v2des::-webkit-slider-thumb:hover,
+    .filter-slider_v2des::-webkit-slider-thumb:focus {
+        /* width: 14px;  */ /* УБРАНО: НЕЛЬЗЯ уменьшать при hover/focus */
+        /* height: 14px; */ /* УБРАНО */
+        background-color: #1a7a77; /* Пример: темнее при наведении/фокусе */
+        box-shadow: 0 0 0 5px rgba(13, 110, 253, 0.25); /* Пример: кольцо фокуса */
+        opacity: 1; /* Полностью непрозрачный при активности */
+    }
+
+    /* Для Firefox */
+    .filter-slider_v2des::-moz-range-thumb:hover,
+    .filter-slider_v2des::-moz-range-thumb:focus {
+        /* width: 14px;  */ /* УБРАНО */
+        /* height: 14px; */ /* УБРАНО */
+        background-color: #1a7a77; /* Пример: темнее при наведении/фокусе */
+        box-shadow: 0 0 0 5px rgba(13, 110, 253, 0.25); /* Пример: кольцо фокуса */
+        opacity: 1; /* Полностью непрозрачный при активности */
+    }
+
+
+    /* Для Webkit */
+    .filter-slider_v2des::-webkit-slider-thumb {
+        /* ... (ваш базовый стиль, например, width: 14px; height: 14px;) ... */
+        transition: transform 0.1s ease; /* Плавный переход для трансформации */
+    }
+
+    .filter-slider_v2des::-webkit-slider-thumb:hover,
+    .filter-slider_v2des::-webkit-slider-thumb:focus {
+        transform: scale(1.2); /* Увеличиваем в 1.2 раза при наведении/фокусе */
+        /* width и height НЕ изменяются */
+    }
+
+    /* Для Firefox */
+    .filter-slider_v2des::-moz-range-thumb {
+        /* ... (ваш базовый стиль, например, width: 14px; height: 14px;) ... */
+        transition: transform 0.1s ease;
+    }
+
+    .filter-slider_v2des::-moz-range-thumb:hover,
+    .filter-slider_v2des::-moz-range-thumb:focus {
+        transform: scale(1.2);
+        /* width и height НЕ изменяются */
     }
 
 
@@ -1605,10 +1659,16 @@
                 }
             }
             const checkedAttr = '';
+
+            let _2postfix = '_v2des';
+            if (window.v2des) {
+                _2postfix = '_v2des';
+            }
             roomCheckboxesHTML += `
-                    <div data-v-629e44ba="" class="e-checkbox-btn">
+                    <div data-v-629e44ba="" class="e-checkbox-btn${_2postfix}">
                         <input data-v-629e44ba="" type="checkbox" name="rooms" id="type${room}" value="${room}"${checkedAttr}>
                         <label data-v-629e44ba="" for="type${room}">${displayRoom}  </label>
+                        <div class="e-checkbox-line_b"></div>
                     </div>
                 `;
 
@@ -1753,7 +1813,6 @@
             `;
 
 
-
         function getPluralForm(number) {
             // Преобразуем к числу и получаем остаток от деления на 100
             const n = Math.abs(number);
@@ -1814,7 +1873,7 @@
               <!-- Контейнер для самих слайдеров (теперь это input type="text") -->
               <div class="filter-slider-container_v2des">
                 <input type="number" id="min-pv-max-value_v2des" value="${minPvMax}" max="${(minPvMax + 100000)}" value="${minPvMax}" step="100000" class="filter-input-text_v2des">
-                    <input type="range" id="min-pv-slider-max_v2des" min="${minPvMin}" max="${(minPvMax)}" value="${minPvMax+200}" step="100000" class="filter-slider_v2des">
+                    <input type="range" id="min-pv-slider-max_v2des" min="${minPvMin}" max="${(minPvMax)}" value="${minPvMax + 200}" step="100000" class="filter-slider_v2des">
               </div>
 
 
@@ -2653,7 +2712,6 @@
             // --- Конец добавления ---
 
 
-
             const pluralWordElement = document.getElementById('shown-plural-word'); // Новый элемент
 
             if (countElement && pluralWordElement) { // Проверяем оба элемента
@@ -2807,8 +2865,6 @@
 
 
             }
-
-
 
 
         }
