@@ -660,17 +660,79 @@
                         // Проверка на iOS
                         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                         if (isIOS) {
+                            // Функция для масштабирования
+                            function scalePopupToFitScreen() {
+                                const popupInner = document.querySelector('.popup__inner');
+                                if (!popupInner) {
+                                    console.warn("Элемент .popup__inner не найден для масштабирования на iOS.");
+                                    return;
+                                }
+
+                                const viewportHeight = window.innerHeight;
+                                // Предположим, что изначально popupInner имеет определённую высоту (например, заданную в CSS или рассчитанную)
+                                // Для масштабирования, нам нужно знать "желаемую" высоту popupInner без прокрутки
+                                // ВАЖНО: getBoundingClientRect().height даст нам *отображаемую* высоту *до* применения scale
+                                const desiredHeight = popupInner.getBoundingClientRect().height;
+
+                                // Также нужно учесть отступы от краев экрана (например, 20px сверху/снизу)
+                                const desiredPadding = 40; // Пример отступа
+                                const availableHeight = viewportHeight - desiredPadding;
+
+                                if (desiredHeight > 0) {
+                                    // Рассчитываем коэффициент масштабирования
+                                    let scaleRatio = availableHeight / desiredHeight;
+
+                                    // Ограничиваем масштаб, чтобы не сделать элемент слишком маленьким или слишком большим
+                                    // Например, не масштабировать меньше 0.5 и не больше 1
+                                    scaleRatio = Math.max(0.5, Math.min(1, scaleRatio));
+
+                                    console.log(`iOS Scale: Viewport Height: ${viewportHeight}, Desired Height: ${desiredHeight}, Available: ${availableHeight}, Ratio: ${scaleRatio}`);
+
+                                    // Применяем масштабирование
+                                    // ВАЖНО: scale влияет на размер всего элемента и его содержимого
+                                    // Возможно, потребуется корректировка position или transform-origin для правильного выравнивания
+                                    popupInner.style.transformOrigin = 'top center'; // Масштабировать от верхнего центра (или другая точка по вкусу)
+                                    popupInner.style.transform = `scale(${scaleRatio})`;
+                                    // Если элемент был позиционирован (например, absolute), scale может изменить его положение.
+                                    // В таком случае, возможно, нужно будет корректировать top/left/margin.
+                                    // popupInner.style.marginTop = `${(viewportHeight - desiredHeight * scaleRatio) / 2}px`; // Пример центрирования по вертикали после scale
+                                } else {
+                                    console.warn("Не удалось определить высоту .popup__inner для масштабирования.");
+                                }
+                            }
+
                             // Наблюдаем за появлением popup__inner и подстраиваем его
                             const observer = new MutationObserver(() => {
                                 const popupInner = document.querySelector('.popup__inner');
                                 if (popupInner) {
-                                    popupInner.style.maxHeight = window.innerHeight + 'px';
-                                    popupInner.style.overflow = 'scroll';
-                                    observer.disconnect(); // отключаем после применения
+                                    // Ждем, пока элемент будет полностью отрисован и получит свои размеры
+                                    // requestAnimationFrame часто помогает в таких случаях
+                                    requestAnimationFrame(() => {
+                                        scalePopupToFitScreen(); // Применяем масштабирование при появлении
+                                    });
+
+                                    // Назначаем обработчики на resize (например, при повороте или появлении клавиатуры)
+                                    window.addEventListener('resize', scalePopupToFitScreen);
+
+                                    // Отключаем наблюдатель после первого срабатывания
+                                    observer.disconnect();
                                 }
                             });
 
                             observer.observe(document.body, { childList: true, subtree: true });
+
+                            // !!! ВАЖНО: !!!
+                            // Обработчик 'resize' на window может срабатывать ЧАСТО.
+                            // Рассмотрите использование debounce/throttle для scalePopupToFitScreen,
+                            // чтобы избежать слишком частых перерасчётов и перерисовок.
+                            // Пример с debounce:
+                            /*
+                            let resizeTimer;
+                            window.addEventListener('resize', () => {
+                                clearTimeout(resizeTimer);
+                                resizeTimer = setTimeout(scalePopupToFitScreen, 100); // Задержка 100мс
+                            });
+                            */
                         }
 
 
